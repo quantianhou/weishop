@@ -1,0 +1,61 @@
+2018-06-22 09:20:04 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0oLIMXiAVj3A7izb5HLhuDo]]></FromUserName>
+<CreateTime>1529630404</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[user_view_card]]></Event>
+<CardId><![CDATA[pyIW_0sZr_mhsLU71PwmeszLW5k4]]></CardId>
+<UserCardCode><![CDATA[804999844193]]></UserCardCode>
+<OuterStr><![CDATA[]]></OuterStr>
+</xml>
+
+2018-06-22 09:20:04 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'createtime' => '1529630404',
+    'msgtype' => 'event',
+    'event' => 'user_view_card',
+    'cardid' => 'pyIW_0sZr_mhsLU71PwmeszLW5k4',
+    'usercardcode' => '804999844193',
+    'outerstr' => '',
+    'from' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1529630404',
+    'type' => 'event',
+  ),
+)
+
+2018-06-22 09:20:04 response :
+------------
+
+2018-06-22 09:20:08 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0oLIMXiAVj3A7izb5HLhuDo]]></FromUserName>
+<CreateTime>1529630408</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[user_del_card]]></Event>
+<CardId><![CDATA[pyIW_0sZr_mhsLU71PwmeszLW5k4]]></CardId>
+<UserCardCode><![CDATA[804999844193]]></UserCardCode>
+</xml>
+
+2018-06-22 09:20:08 SQL Error :
+------------
+String:
+SQL: <br/>UPDATE `ims_coupon_record` SET `status` =  :status WHERE `card_id` =  :__card_id AND `openid` =  :__openid AND `code` =  :__code<hr/>Params: <br/>array (
+  ':status' => 4,
+  ':__card_id' => 'pyIW_0sZr_mhsLU71PwmeszLW5k4',
+  ':__openid' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+  ':__code' => '804999844193',
+)<hr/>SQL Error: <br/>Table 'wei_shop_v2.ims_coupon_record' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 104; <br />file: /framework/class/db.class.php; line: 289; <br />file: /framework/function/pdo.func.php; line: 62; <br />file: /api.php; line: 814; <br />file: ; line: ; <br />file: /api.php; line: 518; <br />file: /api.php; line: 169; <br />file: /api.php; line: 62; <br />
+

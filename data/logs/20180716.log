@@ -1,0 +1,154 @@
+2018-07-16 17:36:25 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531733785</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416966565</MenuId>
+</xml>
+
+2018-07-16 17:36:25 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531733785',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416966565',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531733785',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-16 17:36:25 response :
+------------
+
+2018-07-16 17:36:31 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531733791</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2018-07-16 17:38:26 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531733906</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2018-07-16 17:38:26 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531733906',
+    'msgtype' => 'event',
+    'event' => 'subscribe',
+    'eventkey' => '',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531733906',
+    'type' => 'text',
+    'redirection' => true,
+    'source' => 'subscribe',
+    'content' => '首关',
+  ),
+  'module' => 'reply',
+  'rule' => '11',
+  'priority' => '254',
+  'keyword' => 
+  array (
+    'id' => '20',
+    'rid' => '11',
+    'uniacid' => '2',
+    'module' => 'reply',
+    'content' => '首关',
+    'type' => '1',
+    'displayorder' => '254',
+    'status' => '1',
+    'reply_type' => 
+    array (
+      0 => 'basic',
+    ),
+  ),
+  'reply_type' => 
+  array (
+    0 => 'basic',
+  ),
+)
+
+2018-07-16 17:38:26 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0k4fyI5fmKy9YiFtu4ZAU2I ;
+MsgType : text ;
+Content : 感谢您的关注！ ;
+
+2018-07-16 17:38:27 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531733907</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416966565</MenuId>
+</xml>
+
+2018-07-16 17:38:27 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531733907',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416966565',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531733907',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-16 17:38:27 response :
+------------
+

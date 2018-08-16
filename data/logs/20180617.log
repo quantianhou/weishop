@@ -1,0 +1,207 @@
+2018-06-17 00:51:28 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1529167887</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[核销]]></Content>
+<MsgId>6567726065175115612</MsgId>
+</xml>
+
+2018-06-17 00:51:28 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1529167887',
+    'msgtype' => 'text',
+    'content' => '核销',
+    'msgid' => '6567726065175115612',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1529167887',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+  'module' => 'ewei_shopv2',
+  'rule' => '13',
+  'priority' => '0',
+  'keyword' => 
+  array (
+    'id' => '21',
+    'rid' => '13',
+    'uniacid' => '2',
+    'module' => 'ewei_shopv2',
+    'content' => '核销',
+    'type' => '1',
+    'displayorder' => '0',
+    'status' => '1',
+    'reply_type' => 
+    array (
+    ),
+  ),
+  'reply_type' => 
+  array (
+  ),
+)
+
+2018-06-17 00:51:28 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0k4fyI5fmKy9YiFtu4ZAU2I ;
+MsgType : text ;
+Content : 请输入8位及以上数字订单消费码或自提码: ;
+
+2018-06-17 00:52:00 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1529167920</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[user_view_card]]></Event>
+<CardId><![CDATA[pyIW_0sZr_mhsLU71PwmeszLW5k4]]></CardId>
+<UserCardCode><![CDATA[561524170614]]></UserCardCode>
+<OuterStr><![CDATA[]]></OuterStr>
+</xml>
+
+2018-06-17 00:52:00 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1529167920',
+    'msgtype' => 'event',
+    'event' => 'user_view_card',
+    'cardid' => 'pyIW_0sZr_mhsLU71PwmeszLW5k4',
+    'usercardcode' => '561524170614',
+    'outerstr' => '',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1529167920',
+    'type' => 'event',
+  ),
+)
+
+2018-06-17 00:52:00 response :
+------------
+
+2018-06-17 00:52:40 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1529167960</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[50644981]]></Content>
+<MsgId>6567726378707728224</MsgId>
+</xml>
+
+2018-06-17 00:52:41 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1529167960',
+    'msgtype' => 'text',
+    'content' => '50644981',
+    'msgid' => '6567726378707728224',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1529167960',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+  'module' => 'ewei_shopv2',
+  'rule' => '13',
+  'priority' => 0,
+  'context' => true,
+)
+
+2018-06-17 00:52:41 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0k4fyI5fmKy9YiFtu4ZAU2I ;
+MsgType : text ;
+Content : 未找到订单，请继续输入，退出请回复 n。 ;
+
+2018-06-17 01:43:37 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1529171016</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[会员中心]]></Content>
+<MsgId>6567739504127784946</MsgId>
+</xml>
+
+2018-06-17 01:43:37 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1529171016',
+    'msgtype' => 'text',
+    'content' => '会员中心',
+    'msgid' => '6567739504127784946',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1529171016',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+  'module' => 'cover',
+  'rule' => '15',
+  'priority' => '0',
+  'keyword' => 
+  array (
+    'id' => '23',
+    'rid' => '15',
+    'uniacid' => '2',
+    'module' => 'cover',
+    'content' => '会员中心',
+    'type' => '1',
+    'displayorder' => '0',
+    'status' => '1',
+    'reply_type' => 
+    array (
+    ),
+  ),
+  'reply_type' => 
+  array (
+  ),
+)
+
+2018-06-17 01:43:37 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0k4fyI5fmKy9YiFtu4ZAU2I ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+

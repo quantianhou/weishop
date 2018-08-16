@@ -1,0 +1,63 @@
+2018-06-26 12:18:11 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qtmb2wPd0q4n3VGkLxlL-0]]></FromUserName>
+<CreateTime>1529986691</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2018-06-26 12:18:11 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qtmb2wPd0q4n3VGkLxlL-0',
+    'createtime' => '1529986691',
+    'msgtype' => 'event',
+    'event' => 'subscribe',
+    'eventkey' => '',
+    'from' => 'oyIW_0qtmb2wPd0q4n3VGkLxlL-0',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1529986691',
+    'type' => 'text',
+    'redirection' => true,
+    'source' => 'subscribe',
+    'content' => '首关',
+  ),
+  'module' => 'reply',
+  'rule' => '11',
+  'priority' => '254',
+  'keyword' => 
+  array (
+    'id' => '20',
+    'rid' => '11',
+    'uniacid' => '2',
+    'module' => 'reply',
+    'content' => '首关',
+    'type' => '1',
+    'displayorder' => '254',
+    'status' => '1',
+    'reply_type' => 
+    array (
+      0 => 'basic',
+    ),
+  ),
+  'reply_type' => 
+  array (
+    0 => 'basic',
+  ),
+)
+
+2018-06-26 12:18:11 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0qtmb2wPd0q4n3VGkLxlL-0 ;
+MsgType : text ;
+Content : 感谢您的关注！ ;
+

@@ -1,0 +1,298 @@
+2018-06-21 00:28:09 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1529512089</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[user_view_card]]></Event>
+<CardId><![CDATA[pyIW_0sZr_mhsLU71PwmeszLW5k4]]></CardId>
+<UserCardCode><![CDATA[561524170614]]></UserCardCode>
+<OuterStr><![CDATA[]]></OuterStr>
+</xml>
+
+2018-06-21 00:28:09 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1529512089',
+    'msgtype' => 'event',
+    'event' => 'user_view_card',
+    'cardid' => 'pyIW_0sZr_mhsLU71PwmeszLW5k4',
+    'usercardcode' => '561524170614',
+    'outerstr' => '',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1529512089',
+    'type' => 'event',
+  ),
+)
+
+2018-06-21 00:28:09 response :
+------------
+
+2018-06-21 01:03:24 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1529514204</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[测试]]></Content>
+<MsgId>6569213485364189414</MsgId>
+</xml>
+
+2018-06-21 01:03:24 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1529514204',
+    'msgtype' => 'text',
+    'content' => '测试',
+    'msgid' => '6569213485364189414',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1529514204',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+  'module' => 'ewei_shopv2',
+  'rule' => '16',
+  'priority' => '0',
+  'keyword' => 
+  array (
+    'id' => '24',
+    'rid' => '16',
+    'uniacid' => '2',
+    'module' => 'ewei_shopv2',
+    'content' => '测试',
+    'type' => '1',
+    'displayorder' => '0',
+    'status' => '1',
+    'reply_type' => 
+    array (
+    ),
+  ),
+  'reply_type' => 
+  array (
+  ),
+)
+
+2018-06-21 01:03:24 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0k4fyI5fmKy9YiFtu4ZAU2I ;
+MsgType : news ;
+ArticleCount : 1 ;
+Articles : Array ;
+
+2018-06-21 15:14:00 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0kRd_-qPSui2l_CnSKgwrKE]]></FromUserName>
+<CreateTime>1529565240</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416665412</MenuId>
+</xml>
+
+2018-06-21 15:14:00 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0kRd_-qPSui2l_CnSKgwrKE',
+    'createtime' => '1529565240',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416665412',
+    'from' => 'oyIW_0kRd_-qPSui2l_CnSKgwrKE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1529565240',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-06-21 15:14:00 response :
+------------
+
+2018-06-21 17:20:13 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1529572813</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[user_view_card]]></Event>
+<CardId><![CDATA[pyIW_0sZr_mhsLU71PwmeszLW5k4]]></CardId>
+<UserCardCode><![CDATA[561524170614]]></UserCardCode>
+<OuterStr><![CDATA[]]></OuterStr>
+</xml>
+
+2018-06-21 17:20:13 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1529572813',
+    'msgtype' => 'event',
+    'event' => 'user_view_card',
+    'cardid' => 'pyIW_0sZr_mhsLU71PwmeszLW5k4',
+    'usercardcode' => '561524170614',
+    'outerstr' => '',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1529572813',
+    'type' => 'event',
+  ),
+)
+
+2018-06-21 17:20:13 response :
+------------
+
+2018-06-21 19:50:24 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0oLIMXiAVj3A7izb5HLhuDo]]></FromUserName>
+<CreateTime>1529581824</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416665412</MenuId>
+</xml>
+
+2018-06-21 19:50:24 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'createtime' => '1529581824',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416665412',
+    'from' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1529581824',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-06-21 19:50:24 response :
+------------
+
+2018-06-21 19:50:42 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1529581842</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[user_view_card]]></Event>
+<CardId><![CDATA[pyIW_0sZr_mhsLU71PwmeszLW5k4]]></CardId>
+<UserCardCode><![CDATA[561524170614]]></UserCardCode>
+<OuterStr><![CDATA[]]></OuterStr>
+</xml>
+
+2018-06-21 19:50:42 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1529581842',
+    'msgtype' => 'event',
+    'event' => 'user_view_card',
+    'cardid' => 'pyIW_0sZr_mhsLU71PwmeszLW5k4',
+    'usercardcode' => '561524170614',
+    'outerstr' => '',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1529581842',
+    'type' => 'event',
+  ),
+)
+
+2018-06-21 19:50:42 response :
+------------
+
+2018-06-21 21:57:50 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1529589470</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[user_view_card]]></Event>
+<CardId><![CDATA[pyIW_0sZr_mhsLU71PwmeszLW5k4]]></CardId>
+<UserCardCode><![CDATA[561524170614]]></UserCardCode>
+<OuterStr><![CDATA[]]></OuterStr>
+</xml>
+
+2018-06-21 21:57:50 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1529589470',
+    'msgtype' => 'event',
+    'event' => 'user_view_card',
+    'cardid' => 'pyIW_0sZr_mhsLU71PwmeszLW5k4',
+    'usercardcode' => '561524170614',
+    'outerstr' => '',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1529589470',
+    'type' => 'event',
+  ),
+)
+
+2018-06-21 21:57:50 response :
+------------
+

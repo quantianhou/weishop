@@ -1,0 +1,160 @@
+2018-07-11 10:00:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0mNA0r-pahPt2gafZ0zIT3I]]></FromUserName>
+<CreateTime>1531274454</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416665412</MenuId>
+</xml>
+
+2018-07-11 10:00:54 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0mNA0r-pahPt2gafZ0zIT3I',
+    'createtime' => '1531274454',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416665412',
+    'from' => 'oyIW_0mNA0r-pahPt2gafZ0zIT3I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531274454',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-11 10:00:54 response :
+------------
+
+2018-07-11 10:53:44 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0oLIMXiAVj3A7izb5HLhuDo]]></FromUserName>
+<CreateTime>1531277623</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416665412</MenuId>
+</xml>
+
+2018-07-11 10:53:44 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'createtime' => '1531277623',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416665412',
+    'from' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531277623',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-11 10:53:44 response :
+------------
+
+2018-07-11 12:09:08 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0oLIMXiAVj3A7izb5HLhuDo]]></FromUserName>
+<CreateTime>1531282148</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416665412</MenuId>
+</xml>
+
+2018-07-11 12:09:08 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'createtime' => '1531282148',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416665412',
+    'from' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531282148',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-11 12:09:08 response :
+------------
+
+2018-07-11 12:11:17 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0oLIMXiAVj3A7izb5HLhuDo]]></FromUserName>
+<CreateTime>1531282277</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416665412</MenuId>
+</xml>
+
+2018-07-11 12:11:17 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'createtime' => '1531282277',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416665412',
+    'from' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531282277',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-11 12:11:17 response :
+------------
+

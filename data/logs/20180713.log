@@ -1,0 +1,1760 @@
+2018-07-13 08:41:12 SQL Error :
+------------
+String:
+SQL: <br/>DELETE FROM `ims_mc_card_members` WHERE `uniacid` =  :__uniacid AND `uid` =  :__uid<hr/>Params: <br/>array (
+  ':__uniacid' => 2,
+  ':__uid' => '1',
+)<hr/>SQL Error: <br/>Table 'wei_shop_v2.ims_mc_card_members' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 104; <br />file: /framework/class/db.class.php; line: 309; <br />file: /framework/function/pdo.func.php; line: 72; <br />file: /web/source/mc/member.ctrl.php; line: 358; <br />file: /web/index.php; line: 189; <br />
+
+2018-07-13 08:41:29 SQL Error :
+------------
+String:
+SQL: <br/>DELETE FROM `ims_mc_card_members` WHERE `uniacid` =  :__uniacid AND `uid` =  :__uid<hr/>Params: <br/>array (
+  ':__uniacid' => 2,
+  ':__uid' => '2',
+)<hr/>SQL Error: <br/>Table 'wei_shop_v2.ims_mc_card_members' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 104; <br />file: /framework/class/db.class.php; line: 309; <br />file: /framework/function/pdo.func.php; line: 72; <br />file: /web/source/mc/member.ctrl.php; line: 358; <br />file: /web/index.php; line: 189; <br />
+
+2018-07-13 11:17:59 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[toUser]]></ToUserName><FromUserName><![CDATA[fromUser]]></FromUserName><CreateTime>1531451879</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试内容]]></Content><MsgId>1234567890123456</MsgId></xml>
+
+2018-07-13 11:17:59 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'toUser',
+    'fromusername' => 'fromUser',
+    'createtime' => '1531451879',
+    'msgtype' => 'text',
+    'content' => '测试内容',
+    'msgid' => '1234567890123456',
+    'from' => 'fromUser',
+    'to' => 'toUser',
+    'time' => '1531451879',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+)
+
+2018-07-13 11:17:59 response :
+------------
+
+2018-07-13 16:36:42 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0oLIMXiAVj3A7izb5HLhuDo]]></FromUserName>
+<CreateTime>1531471002</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=card&op=notice]]></EventKey>
+<MenuId>416938737</MenuId>
+</xml>
+
+2018-07-13 16:36:42 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'createtime' => '1531471002',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=card&op=notice',
+    'menuid' => '416938737',
+    'from' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531471002',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=card&op=notice',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 16:36:42 response :
+------------
+
+2018-07-13 16:37:04 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0oLIMXiAVj3A7izb5HLhuDo]]></FromUserName>
+<CreateTime>1531471024</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[核销]]></Content>
+<MsgId>6577617963268569857</MsgId>
+</xml>
+
+2018-07-13 16:37:04 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'createtime' => '1531471024',
+    'msgtype' => 'text',
+    'content' => '核销',
+    'msgid' => '6577617963268569857',
+    'from' => 'oyIW_0oLIMXiAVj3A7izb5HLhuDo',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531471024',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+  'module' => 'ewei_shopv2',
+  'rule' => '13',
+  'priority' => '0',
+  'keyword' => 
+  array (
+    'id' => '21',
+    'rid' => '13',
+    'uniacid' => '2',
+    'module' => 'ewei_shopv2',
+    'content' => '核销',
+    'type' => '1',
+    'displayorder' => '0',
+    'status' => '1',
+    'reply_type' => 
+    array (
+    ),
+  ),
+  'reply_type' => 
+  array (
+  ),
+)
+
+2018-07-13 16:37:04 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0oLIMXiAVj3A7izb5HLhuDo ;
+MsgType : text ;
+Content : <a href='http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=ewei_shopv2&do=mobile&r=verify.page&mid=2193'>点击进入核销台</a> ;
+
+2018-07-13 22:23:09 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531491789</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[感冒]]></Content>
+<MsgId>6577707148264476644</MsgId>
+</xml>
+
+2018-07-13 22:23:09 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531491789',
+    'msgtype' => 'text',
+    'content' => '感冒',
+    'msgid' => '6577707148264476644',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531491789',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+  'module' => 'reply',
+  'rule' => '20',
+  'priority' => '255',
+  'keyword' => 
+  array (
+    'id' => '28',
+    'rid' => '20',
+    'uniacid' => '2',
+    'module' => 'reply',
+    'content' => '感冒',
+    'type' => '1',
+    'displayorder' => '255',
+    'status' => '1',
+    'reply_type' => 
+    array (
+      0 => 'basic',
+    ),
+  ),
+  'reply_type' => 
+  array (
+    0 => 'basic',
+  ),
+)
+
+2018-07-13 22:23:09 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0k4fyI5fmKy9YiFtu4ZAU2I ;
+MsgType : text ;
+Content : 1111111 ;
+
+2018-07-13 22:23:27 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531491807</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[感冒]]></Content>
+<MsgId>6577707225573887977</MsgId>
+</xml>
+
+2018-07-13 22:23:27 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531491807',
+    'msgtype' => 'text',
+    'content' => '感冒',
+    'msgid' => '6577707225573887977',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531491807',
+    'type' => 'text',
+    'event' => NULL,
+    'redirection' => false,
+    'source' => NULL,
+  ),
+  'module' => 'reply',
+  'rule' => '20',
+  'priority' => '255',
+  'keyword' => 
+  array (
+    'id' => '28',
+    'rid' => '20',
+    'uniacid' => '2',
+    'module' => 'reply',
+    'content' => '感冒',
+    'type' => '1',
+    'displayorder' => '255',
+    'status' => '1',
+    'reply_type' => 
+    array (
+      0 => 'basic',
+    ),
+  ),
+  'reply_type' => 
+  array (
+    0 => 'basic',
+  ),
+)
+
+2018-07-13 22:23:27 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0qWsTIGYAlPTOSZX0S7xyWE ;
+MsgType : text ;
+Content : 1111111 ;
+
+2018-07-13 22:26:42 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492002</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=card&op=sign_display]]></EventKey>
+<MenuId>416919620</MenuId>
+</xml>
+
+2018-07-13 22:26:42 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531492002',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=card&op=sign_display',
+    'menuid' => '416919620',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492002',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=card&op=sign_display',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:26:42 response :
+------------
+
+2018-07-13 22:26:55 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492015</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=mc&]]></EventKey>
+<MenuId>416919620</MenuId>
+</xml>
+
+2018-07-13 22:26:55 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531492015',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&',
+    'menuid' => '416919620',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492015',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:26:55 response :
+------------
+
+2018-07-13 22:26:58 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mc_card` WHERE `uniacid` =  :__uniacid LIMIT 1<hr/>Params: <br/>array (
+  ':__uniacid' => 2,
+)<hr/>SQL Error: <br/>Table 'wei_shop_v2.ims_mc_card' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 156; <br />file: /framework/class/db.class.php; line: 214; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /app/source/mc/home.ctrl.php; line: 7; <br />file: /app/index.php; line: 111; <br />
+
+2018-07-13 22:27:02 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492022</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416919620</MenuId>
+</xml>
+
+2018-07-13 22:27:02 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531492022',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416919620',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492022',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:27:02 response :
+------------
+
+2018-07-13 22:27:04 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492024</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=activity&op=mine]]></EventKey>
+<MenuId>416919620</MenuId>
+</xml>
+
+2018-07-13 22:27:04 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531492024',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=activity&op=mine',
+    'menuid' => '416919620',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492024',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=activity&op=mine',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:27:04 response :
+------------
+
+2018-07-13 22:27:28 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492048</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=card&op=sign_display]]></EventKey>
+<MenuId>416919620</MenuId>
+</xml>
+
+2018-07-13 22:27:28 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531492048',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=card&op=sign_display',
+    'menuid' => '416919620',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492048',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=card&op=sign_display',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:27:28 response :
+------------
+
+2018-07-13 22:27:33 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492053</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=mc&a=profile&]]></EventKey>
+<MenuId>416919620</MenuId>
+</xml>
+
+2018-07-13 22:27:33 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531492053',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&a=profile&',
+    'menuid' => '416919620',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492053',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&a=profile&',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:27:33 response :
+------------
+
+2018-07-13 22:27:43 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492063</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=mc&a=profile&]]></EventKey>
+<MenuId>416919620</MenuId>
+</xml>
+
+2018-07-13 22:27:43 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531492063',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&a=profile&',
+    'menuid' => '416919620',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492063',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&a=profile&',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:27:43 response :
+------------
+
+2018-07-13 22:27:50 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492070</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=mc&]]></EventKey>
+<MenuId>416919620</MenuId>
+</xml>
+
+2018-07-13 22:27:50 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531492070',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&',
+    'menuid' => '416919620',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492070',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:27:50 response :
+------------
+
+2018-07-13 22:27:51 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492070</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=card&op=notice]]></EventKey>
+<MenuId>416919620</MenuId>
+</xml>
+
+2018-07-13 22:27:51 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531492070',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=card&op=notice',
+    'menuid' => '416919620',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492070',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&m=we7_coupon&do=card&op=notice',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:27:51 response :
+------------
+
+2018-07-13 22:27:51 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mc_card` WHERE `uniacid` =  :__uniacid LIMIT 1<hr/>Params: <br/>array (
+  ':__uniacid' => 2,
+)<hr/>SQL Error: <br/>Table 'wei_shop_v2.ims_mc_card' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 156; <br />file: /framework/class/db.class.php; line: 214; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /app/source/mc/home.ctrl.php; line: 7; <br />file: /app/index.php; line: 111; <br />
+
+2018-07-13 22:27:56 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492076</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=mc&a=profile&]]></EventKey>
+<MenuId>416919620</MenuId>
+</xml>
+
+2018-07-13 22:27:56 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531492076',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&a=profile&',
+    'menuid' => '416919620',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492076',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&a=profile&',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:27:56 response :
+------------
+
+2018-07-13 22:28:26 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492106</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=mc&]]></EventKey>
+<MenuId>416919620</MenuId>
+</xml>
+
+2018-07-13 22:28:26 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531492106',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&',
+    'menuid' => '416919620',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492106',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:28:26 response :
+------------
+
+2018-07-13 22:28:27 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mc_card` WHERE `uniacid` =  :__uniacid LIMIT 1<hr/>Params: <br/>array (
+  ':__uniacid' => 2,
+)<hr/>SQL Error: <br/>Table 'wei_shop_v2.ims_mc_card' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 156; <br />file: /framework/class/db.class.php; line: 214; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /app/source/mc/home.ctrl.php; line: 7; <br />file: /app/index.php; line: 111; <br />
+
+2018-07-13 22:28:32 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492112</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2018-07-13 22:28:35 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492115</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=mc&a=profile&]]></EventKey>
+<MenuId>416919620</MenuId>
+</xml>
+
+2018-07-13 22:28:35 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531492115',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&a=profile&',
+    'menuid' => '416919620',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492115',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&a=profile&',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:28:35 response :
+------------
+
+2018-07-13 22:28:46 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492126</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2018-07-13 22:28:46 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531492126',
+    'msgtype' => 'event',
+    'event' => 'subscribe',
+    'eventkey' => '',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492126',
+    'type' => 'text',
+    'redirection' => true,
+    'source' => 'subscribe',
+    'content' => '首关',
+  ),
+  'module' => 'reply',
+  'rule' => '11',
+  'priority' => '254',
+  'keyword' => 
+  array (
+    'id' => '20',
+    'rid' => '11',
+    'uniacid' => '2',
+    'module' => 'reply',
+    'content' => '首关',
+    'type' => '1',
+    'displayorder' => '254',
+    'status' => '1',
+    'reply_type' => 
+    array (
+      0 => 'basic',
+    ),
+  ),
+  'reply_type' => 
+  array (
+    0 => 'basic',
+  ),
+)
+
+2018-07-13 22:28:46 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0k4fyI5fmKy9YiFtu4ZAU2I ;
+MsgType : text ;
+Content : 感谢您的关注！ ;
+
+2018-07-13 22:28:49 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492129</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=mc&]]></EventKey>
+<MenuId>416944176</MenuId>
+</xml>
+
+2018-07-13 22:28:49 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531492129',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&',
+    'menuid' => '416944176',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492129',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:28:49 response :
+------------
+
+2018-07-13 22:28:49 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mc_card` WHERE `uniacid` =  :__uniacid LIMIT 1<hr/>Params: <br/>array (
+  ':__uniacid' => 2,
+)<hr/>SQL Error: <br/>Table 'wei_shop_v2.ims_mc_card' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 156; <br />file: /framework/class/db.class.php; line: 214; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /app/source/mc/home.ctrl.php; line: 7; <br />file: /app/index.php; line: 111; <br />
+
+2018-07-13 22:28:54 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492134</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=mc&]]></EventKey>
+<MenuId>416944176</MenuId>
+</xml>
+
+2018-07-13 22:28:54 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531492134',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&',
+    'menuid' => '416944176',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492134',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=mc&',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:28:54 response :
+------------
+
+2018-07-13 22:28:54 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_mc_card` WHERE `uniacid` =  :__uniacid LIMIT 1<hr/>Params: <br/>array (
+  ':__uniacid' => 2,
+)<hr/>SQL Error: <br/>Table 'wei_shop_v2.ims_mc_card' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 156; <br />file: /framework/class/db.class.php; line: 214; <br />file: /framework/function/pdo.func.php; line: 45; <br />file: /app/source/mc/home.ctrl.php; line: 7; <br />file: /app/index.php; line: 111; <br />
+
+2018-07-13 22:32:07 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492327</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2018-07-13 22:32:15 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492334</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416919620</MenuId>
+</xml>
+
+2018-07-13 22:32:15 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531492334',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416919620',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492334',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:32:15 response :
+------------
+
+2018-07-13 22:32:22 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492342</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2018-07-13 22:32:22 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531492342',
+    'msgtype' => 'event',
+    'event' => 'subscribe',
+    'eventkey' => '',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492342',
+    'type' => 'text',
+    'redirection' => true,
+    'source' => 'subscribe',
+    'content' => '首关',
+  ),
+  'module' => 'reply',
+  'rule' => '11',
+  'priority' => '254',
+  'keyword' => 
+  array (
+    'id' => '20',
+    'rid' => '11',
+    'uniacid' => '2',
+    'module' => 'reply',
+    'content' => '首关',
+    'type' => '1',
+    'displayorder' => '254',
+    'status' => '1',
+    'reply_type' => 
+    array (
+      0 => 'basic',
+    ),
+  ),
+  'reply_type' => 
+  array (
+    0 => 'basic',
+  ),
+)
+
+2018-07-13 22:32:22 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0k4fyI5fmKy9YiFtu4ZAU2I ;
+MsgType : text ;
+Content : 感谢您的关注！ ;
+
+2018-07-13 22:32:23 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492343</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=home&]]></EventKey>
+<MenuId>416944247</MenuId>
+</xml>
+
+2018-07-13 22:32:23 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531492343',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=home&',
+    'menuid' => '416944247',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492343',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=home&',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:32:23 response :
+------------
+
+2018-07-13 22:32:25 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492344</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=home&]]></EventKey>
+<MenuId>416944247</MenuId>
+</xml>
+
+2018-07-13 22:32:25 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531492344',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=home&',
+    'menuid' => '416944247',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492344',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=home&',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:32:25 response :
+------------
+
+2018-07-13 22:34:20 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492460</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=home&]]></EventKey>
+<MenuId>416944247</MenuId>
+</xml>
+
+2018-07-13 22:34:20 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531492460',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=home&',
+    'menuid' => '416944247',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492460',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=home&',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:34:20 response :
+------------
+
+2018-07-13 22:34:25 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492464</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=home&]]></EventKey>
+<MenuId>416944247</MenuId>
+</xml>
+
+2018-07-13 22:34:25 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531492464',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=home&',
+    'menuid' => '416944247',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492464',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=home&',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:34:25 response :
+------------
+
+2018-07-13 22:34:44 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492484</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2018-07-13 22:34:46 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492486</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2018-07-13 22:34:57 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492497</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2018-07-13 22:34:57 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531492497',
+    'msgtype' => 'event',
+    'event' => 'subscribe',
+    'eventkey' => '',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492497',
+    'type' => 'text',
+    'redirection' => true,
+    'source' => 'subscribe',
+    'content' => '首关',
+  ),
+  'module' => 'reply',
+  'rule' => '11',
+  'priority' => '254',
+  'keyword' => 
+  array (
+    'id' => '20',
+    'rid' => '11',
+    'uniacid' => '2',
+    'module' => 'reply',
+    'content' => '首关',
+    'type' => '1',
+    'displayorder' => '254',
+    'status' => '1',
+    'reply_type' => 
+    array (
+      0 => 'basic',
+    ),
+  ),
+  'reply_type' => 
+  array (
+    0 => 'basic',
+  ),
+)
+
+2018-07-13 22:34:57 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0k4fyI5fmKy9YiFtu4ZAU2I ;
+MsgType : text ;
+Content : 感谢您的关注！ ;
+
+2018-07-13 22:35:12 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492511</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/web/index.php]]></EventKey>
+<MenuId>416944302</MenuId>
+</xml>
+
+2018-07-13 22:35:12 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531492511',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/web/index.php',
+    'menuid' => '416944302',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492511',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/web/index.php',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:35:12 response :
+------------
+
+2018-07-13 22:35:28 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492527</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2018-07-13 22:35:28 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531492527',
+    'msgtype' => 'event',
+    'event' => 'subscribe',
+    'eventkey' => '',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492527',
+    'type' => 'text',
+    'redirection' => true,
+    'source' => 'subscribe',
+    'content' => '首关',
+  ),
+  'module' => 'reply',
+  'rule' => '11',
+  'priority' => '254',
+  'keyword' => 
+  array (
+    'id' => '20',
+    'rid' => '11',
+    'uniacid' => '2',
+    'module' => 'reply',
+    'content' => '首关',
+    'type' => '1',
+    'displayorder' => '254',
+    'status' => '1',
+    'reply_type' => 
+    array (
+      0 => 'basic',
+    ),
+  ),
+  'reply_type' => 
+  array (
+    0 => 'basic',
+  ),
+)
+
+2018-07-13 22:35:28 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0qWsTIGYAlPTOSZX0S7xyWE ;
+MsgType : text ;
+Content : 感谢您的关注！ ;
+
+2018-07-13 22:35:30 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531492530</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/web/index.php]]></EventKey>
+<MenuId>416944302</MenuId>
+</xml>
+
+2018-07-13 22:35:30 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531492530',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/web/index.php',
+    'menuid' => '416944302',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492530',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/web/index.php',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:35:30 response :
+------------
+
+2018-07-13 22:35:55 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531492555</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/web/index.php]]></EventKey>
+<MenuId>416944302</MenuId>
+</xml>
+
+2018-07-13 22:35:55 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531492555',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/web/index.php',
+    'menuid' => '416944302',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531492555',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/web/index.php',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 22:35:55 response :
+------------
+
+2018-07-13 23:26:56 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531495616</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/web/index.php]]></EventKey>
+<MenuId>416944302</MenuId>
+</xml>
+
+2018-07-13 23:26:56 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531495616',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/web/index.php',
+    'menuid' => '416944302',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531495616',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/web/index.php',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 23:26:56 response :
+------------
+
+2018-07-13 23:27:46 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531495666</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2018-07-13 23:28:03 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531495683</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+
+2018-07-13 23:28:03 params :
+------------
+String:
+array (
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531495683',
+    'msgtype' => 'event',
+    'event' => 'subscribe',
+    'eventkey' => '',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531495683',
+    'type' => 'text',
+    'redirection' => true,
+    'source' => 'subscribe',
+    'content' => '首关',
+  ),
+  'module' => 'reply',
+  'rule' => '11',
+  'priority' => '254',
+  'keyword' => 
+  array (
+    'id' => '20',
+    'rid' => '11',
+    'uniacid' => '2',
+    'module' => 'reply',
+    'content' => '首关',
+    'type' => '1',
+    'displayorder' => '254',
+    'status' => '1',
+    'reply_type' => 
+    array (
+      0 => 'basic',
+    ),
+  ),
+  'reply_type' => 
+  array (
+    0 => 'basic',
+  ),
+)
+
+2018-07-13 23:28:03 response :
+------------
+Array:
+FromUserName : gh_fccda4240d6c ;
+ToUserName : oyIW_0k4fyI5fmKy9YiFtu4ZAU2I ;
+MsgType : text ;
+Content : 感谢您的关注！ ;
+
+2018-07-13 23:28:04 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0k4fyI5fmKy9YiFtu4ZAU2I]]></FromUserName>
+<CreateTime>1531495684</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416944999</MenuId>
+</xml>
+
+2018-07-13 23:28:04 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'createtime' => '1531495684',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416944999',
+    'from' => 'oyIW_0k4fyI5fmKy9YiFtu4ZAU2I',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531495684',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 23:28:04 response :
+------------
+
+2018-07-13 23:28:25 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531495705</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416944999</MenuId>
+</xml>
+
+2018-07-13 23:28:25 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531495705',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416944999',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531495705',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 23:28:25 response :
+------------
+
+2018-07-13 23:34:37 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531496077</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416944999</MenuId>
+</xml>
+
+2018-07-13 23:34:37 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531496077',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416944999',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531496077',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 23:34:37 response :
+------------
+
+2018-07-13 23:35:12 trace :
+------------
+String:
+<xml><ToUserName><![CDATA[gh_fccda4240d6c]]></ToUserName>
+<FromUserName><![CDATA[oyIW_0qWsTIGYAlPTOSZX0S7xyWE]]></FromUserName>
+<CreateTime>1531496112</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1]]></EventKey>
+<MenuId>416944999</MenuId>
+</xml>
+
+2018-07-13 23:35:12 params :
+------------
+String:
+array (
+  'rule' => -2,
+  'module' => '',
+  'message' => 
+  array (
+    'tousername' => 'gh_fccda4240d6c',
+    'fromusername' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'createtime' => '1531496112',
+    'msgtype' => 'event',
+    'event' => 'VIEW',
+    'eventkey' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'menuid' => '416944999',
+    'from' => 'oyIW_0qWsTIGYAlPTOSZX0S7xyWE',
+    'to' => 'gh_fccda4240d6c',
+    'time' => '1531496112',
+    'type' => 'text',
+    'content' => 'http://www.qthxxkj.com/app/index.php?i=2&c=entry&eid=1',
+    'redirection' => true,
+    'source' => 'VIEW',
+  ),
+)
+
+2018-07-13 23:35:12 response :
+------------
+
