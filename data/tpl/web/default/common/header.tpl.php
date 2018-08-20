@@ -48,7 +48,7 @@
 		</div>
 	</nav>
 </div>
-<?php  if(empty($_COOKIE['check_setmeal']) && !empty($_W['account']['endtime']) && ($_W['account']['endtime'] - TIMESTAMP < (6*86400))) { ?> 
+<?php  if(empty($_COOKIE['check_setmeal']) && !empty($_W['account']['endtime']) && ($_W['account']['endtime'] - TIMESTAMP < (6*86400))) { ?>
 <div class="system-tips we7-body-alert" id="setmeal-tips">
 	<div class="container text-right">
 		<div class="alert-info">
@@ -71,7 +71,7 @@
 		return false;
 	}
 </script>
-<?php  } ?> 
+<?php  } ?>
 <div class="main">
 <?php  if(!defined('IN_MESSAGE')) { ?>
 <div class="container">
