@@ -2,258 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e289cde9-756c-4678-96cb-4f287a9d180f" name="默认的" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/default/auth/7_0_forget.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/default/auth/7_0_login.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/default/auth/7_0_register.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/default/common/0_0_footer.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/default/common/0_0_header.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/default/common/2_0_footer.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/default/common/2_0_header.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/default/common/2_0_message.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/default/common/7_0_footer.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/default/common/7_0_header.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/default/common/7_0_message.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/default/home/0_0_home.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/_account.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/_copyright.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/_footer.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/_header.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/_menu.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/_message.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/_share.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/_wapqrcode.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/goods.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/goods/detail.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/goods/picker.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/goods/wholesalePicker.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/index_tpl.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/member.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/member/address.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/member/cart.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/member/fullback.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/member/info.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/member/info/face.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/order.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/order/create.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/order/detail.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/order/pay.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/order/pay/success.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/order/pay/wechat_jie.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/order/verify.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/sale/coupon.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/sale/coupon/detail.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/sale/coupon/my.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/sale/coupon/my/detail.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/sale/coupon/my/showcoupongoods.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/sale/coupon/my/showcoupons2.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/sale/coupon/util/couponpicker.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/sale/coupon/util/picker.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/shop/category.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/shop/index/adv.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/shop/index/banner.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/shop/index/cube.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/shop/index/goods.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/shop/index/nav.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/shop/index/notice.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/shop/index/recommand.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/shop/index/search.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/shop/shopstrengthen.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/verify/detail.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/verify/page.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/app/ewei_shopv2/default/mobile/verify/verifyorder/log.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/account/account-header.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/account/display.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/account/manage-base.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/account/manage-display-wxapp.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/account/manage-modules-tpl.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/account/manage-sms.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/account/manage-users.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/account/recycle.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/article/notice-show.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/common/message.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/core/3_display.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/core/5_display.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/core/7_display.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/ewei_shopv2/web/util/selecturl.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/home/welcome.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/mc/fans.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/mc/member.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/platform/mass-display.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/platform/mass-post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/platform/material-post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/platform/material.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/platform/menu.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/platform/qr-list.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/platform/reply-post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/platform/reply.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/profile/common.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/profile/module.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/profile/notify.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/profile/passport.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/profile/payment.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/profile/tplnotice.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/system/module-group.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/system/module.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/system/template.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/user/create.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/user/display.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/user/edit-account.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/user/edit-base.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/user/edit-modules-tpl.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/user/group-display.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/user/login.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/user/profile.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/utility/link.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/utility/user-browser.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web/default/wxapp/account-display.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/_footer.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/_header.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/_header_base.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/_message.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/_tabs.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/app.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/agent.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/cover.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/goods.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/increase.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/level.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/level/post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/notice.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/rank.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/set.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/set/basic.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/set/center.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/set/level.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/set/money.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/set/myshop.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/set/protocol.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/set/relate.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/set/style.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/statistics/agent.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/statistics/order.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/commission/statistics/user.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diyform/goods.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diyform/temp/tpl.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diyform/temp/tpl/data.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diyform/temp/tpl/script.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diypage.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diypage/_common.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diypage/_template.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diypage/_template_edit.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diypage/invoke/goods.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diypage/page/post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diypage/shop/menu.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diypage/shop/page.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diypage/temp.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/diypage/temp/category.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/finance/log/recharge.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/funbar.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/batchcates.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/category.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/category/post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/create.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/basic.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/buy.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/des.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/detaildiy.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/discount.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/notice.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/option.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/param.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/repeat.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/sale.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/share.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/verify.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/verifygoods.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tab/verifygoodscard.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tpl/param.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tpl/spec.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/goods/tpl/spec_item.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/member/card.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/member/detail/basic.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/member/detail/commission.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/member/detail/sns.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/member/detail/trade.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/member/group.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/member/level.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/member/list.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/member/list/detail.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/member/query.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/member/rank.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/order.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/perm/log.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/perm/role.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/perm/user.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/plugins.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/post/basic.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/post/cashier.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/post/center.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/post/code.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/post/consume.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/post/limit.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/post/recharge.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/post/resp.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/post/usage.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/sendcoupon.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/sendcoupon/base.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/sendcoupon/customnotice.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/coupon/sendcoupon/templatenotice.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/enough.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/gift.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/gift/post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/virtual.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/wxcard.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/wxcard/post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/wxcard/post/abstract.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/wxcard/post/basic.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/wxcard/post/center.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sale/wxcard/post/limit.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/adv.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/adv/post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/banner.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/banner/post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/comment.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/cube.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/nav.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/nav/post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/notice.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/refundaddress.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/selectareas.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/selectareasNew.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/sort.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/shop/verify/store/query.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/statistics/sale.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/store.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/store/post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/store/saler.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/store/saler/post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/store/verifygoods.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/account/index.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/category.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/close.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/cover.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/follow.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/index.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/payment.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/payset.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/printer/printer_query.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/sms/set.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/sms/temp.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/sms/temp/post.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/sms/temp/tpl.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/sysset/trade.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/system/plugin.tpl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/tpl/web_v3/default/ewei_shopv2/web/taobao.tpl.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/config.php" afterPath="$PROJECT_DIR$/data/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/tpl/web/default/common/header.tpl.php" afterPath="$PROJECT_DIR$/data/tpl/web/default/common/header.tpl.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/framework/model/user.mod.php" afterPath="$PROJECT_DIR$/framework/model/user.mod.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/common/bootstrap.sys.inc.php" afterPath="$PROJECT_DIR$/web/common/bootstrap.sys.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/source/account/manage.ctrl.php" afterPath="$PROJECT_DIR$/web/source/account/manage.ctrl.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/themes/default/common/header.html" afterPath="$PROJECT_DIR$/web/themes/default/common/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="weishop.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -265,7 +16,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -274,119 +24,12 @@
     <favorites_list name="weishop" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="user.mod.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/model/user.mod.php">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="274" column="29" selection-start-line="274" selection-start-column="29" selection-end-line="274" selection-end-column="29" />
-              <folding>
-                <marker date="1534736967628" expanded="true" signature="1132:1202" placeholder="SELECT `pass... ${tablename('users')}" />
-                <marker date="1534736967628" expanded="true" signature="2253:2308" placeholder="SELECT * FRO... ${tablename('users')}" />
-                <marker date="1534736967628" expanded="true" signature="2857:2934" placeholder="SELECT busin... ${tablename('activity_stores')}" />
-                <marker date="1534736967628" expanded="true" signature="6103:6307" placeholder="SELECT b.uni... ${tablename('account')}" />
-                <marker date="1534736967628" expanded="true" signature="6757:7017" placeholder="SELECT w.nam... ${tablename('uni_account')}" />
-                <marker date="1534736967628" expanded="true" signature="7099:7361" placeholder="SELECT w.nam... ${tablename('uni_account')}" />
-                <marker date="1534736967628" expanded="true" signature="9710:9861" placeholder="SELECT name ${tablename('modules')}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="display.ctrl.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/source/account/display.ctrl.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="695">
-              <caret line="86" column="17" selection-start-line="86" selection-start-column="10" selection-end-line="86" selection-end-column="17" />
-              <folding>
-                <marker date="1534737143203" expanded="true" signature="1997:2165" placeholder="SELECT COUNT... ${tablename('uni_account')}" />
-                <marker date="1534737143203" expanded="true" signature="2219:2397" placeholder="SELECT * FRO... ${tablename('uni_account')}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="display.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/themes/default/account/display.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="19" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manage.ctrl.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/source/account/manage.ctrl.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="37" column="48" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
-              <folding>
-                <marker date="1534738115584" expanded="true" signature="1438:1620" placeholder="SELECT COUNT... ${tablename(uni_account_tablename(ACCOUNT_TYPE))}" />
-                <marker date="1534738115584" expanded="true" signature="1632:1823" placeholder="SELECT * FRO... ${tablename(uni_account_tablename(ACCOUNT_TYPE))}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/themes/default/common/header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="205" column="52" selection-start-line="205" selection-start-column="42" selection-end-line="205" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manage-display.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/themes/default/account/manage-display.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#td#0;n#tr#1;n#table#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap.sys.inc.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/common/bootstrap.sys.inc.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap.inc.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/bootstrap.inc.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="23" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/data/config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="741">
-              <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pdo.func.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/function/pdo.func.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1805">
-              <caret line="95" column="18" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="18" />
+            <state relative-caret-position="85">
+              <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -408,6 +51,7 @@
         <option value="$PROJECT_DIR$/web/themes/default/account/manage-display.html" />
         <option value="$PROJECT_DIR$/web/themes/default/common/header.html" />
         <option value="$PROJECT_DIR$/data/config.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -419,18 +63,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="width" value="1920" />
-    <option name="height" value="1040" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="添加" />
-    <OptionsSetting value="true" id="移除" />
-    <OptionsSetting value="true" id="签出" />
-    <OptionsSetting value="true" id="更新" />
-    <OptionsSetting value="true" id="状态" />
-    <OptionsSetting value="true" id="编辑" />
-    <ConfirmationsSetting value="0" id="添加" />
-    <ConfirmationsSetting value="0" id="移除" />
+    <option name="x" value="4" />
+    <option name="width" value="1352" />
+    <option name="height" value="738" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -447,6 +82,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -454,66 +90,13 @@
               <option name="myItemId" value="weishop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="weishop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="weishop" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="weishop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="weishop" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="weishop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="weishop" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="weishop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="weishop" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -521,6 +104,18 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -533,35 +128,40 @@
       <option name="presentableId" value="Default" />
       <updated>1534736915868</updated>
       <workItem from="1534736917145" duration="5172000" />
+      <workItem from="1534829767532" duration="106000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5172000" />
+    <option name="totallyTimeSpent" value="5278000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1040" extended-state="1" />
+    <frame x="4" y="0" width="1352" height="738" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -573,74 +173,114 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/framework/model/user.mod.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="274" column="29" selection-start-line="274" selection-start-column="29" selection-end-line="274" selection-end-column="29" />
-          <folding>
-            <marker date="1534736967628" expanded="true" signature="1132:1202" placeholder="SELECT `pass... ${tablename('users')}" />
-            <marker date="1534736967628" expanded="true" signature="2253:2308" placeholder="SELECT * FRO... ${tablename('users')}" />
-            <marker date="1534736967628" expanded="true" signature="2857:2934" placeholder="SELECT busin... ${tablename('activity_stores')}" />
-            <marker date="1534736967628" expanded="true" signature="6103:6307" placeholder="SELECT b.uni... ${tablename('account')}" />
-            <marker date="1534736967628" expanded="true" signature="6757:7017" placeholder="SELECT w.nam... ${tablename('uni_account')}" />
-            <marker date="1534736967628" expanded="true" signature="7099:7361" placeholder="SELECT w.nam... ${tablename('uni_account')}" />
-            <marker date="1534736967628" expanded="true" signature="9710:9861" placeholder="SELECT name ${tablename('modules')}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/model/account.mod.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="560" column="9" selection-start-line="560" selection-start-column="9" selection-end-line="560" selection-end-column="9" />
-          <folding>
-            <marker date="1534567105780" expanded="true" signature="156:219" placeholder="SELECT group... ${tablename('users')}" />
-            <marker date="1534567105780" expanded="true" signature="271:366" placeholder="SELECT maxac... ${tablename('users_group')}" />
-            <marker date="1534567105780" expanded="true" signature="419:762" placeholder="SELECT d.typ... " />
-            <marker date="1534567105780" expanded="true" signature="1570:1775" placeholder="SELECT * FRO... ${tablename('uni_account')}" />
-            <marker date="1534567105780" expanded="true" signature="1885:1960" placeholder="SELECT uniac... ${tablename('uni_account_users')}" />
-            <marker date="1534567105780" expanded="true" signature="2860:3084" placeholder="SELECT w.*, ${tablename('account')}" />
-            <marker date="1534567105780" expanded="true" signature="3467:3542" placeholder="SELECT iscon... ${tablename('account')}" />
-            <marker date="1534567105780" expanded="true" signature="3709:3803" placeholder="SELECT uid F... ${tablename('uni_account_users')}" />
-            <marker date="1534567105780" expanded="true" signature="4142:4223" placeholder="SELECT group... ${tablename('uni_settings')}" />
-            <marker date="1534567105780" expanded="true" signature="5093:5231" placeholder="SELECT `modu... ${tablename('uni_group')}" />
-            <marker date="1534567105780" expanded="true" signature="5791:6005" placeholder="SELECT a.nam... ${tablename('modules')}" />
-            <marker date="1534567105780" expanded="true" signature="8025:8099" placeholder="SELECT * FRO... ${tablename('uni_group')}" />
-            <marker date="1534567105780" expanded="true" signature="9513:9637" placeholder="SELECT name,... ${tablename('site_templates')}" />
-            <marker date="1534567105780" expanded="true" signature="9765:9859" placeholder="SELECT uid F... ${tablename('uni_account_users')}" />
-            <marker date="1534567105780" expanded="true" signature="10260:10332" placeholder="SELECT * FRO... ${tablename('site_templates')}" />
-            <marker date="1534567105780" expanded="true" signature="10411:10476" placeholder="SELECT * FRO... ${tablename('site_templates')}" />
-            <marker date="1534567105780" expanded="true" signature="10527:10600" placeholder="SELECT id, n... ${tablename('users_group')}" />
-            <marker date="1534567105780" expanded="true" signature="10904:10969" placeholder="SELECT * FRO... ${tablename('site_templates')}" />
-            <marker date="1534567105780" expanded="true" signature="11033:11167" placeholder="SELECT `temp... ${tablename('uni_group')}" />
-            <marker date="1534567105780" expanded="true" signature="13775:13910" placeholder="SELECT * FRO... ${tablename('uni_account')}" />
-            <marker date="1534567105780" expanded="true" signature="19363:19673" placeholder="SELECT COUNT... uniacid" />
-            <marker date="1534567105780" expanded="true" signature="19385:19577" placeholder="SELECT u.uni... ${tablename('uni_account_users')}" />
-          </folding>
+        <state relative-caret-position="4658">
+          <caret line="274" column="29" lean-forward="false" selection-start-line="274" selection-start-column="29" selection-end-line="274" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/source/account/display.ctrl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="695">
-          <caret line="86" column="17" selection-start-line="86" selection-start-column="10" selection-end-line="86" selection-end-column="17" />
-          <folding>
-            <marker date="1534737143203" expanded="true" signature="1997:2165" placeholder="SELECT COUNT... ${tablename('uni_account')}" />
-            <marker date="1534737143203" expanded="true" signature="2219:2397" placeholder="SELECT * FRO... ${tablename('uni_account')}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/function/pdo.func.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1805">
-          <caret line="95" column="18" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="18" />
+        <state relative-caret-position="1462">
+          <caret line="86" column="17" lean-forward="false" selection-start-line="86" selection-start-column="10" selection-end-line="86" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/themes/default/account/display.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="19" />
+        <state relative-caret-position="51">
+          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/source/account/manage.ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="48" lean-forward="false" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/themes/default/common/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3485">
+          <caret line="205" column="52" lean-forward="false" selection-start-line="205" selection-start-column="42" selection-end-line="205" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/themes/default/account/manage-display.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#td#0;n#tr#1;n#table#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/common/bootstrap.sys.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/bootstrap.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/function/pdo.func.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1615">
+          <caret line="95" column="18" lean-forward="false" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="38" lean-forward="false" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/model/user.mod.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4658">
+          <caret line="274" column="29" lean-forward="false" selection-start-line="274" selection-start-column="29" selection-end-line="274" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/model/account.mod.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="560" column="9" lean-forward="false" selection-start-line="560" selection-start-column="9" selection-end-line="560" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/source/account/display.ctrl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="86" column="17" lean-forward="false" selection-start-line="86" selection-start-column="10" selection-end-line="86" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/themes/default/account/display.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -648,41 +288,37 @@
     <entry file="file://$PROJECT_DIR$/framework/function/file.func.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-532">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding />
+          <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/class/loader.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
-          <caret line="6" column="57" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="57" />
-          <folding>
-            <marker date="1534568163501" expanded="true" signature="123:191" placeholder="SELECT * FRO... ${tablename('site_multi')}" />
-          </folding>
+          <caret line="6" column="57" lean-forward="false" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="57" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/themes/default/account/manage-display.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+        <state relative-caret-position="102">
+          <caret line="6" column="9" lean-forward="false" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
           <folding>
             <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#td#0;n#tr#1;n#table#0;n#!!top" expanded="true" />
@@ -692,43 +328,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/themes/default/common/header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="205" column="52" selection-start-line="205" selection-start-column="42" selection-end-line="205" selection-end-column="52" />
+        <state relative-caret-position="3485">
+          <caret line="205" column="52" lean-forward="false" selection-start-line="205" selection-start-column="42" selection-end-line="205" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/source/account/manage.ctrl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="37" column="48" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
-          <folding>
-            <marker date="1534738115584" expanded="true" signature="1438:1620" placeholder="SELECT COUNT... ${tablename(uni_account_tablename(ACCOUNT_TYPE))}" />
-            <marker date="1534738115584" expanded="true" signature="1632:1823" placeholder="SELECT * FRO... ${tablename(uni_account_tablename(ACCOUNT_TYPE))}" />
-          </folding>
+        <state relative-caret-position="629">
+          <caret line="37" column="48" lean-forward="false" selection-start-line="37" selection-start-column="48" selection-end-line="37" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/common/bootstrap.sys.inc.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        <state relative-caret-position="272">
+          <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/bootstrap.inc.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="23" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="23" />
+        <state relative-caret-position="272">
+          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
+        <state relative-caret-position="528">
+          <caret line="39" column="38" lean-forward="false" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/function/pdo.func.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="95" column="18" lean-forward="false" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
           <folding />
         </state>
       </provider>
