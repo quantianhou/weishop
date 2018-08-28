@@ -1392,7 +1392,7 @@ if (!function_exists('createRedPack')) {
 	}
 }
 
-if (0) {
+if (!function_exists('redis')) {
 	function redis()
 	{
 		global $_W;
