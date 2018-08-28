@@ -62,10 +62,10 @@
         <div class="page-toolbar">
             <span class="pull-left" style="margin-right:30px;">
                 {ifp 'goods.add'}
-                <a class='btn btn-sm btn-primary' href="{php echo webUrl('goods/add')}"><i class='fa fa-plus'></i> 添加商品</a>
+                <a class='btn btn-sm btn-primary' href="{php echo webUrl('goods/shop/add')}"><i class='fa fa-plus'></i> 添加商品</a>
                 {/if}
                 {ifp 'goods.add'}
-                <a class='btn btn-sm btn-primary' href="{php echo webUrl('goods/create')}"><i class='fa fa-plus'></i> 快速添加商品</a>
+                <a class='btn btn-sm btn-primary' href="{php echo webUrl('goods/shop/create')}"><i class='fa fa-plus'></i> 快速添加商品</a>
                 {/if}
 
                 {if p('taobao')}
@@ -338,7 +338,7 @@
                     <td  style="overflow:visible;position:relative">
                             {if empty($item['ishotel'])}
                                 {ifp 'goods.edit|goods.view'}
-                                    <a  class='btn btn-op btn-operation' href="{php echo webUrl('goods/edit', array('id' => $item['id'],'goodsfrom'=>$goodsfrom,'page'=>$page))}" >
+                                    <a  class='btn btn-op btn-operation' href="{php echo webUrl('goods/shop/edit', array('id' => $item['id'],'goodsfrom'=>$goodsfrom,'page'=>$page))}" >
                                          <span data-toggle="tooltip" data-placement="top" title="" data-original-title="{ifp 'goods.edit'}编辑{else}查看{/if}">
                                             <i class="icow icow-bianji2"></i>
                                          </span>
