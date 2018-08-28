@@ -726,7 +726,7 @@ class System_EweiShopV2Model
 				'subtitle' => '商品管理',
 				'icon'     => 'goods',
 				'items'    => array(
-					array('title' => '商家商品库', 'route' => 'main'),
+					array('title' => '商家商品库', 'route' => 'shop'),
                     array(
 						'title' => '门店商品库',
 						'items' => array(

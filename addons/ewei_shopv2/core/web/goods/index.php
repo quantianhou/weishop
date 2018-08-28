@@ -5,7 +5,7 @@ if (!defined('IN_IA')) {
 
 class Index_EweiShopV2Page extends WebPage
 {
-	public function main($goodsfrom = 'sale')
+	public function main($goodsfrom = '')
 	{
 		global $_W;
 		global $_GPC;
@@ -21,6 +21,10 @@ class Index_EweiShopV2Page extends WebPage
 			if (!empty($_GPC['goodsfrom'])) {
 				header('location: ' . webUrl('goods/' . $_GPC['goodsfrom']));
 			}
+		}
+
+		if(empty($goodsfrom)){
+            header('location: ' . webUrl('goods/shop'));
 		}
 
 		$merch_plugin = p('merch');
@@ -40,7 +44,7 @@ class Index_EweiShopV2Page extends WebPage
 
 		if (!empty($_GPC['keyword'])) {
 			$_GPC['keyword'] = trim($_GPC['keyword']);
-			$sqlcondition = ' left join ' . tablename('ewei_shop_goods_option') . ' op on g.id = op.goodsid';
+			$sqlcondition = ' left join ' . tablename('ewei_shop_goods_option') . ' op on g.business_goods_id = op.goodsid';
 
 			if ($merch_plugin) {
 				$sqlcondition .= ' left join ' . tablename('ewei_shop_merch_user') . ' merch on merch.id = g.merchid and merch.uniacid=g.uniacid';
