@@ -5,9 +5,9 @@ $shopset_level = intval($_W['shopset']['commission']['level']);
 $id = intval($_GPC['id']);
 if (!(empty($id))) 
 {
-	pdo_update('ewei_shop_goods', array('newgoods' => 0), array('id' => $id));
+	pdo_update('ewei_business_goods', array('newgoods' => 0), array('id' => $id));
 }
-$item = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_goods') . ' WHERE id = :id and uniacid = :uniacid', array(':id' => $id, ':uniacid' => $_W['uniacid']));
+$item = pdo_fetch('SELECT * FROM ' . tablename('ewei_business_goods') . ' WHERE id = :id and uniacid = :uniacid', array(':id' => $id, ':uniacid' => $_W['uniacid']));
 if (!(empty($item)) && ($item['type'] == 5) && !(empty($item['opencard'])) && !(empty($item['cardid']))) 
 {
 	$card = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_goods_cards') . ' WHERE id = :id and uniacid = :uniacid', array(':id' => $item['cardid'], ':uniacid' => $_W['uniacid']));
@@ -582,14 +582,14 @@ if ($_W['ispost'])
 	if (empty($id)) 
 	{
 		$data['merchid'] = 0;
-		pdo_insert('ewei_shop_goods', $data);
+		pdo_insert('ewei_business_goods', $data);
 		$id = pdo_insertid();
 		plog('goods.add', '添加商品 ID: ' . $id . '<br>' . ((!(empty($data['nocommission'])) ? '是否参与分销 -- 否' : '是否参与分销 -- 是')));
 	}
 	else 
 	{
 		unset($data['createtime']);
-		pdo_update('ewei_shop_goods', $data, array('id' => $id));
+		pdo_update('ewei_business_goods', $data, array('id' => $id));
 		plog('goods.edit', '编辑商品 ID: ' . $id . '<br>' . ((!(empty($data['nocommission'])) ? '是否参与分销 -- 否' : '是否参与分销 -- 是')));
 	}
 	$param_ids = $_POST['param_id'];
@@ -779,7 +779,7 @@ if ($_W['ispost'])
 	{
 		$discounts_json = ((is_array($_GPC['discounts']) ? json_encode($_GPC['discounts']) : json_encode(array())));
 	}
-	pdo_update('ewei_shop_goods', array('discounts' => $discounts_json), array('id' => $id));
+	pdo_update('ewei_business_goods', array('discounts' => $discounts_json), array('id' => $id));
 	$has_merch = 0;
 	$old_isdiscount_discounts = json_decode($item['isdiscount_discounts'], true);
 	if (!(empty($old_isdiscount_discounts['merch']))) 
@@ -815,7 +815,7 @@ if ($_W['ispost'])
 		}
 		$is_discounts_json = ((is_array($is_discounts_arr) ? json_encode($is_discounts_arr) : json_encode(array())));
 	}
-	pdo_update('ewei_shop_goods', array('isdiscount_discounts' => $is_discounts_json), array('id' => $id));
+	pdo_update('ewei_business_goods', array('isdiscount_discounts' => $is_discounts_json), array('id' => $id));
 	if (!(empty($commissionArray)) && $data['hasoption']) 
 	{
 		$commissionArray = array_merge(array('type' => (int) $_GPC['commission_type']), $commissionArray);
@@ -846,32 +846,32 @@ if ($_W['ispost'])
 		$commissionDefaultArray = array_merge(array('type' => (int) $_GPC['commission_type']), $commissionDefaultArray);
 		$commission_arr = array('commission' => (is_array($commissionDefaultArray) ? json_encode($commissionDefaultArray) : json_encode(array())));
 	}
-	pdo_update('ewei_shop_goods', $commission_arr, array('id' => $id));
+	pdo_update('ewei_business_goods', $commission_arr, array('id' => $id));
 	if ((0 < count($optionids)) && ($data['hasoption'] !== 0)) 
 	{
 		pdo_query('delete from ' . tablename('ewei_shop_goods_option') . ' where goodsid=' . $id . ' and id not in ( ' . implode(',', $optionids) . ')');
-		$sql = 'update ' . tablename('ewei_shop_goods') . ' g set' . "\r\n" . '            g.minprice = (select min(marketprice) from ' . tablename('ewei_shop_goods_option') . ' where goodsid = ' . $id . '),' . "\r\n" . '            g.maxprice = (select max(marketprice) from ' . tablename('ewei_shop_goods_option') . ' where goodsid = ' . $id . ')' . "\r\n" . '            where g.id = ' . $id . ' and g.hasoption=1';
+		$sql = 'update ' . tablename('ewei_business_goods') . ' g set' . "\r\n" . '            g.minprice = (select min(marketprice) from ' . tablename('ewei_shop_goods_option') . ' where goodsid = ' . $id . '),' . "\r\n" . '            g.maxprice = (select max(marketprice) from ' . tablename('ewei_shop_goods_option') . ' where goodsid = ' . $id . ')' . "\r\n" . '            where g.id = ' . $id . ' and g.hasoption=1';
 		pdo_query($sql);
 	}
 	else 
 	{
 		pdo_query('delete from ' . tablename('ewei_shop_goods_option') . ' where goodsid=' . $id);
-		$sql = 'update ' . tablename('ewei_shop_goods') . ' set minprice = marketprice,maxprice = marketprice where id = ' . $id . ' and hasoption=0;';
+		$sql = 'update ' . tablename('ewei_business_goods') . ' set minprice = marketprice,maxprice = marketprice where id = ' . $id . ' and hasoption=0;';
 		pdo_query($sql);
 	}
-	$sqlgoods = 'SELECT id,title,thumb,marketprice,productprice,minprice,maxprice,isdiscount,isdiscount_time,isdiscount_discounts,sales,total,description,merchsale FROM ' . tablename('ewei_shop_goods') . ' where id=:id and uniacid=:uniacid limit 1';
+	$sqlgoods = 'SELECT id,title,thumb,marketprice,productprice,minprice,maxprice,isdiscount,isdiscount_time,isdiscount_discounts,sales,total,description,merchsale FROM ' . tablename('ewei_business_goods') . ' where id=:id and uniacid=:uniacid limit 1';
 	$goodsinfo = pdo_fetch($sqlgoods, array(':id' => $id, ':uniacid' => $_W['uniacid']));
 	$goodsinfo = m('goods')->getOneMinPrice($goodsinfo);
-	pdo_update('ewei_shop_goods', array('minprice' => $goodsinfo['minprice'], 'maxprice' => $goodsinfo['maxprice']), array('id' => $id, 'uniacid' => $_W['uniacid']));
+	pdo_update('ewei_business_goods', array('minprice' => $goodsinfo['minprice'], 'maxprice' => $goodsinfo['maxprice']), array('id' => $id, 'uniacid' => $_W['uniacid']));
 	if (($data['type'] == 3) && $com_virtual) 
 	{
 		$com_virtual->updateGoodsStock($id);
 	}
 	else if (($data['hasoption'] !== 0) && ($data['totalcnf'] != 2) && empty($data['unite_total'])) 
 	{
-		pdo_update('ewei_shop_goods', array('total' => $totalstocks), array('id' => $id));
+		pdo_update('ewei_business_goods', array('total' => $totalstocks), array('id' => $id));
 	}
-	show_json(1, array('url' => webUrl('goods/edit', array('id' => $id, 'tab' => str_replace('#tab_', '', $_GPC['tab'])))));
+	show_json(1, array('url' => webUrl('goods/shop/edit', array('id' => $id, 'tab' => str_replace('#tab_', '', $_GPC['tab'])))));
 }
 if (!(empty($id))) 
 {
@@ -1293,7 +1293,7 @@ if ($com_virtual)
 }
 if ($merchid == 0) 
 {
-	$details = pdo_fetchall('select detail_logo,detail_shopname,detail_btntext1, detail_btnurl1 ,detail_btntext2,detail_btnurl2,detail_totaltitle from ' . tablename('ewei_shop_goods') . ' where uniacid=:uniacid and detail_shopname<>\'\' group by detail_shopname', array(':uniacid' => $_W['uniacid']));
+	$details = pdo_fetchall('select detail_logo,detail_shopname,detail_btntext1, detail_btnurl1 ,detail_btntext2,detail_btnurl2,detail_totaltitle from ' . tablename('ewei_business_goods') . ' where uniacid=:uniacid and detail_shopname<>\'\' group by detail_shopname', array(':uniacid' => $_W['uniacid']));
 	foreach ($details as &$d ) 
 	{
 		$d['detail_logo_url'] = tomedia($d['detail_logo']);

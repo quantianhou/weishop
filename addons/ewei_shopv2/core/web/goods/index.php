@@ -155,26 +155,6 @@ class Index_EweiShopV2Page extends WebPage
 		$this->main('verify');
 	}
 
-	public function delete()
-	{
-		global $_W;
-		global $_GPC;
-		$id = intval($_GPC['id']);
-
-		if (empty($id)) {
-			$id = (is_array($_GPC['ids']) ? implode(',', $_GPC['ids']) : 0);
-		}
-
-		$items = pdo_fetchall('SELECT id,title FROM ' . tablename('ewei_shop_goods') . ' WHERE id in( ' . $id . ' ) AND uniacid=' . $_W['uniacid']);
-
-		foreach ($items as $item) {
-			pdo_update('ewei_shop_goods', array('deleted' => 1), array('id' => $item['id']));
-			plog('goods.delete', '删除商品 ID: ' . $item['id'] . ' 商品名称: ' . $item['title'] . ' ');
-		}
-
-		show_json(1, array('url' => referer()));
-	}
-
 	public function status()
 	{
 		global $_W;
@@ -221,26 +201,6 @@ class Index_EweiShopV2Page extends WebPage
 		foreach ($items as $item) {
 			pdo_update('ewei_shop_goods', array('checked' => intval($_GPC['checked'])), array('id' => $item['id']));
 			plog('goods.edit', ('修改商品状态<br/>ID: ' . $item['id'] . '<br/>商品名称: ' . $item['title'] . '<br/>状态: ' . $_GPC['checked']) == 0 ? '审核通过' : '审核中');
-		}
-
-		show_json(1, array('url' => referer()));
-	}
-
-	public function delete1()
-	{
-		global $_W;
-		global $_GPC;
-		$id = intval($_GPC['id']);
-
-		if (empty($id)) {
-			$id = (is_array($_GPC['ids']) ? implode(',', $_GPC['ids']) : 0);
-		}
-
-		$items = pdo_fetchall('SELECT id,title FROM ' . tablename('ewei_shop_goods') . ' WHERE id in( ' . $id . ' ) AND uniacid=' . $_W['uniacid']);
-
-		foreach ($items as $item) {
-			pdo_delete('ewei_shop_goods', array('id' => $item['id']));
-			plog('goods.edit', '从回收站彻底删除商品<br/>ID: ' . $item['id'] . '<br/>商品名称: ' . $item['title']);
 		}
 
 		show_json(1, array('url' => referer()));
@@ -333,7 +293,7 @@ class Index_EweiShopV2Page extends WebPage
 		$type = trim($_GPC['type']);
 		$value = trim($_GPC['value']);
 
-		if (!in_array($type, array('title', 'marketprice', 'total', 'goodssn', 'productsn', 'displayorder', 'dowpayment'))) {
+		if (!in_array($type, array('title', 'marketprice', 'total','productprice', 'goodssn', 'productsn', 'displayorder', 'dowpayment'))) {
 			show_json(0, array('message' => '参数错误'));
 		}
 

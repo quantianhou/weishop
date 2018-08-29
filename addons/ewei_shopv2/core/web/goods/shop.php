@@ -101,6 +101,7 @@ class Shop_EweiShopV2Page extends WebPage
             foreach ($list as $key => &$value) {
                 $url = mobileUrl('goods/detail', array('id' => $value['id']), true);
                 $value['qrcode'] = m('qrcode')->createQrcode($url);
+                $value['has_shop'] = 10;
             }
 
             $pager = pagination2($total, $pindex, $psize);
@@ -276,7 +277,7 @@ class Shop_EweiShopV2Page extends WebPage
                 }
             }
 
-            pdo_insert('ewei_shop_goods', $data);
+            pdo_insert('ewei_business_goods', $data);
             $id = pdo_insertid();
             plog('goods.add', '添加商品 ID: ' . $id . '<br>' . (!empty($data['nocommission']) ? '是否参与分销 -- 否' : '是否参与分销 -- 是'));
             $files = $_FILES;
@@ -392,28 +393,28 @@ class Shop_EweiShopV2Page extends WebPage
                 $optionids[] = $option_id;
                 if ((0 < count($optionids)) && ($data['hasoption'] !== 0)) {
                     pdo_query('delete from ' . tablename('ewei_shop_goods_option') . ' where goodsid=' . $id . ' and id not in ( ' . implode(',', $optionids) . ')');
-                    $sql = 'update ' . tablename('ewei_shop_goods') . " g set\r\n                    g.minprice = (select min(marketprice) from " . tablename('ewei_shop_goods_option') . ' where goodsid = ' . $id . "),\r\n                    g.maxprice = (select max(marketprice) from " . tablename('ewei_shop_goods_option') . ' where goodsid = ' . $id . ")\r\n                    where g.id = " . $id . ' and g.hasoption=1';
+                    $sql = 'update ' . tablename('ewei_business_goods') . " g set\r\n                    g.minprice = (select min(marketprice) from " . tablename('ewei_shop_goods_option') . ' where goodsid = ' . $id . "),\r\n                    g.maxprice = (select max(marketprice) from " . tablename('ewei_shop_goods_option') . ' where goodsid = ' . $id . ")\r\n                    where g.id = " . $id . ' and g.hasoption=1';
                     pdo_query($sql);
                 }
                 else {
                     pdo_query('delete from ' . tablename('ewei_shop_goods_option') . ' where goodsid=' . $id);
-                    $sql = 'update ' . tablename('ewei_shop_goods') . ' set minprice = marketprice,maxprice = marketprice where id = ' . $id . ' and hasoption=0;';
+                    $sql = 'update ' . tablename('ewei_business_goods') . ' set minprice = marketprice,maxprice = marketprice where id = ' . $id . ' and hasoption=0;';
                     pdo_query($sql);
                 }
 
                 ++$k;
             }
 
-            $sqlgoods = 'SELECT id,title,thumb,marketprice,productprice,minprice,maxprice,isdiscount,isdiscount_time,isdiscount_discounts,sales,total,description,merchsale FROM ' . tablename('ewei_shop_goods') . ' where id=:id and uniacid=:uniacid limit 1';
+            $sqlgoods = 'SELECT id,title,thumb,marketprice,productprice,minprice,maxprice,isdiscount,isdiscount_time,isdiscount_discounts,sales,total,description,merchsale FROM ' . tablename('ewei_business_goods') . ' where id=:id and uniacid=:uniacid limit 1';
             $goodsinfo = pdo_fetch($sqlgoods, array(':id' => $id, ':uniacid' => $_W['uniacid']));
             $goodsinfo = m('goods')->getOneMinPrice($goodsinfo);
-            pdo_update('ewei_shop_goods', array('minprice' => $goodsinfo['minprice'], 'maxprice' => $goodsinfo['maxprice']), array('id' => $id, 'uniacid' => $_W['uniacid']));
+            pdo_update('ewei_business_goods', array('minprice' => $goodsinfo['minprice'], 'maxprice' => $goodsinfo['maxprice']), array('id' => $id, 'uniacid' => $_W['uniacid']));
             if (($data['type'] == 3) && $com_virtual) {
                 $com_virtual->updateGoodsStock($id);
             }
             else {
                 if (($data['hasoption'] !== 0) && ($data['totalcnf'] != 2) && empty($data['unite_total'])) {
-                    pdo_update('ewei_shop_goods', array('total' => $totalstocks), array('id' => $id));
+                    pdo_update('ewei_business_goods', array('total' => $totalstocks), array('id' => $id));
                 }
             }
 
@@ -438,11 +439,17 @@ class Shop_EweiShopV2Page extends WebPage
         include $this->template('goods/create');
     }
 
+    /**
+     * 新增
+     */
     public function add()
     {
         $this->post();
     }
 
+    /**
+     * 修改
+     */
     public function edit()
     {
         $this->post();
@@ -451,5 +458,135 @@ class Shop_EweiShopV2Page extends WebPage
     protected function post()
     {
         require dirname(__FILE__) . '/post.php';
+    }
+
+    /**
+     * 删除商品
+     */
+    public function delete()
+    {
+        global $_W;
+        global $_GPC;
+        $id = intval($_GPC['id']);
+
+        if (empty($id)) {
+            $id = (is_array($_GPC['ids']) ? implode(',', $_GPC['ids']) : 0);
+        }
+
+        $items = pdo_fetchall('SELECT id,title FROM ' . tablename('ewei_business_goods') . ' WHERE id in( ' . $id . ' ) AND uniacid=' . $_W['uniacid']);
+
+        foreach ($items as $item) {
+            pdo_update('ewei_business_goods', array('deleted' => 1), array('id' => $item['id']));
+            plog('goods.delete', '删除商品 ID: ' . $item['id'] . ' 商品名称: ' . $item['title'] . ' ');
+        }
+
+        show_json(1, array('url' => referer()));
+    }
+
+
+    /**
+     * 修改标签
+     */
+    public function property()
+    {
+        global $_W;
+        global $_GPC;
+        $id = intval($_GPC['id']);
+        $type = $_GPC['type'];
+        $data = intval($_GPC['data']);
+
+        if (in_array($type, array('new', 'hot', 'recommand', 'discount', 'time', 'sendfree', 'nodiscount'))) {
+            pdo_update('ewei_business_goods', array('is' . $type => $data), array('id' => $id, 'uniacid' => $_W['uniacid']));
+
+            if ($type == 'new') {
+                $typestr = '新品';
+            }
+            else if ($type == 'hot') {
+                $typestr = '热卖';
+            }
+            else if ($type == 'recommand') {
+                $typestr = '推荐';
+            }
+            else if ($type == 'discount') {
+                $typestr = '促销';
+            }
+            else if ($type == 'time') {
+                $typestr = '限时卖';
+            }
+            else if ($type == 'sendfree') {
+                $typestr = '包邮';
+            }
+            else {
+                if ($type == 'nodiscount') {
+                    $typestr = '不参与折扣状态';
+                }
+            }
+
+            plog('goods.edit', '修改商品' . $typestr . '状态   ID: ' . $id);
+        }
+
+        if (in_array($type, array('status'))) {
+            pdo_update('ewei_business_goods', array($type => $data), array('id' => $id, 'uniacid' => $_W['uniacid']));
+            plog('goods.edit', '修改商品上下架状态   ID: ' . $id);
+        }
+
+        if (in_array($type, array('type'))) {
+            pdo_update('ewei_business_goods', array($type => $data), array('id' => $id, 'uniacid' => $_W['uniacid']));
+            plog('goods.edit', '修改商品类型   ID: ' . $id);
+        }
+
+        show_json(1);
+    }
+
+    /**
+     * 更改库存
+     */
+    public function change()
+    {
+        global $_W;
+        global $_GPC;
+        $id = intval($_GPC['id']);
+
+        if (empty($id)) {
+            show_json(0, array('message' => '参数错误'));
+        }
+        else {
+            pdo_update('ewei_business_goods', array('newgoods' => 0), array('id' => $id));
+        }
+
+        $type = trim($_GPC['type']);
+        $value = trim($_GPC['value']);
+
+        if (!in_array($type, array('title', 'marketprice','productprice', 'total', 'goodssn', 'productsn', 'displayorder', 'dowpayment'))) {
+            show_json(0, array('message' => '参数错误'));
+        }
+
+        $goods = pdo_fetch('select id,hasoption,marketprice,dowpayment from ' . tablename('ewei_business_goods') . ' where id=:id and uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid'], ':id' => $id));
+
+        if (empty($goods)) {
+            show_json(0, array('message' => '参数错误'));
+        }
+
+        if ($type == 'dowpayment') {
+            if ($goods['marketprice'] < $value) {
+                show_json(0, array('message' => '定金不能大于总价'));
+            }
+        }
+        else {
+            if ($type == 'marketprice') {
+                if ($value < $goods['dowpayment']) {
+                    show_json(0, array('message' => '总价不能小于定金'));
+                }
+            }
+        }
+
+        pdo_update('ewei_business_goods', array($type => $value), array('id' => $id));
+
+        if ($goods['hasoption'] == 0) {
+            $sql = 'update ' . tablename('ewei_business_goods') . ' set minprice = marketprice,maxprice = marketprice where id = ' . $goods['id'] . ' and hasoption=0;';
+            pdo_query($sql);
+        }
+
+        show_json(1);
     }
 }
