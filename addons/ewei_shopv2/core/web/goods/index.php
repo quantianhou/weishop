@@ -394,6 +394,27 @@ class Index_EweiShopV2Page extends WebPage
 		pdo_run($sql);
 		show_json(1);
 	}
-}
 
-?>
+    /**
+     * 删除商品
+     */
+    public function delete()
+    {
+        global $_W;
+        global $_GPC;
+        $id = intval($_GPC['id']);
+
+        if (empty($id)) {
+            $id = (is_array($_GPC['ids']) ? implode(',', $_GPC['ids']) : 0);
+        }
+
+        $items = pdo_fetchall('SELECT id,title FROM ' . tablename('ewei_shop_goods') . ' WHERE id in( ' . $id . ' ) AND uniacid=' . $_W['uniacid']);
+
+        foreach ($items as $item) {
+            pdo_update('ewei_shop_goods', array('deleted' => 1), array('id' => $item['id']));
+            plog('goods.delete', '删除商品 ID: ' . $item['id'] . ' 商品名称: ' . $item['title'] . ' ');
+        }
+
+        show_json(1, array('url' => referer()));
+    }
+}

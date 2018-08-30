@@ -96,9 +96,7 @@
             <div class="page-table-header">
                 <input type='checkbox' />
                 <div class="btn-group">
-                    <button class="btn btn-default btn-sm  btn-operation" type="button" data-toggle='batch-remove' data-confirm="如果商品存在购买记录，会无法关联到商品, 确认要彻底删除吗?" data-href="{php echo webUrl('goods/shop/delete1')}">
-                        <i class='icow icow-pull'></i> 商品下发门店</button>
-
+                    <button class="btn btn-default btn-sm  btn-operation" type="button" data-toggle='batch-group'  id="goodstoshop" >商品下发门店</button>
 
                     <button class="btn btn-default btn-sm  btn-operation" type="button" data-toggle='batch-remove' data-confirm="确认要删除吗?" data-href="{php echo webUrl('goods/shop/delete')}">
                         <i class='icow icow-shanchu1'></i> 删除</button>
@@ -424,7 +422,7 @@
 {template '_footer'}
 <script>
     //显示门店列表
-    $('#pricetoshop').click(function(){
+    $('#goodstoshop').click(function(){
         $('#shoplist').show();
     });
     //显示批量分类
@@ -440,28 +438,6 @@
     // 取消批量分类
     $('.modal-footer .btn.btn-default').click(function () {
         $('#batchcates,#shoplist').hide();
-    })
-
-
-    //确认
-    $('.modal-footer .btn.btn-primary').click(function () {
-        var selected_checkboxs = $('.table-responsive tbody tr td:first-child [type="checkbox"]:checked');
-        var goodsids = selected_checkboxs.map(function () {
-            return $(this).val()
-        }).get();
-
-        var cates=$('#cates').val();
-        var iscover=$('input[name="iscover"]:checked').val();
-        $.post(biz.url('goods/ajax_batchcates'),{'goodsids':goodsids,'cates': cates,'iscover':iscover}, function (ret) {
-            if (ret.status == 1) {
-                $('#batchcates').hide();
-                tip.msgbox.suc('修改成功');
-                window.location.reload();
-                return
-            } else {
-                tip.msgbox.err('修改失败');
-            }
-        }, 'json');
     })
 
     $(document).on("click", '[data-toggle="ajaxEdit2"]',

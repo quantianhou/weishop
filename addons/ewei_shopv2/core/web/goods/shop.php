@@ -6,6 +6,50 @@ if (!(defined('IN_IA')))
 class Shop_EweiShopV2Page extends WebPage
 {
 
+    public function pushtoshop(){
+        global $_W;
+        global $_GPC;
+
+        $goodsids = $_GPC['goodsids'];
+        $shopsids = $_GPC['cates'];
+        $iscover = $_GPC['iscover'];    //0下发选中 1全部下发
+
+        if(empty($shopsids)){
+            show_json(0, '请选择门店！');
+        }
+
+        if($iscover == 1){
+            //获取全部商品
+            $condition = ' uniacid = :uniacid';
+        }else{
+            $condition = ' uniacid = :uniacid and id IN (' . implode(',', $goodsids) . ')';
+        }
+        $sql = 'SELECT * FROM ' . tablename('ewei_business_goods') . ' WHERE ' . $condition;
+        $paras = array(':uniacid' => $_W['uniacid']);
+        $goodslist = pdo_fetchall($sql, $paras);
+
+        foreach ($shopsids as $val){
+            foreach ($goodslist as $goods){
+
+                //判断门店存在该商品
+                $sql = 'SELECT * FROM ' . tablename('ewei_shop_goods') . ' WHERE business_goods_id='.$goods['id'].' AND shop_id='.$val;
+                $hasgood = pdo_fetchall($sql, $paras);
+
+                if(!empty($hasgood)){
+                    continue;
+                }
+                //不存在添加
+                $goods['business_goods_id'] = $goods['id'];
+                $goods['shop_id'] = $val;
+                unset($goods['id']);
+                pdo_insert('ewei_shop_goods', $goods);
+
+            }
+        }
+        show_json(1, '下发成功！');
+
+    }
+
     public function main(){
         global $_W;
         global $_GPC;
@@ -124,6 +168,12 @@ class Shop_EweiShopV2Page extends WebPage
         }
 
         $goodstotal = intval($_W['shopset']['shop']['goodstotal']);
+
+        //获取全部门店
+        $condition = ' uniacid = :uniacid';
+        $sql = 'SELECT * FROM ' . tablename('ewei_shop_store') . ' WHERE ' . $condition . ' ORDER BY displayorder desc,id desc';
+        $paras = array(':uniacid' => $_W['uniacid']);
+        $shop = pdo_fetchall($sql, $paras);
         include $this->template('goods/shop');
     }
 

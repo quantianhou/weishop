@@ -216,7 +216,7 @@
                     {else}
                     {ifp 'goods.edit'}
 
-                    <a href='javascript:;' data-toggle='ajaxEdit' data-href="{php echo webUrl('goods/change',array('type'=>'productprice','id'=>$item['id']))}" >{$item['marketprice']}</a>
+                    <a href='javascript:;' data-toggle='ajaxEdit' data-href="{php echo webUrl('goods/change',array('type'=>'productprice','id'=>$item['id']))}" >{$item['productprice']}</a>
                     <i class="icow icow-weibiaoti-- " data-toggle="ajaxEdit2"></i>
                     {else}
                     {$item['productprice']}

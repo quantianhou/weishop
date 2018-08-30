@@ -27,8 +27,8 @@
                     <div class="col-sm-8 col-xs-12">
                         {ife 'goods' $item}
                         <select id="shop_list"  name='cates[]' class="form-control select2" style='width:550px;' multiple='' >
-                            {loop $category $c}
-                            <option value="{$c['id']}" {if is_array($cates) &&  in_array($c['id'],$cates)}selected{/if} >{$c['name']}</option>
+                            {loop $shop $c}
+                            <option value="{$c['id']}">{$c['storename']}</option>
                             {/loop}
                         </select>
                         {/if}
@@ -36,9 +36,33 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary">确认</button>
+                <button class="btn btn-primary" onclick="goodstoshop()">确认</button>
                 <button class="btn btn-default" >取消</button>
             </div>
         </div>
     </div>
 </div>
+<script>
+
+    //确认
+    //$('.modal-footer .btn.btn-primary').click(pushtoshop);
+    function goodstoshop() {
+        var selected_checkboxs = $('.table-responsive tbody tr td:first-child [type="checkbox"]:checked');
+        var goodsids = selected_checkboxs.map(function () {
+            return $(this).val()
+        }).get();
+
+        var cates=$('#shop_list').val();
+        var iscover=$('input[name="iscover"]:checked').val();
+        $.post(biz.url('goods/shop/pushtoshop'),{'goodsids':goodsids,'cates': cates,'iscover':iscover}, function (ret) {
+            if (ret.status == 1) {
+                $('#batchcates').hide();
+                tip.msgbox.suc('修改成功');
+                window.location.reload();
+                return
+            } else {
+                tip.msgbox.err('修改失败');
+            }
+        }, 'json');
+    }
+</script>
