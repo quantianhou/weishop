@@ -105,7 +105,8 @@ class Index_EweiShopV2Page extends WebPage
 			foreach ($list as $key => &$value) {
 				$url = mobileUrl('goods/detail', array('id' => $value['id']), true);
 				$value['qrcode'] = m('qrcode')->createQrcode($url);
-			}
+                $value['shopname'] = pdo_fetchcolumn('select storename from ' . tablename('ewei_shop_store') . ' where id=:storeid limit 1', array(':storeid' => $value['shop_id']));
+            }
 
 			$pager = pagination2($total, $pindex, $psize);
 

@@ -130,7 +130,7 @@
                 <th style="width: 130px;">商品编码/国际条码</th>
                 <th style="width: 80px;">库存</th>
                 {if $goodsfrom!='cycle'}
-                <th  style="width:80px;" >状态</th>
+                <th  style="width:80px;" >状态/门店</th>
                 {/if}
                 <th>属性</th>
                 <th style="width: 120px;">操作</th>
@@ -279,6 +279,8 @@
                     >
                     {if $item['checked']==0}通过{else}审核中{/if}</span>
                     {/if}
+                    <br />
+                    {$item['shopname']}
                     </td>
                     {/if}
                     <td  class="goods_attribute">
