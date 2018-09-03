@@ -58,7 +58,7 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
 			$filename = substr($filename, 0, strpos($filename, '.'));
 			$rows = array_slice($rows, 2, count($rows) - 2);
 			$items = array();
-			$this->get_zip_originalsize($_FILES['zipfile']['tmp_name'], '../attachment/images/' . $_W['uniacid'] . '/' . date('Y') . '/' . date('m') . '/');
+			//$this->get_zip_originalsize($_FILES['zipfile']['tmp_name'], '../attachment/images/' . $_W['uniacid'] . '/' . date('Y') . '/' . date('m') . '/');
 			$num = 0;
 
 			foreach ($rows as $rownu => $col) {
@@ -97,10 +97,7 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
 				++$num;
 			}
 
-			session_start();
-			$_SESSION['taobaoCSV'] = $items;
-			$uploadStart = '1';
-			$uploadnum = $num;
+			//组合数据 发送写入商家商品库
 		}
 
 		include $this->template();
