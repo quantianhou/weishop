@@ -81,7 +81,6 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
             $cfg['ssl'] = true;
 
 			$res = $this->curlOpen('http://api.test.ymkchen.com/goods',$cfg);
-			print_r($res);exit;
 		}
 
 		include $this->template();
