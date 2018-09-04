@@ -59,49 +59,118 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
 			$rows = array_slice($rows, 2, count($rows) - 2);
 			$items = array();
 			//$this->get_zip_originalsize($_FILES['zipfile']['tmp_name'], '../attachment/images/' . $_W['uniacid'] . '/' . date('Y') . '/' . date('m') . '/');
-			$num = 0;
 
 			foreach ($rows as $rownu => $col) {
 				$item = array();
-				$item['title'] = $col[$colsIndex[title]];
-				$item['marketprice'] = $col[$colsIndex[price]];
-				$item['total'] = $col[$colsIndex[num]];
-				$item['content'] = $col[$colsIndex[description]];
-				$picContents = $col[$colsIndex[picture]];
-				$allpics = explode(';', $picContents);
-				$pics = array();
-				$optionpics = array();
+				$item['name']	= $col[0];
+				$item['sn']		= $col[1];
+                $item['price']	= $col[3];
+                $item['nation_sn']	= $col[2];
+				$item['inventory']	= $col[4];
 
-				foreach ($allpics as $imgurl) {
-					if (empty($imgurl)) {
-						continue;
-					}
-
-					$picDetail = explode('|', $imgurl);
-					$picDetail = explode(':', $picDetail[0]);
-					$imgurl = 'http://' . $_SERVER['SERVER_NAME'] . '/attachment/images/' . $_W['uniacid'] . '/' . date('Y') . '/' . date('m') . '/' . $picDetail[0] . '.png';
-
-					if (@fopen($imgurl, 'r')) {
-						if ($picDetail[1] == 1) {
-							$pics[] = $imgurl;
-						}
-
-						if ($picDetail[1] == 2) {
-							$optionpics[$picDetail[0]] = $imgurl;
-						}
-					}
-				}
-
-				$item['pics'] = $pics;
-				$items[] = $item;
-				++$num;
+                $items[] = $item;
 			}
 
 			//组合数据 发送写入商家商品库
+            $post = [
+            	'uniacid' => $_W['uniacid'],
+				'items' => $items
+			];
+
+			$res = $this->curl('http://api.test.ymkchen.com/goods',$post);
 		}
 
 		include $this->template();
 	}
+
+    public function curl($url, $postFields = NULL)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_FAILONERROR, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        if ($this->readTimeout) {
+            curl_setopt($ch, CURLOPT_TIMEOUT, $this->readTimeout);
+        }
+
+
+        if ($this->connectTimeout) {
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->connectTimeout);
+        }
+
+
+        curl_setopt($ch, CURLOPT_USERAGENT, 'top-sdk-php');
+
+        if ((5 < strlen($url)) && (strtolower(substr($url, 0, 5)) == 'https')) {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        }
+
+
+        if (is_array($postFields) && (0 < count($postFields))) {
+            $postBodyString = '';
+            $postMultipart = false;
+
+            foreach ($postFields as $k => $v ) {
+                if (!is_string($v)) {
+                    continue;
+                }
+
+
+                if ('@' != substr($v, 0, 1)) {
+                    $postBodyString .= $k . '=' . urlencode($v) . '&';
+                }
+                else {
+                    $postMultipart = true;
+
+                    if (class_exists('\\CURLFile')) {
+                        $postFields[$k] = new CURLFile(substr($v, 1));
+                    }
+
+                }
+            }
+
+            unset($k);
+            unset($v);
+            curl_setopt($ch, CURLOPT_POST, true);
+
+            if ($postMultipart) {
+                if (class_exists('\\CURLFile')) {
+                    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
+                }
+                else if (defined('CURLOPT_SAFE_UPLOAD')) {
+                    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+                }
+
+
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+            }
+            else {
+                $header = array('content-type: application/x-www-form-urlencoded; charset=UTF-8');
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, substr($postBodyString, 0, -1));
+            }
+        }
+
+
+        $reponse = curl_exec($ch);
+
+        if (curl_errno($ch)) {
+            throw new Exception(curl_error($ch), 0);
+        }
+        else {
+            $httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+            if (200 !== $httpStatusCode) {
+                throw new Exception($reponse, $httpStatusCode);
+            }
+
+        }
+
+        curl_close($ch);
+        return $reponse;
+    }
 
 	public function fetch()
 	{
