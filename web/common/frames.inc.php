@@ -116,12 +116,12 @@ $we7_system_menu['account'] = array(
 		),
 	),
 );
-$we7_system_menu['wxapp'] = array(
-	'title' => '小程序',
-	'url' => url('wxapp/display/home'),
-	'section' => array(
-	),
-);
+//$we7_system_menu['wxapp'] = array(
+//	'title' => '小程序',
+//	'url' => url('wxapp/display/home'),
+//	'section' => array(
+//	),
+//);
 
 $we7_system_menu['system'] = array(
 	'title' => '系统管理',

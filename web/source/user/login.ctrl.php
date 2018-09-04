@@ -74,6 +74,9 @@ function _login($forward = '') {
 		if (empty($forward)) {
 			$forward = $_GPC['forward'];
 		}
+		//范海龙add
+
+		$_GPC['__uniacid']= 17;
 		if (empty($forward)) {
 			if (!empty($_GPC['__uniacid'])) {
 				$forward = './index.php?c=home&a=welcome';

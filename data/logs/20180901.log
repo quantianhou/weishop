@@ -1,0 +1,30 @@
+2018-09-01 20:00:43 SQL Error :
+------------
+String:
+SQL: <br/>select id,couponid,openid,isparent,sendtime,price,merchid,isverify,addressid,isvirtualsend,virtual,dispatchtype from `ims_ewei_shop_order` where uniacid=2 and status=2 <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'virtual,dispatchtype from `ims_ewei_shop_order` where uniacid=2 and status=2' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 183; <br />file: /framework/function/pdo.func.php; line: 40; <br />file: /addons/ewei_shopv2/core/task/order/receive.php; line: 23; <br />
+
+2018-09-01 22:00:04 SQL Error :
+------------
+String:
+SQL: <br/>select id,couponid,openid,isparent,sendtime,price,merchid,isverify,addressid,isvirtualsend,virtual,dispatchtype from `ims_ewei_shop_order` where uniacid=2 and status=2 <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'virtual,dispatchtype from `ims_ewei_shop_order` where uniacid=2 and status=2' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 183; <br />file: /framework/function/pdo.func.php; line: 40; <br />file: /addons/ewei_shopv2/core/task/order/receive.php; line: 23; <br />
+
+2018-09-01 22:18:44 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_ewei_shop_task_type`<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Table 'ymkc.ims_ewei_shop_task_type' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 183; <br />file: /framework/class/db.class.php; line: 243; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/ewei_shopv2/plugin/task/core/model.php; line: 2182; <br />file: /addons/ewei_shopv2/core/inc/functions.php; line: 126; <br />file: /addons/ewei_shopv2/core/com/perm.php; line: 212; <br />file: /addons/ewei_shopv2/core/com/perm.php; line: 15; <br />file: /addons/ewei_shopv2/core/inc/functions.php; line: 189; <br />file: /addons/ewei_shopv2/core/model/system.php; line: 1467; <br />file: /addons/ewei_shopv2/core/model/system.php; line: 1455; <br />file: /addons/ewei_shopv2/core/model/system.php; line: 85; <br />file: /data/tpl/web_v3/default/ewei_shopv2/web/_header.tpl.php; line: 4; <br />file: /data/tpl/web_v3/default/ewei_shopv2/web/diypage/shop/page.tpl.php; line: 1; <br />file: /addons/ewei_shopv2/plugin/diypage/core/web/shop/index.php; line: 67; <br />file: /addons/ewei_shopv2/core/model/route.php; line: 202; <br />file: /addons/ewei_shopv2/site.php; line: 47; <br />file: /web/source/site/entry.ctrl.php; line: 77; <br />file: /web/index.php; line: 180; <br />
+
+2018-09-01 22:21:37 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_ewei_shop_task_type`<hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>Table 'ymkc.ims_ewei_shop_task_type' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 183; <br />file: /framework/class/db.class.php; line: 243; <br />file: /framework/function/pdo.func.php; line: 49; <br />file: /addons/ewei_shopv2/plugin/task/core/model.php; line: 2182; <br />file: /addons/ewei_shopv2/core/inc/functions.php; line: 126; <br />file: /addons/ewei_shopv2/core/com/perm.php; line: 212; <br />file: /addons/ewei_shopv2/core/com/perm.php; line: 15; <br />file: /addons/ewei_shopv2/core/inc/functions.php; line: 189; <br />file: /addons/ewei_shopv2/core/model/system.php; line: 1467; <br />file: /addons/ewei_shopv2/core/model/system.php; line: 1455; <br />file: /addons/ewei_shopv2/core/model/system.php; line: 85; <br />file: /data/tpl/web_v3/default/ewei_shopv2/web/_header.tpl.php; line: 4; <br />file: /data/tpl/web_v3/default/ewei_shopv2/web/member/list.tpl.php; line: 1; <br />file: /addons/ewei_shopv2/core/web/member/list.php; line: 176; <br />file: /addons/ewei_shopv2/core/model/route.php; line: 202; <br />file: /addons/ewei_shopv2/site.php; line: 47; <br />file: /web/source/site/entry.ctrl.php; line: 77; <br />file: /web/index.php; line: 180; <br />
+
+2018-09-01 22:43:54 SQL Error :
+------------
+String:
+SQL: <br/>select id,couponid,openid,isparent,sendtime,price,merchid,isverify,addressid,isvirtualsend,virtual,dispatchtype from `ims_ewei_shop_order` where uniacid=2 and status=2 <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'virtual,dispatchtype from `ims_ewei_shop_order` where uniacid=2 and status=2' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 183; <br />file: /framework/function/pdo.func.php; line: 40; <br />file: /addons/ewei_shopv2/core/task/order/receive.php; line: 23; <br />
+

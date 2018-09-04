@@ -163,7 +163,7 @@ class MobilePage extends Page
 			}
 			else 
 			{
-				include $this->template('_followbar');
+				//include $this->template('_followbar');
 			}
 		}
 	}

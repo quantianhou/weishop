@@ -3,9 +3,9 @@ defined('IN_IA') or exit('Access Denied');
 
 $config = array();
 
-$config['db']['master']['host'] = 'rm-bp1131yyi517ww30qyo.mysql.rds.aliyuncs.com';
-$config['db']['master']['username'] = 'ymkc_dev';
-$config['db']['master']['password'] = 'Ymkc123456';
+$config['db']['master']['host'] = 'localhost';
+$config['db']['master']['username'] = 'root';
+$config['db']['master']['password'] = '';
 $config['db']['master']['port'] = '3306';
 $config['db']['master']['database'] = 'ymkc';
 $config['db']['master']['charset'] = 'utf8';

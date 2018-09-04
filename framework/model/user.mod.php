@@ -280,7 +280,7 @@ function user_modules($uid) {
 	if (empty($modules)) {
 		$founders = explode(',', $_W['config']['setting']['founder']);
 		$user_info = user_single(array ('uid' => $uid));
-		print_r($founders);exit("aaa");
+		//print_r($founders);exit("aaa");
 		$system_modules = pdo_getall('modules', array('issystem' => 1), array('name'), 'name');
 		if (empty($uid) || in_array($uid, $founders)) {
 			$module_list = pdo_getall('modules', array(), array('name'), 'name', array('mid DESC'));

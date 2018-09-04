@@ -1,0 +1,34 @@
+2018-08-31 15:18:07 SQL Error :
+------------
+String:
+SQL: <br/>select id,couponid,openid,isparent,sendtime,price,merchid,isverify,addressid,isvirtualsend,virtual,dispatchtype from `ims_ewei_shop_order` where uniacid=2 and status=2 <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'virtual,dispatchtype from `ims_ewei_shop_order` where uniacid=2 and status=2' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 183; <br />file: /framework/function/pdo.func.php; line: 40; <br />file: /addons/ewei_shopv2/core/task/order/receive.php; line: 23; <br />
+
+2018-08-31 15:31:21 SQL Error :
+------------
+String:
+SQL: <br/>SELECT `ims_uni_account`.*,`ims_account`.* FROM `ims_uni_account` as a LEFT JOIN`ims_account` as b ON a.default_acid = b.acid LEFT JOIN `ims_b_users_uniaccount_relationship` as c ON a.uniacid = c.uni_account_id  WHERE a.default_acid <> 0 AND b.isdeleted <> 1 AND (b.type = 1 OR b.type = 3) AND c.`users_id` = :users_id  ORDER BY a.`rank` DESC, a.`uniacid` DESC LIMIT 0, 8<hr/>Params: <br/>array (
+  ':users_id' => 37,
+)<hr/>SQL Error: <br/>Unknown table 'ims_uni_account'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 183; <br />file: /framework/function/pdo.func.php; line: 40; <br />file: /web/source/account/display.ctrl.php; line: 69; <br />file: /web/index.php; line: 189; <br />
+
+2018-08-31 15:31:25 SQL Error :
+------------
+String:
+SQL: <br/>SELECT `ims_uni_account`.*,`ims_account`.* FROM `ims_uni_account` as a LEFT JOIN`ims_account` as b ON a.default_acid = b.acid LEFT JOIN `ims_b_users_uniaccount_relationship` as c ON a.uniacid = c.uni_account_id  WHERE a.default_acid <> 0 AND b.isdeleted <> 1 AND (b.type = 1 OR b.type = 3) AND c.`users_id` = :users_id  ORDER BY a.`rank` DESC, a.`uniacid` DESC LIMIT 0, 8<hr/>Params: <br/>array (
+  ':users_id' => 37,
+)<hr/>SQL Error: <br/>Unknown table 'ims_uni_account'<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 183; <br />file: /framework/function/pdo.func.php; line: 40; <br />file: /web/source/account/display.ctrl.php; line: 69; <br />file: /web/index.php; line: 189; <br />
+
+2018-08-31 15:47:39 SQL Error :
+------------
+String:
+SQL: <br/>SELECT * FROM `ims_ewei_shop_version` WHERE uid=:uid AND `type`=:type limit 1<hr/>Params: <br/>array (
+  ':type' => 0,
+  ':uid' => '37',
+)<hr/>SQL Error: <br/>Table 'ymkc.ims_ewei_shop_version' doesn't exist<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 156; <br />file: /framework/function/pdo.func.php; line: 36; <br />file: /addons/ewei_shopv2/core/model/system.php; line: 1559; <br />file: /addons/ewei_shopv2/core/inc/page_web.php; line: 14; <br />file: /addons/ewei_shopv2/core/model/route.php; line: 197; <br />file: /addons/ewei_shopv2/site.php; line: 47; <br />file: /web/source/site/entry.ctrl.php; line: 77; <br />file: /web/index.php; line: 180; <br />
+
+2018-08-31 17:04:44 SQL Error :
+------------
+String:
+SQL: <br/>select id,couponid,openid,isparent,sendtime,price,merchid,isverify,addressid,isvirtualsend,virtual,dispatchtype from `ims_ewei_shop_order` where uniacid=2 and status=2 <hr/>Params: <br/>array (
+)<hr/>SQL Error: <br/>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'virtual,dispatchtype from `ims_ewei_shop_order` where uniacid=2 and status=2' at line 1<hr/>Traces: <br/>file: /framework/class/db.class.php; line: 183; <br />file: /framework/function/pdo.func.php; line: 40; <br />file: /addons/ewei_shopv2/core/task/order/receive.php; line: 23; <br />
+

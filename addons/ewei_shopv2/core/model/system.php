@@ -981,6 +981,16 @@ class System_EweiShopV2Model
 				'icon'     => 'sysset',
 				'items'    => array(
 					array(
+						'title' => '公众号设置',
+						'items' => array(
+							array('title' => '基础设置', 'route' => 'shop'),
+							array('title' => '关注及分享', 'route' => 'follow'),
+							array('title' => '商城状态', 'route' => 'close'),
+							array('title' => '模板设置', 'route' => 'templat'),
+							array('title' => '全网通设置', 'route' => 'wap', 'iscom' => 'wap', 'permcom' => 'sms')
+							)
+						),
+					array(
 						'title' => '商城',
 						'items' => array(
 							array('title' => '基础设置', 'route' => 'shop'),

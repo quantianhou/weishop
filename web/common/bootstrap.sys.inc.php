@@ -24,11 +24,13 @@ if(is_array($session)) {
 unset($session);
 
 if(!empty($_GPC['__uniacid'])) {
+	//在这里写死从数据库读取当前账户唯一的一条公众号
 	$_W['uniacid'] = intval($_GPC['__uniacid']);
 } else {
 	$_W['uniacid'] = uni_account_last_switch();
 }
-
+//$_W['uniacid'] = 17;
+//print_r($_W['uniacid']);exit;
 if (!empty($_W['uniacid'])) {
 	$_W['uniaccount'] = $_W['account'] = uni_fetch($_W['uniacid']);
 	$_W['acid'] = $_W['account']['acid'];

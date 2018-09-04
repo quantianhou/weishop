@@ -11,6 +11,7 @@ $_GPC['c']     = 'site';
 $_GPC['a']     = 'entry';
 $_GPC['m']     = 'ewei_shopv2';
 $_GPC['do']    = 'mobile';
+
 $_W['uniacid'] = (int) $_GPC['i'];
 $_W['acid']    = (int) $_GPC['i'];
 if (!isset($_GPC['r'])) {

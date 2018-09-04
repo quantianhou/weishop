@@ -1,6 +1,9 @@
 <?php
 defined('IN_IA') or exit('Access Denied');
-
+//fanhailong add
+//global $_W;
+//print_r($_W);exit('aa');
+//$_W['uniacid'] = 17;
 checkaccount();
 
 load()->model('welcome');
@@ -22,7 +25,7 @@ if ($do == 'platform') {
 			$notices[$key]['createtime'] = date('Y-m-d', $notice_val['createtime']);
 		}
 	}
-
+//	$frames = buildframes(FRAME);print_r($frames);exit;exit('aaa');
 	template('home/welcome');
 } elseif ($do == 'ext') {
 	$modulename = $_GPC['m'];

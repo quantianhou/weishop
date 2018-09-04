@@ -60,10 +60,13 @@ if ($do == 'display') {
 			$condition .= " AND a.`title_initial` = ''";
 		}
 	}
-
-	$tsql = "SELECT COUNT(*) FROM " . tablename('uni_account'). " as a LEFT JOIN". tablename('account'). " as b ON a.default_acid = b.acid {$condition} {$order_by}, a.`uniacid` DESC";
+//print_r($condition);exit;
+	//fanhailong添加
+	$condition .= " AND c.`users_id` = :users_id";
+	$param[':users_id'] = $_W['user']['uid'];
+	$tsql = "SELECT COUNT(*) FROM " . tablename('uni_account'). " as a LEFT JOIN". tablename('account'). " as b ON a.default_acid = b.acid LEFT JOIN ". tablename('b_users_uniaccount_relationship')." as c ON a.uniacid = c.uni_account_id {$condition}"." {$order_by}, a.`uniacid` DESC LIMIT {$start}, {$psize}";
 	$total = pdo_fetchcolumn($tsql, $param);
-	$sql = "SELECT * FROM ". tablename('uni_account'). " as a LEFT JOIN". tablename('account'). " as b ON a.default_acid = b.acid  {$condition} {$order_by}, a.`uniacid` DESC LIMIT {$start}, {$psize}";
+	$sql = "SELECT * FROM ". tablename('uni_account'). " as a LEFT JOIN". tablename('account'). " as b ON a.default_acid = b.acid LEFT JOIN ". tablename('b_users_uniaccount_relationship')." as c ON a.uniacid = c.uni_account_id {$condition}"." {$order_by}, a.`uniacid` DESC LIMIT {$start}, {$psize}";
 	$list = pdo_fetchall($sql, $param);
 	if(!empty($list)) {
 		foreach($list as &$account) {
@@ -79,9 +82,12 @@ if ($do == 'display') {
 		}
 		unset($account_val);
 		unset($account);
+	}else{
+		header('Location: ' . $_W['siteroot'] . 'web/index.php?c=account&a=post-step&');
 	}
 	$pager = pagination($total, $pindex, $psize);
 //	print_r(pdo_debug());exit;
+//	print_r($list);exit;
 }
 
 template('account/display');
