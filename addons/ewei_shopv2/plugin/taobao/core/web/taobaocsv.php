@@ -61,7 +61,7 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
 			//$this->get_zip_originalsize($_FILES['zipfile']['tmp_name'], '../attachment/images/' . $_W['uniacid'] . '/' . date('Y') . '/' . date('m') . '/');
 
 			foreach ($rows as $rownu => $col) {
-				$item = array();
+				$item = [];
 				$item['name']	= $col[0];
 				$item['sn']		= $col[1];
                 $item['price']	= $col[3];
@@ -77,99 +77,36 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
 				'items' => $items
 			];
 
-			$res = $this->curl('http://api.test.ymkchen.com/goods',$post);
+            $cfg['post'] = $post;
+            $cfg['ssl'] = true;
+
+			$res = $this->curlOpen('http://api.test.ymkchen.com/goods',$cfg);
+			print_r($res);exit;
 		}
 
 		include $this->template();
 	}
 
-    public function curl($url, $postFields = NULL)
+    public function curlOpen ($url, $cfg)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_FAILONERROR, false);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        if ($this->readTimeout) {
-            curl_setopt($ch, CURLOPT_TIMEOUT, $this->readTimeout);
-        }
-
-
-        if ($this->connectTimeout) {
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->connectTimeout);
-        }
-
-
-        curl_setopt($ch, CURLOPT_USERAGENT, 'top-sdk-php');
-
-        if ((5 < strlen($url)) && (strtolower(substr($url, 0, 5)) == 'https')) {
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        if ($cfg['ssl']) {
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         }
-
-
-        if (is_array($postFields) && (0 < count($postFields))) {
-            $postBodyString = '';
-            $postMultipart = false;
-
-            foreach ($postFields as $k => $v ) {
-                if (!is_string($v)) {
-                    continue;
-                }
-
-
-                if ('@' != substr($v, 0, 1)) {
-                    $postBodyString .= $k . '=' . urlencode($v) . '&';
-                }
-                else {
-                    $postMultipart = true;
-
-                    if (class_exists('\\CURLFile')) {
-                        $postFields[$k] = new CURLFile(substr($v, 1));
-                    }
-
-                }
-            }
-
-            unset($k);
-            unset($v);
-            curl_setopt($ch, CURLOPT_POST, true);
-
-            if ($postMultipart) {
-                if (class_exists('\\CURLFile')) {
-                    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, true);
-                }
-                else if (defined('CURLOPT_SAFE_UPLOAD')) {
-                    curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
-                }
-
-
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-            }
-            else {
-                $header = array('content-type: application/x-www-form-urlencoded; charset=UTF-8');
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, substr($postBodyString, 0, -1));
-            }
-        }
-
-
-        $reponse = curl_exec($ch);
-
-        if (curl_errno($ch)) {
-            throw new Exception(curl_error($ch), 0);
-        }
-        else {
-            $httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-            if (200 !== $httpStatusCode) {
-                throw new Exception($reponse, $httpStatusCode);
-            }
-
-        }
-
+        //post提交方式
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($cfg['post']));
+        $result = curl_exec($ch);
+        $info = curl_getinfo($ch);
+        //print_r($info);exit;
         curl_close($ch);
-        return $reponse;
+
+        return $result;
     }
 
 	public function fetch()
