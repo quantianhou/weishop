@@ -57,7 +57,7 @@ $config['setting']['memcache']['timeout'] = 30;
 $config['setting']['memcache']['session'] = 1;
 
 // --------------------------  CONFIG redis  --------------------------- //
-$config['setting']['redis']['server'] = '127.0.0.1'; 
+$config['setting']['redis']['server'] = redis4_0_A;
 $config['setting']['redis']['port'] = 6379; 
 $config['setting']['redis']['pconnect'] = 0; 
 $config['setting']['redis']['requirepass'] = ''; 

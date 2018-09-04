@@ -60,20 +60,7 @@
         <input type="hidden" name="do" value="web" />
         <input type="hidden" name="r"  value="goods.{$goodsfrom}" />
         <div class="page-toolbar">
-            <span class="pull-left" style="margin-right:30px;">
-                {ifp 'goods.add'}
-                <a class='btn btn-sm btn-primary' href="{php echo webUrl('goods/add')}"><i class='fa fa-plus'></i> 添加商品</a>
-                {/if}
-                {ifp 'goods.add'}
-                <a class='btn btn-sm btn-primary' href="{php echo webUrl('goods/create')}"><i class='fa fa-plus'></i> 快速添加商品</a>
-                {/if}
 
-                {if p('taobao')}
-                    {ifp 'taobao'}
-                        <a class='btn btn-sm btn-primary' href="{php echo webUrl('taobao')}"><i class='fa fa-plus'></i> 导入商品</a>
-                    {/if}
-                {/if}
-            </span>
             <div class="input-group col-sm-6 pull-right">
                 <span class="input-group-select">
                     <select name="cate" class='form-control select2' style="width:200px;" data-placeholder="商品分类">
@@ -129,9 +116,6 @@
                         <i class='icow icow-shenhetongguo'></i> 批量审核通过</button>
                     {/if}
 
-                    {ifp 'goods.edit'}
-                        <button class="btn btn-default btn-sm  btn-operation" type="button" data-toggle='batch-group'  id="batchcatesbut" >批量分类</button>
-                    {/if}
                 </div>
             </div>
     <table class="table table-responsive">
@@ -140,12 +124,13 @@
                 <th style="width:25px;"></th>
                 <th style="width:80px;text-align:center;">排序</th>
                 <th style="width:80px;">商品</th>
-                <th style="">&nbsp;</th>
+                <th style="width: 150px;">&nbsp;</th>
                 <th style="width: 100px;">价格</th>
+                <th style="width: 100px;">原价</th>
+                <th style="width: 130px;">商品编码/国际条码</th>
                 <th style="width: 80px;">库存</th>
-                <th style="width: 80px;">销量</th>
                 {if $goodsfrom!='cycle'}
-                <th  style="width:80px;" >状态</th>
+                <th  style="width:80px;" >状态/门店</th>
                 {/if}
                 <th>属性</th>
                 <th style="width: 120px;">操作</th>
@@ -221,6 +206,26 @@
                 </td>
 
                 <td>
+                    &yen;
+                    {if $item['hasoption']==1}
+                    {ifp 'goods.edit'}
+                    <span data-toggle='tooltip' title='多规格不支持快速修改'>{$item['productprice']}</span>
+                    {else}
+                    {$item['productprice']}
+                    {/if}
+                    {else}
+                    {ifp 'goods.edit'}
+
+                    <a href='javascript:;' data-toggle='ajaxEdit' data-href="{php echo webUrl('goods/change',array('type'=>'productprice','id'=>$item['id']))}" >{$item['productprice']}</a>
+                    <i class="icow icow-weibiaoti-- " data-toggle="ajaxEdit2"></i>
+                    {else}
+                    {$item['productprice']}
+                    {/if}{/if}
+                </td>
+                <td>
+                    {$item['goodssn']}<br />{$item['productsn']}
+                </td>
+                <td>
                     {if !empty($item['hoteldaystock'])}
                         <span data-toggle='tooltip' title='民宿类商品显示每日库存'>{$item['hoteldaystock']}/日</span>
                     {else if $item['hasoption']==1}
@@ -242,7 +247,6 @@
                         {/if}
                     {/if}
                 </td>
-                <td>{$item['salesreal']}</td>
 
                 {if $goodsfrom!='cycle'}
                 <td  style="overflow:visible;">
@@ -275,6 +279,8 @@
                     >
                     {if $item['checked']==0}通过{else}审核中{/if}</span>
                     {/if}
+                    <br />
+                    {$item['shopname']}
                     </td>
                     {/if}
                     <td  class="goods_attribute">
@@ -336,51 +342,7 @@
                         >不参与折扣</a>
                     </td>
                     <td  style="overflow:visible;position:relative">
-                            {if empty($item['ishotel'])}
-                                {ifp 'goods.edit|goods.view'}
-                                    <a  class='btn btn-op btn-operation' href="{php echo webUrl('goods/edit', array('id' => $item['id'],'goodsfrom'=>$goodsfrom,'page'=>$page))}" >
-                                         <span data-toggle="tooltip" data-placement="top" title="" data-original-title="{ifp 'goods.edit'}编辑{else}查看{/if}">
-                                            <i class="icow icow-bianji2"></i>
-                                         </span>
-                                    </a>
-                                {/if}
-                            {else}
-                                {ifp 'hotelreservation.goods.edit|hotelreservation.goods.view'}
-                                <a  class='btn  btn-op btn-operation' href="{php echo webUrl('hotelreservation/goods/edit', array('id' => $item['id'],'goodsfrom'=>$goodsfrom,'page'=>$page))}">
-                                   <span data-toggle="tooltip" data-placement="top" title="" data-original-title="{ifp 'goods.edit'}编辑{else}查看{/if}">
-                                       {ifp 'goods.edit'}
-                                        <i class='icow icow-bianji2'></i>
-                                       {else}
-                                        <i class='icow icow-chakan-copy'></i>
-                                        {/if}
-                                   </span>
-                                </a>
-                                {/if}
-                            {/if}
-                            {if $_GPC['goodsfrom']=='cycle'}
-                                {ifp 'goods.restore'}
-                                <a  class='btn  btn-op btn-operation' data-toggle='ajaxRemove' href="{php echo webUrl('goods/restore', array('id' => $item['id']))}" data-confirm='确认要恢复?'>
-                                     <span data-toggle="tooltip" data-placement="top" title="" data-original-title="恢复">
-                                            <i class='icow icow-huifu1'></i>
-                                       </span>
-                                </a>
-                                {/if}
-                                {ifp 'goods.delete1'}
-                                <a  class='btn  btn-op btn-operation' data-toggle='ajaxRemove' href="{php echo webUrl('goods/delete1', array('id' => $item['id']))}" data-confirm='如果此商品存在购买记录，会无法关联到商品, 确认要彻底删除吗?？'>
-                                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="彻底删除">
-                                            <i class='icow icow-shanchu1'></i>
-                                       </span>
-                                </a>
-                                {/if}
-                            {else}
-                            {ifp 'goods.delete'}
-                            <a  class='btn  btn-op btn-operation' data-toggle='ajaxRemove' href="{php echo webUrl('goods/delete', array('id' => $item['id']))}" data-confirm='确认彻底删除此商品？'>
-                                <span data-toggle="tooltip" data-placement="top" title="" data-original-title="删除">
-                                     <i class='icow icow-shanchu1'></i>
-                                </span>
-                            </a>
-                            {/if}
-                            {/if}
+
                             {if $_GPC['goodsfrom']!='cycle'}
                             <a href="javascript:;" class='btn  btn-op btn-operation js-clip' data-url="{php echo mobileUrl('goods/detail', array('id' => $item['id']),true)}">
                                  <span data-toggle="tooltip" data-placement="top"  data-original-title="复制链接">

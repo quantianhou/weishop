@@ -58,53 +58,55 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
 			$filename = substr($filename, 0, strpos($filename, '.'));
 			$rows = array_slice($rows, 2, count($rows) - 2);
 			$items = array();
-			$this->get_zip_originalsize($_FILES['zipfile']['tmp_name'], '../attachment/images/' . $_W['uniacid'] . '/' . date('Y') . '/' . date('m') . '/');
-			$num = 0;
+			//$this->get_zip_originalsize($_FILES['zipfile']['tmp_name'], '../attachment/images/' . $_W['uniacid'] . '/' . date('Y') . '/' . date('m') . '/');
 
 			foreach ($rows as $rownu => $col) {
-				$item = array();
-				$item['title'] = $col[$colsIndex[title]];
-				$item['marketprice'] = $col[$colsIndex[price]];
-				$item['total'] = $col[$colsIndex[num]];
-				$item['content'] = $col[$colsIndex[description]];
-				$picContents = $col[$colsIndex[picture]];
-				$allpics = explode(';', $picContents);
-				$pics = array();
-				$optionpics = array();
+				$item = [];
+				$item['name']	= $col[0];
+				$item['sn']		= $col[1];
+                $item['price']	= $col[3];
+                $item['nation_sn']	= $col[2];
+				$item['inventory']	= $col[4];
 
-				foreach ($allpics as $imgurl) {
-					if (empty($imgurl)) {
-						continue;
-					}
-
-					$picDetail = explode('|', $imgurl);
-					$picDetail = explode(':', $picDetail[0]);
-					$imgurl = 'http://' . $_SERVER['SERVER_NAME'] . '/attachment/images/' . $_W['uniacid'] . '/' . date('Y') . '/' . date('m') . '/' . $picDetail[0] . '.png';
-
-					if (@fopen($imgurl, 'r')) {
-						if ($picDetail[1] == 1) {
-							$pics[] = $imgurl;
-						}
-
-						if ($picDetail[1] == 2) {
-							$optionpics[$picDetail[0]] = $imgurl;
-						}
-					}
-				}
-
-				$item['pics'] = $pics;
-				$items[] = $item;
-				++$num;
+                $items[] = $item;
 			}
 
-			session_start();
-			$_SESSION['taobaoCSV'] = $items;
-			$uploadStart = '1';
-			$uploadnum = $num;
+			//组合数据 发送写入商家商品库
+            $post = [
+            	'uniacid' => $_W['uniacid'],
+				'items' => $items
+			];
+
+            $cfg['post'] = $post;
+            $cfg['ssl'] = true;
+
+			$res = $this->curlOpen('http://api.test.ymkchen.com/goods',$cfg);
 		}
 
 		include $this->template();
 	}
+
+    public function curlOpen ($url, $cfg)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        if ($cfg['ssl']) {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        }
+        //post提交方式
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($cfg['post']));
+        $result = curl_exec($ch);
+        $info = curl_getinfo($ch);
+        //print_r($info);exit;
+        curl_close($ch);
+
+        return $result;
+    }
 
 	public function fetch()
 	{

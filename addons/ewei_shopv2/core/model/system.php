@@ -726,26 +726,20 @@ class System_EweiShopV2Model
 				'subtitle' => '商品管理',
 				'icon'     => 'goods',
 				'items'    => array(
-					array('title' => '出售中', 'desc' => '出售中商品管理', 'extend' => 'goods.sale', 'perm' => 'goods.main'),
-					array('title' => '已售罄', 'route' => 'out', 'desc' => '已售罄/无库存商品管理', 'perm' => 'goods.main'),
-					array('title' => '仓库中', 'route' => 'stock', 'desc' => '仓库中商品管理', 'perm' => 'goods.main'),
-					array('title' => '回收站', 'route' => 'cycle', 'desc' => '回收站/已删除商品管理', 'perm' => 'goods.main'),
-					array('title' => '待审核', 'route' => 'verify', 'desc' => '多商户待审核商品管理', 'perm' => 'goods.main'),
-					array('title' => '商品分类', 'route' => 'category'),
-					array('title' => '商品组', 'route' => 'group'),
-					array('title' => '标签管理', 'route' => 'label', 'extend' => 'goods.label.style'),
-					array(
-						'title' => '虚拟卡密',
-						'route' => 'virtual',
-						'iscom' => 'virtual',
+					array('title' => '商家商品库', 'route' => 'shop'),
+                    array(
+						'title' => '门店商品库',
 						'items' => array(
-							array('title' => '虚拟卡密', 'route' => 'temp', 'extend' => 'goods.virtual.data'),
-							array('title' => '卡密分类', 'route' => 'category'),
-							array('title' => '设置', 'route' => 'set')
-							)
-						)
-					)
-				),
+                            array('title' => '出售中', 'route' => 'sale', 'desc' => '出售中商品管理', 'perm' => 'goods.main'),
+                            array('title' => '已售罄', 'route' => 'out', 'desc' => '已售罄/无库存商品管理', 'perm' => 'goods.main'),
+                            array('title' => '已下架', 'route' => 'stock', 'desc' => '仓库中商品管理', 'perm' => 'goods.main'),
+                            array('title' => '回收站', 'route' => 'cycle', 'desc' => '回收站/已删除商品管理', 'perm' => 'goods.main')
+                        )
+					),
+                    array('title' => '商品分类', 'route' => 'category'),
+                    array('title' => '商品标签', 'route' => 'label', 'extend' => 'goods.label.style'),
+                )
+			),
 			'member'     => array(
 				'title'    => '会员',
 				'subtitle' => '会员管理',

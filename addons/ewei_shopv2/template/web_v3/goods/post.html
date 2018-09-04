@@ -43,10 +43,10 @@
 <div class="page-sub-toolbar">
 	<span class=''>
 		{ifp 'goods.add'}
-        <a class="btn btn-primary btn-sm" href="{php echo webUrl('goods/add')}" >添加商品</a>
+        <a class="btn btn-primary btn-sm" href="{php echo webUrl('goods/shop/add')}" >添加商品</a>
 		{/if}
 		{ifp 'goods.add'}
-        <a class="btn btn-primary btn-sm" href="{php echo webUrl('goods/create')}" >快速添加商品</a>
+        <a class="btn btn-primary btn-sm" href="{php echo webUrl('goods/shop/create')}" >快速添加商品</a>
 		{/if}
     </span>
 </div>
@@ -57,12 +57,12 @@
             <ul class="nav nav-tabs" id="myTab">
                 <li  {if empty($_GPC['tab']) || $_GPC['tab']=='basic'}class="active"{/if}><a href="#tab_basic">基本</a></li>
                 <li  {if $_GPC['tab']=='option'}class="active"{/if} ><a href="#tab_option">库存/规格</a></li>
-                <li {if $_GPC['tab']=='param'}class="active"{/if} ><a href="#tab_param">参数</a></li>
+                <li {if $_GPC['tab']=='param'}class="active"{/if} style="display:none;"><a href="#tab_param">参数</a></li>
                 <li {if $_GPC['tab']=='des'}class="active"{/if} ><a href="#tab_des">详情</a></li>
                 <li {if $_GPC['tab']=='buy'}class="active"{/if} ><a href="#tab_buy">购买权限</a></li>
                 <li {if $_GPC['tab']=='sale'}class="active"{/if} ><a href="#tab_sale">营销</a></li>
                 <li {if $_GPC['tab']=='discount'}class="active"{/if} ><a href="#tab_discount">会员折扣</a></li>
-                <li {if $_GPC['tab']=='share'}class="active"{/if} ><a href="#tab_share">分享关注</a></li>
+                <li {if $_GPC['tab']=='share'}class="active"{/if} style="display:none;"><a href="#tab_share">分享关注</a></li>
                 <li {if $_GPC['tab']=='notice'}class="active"{/if} ><a href="#tab_notice">卖家通知</a></li>
 
                 {if !empty($com_set['level'])}
@@ -75,15 +75,15 @@
 				{/if}
 
                 {if p('diyform')}
-                <li {if $_GPC['tab']=='diyform'}class="active"{/if}><a href="#tab_diyform">自定义表单</a></li>
+                <li {if $_GPC['tab']=='diyform'}class="active"{/if} style="display:none;"><a href="#tab_diyform">自定义表单</a></li>
                 {/if}
 
                 {if $merchid == 0}
-                <li {if $_GPC['tab']=='detaildiy'}class="active"{/if}><a href="#tab_detaildiy">店铺信息</a></li>
+                <li {if $_GPC['tab']=='detaildiy'}class="active"{/if} style="display:none;"><a href="#tab_detaildiy">店铺信息</a></li>
                 {/if}
 
                 {if p('diypage')}
-                <li {if $_GPC['tab']=='diypage'}class="active"{/if}><a href="#tab_diypage">自定义模板</a></li>
+                <li {if $_GPC['tab']=='diypage'}class="active"{/if} style="display:none;"><a href="#tab_diypage">自定义模板</a></li>
                 {/if}
                 {if p('ccard')}
                 <li class="ccard-group {if $_GPC['tab']=='ccard'}active{/if}" {if $item['type'] != 20}style="display:none;"{/if}><a href="#tab_ccard">充值说明</a></li>

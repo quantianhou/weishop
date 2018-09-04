@@ -1,23 +1,22 @@
 {template '_header'}
 
-<div class="page-header"> 当前位置：<span class="text-primary">淘宝CSV上传助手</span>  </div>
+<div class="page-header"> 当前位置：<span class="text-primary">商家商品上传助手</span>  </div>
 
 <div class="page-content">
     <div class='alert alert-danger'>尽量在服务器空闲时间来操作，会占用大量内存与带宽，在获取过程中，请不要进行任何操作!</div>
 
     <div class="summary_box">
         <div class="summary_title">
-            <span class="title_inner">淘宝CSV上传助手</span>
+            <span class="title_inner">商家商品上传助手</span>
         </div>
         <div class="summary_lg">
-            功能介绍：可将淘宝助理以及其他途径获取的淘宝商品CSV文件快速上传至商城,节约您的大量时间!
+            功能介绍：可将获取的excel文件快速上传至商城,节约您的大量时间!
             <br>
-            <span>使用方法： 1. 将您获取到的CSV文件转存为Excel格式,否则将无法识别</span>
-            <br><span style="padding-left: 64px;">2. 将配套的图片文件包压缩为Zip格式压缩包并且导入(图片需在压缩包根目录下)</span>
-            <br><span style="padding-left: 64px;">3. 确认上传即可</span>
+            <span>使用方法： 1. 将您获取到的文件转存为Excel格式,否则将无法识别</span>
+            <br><span style="padding-left: 64px;">2. 确认上传即可</span>
             <dl style="margin:5px 0;">
                 <dt style="float:left;font-weight:normal;">示例文件：</dt>
-                <dd style="float:left;"><a href="{php echo $excelurl}" >Excel示例文件下载</a><br /><a href="{php echo $zipurl}" >Zip示例文件下载</a></dd>
+                <dd style="float:left;"><a href="{php echo $excelurl}" >Excel示例文件下载</a></dd>
             </dl>
             <div style="clear:both;"></div>
         </div>
@@ -29,12 +28,6 @@
             <label class="col-lg control-label must">EXCEL</label>
             <div class="col-sm-5 goodsname"  style="padding-right:0;" >
                 <input type="file" name="excelfile" class="form-control" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg control-label must">ZIP</label>
-            <div class="col-sm-5 goodsname"  style="padding-right:0;" >
-                <input type="file" name="zipfile" class="form-control" />
             </div>
         </div>
         <div class="form-group">

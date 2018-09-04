@@ -2,7 +2,7 @@
 	<div class="region-goods-left col-sm-2">库存</div>
 	<div class="region-goods-right col-sm-10">
 		<div class="form-group">
-			<label class="col-sm-1 control-label">编码</label>
+			<label class="col-sm-1 control-label">商品编码</label>
 			<div class="col-sm-5">
 				{ife 'goods' $item}
 				<input type="text" name="goodssn" id="goodssn" class="form-control hasoption" value="{$item['goodssn']}" {if $item['hasoption']}readonly{/if}//>
@@ -11,7 +11,7 @@
 				{/if}
 			</div>
 
-			<label class=" col-sm-1 control-label">条码</label>
+			<label class=" col-sm-1 control-label">国际条码</label>
 			<div class="col-sm-5">
 				{ife 'goods' $item}
 				<input type="text" name="productsn" id="productsn" class="form-control hasoption" value="{$item['productsn']}" {if $item['hasoption']}readonly{/if}//>
