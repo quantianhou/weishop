@@ -37,7 +37,7 @@ $config['setting']['timezone'] = 'Asia/Shanghai';
 $config['setting']['memory_limit'] = '256M';
 $config['setting']['filemode'] = 0644;
 $config['setting']['authkey'] = '937f950d';
-$config['setting']['founder'] = '1,2';
+$config['setting']['founder'] = '1';
 $config['setting']['development'] = 0;
 $config['setting']['referrer'] = 0;
 $config['setting']['https'] = 0;
@@ -58,7 +58,7 @@ $config['setting']['memcache']['session'] = 1;
 
 // --------------------------  CONFIG redis  --------------------------- //
 $config['setting']['redis']['server'] = redis4_0_A;
-$config['setting']['redis']['port'] = 6379; 
+$config['setting']['redis']['port'] = 6379;
 $config['setting']['redis']['pconnect'] = 0; 
 $config['setting']['redis']['requirepass'] = ''; 
 $config['setting']['redis']['timeout'] = 1;
