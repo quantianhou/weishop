@@ -64,6 +64,17 @@ if($step == 1) {
 				itoast('添加公众号失败', '', '');
 			}
 			$uniacid = pdo_insertid();
+			//fanhailong add 新建b_users_uniaccount_relationship表，用于绑定商家和公众号之间的关系
+            $merchant_code = getMerchantCodeByMerchantId();
+             $relation_data = array(
+                 'merchant_code' => $merchant_code,
+                'uni_account_id' => $uniacid,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            );
+             if (!pdo_insert('b_users_uniaccount_relationship', $relation_data)) {
+                 itoast('添加公众号关联关系失败', '', '');
+             }
 						$template = pdo_fetch('SELECT id,title FROM ' . tablename('site_templates') . " WHERE name = 'default'");
 			$styles['uniacid'] = $uniacid;
 			$styles['templateid'] = $template['id'];

@@ -60,13 +60,19 @@ if ($do == 'display') {
 			$condition .= " AND a.`title_initial` = ''";
 		}
 	}
-//print_r($condition);exit;
-	//fanhailong添加
-	$condition .= " AND c.`users_id` = :users_id";
-	$param[':users_id'] = $_W['user']['uid'];
-	$tsql = "SELECT COUNT(*) FROM " . tablename('uni_account'). " as a LEFT JOIN". tablename('account'). " as b ON a.default_acid = b.acid LEFT JOIN ". tablename('b_users_uniaccount_relationship')." as c ON a.uniacid = c.uni_account_id {$condition}"." {$order_by}, a.`uniacid` DESC LIMIT {$start}, {$psize}";
+
+	//fanhailong添加 切换公众号页面，只能看到当前商家自己的公众号
+    $merchant_code_condition .= " WHERE `id` = :id";
+	$merchant_code_param[':id'] = $_W['user']['a_merchant_id'];
+    $sql = "SELECT merchant_code FROM ". tablename('a_merchant'). "  {$merchant_code_condition}";
+    $merchant_code = pdo_fetch($sql, $merchant_code_param);
+    $condition .= " AND relation.`merchant_code` = :merchant_code";
+    $param[':merchant_code'] = $merchant_code['merchant_code'];
+
+	$tsql = "SELECT COUNT(*) FROM " . tablename('uni_account'). " as a LEFT JOIN". tablename('account'). " as b ON a.default_acid = b.acid LEFT JOIN ". tablename('b_users_uniaccount_relationship')." as relation ON a.uniacid = relation.uni_account_id {$condition}"." {$order_by}, a.`uniacid` DESC LIMIT {$start}, {$psize}";
 	$total = pdo_fetchcolumn($tsql, $param);
-	$sql = "SELECT * FROM ". tablename('uni_account'). " as a LEFT JOIN". tablename('account'). " as b ON a.default_acid = b.acid LEFT JOIN ". tablename('b_users_uniaccount_relationship')." as c ON a.uniacid = c.uni_account_id {$condition}"." {$order_by}, a.`uniacid` DESC LIMIT {$start}, {$psize}";
+	$sql = "SELECT * FROM ". tablename('uni_account'). " as a LEFT JOIN". tablename('account'). " as b ON a.default_acid = b.acid LEFT JOIN ". tablename('b_users_uniaccount_relationship')." as relation ON a.uniacid = relation.uni_account_id {$condition}"." {$order_by}, a.`uniacid` DESC LIMIT {$start}, {$psize}";
+
 	$list = pdo_fetchall($sql, $param);
 	if(!empty($list)) {
 		foreach($list as &$account) {

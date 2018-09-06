@@ -74,6 +74,32 @@ function uni_accounts($uniacid = 0) {
 	return !empty($accounts) ? $accounts : array();
 }
 
+//fanhailong add
+//通过ims_users表里的商户id，来查询用户的商家编码
+function getMerchantCodeByMerchantId($merchant_id = 0) {
+    global $_W;
+    $merchant_code_condition = " WHERE `id` = :id";
+    if(empty($merchant_id)){
+        $merchant_code_param[':id'] = $_W['user']['a_merchant_id'];
+    }else{
+        $merchant_code_param[':id'] = $merchant_id;
+    }
+    $sql = "SELECT merchant_code FROM ". tablename('a_merchant'). "  {$merchant_code_condition}";
+    $merchant_code = pdo_fetch($sql, $merchant_code_param);
+    return !empty($merchant_code) ? $merchant_code['merchant_code'] : false;
+}
+
+//fanhailong add
+//通过ims_users表里的用户id，来查询用户的公众号id
+function getUniacidByUser($user_id = 0) {
+    $merchant_code = getMerchantCodeByMerchantId($user_id);
+    global $_W;
+    $condition = " WHERE `merchant_code` = :merchant_code";
+    $param[':merchant_code'] = $merchant_code;
+    $sql = "SELECT `uni_account_id` FROM ". tablename('b_users_uniaccount_relationship'). "  {$condition}";
+    $data = pdo_fetch($sql, $param);
+    return !empty($data) ? $data['uni_account_id'] : false;
+}
 
 function uni_fetch($uniacid = 0) {
 	global $_W;

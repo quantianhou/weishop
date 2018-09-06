@@ -14,7 +14,8 @@ if(is_array($session)) {
 		$user['lastip'] = $session['lastip'];
 		$_W['user'] = $user;
 		$founders = explode(',', $_W['config']['setting']['founder']);
-		$_W['isfounder'] = 1;
+        $_W['isfounder'] = in_array($_W['uid'], $founders);
+//		$_W['isfounder'] = 1;
 		unset($founders);
 	} else {
 		isetcookie('__session', false, -100);
@@ -29,8 +30,7 @@ if(!empty($_GPC['__uniacid'])) {
 } else {
 	$_W['uniacid'] = uni_account_last_switch();
 }
-//$_W['uniacid'] = 17;
-//print_r($_W['uniacid']);exit;
+$_W['uniacid'] = getUniacidByUser();//默认主页的公众号为当前账号下的公众号；通过这句防止住当前账号看到其他账号下的公众号，微擎的机制是每个管理员都能查看其他的公众号，我们的需求不允许
 if (!empty($_W['uniacid'])) {
 	$_W['uniaccount'] = $_W['account'] = uni_fetch($_W['uniacid']);
 	$_W['acid'] = $_W['account']['acid'];

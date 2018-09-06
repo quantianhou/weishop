@@ -38,8 +38,22 @@ if ($do == 'display') {
 		$condition .=" AND a.`name` LIKE :name";
 		$param[':name'] = "%{$keyword}%";
 	}
-	$tsql = "SELECT COUNT(*) FROM " . tablename(uni_account_tablename(ACCOUNT_TYPE)). " as a LEFT JOIN". tablename('account'). " as b ON a.acid = b.acid {$condition} {$order_by}, a.`uniacid` DESC";
-	$sql = "SELECT * FROM ". tablename(uni_account_tablename(ACCOUNT_TYPE)). " as a LEFT JOIN". tablename('account'). " as b ON a.acid = b.acid {$condition} {$order_by}, a.`uniacid` DESC LIMIT {$start}, {$psize}";
+
+	//fanhailong add
+    $founders = explode(',', $_W['config']['setting']['founder']);
+    $isfounder = in_array($_W['user']['uid'], $founders);
+    if($isfounder){//如果是管理员，可以看到所有的
+        $tsql = "SELECT COUNT(*) FROM " . tablename(uni_account_tablename(ACCOUNT_TYPE)). " as a LEFT JOIN". tablename('account'). " as b ON a.acid = b.acid {$condition} {$order_by}, a.`uniacid` DESC";
+        $sql = "SELECT * FROM ". tablename(uni_account_tablename(ACCOUNT_TYPE)). " as a LEFT JOIN". tablename('account'). " as b ON a.acid = b.acid {$condition} {$order_by}, a.`uniacid` DESC LIMIT {$start}, {$psize}";
+    }else{
+        $merchant_code = getMerchantCodeByMerchantId();
+        $condition .= " AND relation.`merchant_code` = :merchant_code";
+        $param[':merchant_code'] = $merchant_code;
+        //如果不是管理员，只能通过新建的关联关系表看到当前账户自己的公众号
+        $tsql = "SELECT COUNT(*) FROM " . tablename(uni_account_tablename(ACCOUNT_TYPE)). " as a LEFT JOIN". tablename('account'). " as b ON a.acid = b.acid LEFT JOIN ".tablename('b_users_uniaccount_relationship')."  as relation ON a.uniacid = relation.uni_account_id {$condition} {$order_by}, a.`uniacid` DESC";
+        $sql = "SELECT * FROM ". tablename(uni_account_tablename(ACCOUNT_TYPE)). " as a LEFT JOIN". tablename('account'). " as b ON a.acid = b.acid LEFT JOIN ".tablename('b_users_uniaccount_relationship')."  as relation ON a.uniacid = relation.uni_account_id {$condition} {$order_by}, a.`uniacid` DESC LIMIT {$start}, {$psize}";
+    }
+
 	$total = pdo_fetchcolumn($tsql, $param);
 	$list = pdo_fetchall($sql, $param);
 	if(!empty($list)) {

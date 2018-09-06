@@ -1,7 +1,7 @@
 <?php
 defined('IN_IA') or exit('Access Denied');
 //fanhailong add
-//global $_W;
+global $_W;
 //print_r($_W);exit('aa');
 //$_W['uniacid'] = 17;
 checkaccount();

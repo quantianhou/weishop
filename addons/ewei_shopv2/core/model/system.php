@@ -967,7 +967,7 @@ class System_EweiShopV2Model
 						)
 					)
 				),
-			'app'        => $this->pluginMenu('app'),
+//fanhailong注释，隐藏商城左侧菜单的小程序导航			'app'        => $this->pluginMenu('app'),
 			'plugins'    => array('title' => '应用', 'subtitle' => '应用管理', 'icon' => 'plugins'),
 			'sysset'     => array(
 				'title'    => '设置',
