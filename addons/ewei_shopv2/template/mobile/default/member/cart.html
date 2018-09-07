@@ -1,4 +1,56 @@
 {template '_header'}
+<style>
+	.store h2 {
+		height: 39px;
+		line-height: 39px;
+		padding-right: 15px;
+		font-size: 15px;
+		color: #000;
+		border-bottom: .5px solid #e4e4e4;
+		font-weight: 400;
+		list-style-type: none;
+	}
+	.store input[type=checkbox] {
+		display: none;
+	}
+	.store label {
+		width: 40px;
+		line-height: normal;
+		display: inline-block;
+		float: left;
+		vertical-align: middle;
+		background: url(/attachment/images/unchecked.png) center no-repeat;
+		background-size: 18px 18px;
+	}
+	.store .branchName {
+		display: block;
+		position: relative;
+		margin: 0 10px 0 40px;
+		padding-left: 28px;
+		background: url(/attachment/images/store-icon.png) left center no-repeat;
+		background-size: 18px 15px;
+	}
+	.store .branchName .branchName_area {
+		display: block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 96%;
+	}
+	.store .branchName:after {
+		display: inline-block;
+		width: 7px;
+		height: 11px;
+		line-height: normal;
+		position: absolute;
+		top: 15px;
+		right: -10px;
+		z-index: 9;
+		content: "";
+		background: url(/attachment/images/arrow_r.png) center right no-repeat;
+		background-size: 7px 11px;
+	}
+</style>
 <div class='fui-page  fui-page-current member-cart-page'>
 	<div class="fui-header">
 		<div class="fui-header-left">
@@ -12,7 +64,7 @@
 
 	</div>
 	<div class='fui-content navbar cart-list' style="bottom: 4.9rem">
-		<div id="cart_container"></div>
+		<div id="cart_container" class="store"></div>
 	</div>
 
 	<div id="footer_container"></div>
@@ -29,7 +81,15 @@
 		<%if list.length>0%>
 
 		<div class="fui-list-group" id="container" style="margin-top: 0">
-
+			<!--fanhailong添加：这里是新增加的门店html -->
+			<h2 class="branch">
+				<input type="checkbox"><label class="input checkedAll Input" ></label>
+				<span class="branchName" >
+						<span class="branchName_area ng-binding">高唐一区尹集店</span>
+					</span>
+				<em class="ng-binding"></em>
+			</h2>
+			<!--fanhailong添加：这里是新增加的门店html 结尾-->
 			<%each list as g%>
 			<div class="fui-list goods-item align-start"
 				 data-cartid="<%g.id%>"
