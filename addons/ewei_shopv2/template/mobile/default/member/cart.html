@@ -9,9 +9,53 @@
 		border-bottom: .5px solid #e4e4e4;
 		font-weight: 400;
 		list-style-type: none;
+		display: flex;
+		position: relative;
+	}
+	h2.branch input[type=checkbox]{
+		left: 12px;
+		position: absolute;
+		top: 10px;
 	}
 	.store input[type=checkbox] {
-		display: none;
+
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		position: relative;
+		width: .95rem;
+		height: .95rem;
+		border: 1px solid #DFDFDF;
+		outline: 0;
+		border-radius: 16px;
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		border: 1px solid #DFDFDF;
+		background: #fff;
+		vertical-align: middle;
+		-moz-transition-duration: 300ms;
+		-webkit-transition-duration: 300ms;
+		transition-duration: 300ms;
+	}
+	.store input[type=checkbox]:checked{
+		background-color: #ff5555;
+		border: 1px solid #ff5555;
+	}
+	.store input[type=checkbox]:checked:before{
+		content: " ";
+		display: inline-block;
+		-webkit-transform: rotate(135deg);
+		-ms-transform: rotate(135deg);
+		transform: rotate(135deg);
+		height: 0.25rem;
+		width: 0.45rem;
+		border-width: 1px 1px 0 0;
+		border-color: #d9d9d9;
+		border-style: solid;
+		position: relative;
+		top: -.05rem;
+		margin-left: .2rem;
 	}
 	.store label {
 		width: 40px;
@@ -29,13 +73,12 @@
 		padding-left: 28px;
 		background: url(/attachment/images/store-icon.png) left center no-repeat;
 		background-size: 18px 15px;
+		width: 100%;
 	}
 	.store .branchName .branchName_area {
 		display: block;
-		overflow: hidden;
 		text-overflow: ellipsis;
-		white-space: nowrap;
-		width: 96%;
+		margin-right: auto;
 	}
 	.store .branchName:after {
 		display: inline-block;
@@ -83,7 +126,7 @@
 		<div class="fui-list-group" id="container" style="margin-top: 0">
 			<!--fanhailong添加：这里是新增加的门店html -->
 			<h2 class="branch">
-				<input type="checkbox"><label class="input checkedAll Input" ></label>
+				<input type="checkbox"/>
 				<span class="branchName" >
 						<span class="branchName_area ng-binding">高唐一区尹集店</span>
 					</span>
