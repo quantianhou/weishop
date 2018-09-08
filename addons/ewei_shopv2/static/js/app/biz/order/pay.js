@@ -1,1 +1,178 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('1q([\'9\',\'13\'],6(9,13){a 2={7:{}};2.1r=6(7){a 12={f:0,4:{g:q},1s:{g:q},j:{g:q},};2.7=$.1u(12,7||{});$(\'.b-3\').I(\'i\').i(6(){a 3=$(1t);9.1g(\'c/b/1o\',{p:2.7.f},6(k){5(k.O==1){2.b(3)}e{h.C.l(k.s.R)}},q,x)});5(2.7.4.U==1){$(\'.b-3[B-8="4"]\').i()}};2.b=6(3){a 8=3.B(\'8\')||\'\';5(8==\'\'){d}5(3.H(\'m\')){d}3.H(\'m\',1);5(8==\'4\'){5(9.11()){10(\'4\',y,y,x);d}2.15(3)}e 5(8==\'j\'){5(9.11()){10(\'j\',y,y,x);d}2.1e(3)}e 5(8==\'1i\'){h.1j(\'确认要支付吗?\',\'提醒\',6(){2.r(3,8)},6(){3.t(\'m\')})}e 5(8==\'n\'){D.w=9.o(\'c/b/n\',{p:2.7.f});d}e{2.r(3,8)}};2.15=6(3){a 4=2.7.4;5(!4.g){d}5(4.1k){6 u(){S.1n(\'1m\',{\'18\':4.19?4.19:4.18,\'17\':4.17,\'16\':4.16,\'Z\':4.Z,\'Y\':4.Y,\'P\':4.P},6(z){5(z.K==\'Q:1L\'){2.r(3,\'4\')}e 5(z.K==\'Q:1O\'){h.C.l(\'取消支付\')}e{h.C.l(z.K)}3.t(\'m\')})}5 (1F S == "1y"){5( v.T ){v.T(\'1b\', u, q)}e 5 (v.J){v.J(\'1b\', u);v.J(\'1E\', u)}}e{u()}}5(4.1C||4.U==1){2.1a(3,4)}};2.1a=6(3,4){a X=9.o(\'1K/1D\',{N:4.1B});$(\'#1A\').1f(2.7.1x);$(\'.c-L-G\').l();$(\'#1z\').I(\'i\').i(6(){3.t(\'m\');F(A);$(\'.c-L-G\').M()});a A=1G(6(){$.1M(9.o(\'c/b/1N\'),{p:2.7.f},6(B){5(B.O>=1){F(A);D.w=9.o(\'c/b/g\',{p:2.7.f})}})},14);$(\'.1d-1c\').1h(\'.1I\').I(\'i\').i(6(){$(\'.c-L-G\').M();3.t(\'m\');F(A)});$(\'.1d-1c\').1h(\'.1v\').H(\'1p\',X).l()};2.1e=6(3){a j=2.7.j;5(!j.g){d}D.w=9.o(\'c/1l\',{f:2.7.f,8:0,N:j.N})};2.r=6(3,8){a n=$(\'#n\').1f();a E=$(\'#E\').1w();h.W.l(\'1J\');1H(6(){9.1g(\'c/b/r\',{p:2.7.f,V:2.7.V,8:8,n:n,E:E},6(k){5(k.O==1){D.w=9.o(\'c/b/g\',{p:2.7.f,s:k.s.s});d}h.W.M();3.t(\'m\');h.C.l(k.s.R)},q,x)},14)};d 2});',62,113,'||modal|btn|wechat|if|function|params|type|core|var|pay|order|return|else|orderid|success|FoxUI|click|alipay|pay_json|show|stop|peerpay|getUrl|id|false|complete|result|removeAttr|onBridgeReady|document|href|true|null|res|settime|data|toast|location|peerpaymessage|clearInterval|hidden|attr|unbind|attachEvent|err_msg|weixinpay|hide|url|status|paySign|get_brand_wcpay_request|message|WeixinJSBridge|addEventListener|jie|ordersn|loader|img|signType|package|appPay|ish5app|defaults|tpl|1000|payWechat|nonceStr|timeStamp|appId|appid|payWechatJie|WeixinJSBridgeReady|pop|verify|payAlipay|text|json|find|credit|confirm|weixin|pay_alipay|getBrandWCPayRequest|invoke|check|src|define|init|cash|this|extend|qrimg|val|money|undefined|btnWeixinJieCancel|qrmoney|code_url|weixin_jie|qr|onWeixinJSBridgeReady|typeof|setInterval|setTimeout|close|mini|index|ok|getJSON|orderstatus|cancel'.split('|'),0,{}))
+define(['core', 'tpl'], function (core, tpl) {
+    var modal = {
+        params: {}
+    };
+    modal.init = function (params) {
+        var defaults = {
+            orderid: 0,
+            wechat: {
+                success: false
+            },
+            cash: {
+                success: false
+            },
+            alipay: {
+                success: false
+            },
+        };
+        modal.params = $.extend(defaults, params || {});
+        $('.pay-btn').unbind('click').click(function () {
+            var btn = $(this);
+            core.json('order/pay/check', {
+                id: modal.params.orderid
+            }, function (pay_json) {
+                if (pay_json.status == 1) {
+                    modal.pay(btn)
+                } else {
+                    FoxUI.toast.show(pay_json.result.message)
+                }
+            }, false, true)
+        });
+        if (modal.params.wechat.jie == 1) {
+            $('.pay-btn[data-type="wechat"]').click()
+        }
+    };
+    modal.pay = function (btn) {
+        var type = btn.data('type') || '';
+        if (type == '') {
+            return
+        }
+        if (btn.attr('stop')) {
+            return
+        }
+        btn.attr('stop', 1);
+        if (type == 'wechat') {
+            if (core.ish5app()) {
+                appPay('wechat', null, null, true);
+                return
+            }
+            modal.payWechat(btn)
+        } else if (type == 'alipay') {
+            if (core.ish5app()) {
+                appPay('alipay', null, null, true);
+                return
+            }
+            modal.payAlipay(btn)
+        } else if (type == 'credit') {
+            FoxUI.confirm('确认要支付吗?', '提醒', function () {
+                modal.complete(btn, type)
+            }, function () {
+                btn.removeAttr('stop')
+            })
+        } else if (type == 'peerpay') {
+            location.href = core.getUrl('order/pay/peerpay', {
+                id: modal.params.orderid
+            });
+            return
+        } else {
+            modal.complete(btn, type)
+        }
+    };
+    modal.payWechat = function (btn) {
+        var wechat = modal.params.wechat;
+        if (!wechat.success) {
+            return
+        }
+        if (wechat.weixin) {
+            function onBridgeReady() {
+                WeixinJSBridge.invoke('getBrandWCPayRequest', {
+                    'appId': wechat.appid ? wechat.appid : wechat.appId,
+                    'timeStamp': wechat.timeStamp,
+                    'nonceStr': wechat.nonceStr,
+                    'package': wechat.package,
+                    'signType': wechat.signType,
+                    'paySign': wechat.paySign
+                }, function (res) {
+                    if (res.err_msg == 'get_brand_wcpay_request:ok') {
+                        modal.complete(btn, 'wechat')
+                    } else if (res.err_msg == 'get_brand_wcpay_request:cancel') {
+                        FoxUI.toast.show('取消支付')
+                    } else {
+                        FoxUI.toast.show(res.err_msg)
+                    }
+                    btn.removeAttr('stop')
+                })
+            }
+            if  (typeof WeixinJSBridge  ==  "undefined") {
+                if ( document.addEventListener ) {
+                    document.addEventListener('WeixinJSBridgeReady',  onBridgeReady,  false)
+                } else  if  (document.attachEvent) {
+                    document.attachEvent('WeixinJSBridgeReady',  onBridgeReady);
+                    document.attachEvent('onWeixinJSBridgeReady',  onBridgeReady)
+                }
+            } else {
+                onBridgeReady()
+            }
+        }
+        if (wechat.weixin_jie || wechat.jie == 1) {
+            modal.payWechatJie(btn, wechat)
+        }
+    };
+    modal.payWechatJie = function (btn, wechat) {
+        var img = core.getUrl('index/qr', {
+            url: wechat.code_url
+        });
+        $('#qrmoney').text(modal.params.money);
+        $('.order-weixinpay-hidden').show();
+        $('#btnWeixinJieCancel').unbind('click').click(function () {
+            btn.removeAttr('stop');
+            clearInterval(settime);
+            $('.order-weixinpay-hidden').hide()
+        });
+        var settime = setInterval(function () {
+            $.getJSON(core.getUrl('order/pay/orderstatus'), {
+                id: modal.params.orderid
+            }, function (data) {
+                if (data.status >= 1) {
+                    clearInterval(settime);
+                    location.href = core.getUrl('order/pay/success', {
+                        id: modal.params.orderid
+                    })
+                }
+            })
+        }, 1000);
+        $('.verify-pop').find('.close').unbind('click').click(function () {
+            $('.order-weixinpay-hidden').hide();
+            btn.removeAttr('stop');
+            clearInterval(settime)
+        });
+        $('.verify-pop').find('.qrimg').attr('src', img).show()
+    };
+    modal.payAlipay = function (btn) {
+        var alipay = modal.params.alipay;
+        if (!alipay.success) {
+            return
+        }
+        location.href = core.getUrl('order/pay_alipay', {
+            orderid: modal.params.orderid,
+            type: 0,
+            url: alipay.url
+        })
+    };
+    modal.complete = function (btn, type) {
+        var peerpay = $('#peerpay').text();
+        var peerpaymessage = $('#peerpaymessage').val();
+        FoxUI.loader.show('mini');
+        setTimeout(function () {
+            core.json('order/pay/complete', {
+                id: modal.params.orderid,
+                ordersn: modal.params.ordersn,
+                type: type,
+                peerpay: peerpay,
+                peerpaymessage: peerpaymessage
+            }, function (pay_json) {
+                if (pay_json.status == 1) {
+                    location.href = core.getUrl('order/pay/success', {
+                        id: modal.params.orderid,
+                        result: pay_json.result.result
+                    });
+                    return
+                }
+                FoxUI.loader.hide();
+                btn.removeAttr('stop');
+                FoxUI.toast.show(pay_json.result.message)
+            }, false, true)
+        }, 1000)
+    };
+    return modal
+});
