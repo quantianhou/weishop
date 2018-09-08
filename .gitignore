@@ -16,3 +16,5 @@ yarn-error.log
 _ide_helper.php
 .idea/workspace.xml
 /data/config.php
+/attachment
+/addons/ewei_shopv2/data
