@@ -4,18 +4,18 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>
-	{if !empty($title)} 
+	{if !empty($title)}
 		{$title} -
-	{elseif !empty($_W['page']['title'])} 
+	{elseif !empty($_W['page']['title'])}
 		{$_W['page']['title']} -
-	{/if} 
+	{/if}
 	{if !empty($_W['page']['sitename'])}
-		{$_W['page']['sitename']} 
+		{$_W['page']['sitename']}
 	{else}
-		{$_W['account']['name']} 
-	{/if} 
-	{if IMS_FAMILY != 'x'} 
-		- Powered by WE7.CC 
+		{$_W['account']['name']}
+	{/if}
+	{if IMS_FAMILY != 'x'}
+		- Powered by WE7.CC
 	{/if}
 	</title>
 	<meta name="format-detection" content="telephone=no, address=no">
