@@ -110,29 +110,6 @@ class Shop_EweiShopV2Page extends WebPage
         empty($goodsfrom) && $_GPC['goodsfrom'] = $goodsfrom = 'sale';
         $_GPC['goodsfrom'] = $goodsfrom;
 
-        if ($goodsfrom == 'sale') {
-            $condition .= ' AND g.`status` > 0 and g.`checked`=0 and g.`total`>0 and g.`deleted`=0';
-            $status = 1;
-        }
-        else if ($goodsfrom == 'out') {
-            $condition .= ' AND g.`status` > 0 and g.`total` <= 0 and g.`deleted`=0 and g.type!=30';
-            $status = 1;
-        }
-        else if ($goodsfrom == 'stock') {
-            $status = 0;
-            $condition .= ' AND (g.`status` = 0 or g.`checked`=1) and g.`deleted`=0';
-        }
-        else if ($goodsfrom == 'cycle') {
-            $status = 0;
-            $condition .= ' AND g.`deleted`=1';
-        }
-        else {
-            if ($goodsfrom == 'verify') {
-                $status = 0;
-                $condition .= ' AND g.`deleted`=0 and merchid>0 and checked=1';
-            }
-        }
-
         $sql = 'SELECT g.id FROM ' . tablename('ewei_business_goods') . 'g' . $sqlcondition . $condition . $groupcondition;
         $total_all = pdo_fetchall($sql, $params);
         $total = count($total_all);
