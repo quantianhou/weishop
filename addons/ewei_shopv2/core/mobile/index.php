@@ -10,7 +10,20 @@ class Index_EweiShopV2Page extends MobilePage
 		global $_W;
 		global $_GPC;
 		$_SESSION['newstoreid'] = 0;
-		$this->diypage('home');
+
+		//查看是否有cookie
+		$this_store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+		if(!$this_store_id){
+            //获取第一个门店
+            $shopInfo = pdo_fetch('select *  from ' . tablename('ewei_shop_store') . ' og  where og.uniacid=:uniacid ', array(':uniacid' => $_W['uniacid']));
+            $shopInfo && isetcookie('store_id', $shopInfo['id'], 7 * 86400);
+            $this_store_id = $shopInfo['id'];
+        }
+
+        //获取门店信息
+        $shopInfo || $shopInfo = pdo_fetch('select *  from ' . tablename('ewei_shop_store') . ' og  where og.id=:id ', array(':id' => $this_store_id));
+
+        $this->diypage('home');
 		$trade = m('common')->getSysset('trade');
 		if (empty($trade['shop_strengthen'])) 
 		{
@@ -22,7 +35,7 @@ class Index_EweiShopV2Page extends MobilePage
 			}
 		}
 		$mid = intval($_GPC['mid']);
-		$index_cache = $this->getpage();
+		$index_cache = $this->getpage($shopInfo);
 		if (!(empty($mid))) 
 		{
 			$index_cache = preg_replace_callback('/href=[\\\'"]?([^\\\'" ]+).*?[\\\'"]/', function($matches) use($mid) 
@@ -74,7 +87,7 @@ class Index_EweiShopV2Page extends MobilePage
 		global $_GPC;
 		return m('common')->createStaticFile(mobileUrl('getpage', NULL, true));
 	}
-	public function getpage() 
+	public function getpage($shopInfo)
 	{
 		global $_W;
 		global $_GPC;

@@ -581,7 +581,7 @@
 							<span class="s_name fl">
 								<a class="s_name_ ellipsis ng-binding">{$item['storename']}</a>
 							</span>
-                            <span class="s_range fr ng-binding ng-scope">≥50km</span>
+                            <span class="s_range fr ng-binding ng-scope" data-lat="{$item['lat']}" data-lng="{$item['lng']}">≥50km</span>
                         </h2>
                         <p class="ps_types ng-binding">到店取货</p>
                         <p class="s_location ng-binding">{$item['address']}</p>
@@ -598,10 +598,51 @@
     geolocation.getCurrentPosition(function(r){
         if(this.getStatus() == BMAP_STATUS_SUCCESS){
             $('#address_area').html(r.address.city + r.address.district + r.address.street);
+            var lat = r.point.lat;
+            var lng = r.point.lng;
+
+            $('.s_range').each(function () {
+                $(this).html((getFlatternDistance(lat*1,lng*1,$(this).attr('data-lat')*1,$(this).attr('data-lng')*1)/1000).toFixed(2)+'km')
+            });
         }else {
             alert("您的浏览器不支持获取地理位置。");
         }
     },{enableHighAccuracy: true});
 
+    var EARTH_RADIUS = 6378137.0;    //单位M
+    var PI = Math.PI;
+
+    function getRad(d){
+        return d*PI/180.0;
+    }
+
+    function getFlatternDistance(lat1,lng1,lat2,lng2){
+        var f = getRad((lat1 + lat2)/2);
+        var g = getRad((lat1 - lat2)/2);
+        var l = getRad((lng1 - lng2)/2);
+
+        var sg = Math.sin(g);
+        var sl = Math.sin(l);
+        var sf = Math.sin(f);
+
+        var s,c,w,r,d,h1,h2;
+        var a = EARTH_RADIUS;
+        var fl = 1/298.257;
+
+        sg = sg*sg;
+        sl = sl*sl;
+        sf = sf*sf;
+
+        s = sg*(1-sl) + (1-sf)*sl;
+        c = (1-sg)*(1-sl) + sf*sl;
+
+        w = Math.atan(Math.sqrt(s/c));
+        r = Math.sqrt(s*c)/w;
+        d = 2*w*a;
+        h1 = (3*r -1)/2/c;
+        h2 = (3*r +1)/2/s;
+
+        return d*(1 + fl*(h1*sf*(1-sg) - h2*(1-sf)*sg));
+    }
 
 </script>
