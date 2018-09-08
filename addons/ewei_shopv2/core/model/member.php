@@ -961,8 +961,8 @@ class Member_EweiShopV2Model
 		}
 		return json_decode($wxuser, true);
 	}
-	public function memberRadisCount($key, $value) 
-	{
+    public function memberRadisCount($key, $value = '')
+    {
 		global $_W;
 		$redis = redis();
 		if (!(is_error($redis))) 
