@@ -476,6 +476,7 @@ class Index_EweiShopV2Page extends WebPage
 		global $_GPC;
 		$sec = m('common')->getSec();
 		$sec = iunserializer($sec['sec']);
+        if($sec == "")$sec = [];
 		if ($_W['ispost']) 
 		{
 			ca('sysset.payset.edit');
