@@ -50,8 +50,16 @@ class Index_EweiShopV2Page extends MobilePage
 		}
 		$shop_data = m('common')->getSysset('shop');
 		$cpinfos = com('coupon')->getInfo();
+
+		//获取门店ID 没有的话写入一个
 		include $this->template();
 	}
+
+	public function getstoreinfo(){
+	    $time = time();
+        include $this->template('common/storeinfo');
+    }
+
 	public function get_recommand() 
 	{
 		global $_W;
@@ -99,7 +107,9 @@ class Index_EweiShopV2Page extends MobilePage
 		$seckillinfo = plugin_run('seckill::getTaskSeckillInfo');
 		ob_start();
 		ob_implicit_flush(false);
-		require $this->template('index_tpl');
+        //获取商户门店
+        $shoplist = pdo_fetchall('select *  from ' . tablename('ewei_shop_store') . ' og  where og.uniacid=:uniacid ', array(':uniacid' => $_W['uniacid']));;
+        require $this->template('index_tpl');
 		return ob_get_clean();
 	}
 	public function seckillinfo() 

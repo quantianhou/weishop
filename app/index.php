@@ -108,6 +108,7 @@ if(!in_array($action, $actions)) {
 if(!in_array($action, $actions)) {
 	$action = $actions[0];
 }
+//echo $controller,'-',$action;exit;
 require _forward($controller, $action);
 
 function _forward($c, $a) {

@@ -1,11 +1,34 @@
-	<div class='fui-content navbar'>
-		{loop $sorts $name $item}
-			{if $item['visible']==1}
-				{template 'shop/index/'.$name}
-			{/if}
-		{/loop}
-		{template 'goods/picker'}
-		{template 'goods/wholesalePicker'}
-		{template '_copyright'}
+{template 'common/storelist'}
+<!--在这里加入选择门店功能代码-->
+<div class="head1">
+	<div class="branchBtn" store-id="123">
+		<!--<strong class="round" ng-click="popupStoreDetail()"></strong>-->
+		<img class="fl ng-isolate-scope">
+		<a class="bName ellipsis fl ng-binding">高唐一区尹集店</a>
+		<span class="bArrow"></span>
 	</div>
+	<a onclick="$('.change_store').css('display','block');" class="change">切换</a>
+</div>
+<div class='fui-content navbar'>
+	{loop $sorts $name $item}
+		{if $item['visible']==1}
+			{template 'shop/index/'.$name}
+		{/if}
+	{/loop}
+	{template 'goods/picker'}
+	{template 'goods/wholesalePicker'}
+	{template '_copyright'}
+</div>
+<script>
+	$('.branchBtn').click(function(){
+	    var store_id = $(this).attr('store-id');
+	    $.post(
+	        "/app/index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=getstoreinfo&stroeid="+store_id,
+			{},
+			function(res){
+	            $('body').append(res)
+			}
+		);
+	});
+</script>
 
