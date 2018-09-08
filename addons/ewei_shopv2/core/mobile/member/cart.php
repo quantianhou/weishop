@@ -223,7 +223,16 @@ class Cart_EweiShopV2Page extends MobileLoginPage
 				}
 			}
 		}
-		show_json(1, array('ischeckall' => $ischeckall, 'list' => $list, 'total' => $total, 'totalprice' => round($totalprice, 2), 'merch_user' => $merch_user, 'merch' => $merch));
+
+		$newlist = [];
+		//查询隶属那个门店
+        foreach ($list as $v){
+		    //获取门店商品门店信息
+            $thishop = pdo_fetch('select *  from ' . tablename('ewei_shop_goods') . ' g ' . ' left join ' . tablename('ewei_shop_store') . ' s on g.shop_id=s.id ' . ' where g.id=:id ', array(':id' => $v['goodsid']));
+            $newlist[$thishop['id']]['store'] = $thishop;
+            $newlist[$thishop['id']]['goods'][] = $v;
+        }
+		show_json(1, array('ischeckall' => $ischeckall,'newlist' =>$newlist, 'list' => $list, 'total' => $total, 'totalprice' => round($totalprice, 2), 'merch_user' => $merch_user, 'merch' => $merch));
 	}
 	public function select() 
 	{

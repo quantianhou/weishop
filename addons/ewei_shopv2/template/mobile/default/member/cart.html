@@ -125,15 +125,16 @@
 
 		<div class="fui-list-group" id="container" style="margin-top: 0">
 			<!--fanhailong添加：这里是新增加的门店html -->
+			<%each newlist as gg%>
 			<h2 class="branch">
 				<input type="checkbox"/>
-				<span class="branchName" >
-						<span class="branchName_area ng-binding">高唐一区尹集店</span>
+				<span class="branchName" store-id="34">
+						<span class="branchName_area ng-binding"><%gg.store.storename%></span>
 					</span>
 				<em class="ng-binding"></em>
 			</h2>
 			<!--fanhailong添加：这里是新增加的门店html 结尾-->
-			<%each list as g%>
+			<%each gg.goods as g%>
 			<div class="fui-list goods-item align-start"
 				 data-cartid="<%g.id%>"
 				 data-goodsid="<%g.goodsid%>"
@@ -206,7 +207,7 @@
 					</div>
 			</div>
 			<%/each%>
-
+			<%/each%>
 		</div>
 	<%/if %>
 </script>
@@ -249,8 +250,16 @@
 	modal.init();
 });</script>
 <script>
-
-
+    $(document).on('click','.branchName',function(){
+        var store_id = $(this).attr('store-id');
+        $.post(
+            "/app/index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=getstoreinfo&stroeid="+store_id,
+            {},
+            function(res){
+                $('body').append(res)
+            }
+        );
+    });
 </script>
 </div>
 
