@@ -799,19 +799,19 @@ class System_EweiShopV2Model
 								'extends' => array('store.diypage.settings', 'store.diypage.page', 'store.goods', 'store.goods.goodsoption')
 								),
 							array('title' => '店员管理', 'route' => 'saler'),
-							array('title' => '关键词设置', 'route' => 'set')
+//							array('title' => '关键词设置', 'route' => 'set')
 							)
 						),
-					array(
-						'title' => '门店商品管理',
-						'items' => array(
-							array(
-								'title'   => '记次时商品管理',
-								'route'   => 'verifygoods',
-								'extends' => array('store.verifygoods.detail', 'store.verifygoods.verifygoodslog')
-								)
-							)
-						),
+//					array(
+//						'title' => '门店商品管理',
+//						'items' => array(
+//							array(
+//								'title'   => '记次时商品管理',
+//								'route'   => 'verifygoods',
+//								'extends' => array('store.verifygoods.detail', 'store.verifygoods.verifygoodslog')
+//								)
+//							)
+//						),
 					array('title' => '记次时商品统计', 'route' => 'verify.log'),
 					array('title' => '核销订单记录', 'route' => 'verifyorder.log'),
 					array(
