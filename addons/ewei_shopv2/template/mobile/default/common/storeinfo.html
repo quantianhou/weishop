@@ -635,7 +635,30 @@
             <!--药房评价模块-->
             <!-- ngIf: storeTabFlg == 2 -->
             <!--地图容器-->
-            <div id="storeMap" class="dn"></div>
+            <div id="storeMap" class="dn" style="overflow:hidden;">
+
+                <script language='javascript' src='//api.map.baidu.com/getscript?v=2.0&ak=ZQiFErjQB7inrGpx27M1GR5w3TxZ64k7'></script>
+                <div class='fui-page  fui-page-current store-map-page' >
+
+                    <div class="fui-header">
+                        <div class="fui-header-left">
+                            <a class="back"></a>
+                        </div>
+                        <div class="title">门店地图</div>
+                        <div class="fui-header-right">&nbsp;</div>
+                    </div>
+                    <div class='fui-content' >
+                        <div id='js-map' class='map-container'></div>
+                    </div>
+                    <script language='javascript'>
+                        require(['biz/store/map'], function (modal) {
+                            modal.init({store: {php echo json_encode($thishop)}, isios: "{php echo is_h5app()&&is_ios()?1:0}"});
+                        });
+                    </script>
+
+                </div>
+
+            </div>
         </div>
 
         <!--notice content-->
