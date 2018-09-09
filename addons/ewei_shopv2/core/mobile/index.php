@@ -69,7 +69,11 @@ class Index_EweiShopV2Page extends MobilePage
 	}
 
 	public function getstoreinfo(){
-	    $time = time();
+        global $_W;
+        global $_GPC;
+
+	    $store_id = $_GPC['stroeid'];
+        $thishop = pdo_fetch('select *  from ' . tablename('ewei_shop_store') . ' s where s.id=:id ', array(':id' => $store_id));
         include $this->template('common/storeinfo');
     }
 

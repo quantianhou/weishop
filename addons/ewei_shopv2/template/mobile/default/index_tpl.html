@@ -1,7 +1,7 @@
 {template 'common/storelist'}
 <!--在这里加入选择门店功能代码-->
 <div class="head1">
-	<div class="branchBtn" store-id="123">
+	<div class="branchBtn" store-id="{$shopInfo['id']}">
 		<!--<strong class="round" ng-click="popupStoreDetail()"></strong>-->
 		<img src="/attachment/{$shopInfo['logo']}" class="fl ng-isolate-scope">
 		<a class="bName ellipsis fl ng-binding">{$shopInfo['storename']}</a>
