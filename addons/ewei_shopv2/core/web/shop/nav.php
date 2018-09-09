@@ -43,7 +43,13 @@ class Nav_EweiShopV2Page extends WebPage
 		$id = intval($_GPC['id']);
 		if ($_W['ispost']) 
 		{
-			$data = array('uniacid' => $_W['uniacid'], 'navname' => trim($_GPC['navname']), 'url' => trim($_GPC['url']), 'status' => intval($_GPC['status']), 'displayorder' => intval($_GPC['displayorder']), 'icon' => save_media($_GPC['icon']));
+            $storeids = 0;
+            if(isset($_GPC['storeid']) && !empty($_GPC['storeid']) && is_array($_GPC['storeid']))
+            {
+                $storeids = implode(',',$_GPC['storeid']);
+                $storeids = ','.$storeids.',';
+            }
+			$data = array('uniacid' => $_W['uniacid'], 'navname' => trim($_GPC['navname']), 'url' => trim($_GPC['url']), 'status' => intval($_GPC['status']), 'displayorder' => intval($_GPC['displayorder']), 'icon' => save_media($_GPC['icon']) , 'storeid' => $storeids);
 			if (!(empty($id))) 
 			{
 				pdo_update('ewei_shop_nav', $data, array('id' => $id));
@@ -61,6 +67,25 @@ class Nav_EweiShopV2Page extends WebPage
 		$item = pdo_fetch('select * from ' . tablename('ewei_shop_nav') . ' where id=:id and uniacid=:uniacid limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
 		include $this->template();
 	}
+
+    public function me(){
+        global $_W;
+        global $_GPC;
+        $id = intval($_GPC['id']);
+        if($id > 0)
+        {
+            $item = pdo_fetch('select * from ' . tablename('ewei_shop_nav') . ' where id=:id and uniacid=:uniacid limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
+            $store_id = [];
+            if(!empty($item['storeid']))
+            {
+                $store_id = explode(',',trim($item['storeid'],','));
+            }
+            show_json('OK', array('branchList' => $store_id));
+        }
+
+        show_json(2);
+    }
+
 	public function delete() 
 	{
 		global $_W;

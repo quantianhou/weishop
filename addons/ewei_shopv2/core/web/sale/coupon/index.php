@@ -101,6 +101,7 @@ class Index_EweiShopV2Page extends ComWebPage
             if(isset($_GPC['storeid']) && !empty($_GPC['storeid']) && is_array($_GPC['storeid']))
             {
                 $storeids = implode(',',$_GPC['storeid']);
+                $storeids = ','.$storeids.',';
             }
 			$data = array('uniacid' => $_W['uniacid'], 'couponname' => trim($_GPC['couponname']), 'coupontype' => intval($_GPC['coupontype']), 'catid' => intval($_GPC['catid']), 'timelimit' => intval($_GPC['timelimit']), 'usetype' => intval($_GPC['usetype']), 'returntype' => 0, 'enough' => trim($_GPC['enough']), 'timedays' => intval($_GPC['timedays']), 'timestart' => strtotime($_GPC['time']['start']), 'timeend' => strtotime($_GPC['time']['end']) + 86399, 'backtype' => intval($_GPC['backtype']), 'deduct' => trim($_GPC['deduct']), 'discount' => trim($_GPC['discount']), 'backmoney' => trim($_GPC['backmoney']), 'backcredit' => trim($_GPC['backcredit']), 'backredpack' => trim($_GPC['backredpack']), 'backwhen' => intval($_GPC['backwhen']), 'gettype' => intval($_GPC['gettype']), 'getmax' => intval($_GPC['getmax']), 'credit' => intval($_GPC['credit']), 'money' => trim($_GPC['money']), 'usecredit2' => intval($_GPC['usecredit2']), 'total' => intval($_GPC['total']), 'bgcolor' => trim($_GPC['bgcolor']), 'thumb' => save_media($_GPC['thumb']), 'remark' => trim($_GPC['remark']), 'desc' => m('common')->html_images($_GPC['desc']), 'descnoset' => intval($_GPC['descnoset']), 'status' => intval($_GPC['status']), 'resptitle' => trim($_GPC['resptitle']), 'respthumb' => save_media($_GPC['respthumb']), 'respdesc' => trim($_GPC['respdesc']), 'respurl' => trim($_GPC['respurl']), 'pwdkey2' => trim($_GPC['pwdkey2']), 'pwdwords' => trim($_GPC['pwdwords']), 'pwdask' => trim($_GPC['pwdask']), 'pwdsuc' => trim($_GPC['pwdsuc']), 'pwdfail' => trim($_GPC['pwdfail']), 'pwdfull' => trim($_GPC['pwdfull']), 'pwdurl' => trim($_GPC['pwdurl']), 'pwdtimes' => intval($_GPC['pwdtimes']), 'pwdopen' => intval($_GPC['pwdopen']), 'pwdown' => trim($_GPC['pwdown']), 'pwdexit' => trim($_GPC['pwdexit']), 'pwdexitstr' => trim($_GPC['pwdexitstr']), 'displayorder' => intval($_GPC['displayorder']), 'tagtitle' => $_GPC['tagtitle'], 'settitlecolor' => intval($_GPC['settitlecolor']), 'titlecolor' => $_GPC['titlecolor'], 'limitdiscounttype' => intval($_GPC['limitdiscounttype']), 'quickget' => intval($_GPC['quickget']) , 'storeid'=> $storeids);
 			$limitgoodcatetype = intval($_GPC['limitgoodcatetype']);
@@ -316,7 +317,7 @@ class Index_EweiShopV2Page extends ComWebPage
             $store_id = [];
             if(!empty($item['storeid']))
             {
-                $store_id = explode(',',$item['storeid']);
+                $store_id = explode(',',trim($item['storeid'],','));
             }
             show_json('OK', array('branchList' => $store_id));
         }

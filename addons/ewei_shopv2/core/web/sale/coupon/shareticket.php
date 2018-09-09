@@ -91,6 +91,7 @@ class Shareticket_EweiShopV2Page extends WebPage
             if(isset($_GPC['storeid']) && !empty($_GPC['storeid']) && is_array($_GPC['storeid']))
             {
                 $storeids = implode(',',$_GPC['storeid']);
+                $storeids = ','.$storeids.',';
             }
 			if (empty($id)) 
 			{
@@ -507,7 +508,7 @@ class Shareticket_EweiShopV2Page extends WebPage
             $store_id = [];
             if(!empty($item['storeid']))
             {
-                $store_id = explode(',',$item['storeid']);
+                $store_id = explode(',',trim($item['storeid'],','));
             }
             show_json('OK', array('branchList' => $store_id));
         }

@@ -63,7 +63,13 @@ class Index_EweiShopV2Page extends WebPage
 		$id = intval($_GPC['id']);
 		if ($_W['ispost']) 
 		{
-			$data = array('uniacid' => $uniacid, 'displayorder' => intval($_GPC['displayorder']), 'title' => trim($_GPC['title']), 'thumb' => trim($_GPC['thumb']), 'price' => floatval($_GPC['price']), 'goodsid' => $_GPC['goodsid'], 'cash' => intval($_GPC['cash']), 'freight' => floatval($_GPC['freight']), 'starttime' => strtotime($_GPC['starttime']), 'endtime' => strtotime($_GPC['endtime']), 'status' => intval($_GPC['status']), 'share_title' => trim($_GPC['share_title']), 'share_icon' => trim($_GPC['share_icon']), 'share_desc' => trim($_GPC['share_desc']));
+            $storeids = 0;
+            if(isset($_GPC['storeid']) && !empty($_GPC['storeid']) && is_array($_GPC['storeid']))
+            {
+                $storeids = implode(',',$_GPC['storeid']);
+                $storeids = ','.$storeids.',';
+            }
+			$data = array('uniacid' => $uniacid, 'displayorder' => intval($_GPC['displayorder']), 'title' => trim($_GPC['title']), 'thumb' => trim($_GPC['thumb']), 'price' => floatval($_GPC['price']), 'goodsid' => $_GPC['goodsid'], 'cash' => intval($_GPC['cash']), 'freight' => floatval($_GPC['freight']), 'starttime' => strtotime($_GPC['starttime']), 'endtime' => strtotime($_GPC['endtime']), 'status' => intval($_GPC['status']), 'share_title' => trim($_GPC['share_title']), 'share_icon' => trim($_GPC['share_icon']), 'share_desc' => trim($_GPC['share_desc']),'storeid' => $storeids);
 			if ($data['thumb'] || $data['share_icon']) 
 			{
 				$data['thumb'] = save_media($data['thumb']);
@@ -225,6 +231,25 @@ class Index_EweiShopV2Page extends WebPage
 		}
 		include $this->template();
 	}
+
+    public function me(){
+        global $_W;
+        global $_GPC;
+        $id = intval($_GPC['id']);
+        if($id > 0)
+        {
+            $item = pdo_fetch('select * from ' . tablename('ewei_shop_package') . ' where id=:id and uniacid=:uniacid and merchid=0 limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
+            $store_id = [];
+            if(!empty($item['storeid']))
+            {
+                $store_id = explode(',',trim($item['storeid'],','));
+            }
+            show_json('OK', array('branchList' => $store_id));
+        }
+
+        show_json(2);
+    }
+
 	public function delete() 
 	{
 		global $_W;

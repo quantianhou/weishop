@@ -17,7 +17,7 @@
 		<p>优惠券设置：添加活动时，可设置统一优惠券，也可设置分享人优惠券和被分享人优惠券，最多可选择三张优惠券，每张优惠券的每人领取数量不能超过三张且优惠券须在有效期内。此处发放的优惠券数量不影响库存！</p>
 	</div>
 	<form {ife 'sale.sendticket.share' $item}action="" method='post'{/if} class='form-horizontal form-validate'>
-		<input type="hidden" name="id" value="{$item['id']}">
+		<input type="hidden" name="id" value="{$item['id']}" id="item_id">
 	 	<input type="hidden" name="tab" id='tab' value="{$_GPC['tab']}" />
 				<div class="tab-content">
 					<div class="tab-pane  {if $_GPC['tab']=='basic' || empty($_GPC['tab'])}active{/if}" id="tab_basic">{template 'sale/coupon/shareticket/post/basic'}</div>
@@ -35,6 +35,7 @@
 				</div>
 	</form>
 </div>
+<script src="{php echo EWEI_SHOPV2_LOCAL}static/js/store.js?_V=3"></script>
 <script language='javascript'>
       require(['bootstrap'],function(){
              $('#myTab a').click(function (e) {
@@ -81,6 +82,8 @@
         $('.backtype').hide();
         $('.backtype' + type).show();
     }
+      var name = $("#branchName").val();
+      getBranch(true,name);
 </script>
 
 {template '_footer'}

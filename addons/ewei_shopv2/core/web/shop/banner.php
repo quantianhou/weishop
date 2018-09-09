@@ -48,6 +48,7 @@ class Banner_EweiShopV2Page extends WebPage
             if(isset($_GPC['storeid']) && !empty($_GPC['storeid']) && is_array($_GPC['storeid']))
             {
                 $storeids = implode(',',$_GPC['storeid']);
+                $storeids = ','.$storeids.',';
             }
 			$data = array('uniacid' => $_W['uniacid'], 'bannername' => trim($_GPC['bannername']), 'link' => trim($_GPC['link']), 'enabled' => intval($_GPC['enabled']), 'displayorder' => intval($_GPC['displayorder']), 'thumb' => save_media($_GPC['thumb']) , 'storeid' => $storeids);
 			if (!(empty($id))) 
@@ -80,7 +81,7 @@ class Banner_EweiShopV2Page extends WebPage
             $store_id = [];
             if(!empty($item['storeid']))
             {
-                $store_id = explode(',',$item['storeid']);
+                $store_id = explode(',',trim($item['storeid'],','));
             }
             show_json('OK', array('branchList' => $store_id));
         }

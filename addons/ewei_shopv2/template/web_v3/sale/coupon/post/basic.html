@@ -137,3 +137,59 @@
                 </div>
    </div>
 <!--efwww_com-->
+<!--店铺信息-->
+<div class="form-group">
+	<label class="col-lg control-label">店铺</label>
+	<!--<div class="col-sm-9 col-xs-12">-->
+	<!--<select class="form-control tpl-category-parent select2" id="storeid" name="storeid">-->
+	<!--<option value="0">全部店铺</option>-->
+	<!--{loop $store $store_item}-->
+	<!--<option value="{$store_item['id']}" {if $item['storeid'] == $store_item['id']}selected="true"{/if}>{$store_item['storename']}</option>-->
+	<!--{/loop}-->
+	<!--</select>-->
+	<!--</div>-->
+	<div class="col-sm-9 col-xs-12">
+		<table>
+			<tbody><tr>
+				<td>
+					<div id="allBranchDiv" class="box" style="width: 350px; height: 450px; border: 1px solid #F8F8F8;overflow:auto;background:#F8F8F8">
+						<div class="box-header well" style="background:#F8F8F8;border: 0px;">
+							<input type="hidden" id="allBranchUrl" name="allBranchUrl" value="{php echo webUrl('shop/store/me')}">
+							<input type="hidden" id="selectedBranchUrl" name="selectedBranchUrl" value="{php echo webUrl('sale/coupon/me')}">
+							<input id="branchName" name="branchName" size="16" type="text" value="" style="width:180px;border: 1px solid #cccccc;background-color: #fff;border-radius:3px; height: 30px; line-height: 30px;">
+							<button type="button" onclick="searchBranch()" class="btn btn-primary btn-sm" style="margin-top: 5px;">查 询</button>
+						</div>
+						<div class="box-content">
+							<div class="row-fluid">
+								<div style="overflow:auto;height: 400px;background:#F8F8F8; ">
+									<ul id="ulId" class="allBranch">
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</td>
+				<td>
+					<img src="{php echo EWEI_SHOPV2_LOCAL}static/images/move.png">
+				</td>
+				<td>
+					<div id="selectedBranchDiv" class="box" style="width: 350px; height: 450px; border: 1px solid #F8F8F8;background:#F8F8F8">
+						<div class="box-header well" style="background:#F8F8F8;border: 0px">
+							<span style="color: blue;margin-left: 85%;cursor:pointer" onclick="cleanSelected()">清 空</span>
+						</div>
+						<div class="box-content">
+							<div class="row-fluid">
+								<div style="overflow:auto;height: 400px;background:#F8F8F8 ">
+									<ul id="selectUlId" class="selectBranch">
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			</tbody></table>
+	</div>
+</div>
+<!--23333-->
