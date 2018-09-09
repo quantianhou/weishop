@@ -166,7 +166,7 @@ class Index_EweiShopV2Page extends ComWebPage
 				$id = pdo_insertid();
 				plog('shop.verify.store.add', '添加门店 ID: ' . $id);
 			}
-			print_r(pdo_debug());exit;
+//			print_r(pdo_debug());exit;
 			show_json(1, array('url' => webUrl('store')));
 		}
 		if (p('newstore')) 
