@@ -68,6 +68,14 @@
 							<input type="text"  id='mobile' name='mobile' placeholder="请输入您的手机号"  value="{$member['mobile']}" />
 						</div>
 					</div>
+					<div class="fui-cell">
+						<div class="fui-cell-label">
+							生日
+						</div>
+						<div class="fui-cell-info">
+							<input type="text" id="birth" name="birth" placeholder="请输入年-月-日"/>
+						</div>
+					</div>
 				{/if}
 				{if !empty($CardActivation['sms_active'])&& !empty($CardActivation['mobile'])}
 					<div class="fui-cell">
