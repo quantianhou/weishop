@@ -87,6 +87,11 @@ class Shareticket_EweiShopV2Page extends WebPage
 		$id = intval($_GPC['id']);
 		if ($_W['ispost']) 
 		{
+            $storeids = 0;
+            if(isset($_GPC['storeid']) && !empty($_GPC['storeid']) && is_array($_GPC['storeid']))
+            {
+                $storeids = implode(',',$_GPC['storeid']);
+            }
 			if (empty($id)) 
 			{
 				$rathersql = 'SELECT * FROM ' . tablename('ewei_shop_sendticket_share') . ' WHERE uniacid = ' . intval($_W['uniacid']) . ' AND enough = "' . $_GPC['enough'] . '"';
@@ -112,7 +117,7 @@ class Shareticket_EweiShopV2Page extends WebPage
 			{
 				show_json(0, '分享标题的字数长度最大为6！');
 			}
-			$data = array('uniacid' => $uniacid, 'order' => intval($_GPC['order']), 'enough' => floatval($_GPC['enough']), 'expiration' => intval($_GPC['expiration']), 'status' => intval($_GPC['status']), 'sharetitle' => trim($_GPC['share_title']), 'shareicon' => trim($_GPC['share_icon']), 'createtime' => TIMESTAMP, 'issync' => intval($_GPC['issync']));
+			$data = array('uniacid' => $uniacid, 'order' => intval($_GPC['order']), 'enough' => floatval($_GPC['enough']), 'expiration' => intval($_GPC['expiration']), 'status' => intval($_GPC['status']), 'sharetitle' => trim($_GPC['share_title']), 'shareicon' => trim($_GPC['share_icon']), 'createtime' => TIMESTAMP, 'issync' => intval($_GPC['issync']) , 'storeid'=>$storeids);
 			if (!(empty($_GPC['share_desc']))) 
 			{
 				$data['sharedesc'] = trim($_GPC['share_desc']);
@@ -492,6 +497,23 @@ class Shareticket_EweiShopV2Page extends WebPage
 		}
 		include $this->template();
 	}
+    public function me(){
+        global $_W;
+        global $_GPC;
+        $id = intval($_GPC['id']);
+        if($id > 0)
+        {
+            $item = pdo_fetch('select * from ' . tablename('ewei_shop_sendticket_share') . ' where id=:id and uniacid=:uniacid limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
+            $store_id = [];
+            if(!empty($item['storeid']))
+            {
+                $store_id = explode(',',$item['storeid']);
+            }
+            show_json('OK', array('branchList' => $store_id));
+        }
+
+        show_json(2);
+    }
 	public function status() 
 	{
 		global $_W;

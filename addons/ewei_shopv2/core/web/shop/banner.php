@@ -44,7 +44,12 @@ class Banner_EweiShopV2Page extends WebPage
 		$id = intval($_GPC['id']);
 		if ($_W['ispost']) 
 		{
-			$data = array('uniacid' => $_W['uniacid'], 'bannername' => trim($_GPC['bannername']), 'link' => trim($_GPC['link']), 'enabled' => intval($_GPC['enabled']), 'displayorder' => intval($_GPC['displayorder']), 'thumb' => save_media($_GPC['thumb']));
+            $storeids = 0;
+            if(isset($_GPC['storeid']) && !empty($_GPC['storeid']) && is_array($_GPC['storeid']))
+            {
+                $storeids = implode(',',$_GPC['storeid']);
+            }
+			$data = array('uniacid' => $_W['uniacid'], 'bannername' => trim($_GPC['bannername']), 'link' => trim($_GPC['link']), 'enabled' => intval($_GPC['enabled']), 'displayorder' => intval($_GPC['displayorder']), 'thumb' => save_media($_GPC['thumb']) , 'storeid' => $storeids);
 			if (!(empty($id))) 
 			{
 				pdo_update('ewei_shop_banner', $data, array('id' => $id));
@@ -59,8 +64,29 @@ class Banner_EweiShopV2Page extends WebPage
 			show_json(1, array('url' => webUrl('shop/banner')));
 		}
 		$item = pdo_fetch('select * from ' . tablename('ewei_shop_banner') . ' where id=:id and uniacid=:uniacid limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
+        //店铺数据
+//        $a_merchant_id = (!empty($_W['user']['a_merchant_id'])) ? intval($_W['user']['a_merchant_id']) : 0 ;
+//        $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where a_merchant_id = :id' , [':id' => $a_merchant_id]);
 		include $this->template();
 	}
+    public function me(){
+        global $_W;
+        global $_GPC;
+        $id = intval($_GPC['id']);
+        if($id > 0)
+        {
+            $item = pdo_fetch('select * from ' . tablename('ewei_shop_banner') . ' where id=:id and uniacid=:uniacid limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
+//            dd($item);
+            $store_id = [];
+            if(!empty($item['storeid']))
+            {
+                $store_id = explode(',',$item['storeid']);
+            }
+            show_json('OK', array('branchList' => $store_id));
+        }
+
+        show_json(2);
+    }
 	public function delete() 
 	{
 		global $_W;

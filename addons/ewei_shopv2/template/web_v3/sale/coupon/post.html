@@ -15,7 +15,7 @@
 		</span>
 	</div>
 	<form {ife 'sale.coupon' $item}action="" method='post'{/if} class='form-horizontal form-validate'>
-	<input type="hidden" name="id" value="{$item['id']}">
+	<input type="hidden" name="id" value="{$item['id']}" id="item_id" />
 	<input type="hidden" name="tab" id='tab' value="{$_GPC['tab']}" />
 
 
@@ -54,6 +54,7 @@
 
 	</form>
 </div>
+<script src="{php echo EWEI_SHOPV2_LOCAL}static/js/store.js?_V=3"></script>
 <script language='javascript'>
       require(['bootstrap'],function(){
              $('#myTab a').click(function (e) {
@@ -96,6 +97,8 @@
 			return true;
 		})
 
+        var name = $("#branchName").val();
+        getBranch(true,name);
 	})
 </script>
 
