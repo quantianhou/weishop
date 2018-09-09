@@ -30,7 +30,7 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 		$item = pdo_fetch('select * from ' . tablename('ewei_shop_member') . ' where uniacid=:uniacid and openid =:openid limit 1 ', array(':uniacid' => $_W['uniacid'], ':openid' => $_W['openid']));
 		if ($iserror) 
 		{
-//			$this->message(array('message' => '激活链接错误!', 'title' => '激活链接错误!', 'buttondisplay' => true), mobileUrl('member'), 'error');
+			$this->message(array('message' => '激活链接错误!', 'title' => '激活链接错误!', 'buttondisplay' => true), mobileUrl('member'), 'error');
 		}
 		$arr = array('membercardid' => $card_id, 'membercardcode' => $code, 'membershipnumber' => $code, 'membercardactive' => 0);
 		$CardActivation = m('common')->getSysset('memberCardActivation');
@@ -62,9 +62,6 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 			$needmobile = $CardActivation['mobile'];
 			$needsmscode = $CardActivation['sms_active'];
 		}
-        $CardActivation['realname'] = 1;
-        $CardActivation['mobile'] = 1;
-        $CardActivation['sms_active'] = 1;
 		include $this->template();
 	}
 	public function submit() 
@@ -127,11 +124,10 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 
 			if(isset($_GPC['birth']) && !empty($_GPC['birth']))
             {
-                $arr['birthyear']   = date('Y' , strtotime($_GPC['birth']));
-                $arr['birthmonth']  = date('m' , strtotime($_GPC['birth']));
-                $arr['birthday']    = date('d' , strtotime($_GPC['birth']));
+                $arr['birthyear'] = date('Y' , strtotime($_GPC['birth']));
+                $arr['birthmonth'] = date('m' , strtotime($_GPC['birth']));
+                $arr['birthday'] = date('d' , strtotime($_GPC['birth']));
             }
-
 			pdo_update('ewei_shop_member', $arr, array('openid' => $_W['openid'], 'uniacid' => $_W['uniacid']));
 			$result = com_run('wxcard::ActivateMembercardbyopenid', $_W['openid']);
 			if (is_wxerror($result)) 
