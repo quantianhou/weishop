@@ -1,15 +1,16 @@
 <?php
-if (!(defined('IN_IA'))) 
+if (!(defined('IN_IA')))
 {
-	exit('Access Denied');
+    exit('Access Denied');
 }
 class Return_EweiShopV2Page extends MobileLoginPage
 {
-	public function main()
+    public function main()
     {
         global $_W;
         global $_GPC;
         file_put_contents('./log.txt',json_encode($_GPC['__input']),FILE_APPEND);
+        // $_GPC['__input'] = '{"success":true,"code":"200","msg":"\u6ce8\u518c\u6210\u529f","data":{"companyNo":"100003","associatorPhone":"15900000000"}}';
         if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
             $info = json_decode($_GPC['__input'], true);
             if (!empty($info) && isset($info['success']) && $info['success']
@@ -30,9 +31,9 @@ class Return_EweiShopV2Page extends MobileLoginPage
                 }
 
                 if (!empty($companyno)) {
-                    $merchant_code_info = pdo_fetch('select * from ' . tablename('b_users_uniaccount_relationship') . ' where uni_account_id=:uni_account_id limit 1', [':uni_account_id' => $_W['uniacid']]);
+                    $merchant_code_info = pdo_fetch('select * from ' . tablename('b_users_uniaccount_relationship') . ' where merchant_code=:merchant_code limit 1', [':merchant_code' => $companyno]);
                     if (!empty($merchant_code_info)) {
-                        $uniacid = $merchant_code_info['uniacid'];
+                        $uniacid = $merchant_code_info['uni_account_id'];
                     }
                 }
 

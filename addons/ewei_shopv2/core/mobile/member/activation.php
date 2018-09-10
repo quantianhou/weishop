@@ -133,7 +133,7 @@ class Activation_EweiShopV2Page extends MobileLoginPage
             $data['sex'] = 3;
         }
 
-        $data['tokenUrl'] = $_W['siteroot'].'app'.trim(mobileUrl('app/member/return'),'.');
+        $data['tokenUrl'] = $_W['siteroot'].'app'.trim(mobileUrl('member/return'),'.');
         $url = 'http://47.98.124.157:8822/api/v1/associator/register';
 		$java_info = com('curl')->callHttpPost($url,$data);
         /**同步java数据 end**/
