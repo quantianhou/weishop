@@ -11,6 +11,11 @@ class Index_EweiShopV2Page extends MobilePage
 		global $_GPC;
 		$_SESSION['newstoreid'] = 0;
 
+		$urlstoreid = $_GPC['storeid'];
+		if($urlstoreid){
+            $urlstoreid && isetcookie('store_id', $urlstoreid, 7 * 86400);
+        }
+
 		//查看是否有cookie
 		$this_store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
 		if(!$this_store_id){
@@ -68,12 +73,31 @@ class Index_EweiShopV2Page extends MobilePage
 		include $this->template();
 	}
 
-	public function getstoreinfo(){
+	//资质证明展示
+    public function zzzm(){
         global $_W;
         global $_GPC;
 
+        $store_id = $_GPC['store_id'];
+        $thishop = pdo_fetch('select *  from ' . tablename('ewei_shop_store') . ' s where s.id=:id ', array(':id' => $store_id));
+
+        echo '<img src="'.$thishop['business_license_img'].'">';
+        echo '<img src="'.$thishop['drug_license_img'].'">';
+    }
+
+	public function getstoreinfo(){
+        global $_W;
+        global $_GPC;
+        $uniacid = $_W['uniacid'];
+
 	    $store_id = $_GPC['stroeid'];
         $thishop = pdo_fetch('select *  from ' . tablename('ewei_shop_store') . ' s where s.id=:id ', array(':id' => $store_id));
+
+        //获取营业时间配置
+        $yysj = pdo_fetch('select *  from ' . tablename('ewei_shop_city_express') . ' s where s.uniacid=:id ', array(':id' => $uniacid));
+
+        //配送价格 ewei_shop_dispatch
+        $dispath = pdo_fetch('select *  from ' . tablename('ewei_shop_dispatch') . ' s where s.uniacid=:id ', array(':id' => $uniacid));
         include $this->template('common/storeinfo');
     }
 

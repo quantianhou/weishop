@@ -126,8 +126,9 @@
 		<div class="fui-list-group" id="container" style="margin-top: 0">
 			<!--fanhailong添加：这里是新增加的门店html -->
 			<%each newlist as gg%>
+			<div class="itemshop">
 			<h2 class="branch">
-				<input type="checkbox"/>
+				<input class="shopallinput" type="checkbox"/>
 				<span class="branchName" store-id="<%gg.store.id%>">
 						<span class="branchName_area ng-binding"><%gg.store.storename%></span>
 					</span>
@@ -208,6 +209,7 @@
 			</div>
 			<%/each%>
 			<%/each%>
+			</div>
 		</div>
 	<%/if %>
 </script>
@@ -260,6 +262,12 @@
             }
         );
     });
+
+    $(document).on('click','.shopallinput',function(){
+        $(this).parent().parent().find('.check-item').each(function () {
+			$(this).click();
+        });
+	});
 </script>
 </div>
 

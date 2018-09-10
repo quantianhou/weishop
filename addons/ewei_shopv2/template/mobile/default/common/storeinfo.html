@@ -574,7 +574,7 @@
                 <!--药房头部-->
                 <div class="store">
                     <div class="oh">
-                        <img class="fl store_pic lazy ng-isolate-scope" width="100%" src="http://img.myquanwei.com/healthy/guide/f4/cf/u2y6q5s5h_1513907947567_744_744.jpg">
+                        <img class="fl store_pic lazy ng-isolate-scope" width="100%" src="/attachment/{$thishop['logo']}">
                         <div class="store_info_rt">
                             <h2 class="store_name ellipsis ng-binding">{$thishop['storename']}</h2>
                             <div class="store_evaluates">
@@ -595,7 +595,7 @@
                             <div class="addr">
                                 <p class="store_address store_i ellipsis ng-binding">{$thishop['address']}</p>
                             </div>
-                            <div class="zizzm"></div>
+                            <div class="zizzm" onclick="window.location.href='/app/index.php?i=17&c=entry&m=ewei_shopv2&do=mobile&r=index.zzzm&store_id={$thishop['id']}'"></div>
                         </div>
                     </div>
                 </div>
@@ -605,8 +605,7 @@
                 <!-- ngIf: !showBranchTel -->
                 <div class="store_about oh tc mt1 ng-scope">
                     <a class="item store_tel" href="tel:{$thishop['tel']}"><i></i><p>拨打电话</p></a>
-                    <a class="item store_product" href="/app/index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=store.detail"><i></i><p>本店商品</p></a>
-                    <!-- ngIf: !branchDetail.dummy --><a class="item favorite ng-scope" ><i class="collect"></i><p>关注药房</p></a><!-- end ngIf: !branchDetail.dummy -->
+                    <a class="item store_product" onclick="$('.mask').remove()" href="/app/index.php?i={$uniacid}&c=entry&m=ewei_shopv2&do=mobile&r=shop.category&storeid={$thishop['id']}"><i></i><p>本店商品</p></a>
                 </div><!-- end ngIf: !showBranchTel -->
                 <!--药房电话-->
                 <!-- ngIf: showBranchTel -->
@@ -616,20 +615,22 @@
                 <!-- ngRepeat: post in branchDetail.postTips track by $index -->
                     <div class="store_info ng-scope">
                         <div class="oh">
-                            <div class="ps_type fl"><p class="ng-binding">物流快递</p><p class="ng-binding">快递费￥6.0</p></div>
-                            <div class="ps_type_info"><p class="ng-binding">16:00前下单，当天发货</p></div>
+                            <div class="ps_type fl"><p class="ng-binding">物流快递</p><p class="ng-binding"></p></div>
+                            <div class="ps_type_info"><p class="ng-binding">首件￥{$dispath['firstprice']}元，续件￥{$dispath['secondprice']}元</p></div>
                         </div>
                     </div><!-- end ngRepeat: post in branchDetail.postTips track by $index --><div class="store_info ng-scope">
                     <div class="oh">
                         <div class="ps_type fl"><p class="ng-binding">送货上门</p></div>
-                        <div class="ps_type_info"><p class="ng-binding">配送时间：09:00 - 17:00</p></div>
+                        <div class="ps_type_info"><p class="ng-binding">营业时间：{$yysj['time1']} - {$yysj['time2']}</p></div>
                     </div>
-                </div><!-- end ngRepeat: post in branchDetail.postTips track by $index --><div class="store_info ng-scope">
-                <div class="oh">
-                    <div class="ps_type fl"><p class="ng-binding">到店取货</p><p class="ng-binding"></p></div>
-                    <div class="ps_type_info"><p class="ng-binding">营业时间：8:00 - 20:00</p><p class="ng-binding"></p></div>
+                </div><!-- end ngRepeat: post in branchDetail.postTips track by $index -->
+                <div class="store_info ng-scope">
+                    <div class="oh">
+                        <div class="ps_type fl"><p class="ng-binding">到店取货</p><p class="ng-binding"></p></div>
+                        <div class="ps_type_info"><p class="ng-binding">营业时间：{$yysj['time1']} - {$yysj['time2']}</p><p class="ng-binding"></p></div>
+                    </div>
                 </div>
-            </div><!-- end ngRepeat: post in branchDetail.postTips track by $index -->
+                    <!-- end ngRepeat: post in branchDetail.postTips track by $index -->
         </div><!-- end ngIf: !showBranchTel -->
         </div><!-- end ngIf: branchDetail && storeTabFlg == 1 -->
             <!--药房评价模块-->

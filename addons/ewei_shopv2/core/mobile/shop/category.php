@@ -9,6 +9,11 @@ class Category_EweiShopV2Page extends MobilePage
 	{
 		global $_W;
 		global $_GPC;
+		$storeid = $_GPC['storeid'];
+
+		if($storeid){
+            $storeid && isetcookie('store_id', $storeid, 7 * 86400);
+        }
 		$merchid = intval($_GPC['merchid']);
 		$category_set = $_W['shopset']['category'];
 		$category_set['advimg'] = tomedia($category_set['advimg']);

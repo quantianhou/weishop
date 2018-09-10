@@ -574,7 +574,7 @@
             </div>
             <div class="store_info ng-scope">
                 {loop $shoplist $name $item}
-                <div class="store_li">
+                <div class="store_li" onclick="window.location.href='/app/index.php?i=17&c=entry&m=ewei_shopv2&do=mobile&r=index'+'&storeid={$item['id']}'">
                     <img src="/attachment/{$item['logo']}" class="fl store_pic ng-isolate-scope" width="100%"/>
                     <div class="store_info_rt">
                         <h2 class="store_name oh">
