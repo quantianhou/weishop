@@ -49,7 +49,7 @@
 				<li class="tab-nav tab-cardmsg <?php  if($options['module']) { ?>hidden<?php  } ?>">
 					<a href="javascript:void(0);" onclick="select_mediaid('module');">&nbsp;<i class="wi wi-keyword"></i><span class="msg-tab-title">模块</span></a>
 				</li>
-				<li class="tab-nav tab-cardmsg">
+				<li class="tab-nav tab-cardmsg <?php  if($_GPC['m'] != 'keyword') { ?>hidden<?php  } ?>"">
 					<a href="javascript:void(0);" onclick="select_wxcard();">&nbsp;<i class="wi wi-keyword"></i><span class="msg-tab-title">微信会员卡</span></a>
 				</li>
 			</ul>
