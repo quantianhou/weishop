@@ -81,8 +81,8 @@ class Index_EweiShopV2Page extends MobilePage
         $store_id = $_GPC['store_id'];
         $thishop = pdo_fetch('select *  from ' . tablename('ewei_shop_store') . ' s where s.id=:id ', array(':id' => $store_id));
 
-        echo '<img src="'.$thishop['business_license_img'].'">';
-        echo '<img src="'.$thishop['drug_license_img'].'">';
+        echo '<img src="http://qth-test.oss-cn-hangzhou.aliyuncs.com/'.$thishop['business_license_img'].'">';
+        echo '<img src="http://qth-test.oss-cn-hangzhou.aliyuncs.com/'.$thishop['drug_license_img'].'">';
     }
 
 	public function getstoreinfo(){
