@@ -1,4 +1,3 @@
-<script language='javascript' src='//api.map.baidu.com/getscript?v=2.0&ak=ZQiFErjQB7inrGpx27M1GR5w3TxZ64k7'></script>
 <style>
     .fui-content{
         top:0px !important;
@@ -567,7 +566,7 @@
     }
 </style>
 <!--这里是遮罩层-->
-<div class="mask ng-scope">
+<div id="mmmmask" class="mask ng-scope">
     <div id="store_wrap" class="slide_down">
         <div class="proBox col-10 bg_line_store oh">
             <!--药房详情模块-->
@@ -614,7 +613,7 @@
                 <!-- ngIf: !showBranchTel -->
                 <div class="store_about oh tc mt1 ng-scope">
                     <a class="item store_tel" href="tel:{$thishop['tel']}"><i></i><p>拨打电话</p></a>
-                    <a class="item store_product" onclick="$('.mask').remove()" href="/app/index.php?i={$uniacid}&c=entry&m=ewei_shopv2&do=mobile&r=shop.category&storeid={$thishop['id']}"><i></i><p>本店商品</p></a>
+                    <a class="item store_product" onclick="$('#mmmmask').remove()" href="/app/index.php?i={$uniacid}&c=entry&m=ewei_shopv2&do=mobile&r=shop.category&storeid={$thishop['id']}"><i></i><p>本店商品</p></a>
                 </div><!-- end ngIf: !showBranchTel -->
                 <!--药房电话-->
                 <!-- ngIf: showBranchTel -->
@@ -675,7 +674,7 @@
                 <li>路线</li>
             </ul>
             <!--关闭按钮-->
-            <div class="store_close" onclick="$('.mask').remove()"></div>
+            <div class="store_close" onclick="$('#mmmmask').remove()"></div>
         </div>
     </div>
 </div>
