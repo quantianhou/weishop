@@ -558,7 +558,7 @@
         <div id="new_head">
             <a class="goSearch" href="#">
                 <img src="/attachment/images/icon_search.png" alt="">
-                <input type="search" placeholder="请输入要搜索的药房"/>
+                <input id="searchinput" type="search" placeholder="请输入要搜索的药房"/>
             </a>
         </div>
     </div>
@@ -593,6 +593,21 @@
     </div>
 </div>
 <script>
+
+    $('#searchinput').on('input',function () {
+        var _this = $(this);
+        $('.store_li').each(function(){
+            var name = $(this).find('a').html();
+            var search = _this.val();
+            var reg = new RegExp(search);
+            if(reg.test(name)){
+                $(this).css('display','block');
+            }else{
+                $(this).css('display','none');
+            }
+        });
+    });
+
     var geoc = new BMap.Geocoder();
     var geolocation = new BMap.Geolocation();
     geolocation.getCurrentPosition(function(r){
