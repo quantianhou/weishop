@@ -43,7 +43,14 @@ class Notice_EweiShopV2Page extends WebPage
 		$id = intval($_GPC['id']);
 		if ($_W['ispost']) 
 		{
-			$data = array('uniacid' => $_W['uniacid'], 'displayorder' => intval($_GPC['displayorder']), 'title' => trim($_GPC['title']), 'thumb' => save_media($_GPC['thumb']), 'link' => trim($_GPC['link']), 'detail' => m('common')->html_images($_GPC['detail']), 'status' => intval($_GPC['status']), 'createtime' => time());
+            $storeids = 0;
+            if(isset($_GPC['storeid']) && !empty($_GPC['storeid']) && is_array($_GPC['storeid']))
+            {
+                $storeids = implode(',',$_GPC['storeid']);
+                $storeids = ','.$storeids.',';
+            }
+
+			$data = array('uniacid' => $_W['uniacid'], 'displayorder' => intval($_GPC['displayorder']), 'title' => trim($_GPC['title']), 'thumb' => save_media($_GPC['thumb']), 'link' => trim($_GPC['link']), 'detail' => m('common')->html_images($_GPC['detail']), 'status' => intval($_GPC['status']), 'createtime' => time(), 'storeid' => $storeids);
 			if (!(empty($id))) 
 			{
 				pdo_update('ewei_shop_notice', $data, array('id' => $id));
@@ -60,6 +67,24 @@ class Notice_EweiShopV2Page extends WebPage
 		$notice = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_notice') . ' WHERE id =:id and uniacid=:uniacid and iswxapp=0 limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
 		include $this->template();
 	}
+
+    public function me(){
+        global $_W;
+        global $_GPC;
+        $id = intval($_GPC['id']);
+        if($id > 0)
+        {
+            $item = pdo_fetch('select * from ' . tablename('ewei_shop_notice') . ' where id=:id and uniacid=:uniacid limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
+            $store_id = [];
+            if(!empty($item['storeid']))
+            {
+                $store_id = explode(',', trim($item['storeid'],','));
+            }
+            show_json('OK', array('branchList' => $store_id));
+        }
+
+        show_json(2);
+    }
 	public function displayorder() 
 	{
 		global $_W;

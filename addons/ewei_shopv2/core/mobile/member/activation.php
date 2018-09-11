@@ -28,13 +28,17 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 			$iserror = true;
 		}
 		$item = pdo_fetch('select * from ' . tablename('ewei_shop_member') . ' where uniacid=:uniacid and openid =:openid limit 1 ', array(':uniacid' => $_W['uniacid'], ':openid' => $_W['openid']));
-		if ($iserror) 
+		if ($iserror)
 		{
 			$this->message(array('message' => '激活链接错误!', 'title' => '激活链接错误!', 'buttondisplay' => true), mobileUrl('member'), 'error');
 		}
 		$arr = array('membercardid' => $card_id, 'membercardcode' => $code, 'membershipnumber' => $code, 'membercardactive' => 0);
 		$CardActivation = m('common')->getSysset('memberCardActivation');
 //		dd($CardActivation);
+//        $CardActivation['realname'] = 1;
+//        $CardActivation['mobile'] = 1;
+//        $CardActivation['sms_active'] = 0;
+//        $CardActivation['openactive']  = 1;
 		if (empty($CardActivation['openactive']))
 		{
 			pdo_update('ewei_shop_member', $arr, array('openid' => $_W['openid'], 'uniacid' => $_W['uniacid']));
@@ -62,6 +66,7 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 			$needmobile = $CardActivation['mobile'];
 			$needsmscode = $CardActivation['sms_active'];
 		}
+
 		include $this->template();
 	}
 	public function submit() 
@@ -86,9 +91,53 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 		{
 			show_json(0, '激活链接错误!');
 		}
+
+        $this_store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+
 		$item = pdo_fetch('select * from ' . tablename('ewei_shop_member') . ' where uniacid=:uniacid and openid =:openid limit 1 ', array(':uniacid' => $_W['uniacid'], ':openid' => $_W['openid']));
 		$arr = array('membercardid' => $card_id, 'membercardcode' => $code, 'membershipnumber' => $code, 'membercardactive' => 0);
 		$CardActivation = m('common')->getSysset('memberCardActivation');
+		/**同步java数据 start**/
+        $merchant_code_info = pdo_fetch('select * from '.tablename('b_users_uniaccount_relationship').' where uni_account_id=:uni_account_id limit 1',[':uni_account_id' => $_W['uniacid']]);
+		$url = 'http://47.98.124.157:8822/api/v1/associator/register';
+		$data['associatorAddress'] = $data['associatorBirthday'] = $data['associatorIdentityCard'] = '';
+		$data['associatorName'] = $data['associatorPhone'] = $data['companyNo'] = $data['erpCardId'] = '';
+		$data['erpCardNo'] = $data['sex'] = $data['storeNo'] = $data['tokenUrl'] = '';
+
+        $data['storeNo'] = $this_store_id;
+
+        if(isset($merchant_code_info['merchant_code']) && !empty($merchant_code_info['merchant_code']))
+        {
+            $data['companyNo'] = $merchant_code_info['merchant_code'];
+        }
+
+		if(isset($_GPC['mobile']) && !empty($_GPC['mobile']))
+        {
+            $data['associatorPhone'] = $_GPC['mobile'];
+        }
+
+        if(isset($_GPC['realname']) && !empty($_GPC['realname']))
+        {
+            $data['associatorName'] = $_GPC['realname'];
+        }
+
+        if(isset($_GPC['birth']) && !empty($_GPC['birth']))
+        {
+            $data['associatorBirthday'] = $_GPC['birth'];
+        }
+
+        if(isset($_GPC['sex']) && !empty($_GPC['sex']))
+        {
+            $data['sex'] = $_GPC['sex'];
+        }else{
+            $data['sex'] = 3;
+        }
+
+        $data['tokenUrl'] = $_W['siteroot'].'app'.trim(mobileUrl('member/return'),'.');
+        $url = 'http://47.98.124.157:8822/api/v1/associator/register';
+		$java_info = com('curl')->callHttpPost($url,$data);
+        /**同步java数据 end**/
+
 		if (!(empty($CardActivation['openactive']))) 
 		{
 			if (!(empty($CardActivation['sms_active'])) && !(empty($CardActivation['mobile']))) 
@@ -128,6 +177,13 @@ class Activation_EweiShopV2Page extends MobileLoginPage
                 $arr['birthmonth'] = date('m' , strtotime($_GPC['birth']));
                 $arr['birthday'] = date('d' , strtotime($_GPC['birth']));
             }
+
+            if(isset($java_info['success']) && $java_info['success'] && isset($java_info['code']) && $java_info['code'] == 1
+                && isset($info['data']['cardId']) && !empty($info['data']['cardId']))
+            {
+                $arr['cardId'] = $info['data']['cardId'];
+            }
+
 			pdo_update('ewei_shop_member', $arr, array('openid' => $_W['openid'], 'uniacid' => $_W['uniacid']));
 			$result = com_run('wxcard::ActivateMembercardbyopenid', $_W['openid']);
 			if (is_wxerror($result)) 
