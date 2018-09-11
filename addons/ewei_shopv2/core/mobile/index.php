@@ -81,8 +81,8 @@ class Index_EweiShopV2Page extends MobilePage
         $store_id = $_GPC['store_id'];
         $thishop = pdo_fetch('select *  from ' . tablename('ewei_shop_store') . ' s where s.id=:id ', array(':id' => $store_id));
 
-        echo '<img src="'.$thishop['business_license_img'].'">';
-        echo '<img src="'.$thishop['drug_license_img'].'">';
+        echo '<img src="http://qth-test.oss-cn-hangzhou.aliyuncs.com/'.$thishop['business_license_img'].'">';
+        echo '<img src="http://qth-test.oss-cn-hangzhou.aliyuncs.com/'.$thishop['drug_license_img'].'">';
     }
 
 	public function getstoreinfo(){
@@ -145,7 +145,7 @@ class Index_EweiShopV2Page extends MobilePage
 			}
 		}
 		$goodsstyle = $_W['shopset']['shop']['goodsstyle'];
-		$notices = pdo_fetchall('select id, title, link, thumb from ' . tablename('ewei_shop_notice') . ' where uniacid=:uniacid and iswxapp=0 and status=1 order by displayorder desc limit 5', array(':uniacid' => $uniacid));
+		$notices = pdo_fetchall('select id, title, link, thumb from ' . tablename('ewei_shop_notice') . ' where uniacid=:uniacid and iswxapp=0 and status=1 and storeid like "%,":store_id",%" order by displayorder desc limit 5', array(':uniacid' => $uniacid,':store_id'=>$this_store_id));
 		$seckillinfo = plugin_run('seckill::getTaskSeckillInfo');
 		ob_start();
 		ob_implicit_flush(false);
