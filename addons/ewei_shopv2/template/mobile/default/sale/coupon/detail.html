@@ -130,8 +130,16 @@
 							</div>
 						{/if}
 					{/if}
-					{if $coupon['islimitlevel']=='0'}
+					{if $coupon['islimitlevel']=='0' && $coupon['set_phone'] == '0'}
 						<div class="text dot">无</div>
+					{/if}
+					<input type="hidden" id="set_phone" value="{$coupon['set_phone']}" />
+					<input type="hidden" id="set_phone_uri" value="{php echo mobileUrl('sale/coupon/checkMemberPhone');}" />
+					<input type="hidden" id="jump_uri" value="{php echo mobileUrl('member/activation');}" />
+					{if $coupon['set_phone'] == '1'}
+					<div class="text dot">
+						用户需已完善手机号
+					</div>
 					{/if}
 				</div>
 				<div class="block">

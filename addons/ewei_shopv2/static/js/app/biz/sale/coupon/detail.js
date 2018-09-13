@@ -1,1 +1,266 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('1D([\'c\',\'14\'],7(c,14){g 3={8:1u,w:0,t:0};3.1F=7(13){3.8=13.8;5(3.8.1C){$("#G").o(7(){g 4=$(1z);5(4.e(\'l\')==\'1\'){i}p.1G(\'确认\'+3.8.1B+\'吗?\',\'提示语\',7(){5(3.M){i}$(".q-u-N .4-K").f(\'正在处理...\');3.M=D;4.e(\'9\',4.k()).k(\'操作中..\').e(\'l\',1);c.1e(\'r/8/1g/1A\',{v:3.8.v},7(h){5(h.H<=0){4.k(4.e(\'9\')).b(\'9\').b(\'l\');$(".q-u-N .4-K").f(\'确定\');3.M=E;p.x.d(h.a.u);i}3.w=h.a.w;5(c.1E()&&h.a.1y){1x(\'6\',h.a.1r,h.a.Y,E,7(){3.t=W(7(){3.y()},15)});i}5(h.a.6){g 6=h.a.6;5(6.1p){7 B(){17.1s(\'1t\',{\'10\':6.12?6.12:6.10,\'11\':6.11,\'Z\':6.Z,\'16\':6.16,\'1b\':6.1b,\'1a\':6.1a,},7(C){5(C.I==\'19:1H\'){3.y()}n 5(C.I==\'19:1X\'){4.k(4.e(\'9\')).b(\'9\').b(\'l\');p.x.d(\'取消支付\')}n{4.k(4.e(\'9\')).b(\'9\').b(\'l\');p.x.d(C.I)}})}5 (1Z 17 == "1T"){5( z.18 ){z.18(\'1c\', B, E)}n 5 (z.L){z.L(\'1c\', B);z.L(\'1L\', B)}}n{B()}}5(6.1J||6.1I==1){3.X(6)}}n{3.y()}},D,D)});i})}};3.X=7(6){g 1k=c.s(\'1N/1R\',{1Q:6.1P});$(\'#1O\').f(3.8.Y);$(\'.q-T\').R();$(\'#1f\').1m(\'o\').o(7(){F(3.t);$(\'.Q-P-U\').R();$(\'.q-T\').d();g 4=$("#G");g 9=4.e(\'9\');4.k(9);4.b(\'l\');$(".q-u-N .4-1j").1i(\'o\')});$(\'.Q-P-U\').d();3.t=W(7(){3.y()},15);$(\'.1o-1d\').1n(\'.1U\').1m(\'o\').o(7(){$(\'.Q-P-U\').R();$(\'.q-T\').d();F(3.t)});$(\'.1o-1d\').1n(\'.1M\').e(\'1K\',1k).d()};3.y=7(){g 4=$(\'#G\');c.1e(\'r/8/1g/1S\',{v:3.8.v,w:3.w},7(j){4.k(4.e(\'9\')).b(\'9\').b(\'l\');5(j.H==0){p.x.d(j.a.u);i}F(3.t);5(j.H==1){g f="";g A="";g m="";5(j.a.S==0){O.m=c.s(\'r/8/J/20\',{v:j.a.1Y});i}n 5(j.a.S==1){f="恭喜您，优惠券到手啦，您想现在就去充值吗?";A="现在就去充值~";m=c.s(\'1V/1W\')}n 5(j.a.S==2){f="恭喜您，收银台优惠券到手啦";A="立即查看";m=c.s(\'r/8/J\')}n{f="恭喜您，优惠券到手啦";A="立即查看";m=c.s(\'r/8/J\')};$(\'#1f\').1i(\'o\');p.u.d({V:\'V V-1v\',1w:f,1q:[{f:A,1h:\'4-K\',1l:7(){O.m=m}},{f:\'取消\',1h:\'4-1j\',1l:7(){O.m=c.s(\'r/8\')}}]});i}p.x.d(j.a);4.k(4.e(\'9\')).b(\'9\').b(\'l\')},E,D)};i 3});',62,125,'|||modal|btn|if|wechat|function|coupon|oldhtml|result|removeAttr|core|show|attr|text|var|ret|return|pay_json|html|submitting|href|else|click|FoxUI|fui|sale|getUrl|settime|message|id|logid|toast|payResult|document|button|onBridgeReady|res|true|false|clearInterval|btncoupon|status|err_msg|my|danger|attachEvent|paying|popup|location|weixinpay|order|hide|coupontype|header|hidden|icon|setInterval|payWechatJie|money|nonceStr|appId|timeStamp|appid|params|tpl|2000|package|WeixinJSBridge|addEventListener|get_brand_wcpay_request|paySign|signType|WeixinJSBridgeReady|pop|json|btnWeixinJieCancel|detail|extraClass|trigger|default|img|onclick|unbind|find|verify|weixin|buttons|logno|invoke|getBrandWCPayRequest|null|success|content|appPay|needpay|this|pay|gettypestr|canget|define|ish5app|init|confirm|ok|jie|weixin_jie|src|onWeixinJSBridgeReady|qrimg|index|qrmoney|code_url|url|qr|payresult|undefined|close|member|recharge|cancel|dataid|typeof|showcoupons2'.split('|'),0,{}))
+define(['core', 'tpl'], function(core, tpl) {
+    var modal = {
+        coupon: null,
+        logid: 0,
+        settime: 0
+    };
+    modal.init = function(params) {
+        modal.coupon = params.coupon;
+        if (modal.coupon.canget) {
+            $("#btncoupon").click(function() {
+                var btn = $(this);
+                if (btn.attr('submitting') == '1') {
+                    return
+                }
+
+                //判断是否已经完善手机号
+                var set_phone = $("#set_phone").val();
+                if(set_phone == '1')
+                {
+                    $.ajax({
+                        url: $("#set_phone_uri").val(),
+                        data: {},
+                        cache: false
+                    }).done(function (result) {
+                        var data = jQuery.parseJSON(result);
+                        if (data.data == '2') {
+                            FoxUI.confirm('确认' + modal.coupon.gettypestr + '吗?', '提示语', function() {
+                                if (modal.paying) {
+                                    return
+                                }
+                                $(".fui-message-popup .btn-danger").text('正在处理...');
+                                modal.paying = true;
+                                btn.attr('oldhtml', btn.html()).html('操作中..').attr('submitting', 1);
+                                core.json('sale/coupon/detail/pay', {
+                                    id: modal.coupon.id
+                                }, function(ret) {
+                                    if (ret.status <= 0) {
+                                        btn.html(btn.attr('oldhtml')).removeAttr('oldhtml').removeAttr('submitting');
+                                        $(".fui-message-popup .btn-danger").text('确定');
+                                        modal.paying = false;
+                                        FoxUI.toast.show(ret.result.message);
+                                        return
+                                    }
+                                    modal.logid = ret.result.logid;
+                                    if (core.ish5app() && ret.result.needpay) {
+                                        appPay('wechat', ret.result.logno, ret.result.money, false, function() {
+                                            modal.settime = setInterval(function() {
+                                                modal.payResult()
+                                            }, 2000)
+                                        });
+                                        return
+                                    }
+                                    if (ret.result.wechat) {
+                                        var wechat = ret.result.wechat;
+                                        if (wechat.weixin) {
+                                            function onBridgeReady() {
+                                                WeixinJSBridge.invoke('getBrandWCPayRequest', {
+                                                    'appId': wechat.appid ? wechat.appid : wechat.appId,
+                                                    'timeStamp': wechat.timeStamp,
+                                                    'nonceStr': wechat.nonceStr,
+                                                    'package': wechat.package,
+                                                    'signType': wechat.signType,
+                                                    'paySign': wechat.paySign,
+                                                }, function(res) {
+                                                    if (res.err_msg == 'get_brand_wcpay_request:ok') {
+                                                        modal.payResult()
+                                                    } else if (res.err_msg == 'get_brand_wcpay_request:cancel') {
+                                                        btn.html(btn.attr('oldhtml')).removeAttr('oldhtml').removeAttr('submitting');
+                                                        FoxUI.toast.show('取消支付')
+                                                    } else {
+                                                        btn.html(btn.attr('oldhtml')).removeAttr('oldhtml').removeAttr('submitting');
+                                                        FoxUI.toast.show(res.err_msg)
+                                                    }
+                                                })
+                                            }
+                                            if  (typeof WeixinJSBridge  ==  "undefined") {
+                                                if ( document.addEventListener ) {
+                                                    document.addEventListener('WeixinJSBridgeReady',  onBridgeReady,  false)
+                                                } else  if  (document.attachEvent) {
+                                                    document.attachEvent('WeixinJSBridgeReady',  onBridgeReady);
+                                                    document.attachEvent('onWeixinJSBridgeReady',  onBridgeReady)
+                                                }
+                                            } else {
+                                                onBridgeReady()
+                                            }
+                                        }
+                                        if (wechat.weixin_jie || wechat.jie == 1) {
+                                            modal.payWechatJie(wechat)
+                                        }
+                                    } else {
+                                        modal.payResult()
+                                    }
+                                }, true, true)
+                            });
+                        } else {
+                            if (confirm("完善手机号后，才能领券哦！")) {
+                               window.location.href = $("#jump_uri").val();
+                            }else {
+                                return false;
+                            }
+
+                            return false;
+                        }
+                    })
+                }else{
+                    FoxUI.confirm('确认' + modal.coupon.gettypestr + '吗?', '提示语', function() {
+                        if (modal.paying) {
+                            return
+                        }
+                        $(".fui-message-popup .btn-danger").text('正在处理...');
+                        modal.paying = true;
+                        btn.attr('oldhtml', btn.html()).html('操作中..').attr('submitting', 1);
+                        core.json('sale/coupon/detail/pay', {
+                            id: modal.coupon.id
+                        }, function(ret) {
+                            if (ret.status <= 0) {
+                                btn.html(btn.attr('oldhtml')).removeAttr('oldhtml').removeAttr('submitting');
+                                $(".fui-message-popup .btn-danger").text('确定');
+                                modal.paying = false;
+                                FoxUI.toast.show(ret.result.message);
+                                return
+                            }
+                            modal.logid = ret.result.logid;
+                            if (core.ish5app() && ret.result.needpay) {
+                                appPay('wechat', ret.result.logno, ret.result.money, false, function() {
+                                    modal.settime = setInterval(function() {
+                                        modal.payResult()
+                                    }, 2000)
+                                });
+                                return
+                            }
+                            if (ret.result.wechat) {
+                                var wechat = ret.result.wechat;
+                                if (wechat.weixin) {
+                                    function onBridgeReady() {
+                                        WeixinJSBridge.invoke('getBrandWCPayRequest', {
+                                            'appId': wechat.appid ? wechat.appid : wechat.appId,
+                                            'timeStamp': wechat.timeStamp,
+                                            'nonceStr': wechat.nonceStr,
+                                            'package': wechat.package,
+                                            'signType': wechat.signType,
+                                            'paySign': wechat.paySign,
+                                        }, function(res) {
+                                            if (res.err_msg == 'get_brand_wcpay_request:ok') {
+                                                modal.payResult()
+                                            } else if (res.err_msg == 'get_brand_wcpay_request:cancel') {
+                                                btn.html(btn.attr('oldhtml')).removeAttr('oldhtml').removeAttr('submitting');
+                                                FoxUI.toast.show('取消支付')
+                                            } else {
+                                                btn.html(btn.attr('oldhtml')).removeAttr('oldhtml').removeAttr('submitting');
+                                                FoxUI.toast.show(res.err_msg)
+                                            }
+                                        })
+                                    }
+                                    if  (typeof WeixinJSBridge  ==  "undefined") {
+                                        if ( document.addEventListener ) {
+                                            document.addEventListener('WeixinJSBridgeReady',  onBridgeReady,  false)
+                                        } else  if  (document.attachEvent) {
+                                            document.attachEvent('WeixinJSBridgeReady',  onBridgeReady);
+                                            document.attachEvent('onWeixinJSBridgeReady',  onBridgeReady)
+                                        }
+                                    } else {
+                                        onBridgeReady()
+                                    }
+                                }
+                                if (wechat.weixin_jie || wechat.jie == 1) {
+                                    modal.payWechatJie(wechat)
+                                }
+                            } else {
+                                modal.payResult()
+                            }
+                        }, true, true)
+                    });
+                    return ;
+                }
+                return
+            })
+        }
+    };
+    modal.payWechatJie = function(wechat) {
+        var img = core.getUrl('index/qr', {
+            url: wechat.code_url
+        });
+        $('#qrmoney').text(modal.coupon.money);
+        $('.fui-header').hide();
+        $('#btnWeixinJieCancel').unbind('click').click(function() {
+            clearInterval(modal.settime);
+            $('.order-weixinpay-hidden').hide();
+            $('.fui-header').show();
+            var btn = $("#btncoupon");
+            var oldhtml = btn.attr('oldhtml');
+            btn.html(oldhtml);
+            btn.removeAttr('submitting');
+            $(".fui-message-popup .btn-default").trigger('click')
+        });
+        $('.order-weixinpay-hidden').show();
+        modal.settime = setInterval(function() {
+            modal.payResult()
+        }, 2000);
+        $('.verify-pop').find('.close').unbind('click').click(function() {
+            $('.order-weixinpay-hidden').hide();
+            $('.fui-header').show();
+            clearInterval(modal.settime)
+        });
+        $('.verify-pop').find('.qrimg').attr('src', img).show()
+    };
+    modal.payResult = function() {
+        var btn = $('#btncoupon');
+        core.json('sale/coupon/detail/payresult', {
+            id: modal.coupon.id,
+            logid: modal.logid
+        }, function(pay_json) {
+            btn.html(btn.attr('oldhtml')).removeAttr('oldhtml').removeAttr('submitting');
+            if (pay_json.status == 0) {
+                FoxUI.toast.show(pay_json.result.message);
+                return
+            }
+            clearInterval(modal.settime);
+            if (pay_json.status == 1) {
+                var text = "";
+                var button = "";
+                var href = "";
+                if (pay_json.result.coupontype == 0) {
+                    location.href = core.getUrl('sale/coupon/my/showcoupons2', {
+                        id: pay_json.result.dataid
+                    });
+                    return
+                } else if (pay_json.result.coupontype == 1) {
+                    text = "恭喜您，优惠券到手啦，您想现在就去充值吗?";
+                    button = "现在就去充值~";
+                    href = core.getUrl('member/recharge')
+                } else if (pay_json.result.coupontype == 2) {
+                    text = "恭喜您，收银台优惠券到手啦";
+                    button = "立即查看";
+                    href = core.getUrl('sale/coupon/my')
+                } else {
+                    text = "恭喜您，优惠券到手啦";
+                    button = "立即查看";
+                    href = core.getUrl('sale/coupon/my')
+                };
+                $('#btnWeixinJieCancel').trigger('click');
+                FoxUI.message.show({
+                    icon: 'icon icon-success',
+                    content: text,
+                    buttons: [{
+                        text: button,
+                        extraClass: 'btn-danger',
+                        onclick: function() {
+                            location.href = href
+                        }
+                    }, {
+                        text: '取消',
+                        extraClass: 'btn-default',
+                        onclick: function() {
+                            location.href = core.getUrl('sale/coupon')
+                        }
+                    }]
+                });
+                return
+            }
+            FoxUI.toast.show(pay_json.result);
+            btn.html(btn.attr('oldhtml')).removeAttr('oldhtml').removeAttr('submitting')
+        }, false, true)
+    };
+    return modal
+});

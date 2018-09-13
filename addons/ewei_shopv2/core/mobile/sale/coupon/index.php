@@ -60,9 +60,18 @@ class Index_EweiShopV2Page extends MobileLoginPage
 		$time = time();
 		$param = array();
 		$param[':uniacid'] = $_W['uniacid'];
+        $this_store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+        if(empty($this_store_id))
+        {
+            $this_store_id = 0 ;
+        }
+        $this_store_id = 63;
+        $param[':store_id'] = $this_store_id;
 		$sql = 'select id,timelimit,coupontype,timedays,timestart,timeend,couponname,enough,backtype,deduct,discount,backmoney,backcredit,backredpack,bgcolor,thumb,credit,money,getmax,merchid,total as t,tagtitle,settitlecolor,titlecolor  from ' . tablename('ewei_shop_coupon');
 		$sql .= ' where uniacid=:uniacid';
-		if ($is_openmerch == 0) 
+		$sql .= ' and storeid like "%,":store_id",%" ';
+        $this_store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+		if ($is_openmerch == 0)
 		{
 			$sql .= ' and merchid=0';
 		}
@@ -547,5 +556,17 @@ class Index_EweiShopV2Page extends MobileLoginPage
 		}
 		show_json(1);
 	}
+
+	public function checkMemberPhone()
+    {
+        global $_W;
+        $member = m('member')->getMember($_W['openid'], true);
+        $status = 1 ;
+        if(isset($member['mobile']) && !empty($member['mobile']))
+        {
+            $status = 2;
+        }
+        exit(json_encode(['code' => 200 , 'data' => $status]));
+    }
 }
 ?>
