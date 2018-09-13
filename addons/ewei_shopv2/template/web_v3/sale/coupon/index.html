@@ -14,13 +14,17 @@
 		<div class="page-toolbar">
 
 			<span class='col-sm-4'>
-					{ifp 'sale.coupon.add'}
-							<a class='btn btn-primary btn-sm' href="{php echo webUrl('sale/coupon/add')}"><i class='fa fa-plus'></i> 添加购物优惠券</a>
-							<a class='btn btn-warning btn-sm' href="{php echo webUrl('sale/coupon/add',array('type'=>1))}"><i class='fa fa-plus'></i> 添加充值优惠券</a>
-						{if p('commission')}
-							<a class='btn btn-info btn-sm' href="{php echo webUrl('sale/coupon/add',array('type'=>2))}"><i class='fa fa-plus'></i> 添加收银台优惠券</a>
-						{/if}
-					{/if}
+				<?php echo tpl_coupon_type_selector('coupon_type',
+						[
+							'name' => 'coupon_type',
+							'buttontext'=>'添加优惠券',
+							'item' =>[
+								['type'=>0,'title'=>'购物优惠券','desc'=>'支持满减券/折扣券'],
+								['type'=>1,'title'=>'充值优惠券','desc'=>'充值时可抵扣部分金额'],
+								['type'=>2,'title'=>'门店兑换券','desc'=>'仅支持到店扫码验证使用'],
+							]
+						]
+                        )?>
 			</span>
 			<div class="col-sm-8 pull-right">
 				<div class='input-group input-group-sm' style='float:left;'   >
@@ -224,5 +228,25 @@
 	{/if}
 	</form>
 </div>
+<script>
+	function sendCoupon() {
+        var type = $("input[name='radio_coupon_type']:checked").val();
+
+        switch (type)
+		{
+			case '0':
+			    window.location.href = "{php echo webUrl('sale/coupon/add')}";
+			    break;
+			case '1':
+                window.location.href = "{php echo webUrl('sale/coupon/add',array('type'=>1))}";
+                break;
+			case '2':
+                window.location.href = "{php echo webUrl('sale/coupon/add',array('type'=>2))}"
+                break;
+			default:
+			    alert('请选择优惠券类型');
+		}
+    }
+</script>
 {template '_footer'}
 <!--efwww_com54mI5p2D5omA5pyJ-->

@@ -21,6 +21,17 @@
 	</div>
 </div>
 
+<div class="form-group">
+	<label class="col-lg control-label"> 标签名称</label>
+	<div class="col-sm-9 col-xs-12">
+		{ife 'sale.coupon' $item}
+		<input type="text" name="tagname" class="form-control" value="{$item['tagname']}" data-rule-required="true"  />
+		{else}
+		<div class='form-control-static'>{$item['tagname']}</div>
+		{/if}
+	</div>
+</div>
+
 
 <div class="form-group">
 	<label class="col-lg control-label">分类</label>
@@ -55,12 +66,21 @@
 <div class="form-group">
 	<label class="col-lg control-label">使用条件</label>
 	<div class="col-sm-9 col-xs-12">
-		{ife 'sale.coupon' $item}
-		<input type="text" name="enough" class="form-control" value="{$item['enough']}"  />
-		<span class='help-block' >{if empty($type)|| $type==2}消费{else}充值{/if}满多少可用, 空或0 不限制</span>
+		{if $type == 2}
+			{ife 'sale.coupon' $item}
+			<input type="text" name="enough" class="form-control" value="到店使用"  readonly/>
+			{else}
+			<div class='form-control-static'>到店使用</div>
+			{/if}
 		{else}
-		<div class='form-control-static'>{if $item['enough']>0}满 {$item['enough']} 可用 {else}不限制{/if}</div>
+			{ife 'sale.coupon' $item}
+			<input type="text" name="enough" class="form-control" value="{$item['enough']}"  />
+			<span class='help-block' >{if empty($type)}消费{else}充值{/if}满多少可用, 空或0 不限制</span>
+			{else}
+			<div class='form-control-static'>{if $item['enough']>0}满 {$item['enough']} 可用 {else}不限制{/if}</div>
+			{/if}
 		{/if}
+
 	</div>
 </div>
 
@@ -118,7 +138,7 @@
 {elseif $type==1}
 	{template 'sale/coupon/post/recharge'}
 {elseif $type==2}
-	{template 'sale/coupon/post/cashier'}
+<!--cashier-->
 {/if}
 
 

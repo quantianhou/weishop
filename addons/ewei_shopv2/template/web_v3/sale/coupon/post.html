@@ -5,19 +5,11 @@
 </div>
 
 <div class="page-content">
-	<div class="page-sub-toolbar">
-		<span class=''>
-			  {ifp 'sale.coupon.add'}
-						<a class='btn btn-primary btn-sm' href="{php echo webUrl('sale/coupon/add')}"><i class='fa fa-plus'></i> 添加购物优惠券</a>
-						<a class='btn btn-warning btn-sm' href="{php echo webUrl('sale/coupon/add',array('type'=>1))}"><i class='fa fa-plus'></i> 添加充值优惠券</a>
-						<a class='btn btn-info btn-sm' href="{php echo webUrl('sale/coupon/add',array('type'=>2))}"><i class='fa fa-plus'></i> 添加收银台优惠券</a>
-				{/if}
-		</span>
-	</div>
+
 	<form {ife 'sale.coupon' $item}action="" method='post'{/if} class='form-horizontal form-validate'>
 	<input type="hidden" name="id" value="{$item['id']}" id="item_id" />
 	<input type="hidden" name="tab" id='tab' value="{$_GPC['tab']}" />
-
+	<input type="hidden" name="coupontype" value="{$type}"/>
 
 	<ul class="nav nav-arrow-next nav-tabs" id="myTab">
 		<li {if $_GPC['tab']=='basic' || empty($_GPC['tab'])}class="active"{/if} ><a href="#tab_basic">基本</a></li>

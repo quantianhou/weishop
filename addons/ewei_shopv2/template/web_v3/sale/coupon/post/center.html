@@ -4,6 +4,29 @@
     .input-sm{padding:2px;}
 </style>
 <div class="form-group">
+    <label class="col-lg control-label">是否需完善手机号</label>
+    <div class="col-sm-9 col-xs-12" >
+        {ife 'sale.coupon' $item}
+        <label class="radio-inline">
+            <input type="radio" name="set_phone" value="1" {if $item['set_phone'] == 1}checked="true"{/if} /> 是
+        </label>
+        <label class="radio-inline">
+            <input type="radio" name="set_phone" value="0" {if $item['set_phone'] == 0}checked="true"{/if} /> 否
+        </label>
+
+        {else}
+        <div class='form-control-static'>
+            <label class="radio-inline">
+                <input type="radio" name="set_phone" value="1" /> 是
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="set_phone" value="0" checked /> 否
+            </label>
+        </div>
+        {/if}
+    </div>
+</div>
+<div class="form-group">
     <label class="col-lg control-label">加入领券中心</label>
     <div class="col-sm-9 col-xs-12" >
         {ife 'sale.coupon' $item}
@@ -253,6 +276,32 @@
         $(".checkall").prop("checked",false);
     });
 
+    $("input[name='set_phone']").each(function(i,e){
 
+        $(this).bind('click',function(){
+            var set_phone = $("input[name='set_phone']:checked").val();
+
+            if(set_phone == '1')
+            {
+                $.ajax({
+                    url:"{php echo webUrl('sale/coupon/checkMemberCard')}",
+                    type:'get',
+                    data:{},
+                    async : false, //默认为true 异步
+                    success:function(data){
+                        var info = eval("("+data+")");
+                        if(info.code == 200 && info.data == '2')
+                        {
+                        }else {
+                            alert('您没有绑定微信会员卡，不能选择"是"。');
+                            $("input[name='set_phone']").eq(0).removeAttr("checked");
+                            $("input[name='set_phone']").eq(1).attr("checked","checked");
+                            $("input[name='set_phone']").eq(1).click();
+                        }
+                    }
+                });
+            }
+        })
+    })
 </script>
 <!--efwww_com-->

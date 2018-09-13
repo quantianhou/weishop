@@ -104,7 +104,18 @@ class Index_EweiShopV2Page extends ComWebPage
                 $storeids = ','.$storeids.',';
             }
 			$data = array('uniacid' => $_W['uniacid'], 'couponname' => trim($_GPC['couponname']), 'coupontype' => intval($_GPC['coupontype']), 'catid' => intval($_GPC['catid']), 'timelimit' => intval($_GPC['timelimit']), 'usetype' => intval($_GPC['usetype']), 'returntype' => 0, 'enough' => trim($_GPC['enough']), 'timedays' => intval($_GPC['timedays']), 'timestart' => strtotime($_GPC['time']['start']), 'timeend' => strtotime($_GPC['time']['end']) + 86399, 'backtype' => intval($_GPC['backtype']), 'deduct' => trim($_GPC['deduct']), 'discount' => trim($_GPC['discount']), 'backmoney' => trim($_GPC['backmoney']), 'backcredit' => trim($_GPC['backcredit']), 'backredpack' => trim($_GPC['backredpack']), 'backwhen' => intval($_GPC['backwhen']), 'gettype' => intval($_GPC['gettype']), 'getmax' => intval($_GPC['getmax']), 'credit' => intval($_GPC['credit']), 'money' => trim($_GPC['money']), 'usecredit2' => intval($_GPC['usecredit2']), 'total' => intval($_GPC['total']), 'bgcolor' => trim($_GPC['bgcolor']), 'thumb' => save_media($_GPC['thumb']), 'remark' => trim($_GPC['remark']), 'desc' => m('common')->html_images($_GPC['desc']), 'descnoset' => intval($_GPC['descnoset']), 'status' => intval($_GPC['status']), 'resptitle' => trim($_GPC['resptitle']), 'respthumb' => save_media($_GPC['respthumb']), 'respdesc' => trim($_GPC['respdesc']), 'respurl' => trim($_GPC['respurl']), 'pwdkey2' => trim($_GPC['pwdkey2']), 'pwdwords' => trim($_GPC['pwdwords']), 'pwdask' => trim($_GPC['pwdask']), 'pwdsuc' => trim($_GPC['pwdsuc']), 'pwdfail' => trim($_GPC['pwdfail']), 'pwdfull' => trim($_GPC['pwdfull']), 'pwdurl' => trim($_GPC['pwdurl']), 'pwdtimes' => intval($_GPC['pwdtimes']), 'pwdopen' => intval($_GPC['pwdopen']), 'pwdown' => trim($_GPC['pwdown']), 'pwdexit' => trim($_GPC['pwdexit']), 'pwdexitstr' => trim($_GPC['pwdexitstr']), 'displayorder' => intval($_GPC['displayorder']), 'tagtitle' => $_GPC['tagtitle'], 'settitlecolor' => intval($_GPC['settitlecolor']), 'titlecolor' => $_GPC['titlecolor'], 'limitdiscounttype' => intval($_GPC['limitdiscounttype']), 'quickget' => intval($_GPC['quickget']) , 'storeid'=> $storeids);
-			$limitgoodcatetype = intval($_GPC['limitgoodcatetype']);
+			if($type == 1)
+            {
+                $data['enough'] = 0;
+                $data['type'] = $type;
+                $data['giftname'] = $_GPC['gift_name'];
+            }
+            if(isset($_GPC['tagname']))
+            {
+                $data['tagname'] = $_GPC['tagname'];
+            }
+            $data['set_phone'] = $_GPC['set_phone'];
+            $limitgoodcatetype = intval($_GPC['limitgoodcatetype']);
 			$limitgoodtype = intval($_GPC['limitgoodtype']);
 			$data['limitgoodcatetype'] = $limitgoodcatetype;
 			$data['limitgoodtype'] = $limitgoodtype;
@@ -238,7 +249,7 @@ class Index_EweiShopV2Page extends ComWebPage
 				pdo_delete('rule_keyword', array('rid' => $rule['id']));
 				pdo_delete('rule', array('id' => $rule['id']));
 			}
-			show_json(1, array('url' => webUrl('sale/coupon/edit', array('id' => $id, 'tab' => str_replace('#tab_', '', $_GPC['tab'])))));
+			show_json(1, array('url' => webUrl('sale/coupon/edit', array('type' => $type , 'id' => $id, 'tab' => str_replace('#tab_', '', $_GPC['tab'])))));
 		}
 		$item = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_coupon') . ' WHERE id =:id and uniacid=:uniacid and merchid=0 limit 1', array(':uniacid' => $_W['uniacid'], ':id' => $id));
 		if (empty($item)) 
@@ -323,6 +334,26 @@ class Index_EweiShopV2Page extends ComWebPage
         }
 
         show_json(2);
+    }
+
+    public function checkMemberCard()
+    {
+        global $_W;
+
+        $set = pdo_fetch('select sets from '.tablename('ewei_shop_sysset')).' where uniaci = '.$_W['uniacid'].' order by id asc limit 1;';
+        $sets = []; $status = 1;
+        if(!empty($set))
+        {
+            $sets = iunserializer($set['sets']);
+        }
+
+        if(!empty($sets) && isset($sets['membercard']) && !empty($sets['membercard'])
+            && isset($sets['membercard']['card_id']) && !empty($sets['membercard']['card_id']))
+        {
+            $status = 2;
+        }
+
+        exit(json_encode(['code' => 200 , 'data' => $status]));
     }
 	public function delete() 
 	{

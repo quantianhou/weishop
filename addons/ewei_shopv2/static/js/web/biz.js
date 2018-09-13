@@ -1,1 +1,607 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('3B([\'3N\'],q($){8 s={};s.N=q(2o,n,2U){f(2U){8 N=\'./3J.1R?c=1Q&a=1P&m=1K&1S=1U&r=\'+2o.36(/\\//34,\'.\')}E{8 N=\'./2g.1R?c=1Q&a=1P&m=1K&1S=1U&r=\'+2o.36(/\\//34,\'.\')}f(n){f(2i(n)==\'3H\'){N+="&"+$.40(n)}E f(2i(n)==\'3R\'){N+="&"+n}}17 N};s.b={2y:q(n){n=$.2C({},n||{});8 4=n.4===1m?\'J\':n.4;8 1j=4+"-b-5";t=$(\'#\'+1j);f(t.R<=0){8 5=\'<d H="\'+1j+\'"  6="5 2s" 2r="-1">\';5+=\'<d 6="5-1s" w="A: 2m;">\';5+=\'<d 6="5-L">\';5+=\'<d 6="5-2l"><o 1H-B="1l" 2-1r="5" 6="1W" 9="o">×</o><1N>数据选择器</1N></d>\';5+=\'<d 6="5-2t" >\';5+=\'<d 6="2K">\';5+=\'<d 6="l-19">\';5+=\'<l 9="u" 6="V-U" 4="Q" H="\'+4+\'1C" 1k="\'+(n.1k===1m?\'\':n.1k)+\'" />\';5+=\'<1B 6="l-19-k"><o 9="o" 6="k k-J" Z="s.b.1G(D, \\\'\'+4+\'\\\');">搜索</o></1B>\';5+=\'</d>\';5+=\'</d>\';5+=\'<d 6="L" w="1f-2J:2D;" 2-4="\'+4+\'"></d>\';5+=\'</d>\';5+=\'<d 6="5-1Z"><a 1i="#" 6="k k-J" 2-1r="5" 1H-B="1l">关闭</a></d>\';5+=\'</d>\';5+=\'</d>\';5+=\'</d>\';t=$(5);t.2j(\'1z.2O.5\',q(){f(n.2E==\'1\'){$.1D(n.N,{Q:\'\'},q(1a){$(\'.L\',t).7(1a)})}})};t.5(\'1z\')},1G:q(1F,4){8 l=$(1F).1n(\'.5\').I(\'#\'+4+\'1C\');8 b=$("#"+4+\'1e\');8 1o=1l;f(b.2(\'2F\')==\'1\'){1o=1X};8 Q=$.2P(l.M());f(Q==\'\'&&1o){l.2L();17}8 t=$(\'#\'+4+"-b-5");$(\'.L\',t).7("正在搜索....");$.1D(b.2(\'N\'),{Q:Q},q(1a){$(\'.L\',t).7(1a)})},G:q(W,4){8 b=$("#"+4+\'1e\');8 T=b.2(\'9\')==\'14\'?\'.j-p\':\'.j-1q-p\';f(b.2(\'9\')==\'14\'){T=".j-p"}E f(b.2(\'9\')==\'2B\'){T=".j-F-p"}E f(b.2(\'9\')==\'23\'){T=".j-F-p"}E f(b.2(\'9\')==\'2d\'){T=".j-F-p"}E f(b.2(\'9\')==\'2h\'){T=".j-F-p"}E{T=".j-1q-p"}$(W).1n(T).G();s.b.1v(4)},2G:q(W,2){8 4=$(W).1n(\'.L\').2(\'4\');8 t=$(\'#\'+4+"-b-5");8 b=$(\'#\'+4+"1e");8 1h=$(\'.1h\',b);8 h=b.2(\'h\')||\'H\',u=b.2(\'u\')||\'1T\',X=b.2(\'X\')||\'X\',j=b.2(\'j\')||0,9=b.2(\'9\')||\'14\',S=b.2(\'S\')||\'\',T=9==\'14\'?\'.j-p\':\'.j-1q-p\';f($(T+\'[2-\'+h+\'="\'+2[h]+\'"]\',1h).R>0){f(j===0){t.5(\'1A\')}17}f(9==\'23\'){f($(".2S").R>=3){2b.29.27(\'您已经选择了三张优惠券，若要更换请删除其他优惠券！\');17}}f(9==\'2d\'){f($(".3n").R>=3){2b.29.27(\'您已经选择了三张优惠券，若要更换请删除其他优惠券！\');17}}f(9==\'2h\'){f($(".3e").R>=3){2b.29.27(\'您已经选择了三张优惠券，若要更换请删除其他优惠券！\');17}}8 H=j===0?4:4+"[]";8 7="";f(9==\'14\'){7+=\'<d 6="j-p" 2-\'+h+\'="\'+2[h]+\'" 2-4="\'+4+\'">\';7+=\'<v 6="v-1Y v-39" 1b="\'+2[X]+\'" 3W="D.1b=\\\'../3y/1K/3O/3r/3z.3x\\\'">\';7+=\'<d 6="v-22">\'+2[u]+\'</d>\';7+=\'<l 9="B" C="\'+2[h]+\'" 4="\'+H+\'">\';7+=\'<2f Z="s.b.G(D,\\\'\'+4+\'\\\')"  6="1W">×</2f>\';7+=\'</d>\'}E f(9==\'2B\'){7+="<15 6=\'j-F-p\' 2-"+h+"=\'"+2[h]+"\'>";7+="<l 9=\'B\' 6=\'V-U v-Y\' 1L=\'\' C=\'"+2[u]+"\'>";7+="<l 9=\'B\' C=\'"+2[h]+"\' 4=\'2M[]\'>";7+="<g w=\'A:1c;\'><v 1b=\'"+2[X]+"\' w=\'A:1u;1w:10 1x #1t;1f:10\'></g>";7+="<g w=\'A:1y;\'>"+2[u]+"</g>";7+="<g><l 6=\'V-U 24\' 9=\'u\' C=\'\' 4=\'3w"+2[h]+"\'></g>";7+="<g><l 6=\'V-U 24\' 9=\'u\' C=\'\' 4=\'3v"+2[h]+"\'></g>";7+="<g w=\'A:1c;\'><o 6=\'k k-J\' Z=\'s.b.G(D,\\""+4+"\\")\' 9=\'o\'><i 6=\'P P-G\'></i></o></g></15>"}E f(9==\'23\'){7+="<15 6=\'j-F-p 2S\' 2-"+h+"=\'"+2[h]+"\'>";7+="<l 9=\'B\' 6=\'V-U v-Y\' 1L=\'\' C=\'"+2[u]+"\'>";7+="<l 9=\'B\' C=\'"+2[h]+"\' 4=\'2M[]\'>";7+="<g w=\'A:1c;\'><v 1b=\'"+2[X]+"\' w=\'A:1u;1w:10 1x #1t;1f:10\'></g>";7+="<g w=\'A:1y;\'>"+2[u]+"</g>";7+="<g></g>";7+="<g></g>";7+="<g w=\'A:1c;\'><o 6=\'k k-J\' Z=\'s.b.G(D,\\""+4+"\\")\' 9=\'o\'><i 6=\'P P-G\'></i></o></g></15>"}E f(9==\'2d\'){7+="<15 6=\'j-F-p 3n\' 2-"+h+"=\'"+2[h]+"\'>";7+="<l 9=\'B\' 6=\'V-U v-Y\' 1L=\'\' C=\'"+2[u]+"\'>";7+="<l 9=\'B\' C=\'"+2[h]+"\' 4=\'2M[]\'>";7+="<g w=\'A:1c;\'><v 1b=\'"+2[X]+"\' w=\'A:1u;1w:10 1x #1t;1f:10\'></g>";7+="<g w=\'A:1y;\'>"+2[u]+"</g>";7+="<g></g>";7+="<g><l 6=\'V-U 24\' 9=\'u\' C=\'1\' 4=\'3s"+2[h]+"\'></g>";7+="<g w=\'A:1c;\'><o 6=\'k k-J\' Z=\'s.b.G(D,\\""+4+"\\")\' 9=\'o\'><i 6=\'P P-G\'></i></o></g></15>"}E f(9==\'2h\'){7+="<15 6=\'j-F-p 3e\' 2-"+h+"=\'"+2[h]+"\'>";7+="<l 9=\'B\' 6=\'V-U v-Y\' 1L=\'\' C=\'"+2[u]+"\'>";7+="<l 9=\'B\' C=\'"+2[h]+"\' 4=\'3p[]\'>";7+="<g w=\'A:1c;\'><v 1b=\'"+2[X]+"\' w=\'A:1u;1w:10 1x #1t;1f:10\' 6=\'3q\'></g>";7+="<g w=\'A:1y;\'>"+2[u]+"</g>";7+="<g></g>";7+="<g><l 6=\'V-U 24\' 9=\'u\' C=\'1\' 4=\'3t"+2[h]+"\'></g>";7+="<g w=\'A:1c;\'><o 6=\'k k-J\' Z=\'s.b.G(D,\\""+4+"\\")\' 9=\'o\'><i 6=\'P P-G\'></i></o></g></15>"}E{7+="<d 6=\'j-1q-p\' 2-"+h+"=\'"+2[h]+"\' 2-4=\'"+4+"\'>";7+="<d 6=\'l-19\'><l 9=\'B\' 4=\'"+H+"\' C=\'"+2[h]+"\'> ";7+="<l 9=\'u\' 6=\'V-U v-Y\' 1L=\'\' C=\'"+2[u]+"\'>";7+="<d 6=\'l-19-k\'><o 6=\'k k-J\' Z=\'s.b.G(D,\\""+4+"\\")\' 9=\'o\'><i 6=\'P P-G\'></i></o></d></d></d>"}f(j===0){1h.7(7);t.5(\'1A\')}E{1h.3i(7)}s.b.1v(4);f(S!==\'\'){8 1I=3h(S);f(1I!==1m){1I(2,W)}}},1v:q(4){8 K=\'\';8 b=$(\'#\'+4+\'1e\');8 9=b.2(\'9\')||\'14\';f(9==\'14\'){$(\'.j-p\',b).1p(q(){K+=" "+$(D).I(\'.v-22\').7();f($(\'.j-p\',b).R>1){K+="; "}})}E f(9==\'2B\'){$(\'.j-F-p\',b).1p(q(){K+=" "+$(D).I(\'.v-Y\').M();f($(\'.j-F-p\',b).R>1){K+="; "}})}E f(9==\'23\'){$(\'.j-F-p\',b).1p(q(){K+=" "+$(D).I(\'.v-Y\').M();f($(\'.j-F-p\',b).R>1){K+="; "}})}E f(9==\'2d\'){$(\'.j-F-p\',b).1p(q(){K+=" "+$(D).I(\'.v-Y\').M();f($(\'.j-F-p\',b).R>1){K+="; "}})}E f(9==\'2h\'){$(\'.j-F-p\',b).1p(q(){K+=" "+$(D).I(\'.v-Y\').M();f($(\'.j-F-p\',b).R>1){K+="; "}})}E{$(\'.j-1q-p\',b).1p(q(){K+=" "+$(D).I(\'.v-Y\').M();f($(\'.j-1q-p\',b).R>1){K+="; "}})}$(\'#\'+4+"3d",b).M(K)}};s.1g={2y:q(n){n=$.2C({},n||{});8 4=n.4===1m?\'J\':n.4;8 1j=4+"-b-5";t=$(\'#\'+1j);f(t.R<=0){8 5=\'<d H="\'+1j+\'"  6="5 2s" 2r="-1">\';5+=\'<d 6="5-1s" w="A: 2m;">\';5+=\'<d 6="5-L">\';5+=\'<d 6="5-2l"><o 1H-B="1l" 2-1r="5" 6="1W" 9="o">×</o><1N>数据选择器</1N></d>\';5+=\'<d 6="5-2t" >\';5+=\'<d 6="2K">\';5+=\'<d 6="l-19">\';5+=\'<l 9="u" 6="V-U" 4="Q" H="\'+4+\'1C" 1k="\'+(n.1k===1m?\'\':n.1k)+\'" />\';5+=\'<1B 6="l-19-k"><o 9="o" 6="k k-J" Z="s.1g.1G(D, \\\'\'+4+\'\\\');">搜索</o></1B>\';5+=\'</d>\';5+=\'</d>\';5+=\'<d 6="L" w="1f-2J:2D;" 2-4="\'+4+\'"></d>\';5+=\'</d>\';5+=\'<d 6="5-1Z"><a 1i="#" 6="k k-J" 2-1r="5" 1H-B="1l">关闭</a></d>\';5+=\'</d>\';5+=\'</d>\';5+=\'</d>\';t=$(5);t.2j(\'1z.2O.5\',q(){f(n.2E==\'1\'){$.1D(n.N,{Q:\'\'},q(1a){$(\'.L\',t).7(1a)})}})};t.5(\'1z\')},1G:q(1F,4){8 l=$(1F).1n(\'.5\').I(\'#\'+4+\'1C\');8 b=$("#"+4+\'1e\');8 1o=1l;f(b.2(\'2F\')==\'1\'){1o=1X};8 Q=$.2P(l.M());f(Q==\'\'&&1o){l.2L();17}8 t=$(\'#\'+4+"-b-5");$(\'.L\',t).7("正在搜索....");$.1D(b.2(\'N\'),{Q:Q},q(1a){$(\'.L\',t).7(1a)})},G:q(W,4){8 b=$("#"+4+\'1e\');8 T=b.2(\'9\')==\'14\'?\'.j-p\':\'.j-F-p\';$(W).1n(T).G();s.1g.1v(4)},2G:q(W,2){8 4=$(W).1n(\'.L\').2(\'4\');8 t=$(\'#\'+4+"-b-5");8 b=$(\'#\'+4+"1e");8 h=b.2(\'h\')||\'H\',u=b.2(\'u\')||\'1T\',X=b.2(\'X\')||\'X\',j=b.2(\'j\')||0,9=b.2(\'9\')||\'14\',S=b.2(\'S\')||\'\',T=9==\'14\'?\'.j-p\':\'.j-F-p\',11=b.2(\'11\')||\'\',O=b.2(\'O\')||\'\';8 1h=$(\'.1h\',b);f($(T+\'[2-\'+h+\'="\'+2[h]+\'"]\',1h).R>0){f(j===0){t.5(\'1A\')}17}8 H=j===0?4:4+"[]";8 7="";f(9==\'14\'){7+=\'<d 6="j-p" 2-\'+h+\'="\'+2[h]+\'" 2-4="\'+4+\'">\';7+=\'<v 6="v-1Y v-39" 1b="\'+2[X]+\'" >\';7+=\'<d 6="v-22">\'+2[u]+\'</d>\';7+=\'<l 9="B" C="\'+2[h]+\'" 4="\'+H+\'">\';7+=\'<2f Z="s.1g.G(D,\\\'\'+4+\'\\\')"  6="1W">×</2f>\';7+=\'</d>\'}E f(9==\'F\'){8 11=11==\'\'?\'35.3u.2p\':11;8 N="2g.1R?c=1Q&a=1P&m=1K&1S=1U&r="+11+"&2q="+2[h]+"&O="+O;7+=\'<15 6="j-F-p" 2-\'+h+\'="\'+2[h]+\'" 2-4="\'+4+\'">\';7+="<l 9=\'B\' 4=\'"+H+"\' C=\'"+2[h]+"\'> ";7+="<l 9=\'B\' 6=\'V-U v-Y\' C=\'"+2[u]+"\'>";7+=\'<g w="A:1c;"><v 1b="\'+2[X]+\'" w="A:1u;1w:10 1x #1t;1f:10" /></g>\';7+=\'<g w="A:1y;">\'+2[u]+\'</g>\';7+="<g><a 6=\'k k-J k-1M\' 2-2n=\'2k\' 1i=\'"+N+"\' H=\'"+O+"2A"+2[h]+"\'>设置</a>"+"<l 9=\'B\' H=\'"+O+"33"+2[h]+"\' C=\'\' 4=\'"+O+"33["+2[h]+"]\'></g>";7+=\'<g><a 1i="2x:2w(0);" 6="k k-J k-1M" Z="s.1g.G(D,\\\'\'+4+\'\\\')" 1T="删除">\';7+=\'<i 6="P P-2u"></i></a></g></15>\'}E f(9==\'32\'){8 11=11==\'\'?\'35.32.2p\':11;8 N="2g.1R?c=1Q&a=1P&m=1K&1S=1U&r="+11+"&2q="+2[h]+"&O="+O;7+=\'<15 6="j-F-p" 2-\'+h+\'="\'+2[h]+\'" 2-4="\'+4+\'">\';7+="<l 9=\'B\' 4=\'"+H+"\' C=\'"+2[h]+"\'> ";7+="<l 9=\'B\' 6=\'V-U v-Y\' C=\'"+2[u]+"\'>";7+=\'<g w="A:1c;"><v 1b="\'+2[X]+\'" w="A:1u;1w:10 1x #1t;1f:10" /></g>\';7+=\'<g w="A:1y;">\'+2[u]+\'</g>\';7+="<g><a 6=\'k k-J k-1M\' 2-2n=\'2k\' 1i=\'"+N+"\' H=\'"+O+"2A"+2[h]+"\'>设置</a>"+"<l 9=\'B\' H=\'"+O+"31"+2[h]+"\' C=\'\' 4=\'"+O+"31["+2[h]+"]\'></g>";7+=\'<g><a 1i="2x:2w(0);" 6="k k-J k-1M" Z="s.1g.G(D,\\\'\'+4+\'\\\')" 1T="删除">\';7+=\'<i 6="P P-2u"></i></a></g></15>\'}E f(9==\'2W\'){8 11=11==\'\'?\'2W.3o.2p\':11;8 N="2g.1R?c=1Q&a=1P&m=1K&1S=1U&r="+11+"&2q="+2[h]+"&O="+O;7+=\'<15 6="j-F-p" 2-\'+h+\'="\'+2[h]+\'" 2-4="\'+4+\'">\';7+="<l 9=\'B\' 4=\'"+H+"\' C=\'"+2[h]+"\'> ";7+="<l 9=\'B\' 6=\'V-U v-Y\' C=\'"+2[u]+"\'>";7+=\'<g w="A:1c;"><v 1b="\'+2[X]+\'" w="A:1u;1w:10 1x #1t;1f:10" /></g>\';7+=\'<g w="A:1y;">\'+2[u]+\'</g>\';7+="<g><a 6=\'k k-J k-1M\' 2-2n=\'2k\' 1i=\'"+N+"\' H=\'"+O+"2A"+2[h]+"\'>设置</a>"+"<l 9=\'B\' H=\'"+O+"2T"+2[h]+"\' C=\'\' 4=\'"+O+"2T["+2[h]+"]\'></g>";7+=\'<g><a 1i="2x:2w(0);" 6="k k-J k-1M" Z="s.1g.G(D,\\\'\'+4+\'\\\')" 1T="删除">\';7+=\'<i 6="P P-2u"></i></a></g></15>\'}E{7+="<d 6=\'41 j-1q-p\' 2-"+h+"=\'"+2[h]+"\' 2-4=\'"+4+"\'>";7+="<d 6=\'l-19\'><l 9=\'B\' 4=\'"+H+"\' C=\'"+2[h]+"\'> ";7+="<l 9=\'u\' 6=\'V-U v-Y\' 1L=\'\' C=\'"+2[u]+"\'>";7+="<d 6=\'l-19-k\'><o 6=\'k k-J\' Z=\'s.1g.G(D,\\""+4+"\\")\' 9=\'o\'>"+"<i 6=\'P P-G\'></i></o></d></d></d>"}f(j===0){1h.7(7);t.5(\'1A\')}E{$("#3A-3Q"+O).3i(7)}s.1g.1v(4);f(S!==\'\'){8 1I=3h(S);f(1I!==1m){1I(2,W)}}},1v:q(4){8 K=\'\';8 b=$(\'#\'+4+\'1e\');8 9=b.2(\'9\')||\'14\';f(9==\'14\'){$(\'.j-p\',b).1p(q(){K+=" "+$(D).I(\'.v-22\').7();f($(\'.j-p\',b).R>1){K+="; "}})}E{$(\'.j-F-p\',b).1p(q(){K+=" "+$(D).I(\'.v-Y\').M();f($(\'.j-F-p\',b).R>1){K+="; "}})}$(\'#\'+4+"3d",b).M(K)}};s.1d={S:q(){},2y:q(n){n=$.2C({},n||{});s.1d.S=2i(n.S)===\'1m\'?1X:n.S;s.1d.n=n;8 4=n.4===1m?\'J\':n.4;8 1j=4+"-b-5";t=$(\'#\'+1j);f(t.R<=0){8 5=\'<d H="\'+1j+\'"  6="5 2s" 2r="-1">\';5+=\'<d 6="5-1s" w="A: 2m;">\';5+=\'<d 6="5-L">\';5+=\'<d 6="5-2l"><o 1H-B="1l" 2-1r="5" 6="1W" 9="o">×</o><1N>数据选择器</1N></d>\';5+=\'<d 6="5-2t" >\';5+=\'<d 6="2K">\';5+=\'<d 6="l-19">\';5+=\'<l 9="u" 6="V-U" 4="Q" H="\'+4+\'1C" 1k="\'+(n.1k===1m?\'\':n.1k)+\'" />\';5+=\'<1B 6="l-19-k"><o 9="o" 6="k k-J" Z="s.1d.1G(D, \\\'\'+4+\'\\\');">搜索</o></1B>\';5+=\'</d>\';5+=\'</d>\';5+=\'<d 6="L" w="1f-2J:2D;" 2-4="\'+4+\'"></d>\';5+=\'</d>\';5+=\'<d 6="5-1Z"><a 1i="#" 6="k k-J" 2-1r="5" 1H-B="1l">关闭</a></d>\';5+=\'</d>\';5+=\'</d>\';5+=\'</d>\';t=$(5);t.2j(\'1z.2O.5\',q(){f(n.2E==\'1\'){$.1D(n.N,{Q:\'\'},q(1a){$(\'.L\',t).7(1a)})}})};t.5(\'1z\')},1G:q(1F,4){8 l=$(1F).1n(\'.5\').I(\'#\'+4+\'1C\');8 b=$("#"+4+\'1e\');8 1o=1l;8 n=s.1d.n;f(n.2F==\'1\'){1o=1X};8 Q=$.2P(l.M());f(Q==\'\'&&1o){l.2L();17}8 t=$(\'#\'+4+"-b-5");$(\'.L\',t).7("正在搜索....");$.1D(n.N,{Q:Q},q(1a){$(\'.L\',t).7(1a)})},G:q(W,4){8 n=s.1d.n;8 T=n.9==\'14\'?\'.j-p\':\'.j-1q-p\';$(W).1n(T).G();s.1d.1v(4)},2G:q(W,2){8 4=$(W).1n(\'.L\').2(\'4\');8 t=$(\'#\'+4+"-b-5");8 b=$(\'#\'+4+"1e");8 n=s.1d.n;8 j=n.j||0;f(j===0){t.5(\'1A\')}f(2i(s.1d.S)===\'q\'){s.1d.S(2,W)}}};s.2z=q(M,S,3g){8 12=$(\'#2z-1s\');f(12.R===0){8 L=\'<d 6="2H-1Y 2H-1Y-3I">\'+\'<1V  6="2H-1Y-p" 1b="\'+3g+\'" 3C="3D"></1V>\'+\'</d>\';8 1Z=\'<o 9="o" 6="k k-J" 2-1r="5">取消</o>\'+\'<o 9="o" 6="k k-2I">确认</o>\';12=3G.1s(\'请选择地点\',L,1Z,{3P:\'2z-1s\'});12.I(\'.5-1s\').T(\'A\',\'42%\');12.5({\'44\':1X});12.I(\'.l-19 :u\').43(q(e){f(e.3Y==13){8 2a=$(D).M();30(2a)}});12.I(\'.l-19 o\').2N(q(){8 2a=$(D).3V().45().M();30(2a)})}12.I(\'o.k-2I\').3T(\'2N\');12.I(\'o.k-2I\').2j(\'2N\',q(){f($.3K(S)){8 $16=12.I("1V").2v().I("#3k").M();f($.3M($16)){2b.29.27(\'尚未选择坐标!\');17}8 16=3E.3F(12.I("1V").2v().I("#3k").M());8 2X=12.I("1V").2v().I("#3X").M();8 M={20:16.20,2e:16.2e,3S:2X};S(M)}12.5(\'1A\')});12.5(\'1z\')};s.3L=q(38,3c){8 16=1J 2Y();8 1E=3.37*3a.0/3f.0;8 x=1J 2c(3c);8 y=1J 2c(38);8 z=18.2V(x*x+y*y)+0.3m*18.26(y*1E);8 1O=18.2Z(y,x)+0.2R*18.21(x*1E);8 28=z*18.21(1O)+0.3l;8 25=z*18.26(1O)+0.2Q;16.20=28;16.2e=25;17 16};s.3U=q(25,28){8 16=1J 2Y();8 1E=3.37*3a.0/3f.0;8 x=1J 2c(28-0.3l);8 y=1J 2c(25-0.2Q);8 z=18.2V(x*x+y*y)-0.3m*18.26(y*1E);8 1O=18.2Z(y,x)-0.2R*18.21(x*1E);8 3b=z*18.21(1O);8 3j=z*18.26(1O);16.20=3b;16.2e=3j;17 16};3Z.s=s;17 s});',62,254,'||data||name|modal|class|html|var|type||selector||div||if|td|key||multi|btn|input||params|button|item|function||biz|modalObj|text|img|style||||width|hidden|value|this|else|product|remove|id|find|default|titles|content|val|url|selectorid|fa|keyword|length|callback|css|control|form|obj|thumb|textname|onclick|1px|optionurl|modalobj||image|tr|point|return|Math|group|dat|src|80px|selector_open|_selector|padding|selector_new|container|href|modalid|placeholder|true|undefined|closest|needkeywords|each|audio|dismiss|dialog|ccc|70px|refresh|border|solid|220px|show|hide|span|_input|get|x_pi|searchbtn|search|aria|callfunc|new|ewei_shopv2|readonly|sm|h3|theta|entry|site|php|do|title|web|iframe|close|false|responsive|footer|lng|cos|nickname|coupon_cp|valid|bd_lat|sin|err|bd_lon|msgbox|kw|tip|Number|coupon_share|lat|em|index|coupon_shares|typeof|on|ajaxModal|header|920px|toggle|routes|hasoption|goodsid|tabindex|fade|body|times|contents|void|javascript|select|map|optiontitle|coupon|extend|5px|autosearch|nokeywords|set|embed|primary|top|row|focus|couponid|click|bs|trim|006|000003|setticket|livegoods|merch|sqrt|live|address|Object|atan2|searchAddress|fullbackgoods|fullback|packagegoods|ig|sale|replace|14159265358979324|gg_lat|thumbnail|3000|Mars_lon|gg_lon|_text|sharesticket|180|tpl|eval|append|Mars_lat|poi_json|0065|00002|shareticket|room|couponids|img_share|images|couponnum|couponsnum|package|couponlimit|coupontotal|png|addons|nopic|param|define|scrolling|no|JSON|parse|util|object|16by9|merchant|isFunction|TxMapToBdMap|isEmpty|jquery|static|containerName|items|string|label|off|BdMapToTxMap|parent|onerror|addr_cur|keyCode|window|toQueryString|111|80|keydown|keyboard|prev'.split('|'),0,{}))
+define(['jquery'], function($) {
+    var biz = {};
+    biz.url = function(routes, params, merch) {
+        if (merch) {
+            var url = './merchant.php?c=site&a=entry&m=ewei_shopv2&do=web&r=' + routes.replace(/\//ig, '.')
+        } else {
+            var url = './index.php?c=site&a=entry&m=ewei_shopv2&do=web&r=' + routes.replace(/\//ig, '.')
+        }
+        if (params) {
+            if (typeof(params) == 'object') {
+                url += "&" + $.toQueryString(params)
+            } else if (typeof(params) == 'string') {
+                url += "&" + params
+            }
+        }
+        return url
+    };
+    biz.selector = {
+        select: function(params) {
+            params = $.extend({}, params || {});
+            var name = params.name === undefined ? 'default' : params.name;
+            var modalid = name + "-selector-modal";
+            modalObj = $('#' + modalid);
+            if (modalObj.length <= 0) {
+                var modal = '<div id="' + modalid + '"  class="modal fade" tabindex="-1">';
+                modal += '<div class="modal-dialog" style="width: 920px;">';
+                modal += '<div class="modal-content">';
+                modal += '<div class="modal-header"><button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button><h3>数据选择器</h3></div>';
+                modal += '<div class="modal-body" >';
+                modal += '<div class="row">';
+                modal += '<div class="input-group">';
+                modal += '<input type="text" class="form-control" name="keyword" id="' + name + '_input" placeholder="' + (params.placeholder === undefined ? '' : params.placeholder) + '" />';
+                modal += '<span class="input-group-btn"><button type="button" class="btn btn-default" onclick="biz.selector.search(this, \'' + name + '\');">搜索</button></span>';
+                modal += '</div>';
+                modal += '</div>';
+                modal += '<div class="content" style="padding-top:5px;" data-name="' + name + '"></div>';
+                modal += '</div>';
+                modal += '<div class="modal-footer"><a href="#" class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</a></div>';
+                modal += '</div>';
+                modal += '</div>';
+                modal += '</div>';
+                modalObj = $(modal);
+                modalObj.on('show.bs.modal', function() {
+                    if (params.autosearch == '1') {
+                        $.get(params.url, {
+                            keyword: ''
+                        }, function(dat) {
+                            $('.content', modalObj).html(dat)
+                        })
+                    }
+                })
+            };
+            modalObj.modal('show')
+        },
+        cmlove: function(params) {
+            params = $.extend({}, params || {});
+            var name = params.name === undefined ? 'default' : params.name;
+            var item = params.item === undefined ? 'default' : params.item;
+            var modalid = name + "-selector-modal";
+            modalObj = $('#' + modalid);
+            if (modalObj.length <= 0) {
+                var modal = '<div id="' + modalid + '"  class="modal fade" tabindex="-1">';
+                modal += '<div class="modal-dialog" style="width: 920px;">';
+                modal += '<div class="modal-content">';
+                modal += '<div class="modal-header"><button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button><h3>'+name+'</h3></div>';
+                modal += '<div class="modal-body" >';
+                modal += '<div class="row">';
+                modal += '<div class="input-group">';
+                for(var i = 0 ; i < item.length ; i ++ )
+                {
+                    modal += '<input type="radio" name="radio_'+name+'" value="'+item[i]['type']+'"/>'+item[i]['title']
+                    modal += '<div>'+item[i]['desc']+'</div>';
+                }
+                modal += '</div>';
+                modal += '</div>';
+                modal += '<div class="content" style="padding-top:5px;" data-name="' + name + '"></div>';
+                modal += '</div>';
+                modal += '<div class="modal-footer">' +
+                            '<a href="#" class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</a>' +
+                            '<button class="btn btn-default" data-dismiss="modal" aria-hidden="false" onclick="sendCoupon();">确定</button>'+'</div>';
+                modal += '</div>';
+                modal += '</div>';
+                modal += '</div>';
+                modalObj = $(modal);
+                modalObj.on('show.bs.modal', function() {
+                    if (params.autosearch == '1') {
+                        $.get(params.url, {
+                            keyword: ''
+                        }, function(dat) {
+                            $('.content', modalObj).html(dat)
+                        })
+                    }
+                })
+            };
+            modalObj.modal('show')
+        },
+        search: function(searchbtn, name) {
+            var input = $(searchbtn).closest('.modal').find('#' + name + '_input');
+            var selector = $("#" + name + '_selector');
+            var needkeywords = true;
+            if (selector.data('nokeywords') == '1') {
+                needkeywords = false
+            };
+            var keyword = $.trim(input.val());
+            if (keyword == '' && needkeywords) {
+                input.focus();
+                return
+            }
+            var modalObj = $('#' + name + "-selector-modal");
+            $('.content', modalObj).html("正在搜索....");
+            $.get(selector.data('url'), {
+                keyword: keyword
+            }, function(dat) {
+                $('.content', modalObj).html(dat)
+            })
+        },
+        remove: function(obj, name) {
+            var selector = $("#" + name + '_selector');
+            var css = selector.data('type') == 'image' ? '.multi-item' : '.multi-audio-item';
+            if (selector.data('type') == 'image') {
+                css = ".multi-item"
+            } else if (selector.data('type') == 'coupon') {
+                css = ".multi-product-item"
+            } else if (selector.data('type') == 'coupon_cp') {
+                css = ".multi-product-item"
+            } else if (selector.data('type') == 'coupon_share') {
+                css = ".multi-product-item"
+            } else if (selector.data('type') == 'coupon_shares') {
+                css = ".multi-product-item"
+            } else {
+                css = ".multi-audio-item"
+            }
+            $(obj).closest(css).remove();
+            biz.selector.refresh(name)
+        },
+        set: function(obj, data) {
+            var name = $(obj).closest('.content').data('name');
+            var modalObj = $('#' + name + "-selector-modal");
+            var selector = $('#' + name + "_selector");
+            var container = $('.container', selector);
+            var key = selector.data('key') || 'id',
+                text = selector.data('text') || 'title',
+                thumb = selector.data('thumb') || 'thumb',
+                multi = selector.data('multi') || 0,
+                type = selector.data('type') || 'image',
+                callback = selector.data('callback') || '',
+                css = type == 'image' ? '.multi-item' : '.multi-audio-item';
+            if ($(css + '[data-' + key + '="' + data[key] + '"]', container).length > 0) {
+                if (multi === 0) {
+                    modalObj.modal('hide')
+                }
+                return
+            }
+            if (type == 'coupon_cp') {
+                if ($(".setticket").length >= 3) {
+                    tip.msgbox.err('您已经选择了三张优惠券，若要更换请删除其他优惠券！');
+                    return
+                }
+            }
+            if (type == 'coupon_share') {
+                if ($(".shareticket").length >= 3) {
+                    tip.msgbox.err('您已经选择了三张优惠券，若要更换请删除其他优惠券！');
+                    return
+                }
+            }
+            if (type == 'coupon_shares') {
+                if ($(".sharesticket").length >= 3) {
+                    tip.msgbox.err('您已经选择了三张优惠券，若要更换请删除其他优惠券！');
+                    return
+                }
+            }
+            var id = multi === 0 ? name : name + "[]";
+            var html = "";
+            if (type == 'image') {
+                html += '<div class="multi-item" data-' + key + '="' + data[key] + '" data-name="' + name + '">';
+                html += '<img class="img-responsive img-thumbnail" src="' + data[thumb] + '" onerror="this.src=\'../addons/ewei_shopv2/static/images/nopic.png\'">';
+                html += '<div class="img-nickname">' + data[text] + '</div>';
+                html += '<input type="hidden" value="' + data[key] + '" name="' + id + '">';
+                html += '<em onclick="biz.selector.remove(this,\'' + name + '\')"  class="close">×</em>';
+                html += '</div>'
+            } else if (type == 'coupon') {
+                html += "<tr class='multi-product-item' data-" + key + "='" + data[key] + "'>";
+                html += "<input type='hidden' class='form-control img-textname' readonly='' value='" + data[text] + "'>";
+                html += "<input type='hidden' value='" + data[key] + "' name='couponid[]'>";
+                html += "<td style='width:80px;'><img src='" + data[thumb] + "' style='width:70px;border:1px solid #ccc;padding:1px'></td>";
+                html += "<td style='width:220px;'>" + data[text] + "</td>";
+                html += "<td><input class='form-control valid' type='text' value='' name='coupontotal" + data[key] + "'></td>";
+                html += "<td><input class='form-control valid' type='text' value='' name='couponlimit" + data[key] + "'></td>";
+                html += "<td style='width:80px;'><button class='btn btn-default' onclick='biz.selector.remove(this,\"" + name + "\")' type='button'><i class='fa fa-remove'></i></button></td></tr>"
+            } else if (type == 'coupon_cp') {
+                html += "<tr class='multi-product-item setticket' data-" + key + "='" + data[key] + "'>";
+                html += "<input type='hidden' class='form-control img-textname' readonly='' value='" + data[text] + "'>";
+                html += "<input type='hidden' value='" + data[key] + "' name='couponid[]'>";
+                html += "<td style='width:80px;'><img src='" + data[thumb] + "' style='width:70px;border:1px solid #ccc;padding:1px'></td>";
+                html += "<td style='width:220px;'>" + data[text] + "</td>";
+                html += "<td></td>";
+                html += "<td></td>";
+                html += "<td style='width:80px;'><button class='btn btn-default' onclick='biz.selector.remove(this,\"" + name + "\")' type='button'><i class='fa fa-remove'></i></button></td></tr>"
+            } else if (type == 'coupon_share') {
+                html += "<tr class='multi-product-item shareticket' data-" + key + "='" + data[key] + "'>";
+                html += "<input type='hidden' class='form-control img-textname' readonly='' value='" + data[text] + "'>";
+                html += "<input type='hidden' value='" + data[key] + "' name='couponid[]'>";
+                html += "<td style='width:80px;'><img src='" + data[thumb] + "' style='width:70px;border:1px solid #ccc;padding:1px'></td>";
+                html += "<td style='width:220px;'>" + data[text] + "</td>";
+                html += "<td></td>";
+                html += "<td><input class='form-control valid' type='text' value='1' name='couponnum" + data[key] + "'></td>";
+                html += "<td style='width:80px;'><button class='btn btn-default' onclick='biz.selector.remove(this,\"" + name + "\")' type='button'><i class='fa fa-remove'></i></button></td></tr>"
+            } else if (type == 'coupon_shares') {
+                html += "<tr class='multi-product-item sharesticket' data-" + key + "='" + data[key] + "'>";
+                html += "<input type='hidden' class='form-control img-textname' readonly='' value='" + data[text] + "'>";
+                html += "<input type='hidden' value='" + data[key] + "' name='couponids[]'>";
+                html += "<td style='width:80px;'><img src='" + data[thumb] + "' style='width:70px;border:1px solid #ccc;padding:1px' class='img_share'></td>";
+                html += "<td style='width:220px;'>" + data[text] + "</td>";
+                html += "<td></td>";
+                html += "<td><input class='form-control valid' type='text' value='1' name='couponsnum" + data[key] + "'></td>";
+                html += "<td style='width:80px;'><button class='btn btn-default' onclick='biz.selector.remove(this,\"" + name + "\")' type='button'><i class='fa fa-remove'></i></button></td></tr>"
+            } else {
+                html += "<div class='multi-audio-item' data-" + key + "='" + data[key] + "' data-name='" + name + "'>";
+                html += "<div class='input-group'><input type='hidden' name='" + id + "' value='" + data[key] + "'> ";
+                html += "<input type='text' class='form-control img-textname' readonly='' value='" + data[text] + "'>";
+                html += "<div class='input-group-btn'><button class='btn btn-default' onclick='biz.selector.remove(this,\"" + name + "\")' type='button'><i class='fa fa-remove'></i></button></div></div></div>"
+            }
+            if (multi === 0) {
+                container.html(html);
+                modalObj.modal('hide')
+            } else {
+                container.append(html)
+            }
+            biz.selector.refresh(name);
+            if (callback !== '') {
+                var callfunc = eval(callback);
+                if (callfunc !== undefined) {
+                    callfunc(data, obj)
+                }
+            }
+        },
+        refresh: function(name) {
+            var titles = '';
+            var selector = $('#' + name + '_selector');
+            var type = selector.data('type') || 'image';
+            if (type == 'image') {
+                $('.multi-item', selector).each(function() {
+                    titles += " " + $(this).find('.img-nickname').html();
+                    if ($('.multi-item', selector).length > 1) {
+                        titles += "; "
+                    }
+                })
+            } else if (type == 'coupon') {
+                $('.multi-product-item', selector).each(function() {
+                    titles += " " + $(this).find('.img-textname').val();
+                    if ($('.multi-product-item', selector).length > 1) {
+                        titles += "; "
+                    }
+                })
+            } else if (type == 'coupon_cp') {
+                $('.multi-product-item', selector).each(function() {
+                    titles += " " + $(this).find('.img-textname').val();
+                    if ($('.multi-product-item', selector).length > 1) {
+                        titles += "; "
+                    }
+                })
+            } else if (type == 'coupon_share') {
+                $('.multi-product-item', selector).each(function() {
+                    titles += " " + $(this).find('.img-textname').val();
+                    if ($('.multi-product-item', selector).length > 1) {
+                        titles += "; "
+                    }
+                })
+            } else if (type == 'coupon_shares') {
+                $('.multi-product-item', selector).each(function() {
+                    titles += " " + $(this).find('.img-textname').val();
+                    if ($('.multi-product-item', selector).length > 1) {
+                        titles += "; "
+                    }
+                })
+            } else {
+                $('.multi-audio-item', selector).each(function() {
+                    titles += " " + $(this).find('.img-textname').val();
+                    if ($('.multi-audio-item', selector).length > 1) {
+                        titles += "; "
+                    }
+                })
+            }
+            $('#' + name + "_text", selector).val(titles)
+        }
+    };
+    biz.selector_new = {
+        select: function(params) {
+            params = $.extend({}, params || {});
+            var name = params.name === undefined ? 'default' : params.name;
+            var modalid = name + "-selector-modal";
+            modalObj = $('#' + modalid);
+            if (modalObj.length <= 0) {
+                var modal = '<div id="' + modalid + '"  class="modal fade" tabindex="-1">';
+                modal += '<div class="modal-dialog" style="width: 920px;">';
+                modal += '<div class="modal-content">';
+                modal += '<div class="modal-header"><button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button><h3>数据选择器</h3></div>';
+                modal += '<div class="modal-body" >';
+                modal += '<div class="row">';
+                modal += '<div class="input-group">';
+                modal += '<input type="text" class="form-control" name="keyword" id="' + name + '_input" placeholder="' + (params.placeholder === undefined ? '' : params.placeholder) + '" />';
+                modal += '<span class="input-group-btn"><button type="button" class="btn btn-default" onclick="biz.selector_new.search(this, \'' + name + '\');">搜索</button></span>';
+                modal += '</div>';
+                modal += '</div>';
+                modal += '<div class="content" style="padding-top:5px;" data-name="' + name + '"></div>';
+                modal += '</div>';
+                modal += '<div class="modal-footer"><a href="#" class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</a></div>';
+                modal += '</div>';
+                modal += '</div>';
+                modal += '</div>';
+                modalObj = $(modal);
+                modalObj.on('show.bs.modal', function() {
+                    if (params.autosearch == '1') {
+                        $.get(params.url, {
+                            keyword: ''
+                        }, function(dat) {
+                            $('.content', modalObj).html(dat)
+                        })
+                    }
+                })
+            };
+            modalObj.modal('show')
+        },
+        search: function(searchbtn, name) {
+            var input = $(searchbtn).closest('.modal').find('#' + name + '_input');
+            var selector = $("#" + name + '_selector');
+            var needkeywords = true;
+            if (selector.data('nokeywords') == '1') {
+                needkeywords = false
+            };
+            var keyword = $.trim(input.val());
+            if (keyword == '' && needkeywords) {
+                input.focus();
+                return
+            }
+            var modalObj = $('#' + name + "-selector-modal");
+            $('.content', modalObj).html("正在搜索....");
+            $.get(selector.data('url'), {
+                keyword: keyword
+            }, function(dat) {
+                $('.content', modalObj).html(dat)
+            })
+        },
+        remove: function(obj, name) {
+            var selector = $("#" + name + '_selector');
+            var css = selector.data('type') == 'image' ? '.multi-item' : '.multi-product-item';
+            $(obj).closest(css).remove();
+            biz.selector_new.refresh(name)
+        },
+        set: function(obj, data) {
+            var name = $(obj).closest('.content').data('name');
+            var modalObj = $('#' + name + "-selector-modal");
+            var selector = $('#' + name + "_selector");
+            var key = selector.data('key') || 'id',
+                text = selector.data('text') || 'title',
+                thumb = selector.data('thumb') || 'thumb',
+                multi = selector.data('multi') || 0,
+                type = selector.data('type') || 'image',
+                callback = selector.data('callback') || '',
+                css = type == 'image' ? '.multi-item' : '.multi-product-item',
+                optionurl = selector.data('optionurl') || '',
+                selectorid = selector.data('selectorid') || '';
+            var container = $('.container', selector);
+            if ($(css + '[data-' + key + '="' + data[key] + '"]', container).length > 0) {
+                if (multi === 0) {
+                    modalObj.modal('hide')
+                }
+                return
+            }
+            var id = multi === 0 ? name : name + "[]";
+            var html = "";
+            if (type == 'image') {
+                html += '<div class="multi-item" data-' + key + '="' + data[key] + '" data-name="' + name + '">';
+                html += '<img class="img-responsive img-thumbnail" src="' + data[thumb] + '" >';
+                html += '<div class="img-nickname">' + data[text] + '</div>';
+                html += '<input type="hidden" value="' + data[key] + '" name="' + id + '">';
+                html += '<em onclick="biz.selector_new.remove(this,\'' + name + '\')"  class="close">×</em>';
+                html += '</div>'
+            } else if (type == 'product') {
+                var optionurl = optionurl == '' ? 'sale.package.hasoption' : optionurl;
+                var url = "index.php?c=site&a=entry&m=ewei_shopv2&do=web&r=" + optionurl + "&goodsid=" + data[key] + "&selectorid=" + selectorid;
+                html += '<tr class="multi-product-item" data-' + key + '="' + data[key] + '" data-name="' + name + '">';
+                html += "<input type='hidden' name='" + id + "' value='" + data[key] + "'> ";
+                html += "<input type='hidden' class='form-control img-textname' value='" + data[text] + "'>";
+                html += '<td style="width:80px;"><img src="' + data[thumb] + '" style="width:70px;border:1px solid #ccc;padding:1px" /></td>';
+                html += '<td style="width:220px;">' + data[text] + '</td>';
+                html += "<td><a class='btn btn-default btn-sm' data-toggle='ajaxModal' href='" + url + "' id='" + selectorid + "optiontitle" + data[key] + "'>设置</a>" + "<input type='hidden' id='" + selectorid + "packagegoods" + data[key] + "' value='' name='" + selectorid + "packagegoods[" + data[key] + "]'></td>";
+                html += '<td><a href="javascript:void(0);" class="btn btn-default btn-sm" onclick="biz.selector_new.remove(this,\'' + name + '\')" title="删除">';
+                html += '<i class="fa fa-times"></i></a></td></tr>'
+            } else if (type == 'fullback') {
+                var optionurl = optionurl == '' ? 'sale.fullback.hasoption' : optionurl;
+                var url = "index.php?c=site&a=entry&m=ewei_shopv2&do=web&r=" + optionurl + "&goodsid=" + data[key] + "&selectorid=" + selectorid;
+                html += '<tr class="multi-product-item" data-' + key + '="' + data[key] + '" data-name="' + name + '">';
+                html += "<input type='hidden' name='" + id + "' value='" + data[key] + "'> ";
+                html += "<input type='hidden' class='form-control img-textname' value='" + data[text] + "'>";
+                html += '<td style="width:80px;"><img src="' + data[thumb] + '" style="width:70px;border:1px solid #ccc;padding:1px" /></td>';
+                html += '<td style="width:220px;">' + data[text] + '</td>';
+                html += "<td><a class='btn btn-default btn-sm' data-toggle='ajaxModal' href='" + url + "' id='" + selectorid + "optiontitle" + data[key] + "'>设置</a>" + "<input type='hidden' id='" + selectorid + "fullbackgoods" + data[key] + "' value='' name='" + selectorid + "fullbackgoods[" + data[key] + "]'></td>";
+                html += '<td><a href="javascript:void(0);" class="btn btn-default btn-sm" onclick="biz.selector_new.remove(this,\'' + name + '\')" title="删除">';
+                html += '<i class="fa fa-times"></i></a></td></tr>'
+            } else if (type == 'live') {
+                var optionurl = optionurl == '' ? 'live.room.hasoption' : optionurl;
+                var url = "index.php?c=site&a=entry&m=ewei_shopv2&do=web&r=" + optionurl + "&goodsid=" + data[key] + "&selectorid=" + selectorid;
+                html += '<tr class="multi-product-item" data-' + key + '="' + data[key] + '" data-name="' + name + '">';
+                html += "<input type='hidden' name='" + id + "' value='" + data[key] + "'> ";
+                html += "<input type='hidden' class='form-control img-textname' value='" + data[text] + "'>";
+                html += '<td style="width:80px;"><img src="' + data[thumb] + '" style="width:70px;border:1px solid #ccc;padding:1px" /></td>';
+                html += '<td style="width:220px;">' + data[text] + '</td>';
+                html += "<td><a class='btn btn-default btn-sm' data-toggle='ajaxModal' href='" + url + "' id='" + selectorid + "optiontitle" + data[key] + "'>设置</a>" + "<input type='hidden' id='" + selectorid + "livegoods" + data[key] + "' value='' name='" + selectorid + "livegoods[" + data[key] + "]'></td>";
+                html += '<td><a href="javascript:void(0);" class="btn btn-default btn-sm" onclick="biz.selector_new.remove(this,\'' + name + '\')" title="删除">';
+                html += '<i class="fa fa-times"></i></a></td></tr>'
+            } else {
+                html += "<div class='111 multi-audio-item' data-" + key + "='" + data[key] + "' data-name='" + name + "'>";
+                html += "<div class='input-group'><input type='hidden' name='" + id + "' value='" + data[key] + "'> ";
+                html += "<input type='text' class='form-control img-textname' readonly='' value='" + data[text] + "'>";
+                html += "<div class='input-group-btn'><button class='btn btn-default' onclick='biz.selector_new.remove(this,\"" + name + "\")' type='button'>" + "<i class='fa fa-remove'></i></button></div></div></div>"
+            }
+            if (multi === 0) {
+                container.html(html);
+                modalObj.modal('hide')
+            } else {
+                $("#param-items" + selectorid).append(html)
+            }
+            biz.selector_new.refresh(name);
+            if (callback !== '') {
+                var callfunc = eval(callback);
+                if (callfunc !== undefined) {
+                    callfunc(data, obj)
+                }
+            }
+        },
+        refresh: function(name) {
+            var titles = '';
+            var selector = $('#' + name + '_selector');
+            var type = selector.data('type') || 'image';
+            if (type == 'image') {
+                $('.multi-item', selector).each(function() {
+                    titles += " " + $(this).find('.img-nickname').html();
+                    if ($('.multi-item', selector).length > 1) {
+                        titles += "; "
+                    }
+                })
+            } else {
+                $('.multi-product-item', selector).each(function() {
+                    titles += " " + $(this).find('.img-textname').val();
+                    if ($('.multi-product-item', selector).length > 1) {
+                        titles += "; "
+                    }
+                })
+            }
+            $('#' + name + "_text", selector).val(titles)
+        }
+    };
+    biz.selector_open = {
+        callback: function() {},
+        select: function(params) {
+            params = $.extend({}, params || {});
+            biz.selector_open.callback = typeof(params.callback) === 'undefined' ? false : params.callback;
+            biz.selector_open.params = params;
+            var name = params.name === undefined ? 'default' : params.name;
+            var modalid = name + "-selector-modal";
+            modalObj = $('#' + modalid);
+            if (modalObj.length <= 0) {
+                var modal = '<div id="' + modalid + '"  class="modal fade" tabindex="-1">';
+                modal += '<div class="modal-dialog" style="width: 920px;">';
+                modal += '<div class="modal-content">';
+                modal += '<div class="modal-header"><button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button><h3>数据选择器</h3></div>';
+                modal += '<div class="modal-body" >';
+                modal += '<div class="row">';
+                modal += '<div class="input-group">';
+                modal += '<input type="text" class="form-control" name="keyword" id="' + name + '_input" placeholder="' + (params.placeholder === undefined ? '' : params.placeholder) + '" />';
+                modal += '<span class="input-group-btn"><button type="button" class="btn btn-default" onclick="biz.selector_open.search(this, \'' + name + '\');">搜索</button></span>';
+                modal += '</div>';
+                modal += '</div>';
+                modal += '<div class="content" style="padding-top:5px;" data-name="' + name + '"></div>';
+                modal += '</div>';
+                modal += '<div class="modal-footer"><a href="#" class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</a></div>';
+                modal += '</div>';
+                modal += '</div>';
+                modal += '</div>';
+                modalObj = $(modal);
+                modalObj.on('show.bs.modal', function() {
+                    if (params.autosearch == '1') {
+                        $.get(params.url, {
+                            keyword: ''
+                        }, function(dat) {
+                            $('.content', modalObj).html(dat)
+                        })
+                    }
+                })
+            };
+            modalObj.modal('show')
+        },
+        search: function(searchbtn, name) {
+            var input = $(searchbtn).closest('.modal').find('#' + name + '_input');
+            var selector = $("#" + name + '_selector');
+            var needkeywords = true;
+            var params = biz.selector_open.params;
+            if (params.nokeywords == '1') {
+                needkeywords = false
+            };
+            var keyword = $.trim(input.val());
+            if (keyword == '' && needkeywords) {
+                input.focus();
+                return
+            }
+            var modalObj = $('#' + name + "-selector-modal");
+            $('.content', modalObj).html("正在搜索....");
+            $.get(params.url, {
+                keyword: keyword
+            }, function(dat) {
+                $('.content', modalObj).html(dat)
+            })
+        },
+        remove: function(obj, name) {
+            var params = biz.selector_open.params;
+            var css = params.type == 'image' ? '.multi-item' : '.multi-audio-item';
+            $(obj).closest(css).remove();
+            biz.selector_open.refresh(name)
+        },
+        set: function(obj, data) {
+            var name = $(obj).closest('.content').data('name');
+            var modalObj = $('#' + name + "-selector-modal");
+            var selector = $('#' + name + "_selector");
+            var params = biz.selector_open.params;
+            var multi = params.multi || 0;
+            if (multi === 0) {
+                modalObj.modal('hide')
+            }
+            if (typeof(biz.selector_open.callback) === 'function') {
+                biz.selector_open.callback(data, obj)
+            }
+        }
+    };
+    biz.map = function(val, callback, tpl) {
+        var modalobj = $('#map-dialog');
+        if (modalobj.length === 0) {
+            var content = '<div class="embed-responsive embed-responsive-16by9">' + '<iframe  class="embed-responsive-item" src="' + tpl + '" scrolling="no"></iframe>' + '</div>';
+            var footer = '<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>' + '<button type="button" class="btn btn-primary">确认</button>';
+            modalobj = util.dialog('请选择地点', content, footer, {
+                containerName: 'map-dialog'
+            });
+            modalobj.find('.modal-dialog').css('width', '80%');
+            modalobj.modal({
+                'keyboard': false
+            });
+            modalobj.find('.input-group :text').keydown(function(e) {
+                if (e.keyCode == 13) {
+                    var kw = $(this).val();
+                    searchAddress(kw)
+                }
+            });
+            modalobj.find('.input-group button').click(function() {
+                var kw = $(this).parent().prev().val();
+                searchAddress(kw)
+            })
+        }
+        modalobj.find('button.btn-primary').off('click');
+        modalobj.find('button.btn-primary').on('click', function() {
+            if ($.isFunction(callback)) {
+                var $point = modalobj.find("iframe").contents().find("#poi_json").val();
+                if ($.isEmpty($point)) {
+                    tip.msgbox.err('尚未选择坐标!');
+                    return
+                }
+                var point = JSON.parse(modalobj.find("iframe").contents().find("#poi_json").val());
+                var address = modalobj.find("iframe").contents().find("#addr_cur").val();
+                var val = {
+                    lng: point.lng,
+                    lat: point.lat,
+                    label: address
+                };
+                callback(val)
+            }
+            modalobj.modal('hide')
+        });
+        modalobj.modal('show')
+    };
+    biz.TxMapToBdMap = function(gg_lat, gg_lon) {
+        var point = new Object();
+        var x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+        var x = new Number(gg_lon);
+        var y = new Number(gg_lat);
+        var z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * x_pi);
+        var theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);
+        var bd_lon = z * Math.cos(theta) + 0.0065;
+        var bd_lat = z * Math.sin(theta) + 0.006;
+        point.lng = bd_lon;
+        point.lat = bd_lat;
+        return point
+    };
+    biz.BdMapToTxMap = function(bd_lat, bd_lon) {
+        var point = new Object();
+        var x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+        var x = new Number(bd_lon - 0.0065);
+        var y = new Number(bd_lat - 0.006);
+        var z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_pi);
+        var theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_pi);
+        var Mars_lon = z * Math.cos(theta);
+        var Mars_lat = z * Math.sin(theta);
+        point.lng = Mars_lon;
+        point.lat = Mars_lat;
+        return point
+    };
+    window.biz = biz;
+    return biz
+});
