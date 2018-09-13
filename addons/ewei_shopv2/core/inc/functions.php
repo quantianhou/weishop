@@ -802,6 +802,15 @@ if (!function_exists('tpl_selector')) {
 	}
 }
 
+if (!function_exists('tpl_coupon_type_selector')) {
+    function tpl_coupon_type_selector($name, $options = array())
+    {
+
+        $html = '<button class=\'btn btn-primary\' type=\'button\' onclick=\'biz.selector.cmlove(' . json_encode($options) . ');\'>' . $options['buttontext'] . '</button>';
+        return $html;
+    }
+}
+
 if (!function_exists('tpl_selector_new')) {
 	function tpl_selector_new($name, $options = array())
 	{
