@@ -168,7 +168,7 @@ class My_EweiShopV2Page extends MobileLoginPage
 		}
 		else if ($coupon['coupontype'] == 2) 
 		{
-			$useurl = mobileUrl('sale/coupon/my');
+			$useurl = mobileUrl('sale.coupon.my.usedCard',['cd_id' => $id]);
 		}
 		$set = $_W['shopset']['coupon'];
 		com('coupon')->setShare();
