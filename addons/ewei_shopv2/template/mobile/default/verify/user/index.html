@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>个人中心</title>
+    <meta name="Keywords" content=""/>
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="../addons/ewei_shopv2/template/mobile/default/verfy_static/css/common.css">
+    <link rel="stylesheet" href="../addons/ewei_shopv2/template/mobile/default/verfy_static/css/index.css"/>
+    <script type="text/javascript" src="../addons/ewei_shopv2/template/mobile/default/verfy_static/js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="../addons/ewei_shopv2/template/mobile/default/verfy_static/js/common.js"></script>
+</head>
+<body>
+<div class="content">
+    <div class="top-content">
+        <img src="{$_W['fans']['headimgurl']}" alt="" class="touxiang">
+        <div class="user-info">
+            <p class="name">{$_W['fans']['nickname']}</p>
+            {if !empty($userInfo) && $userInfo['mobile']}
+            <p class="phone-num">{$userInfo['mobile']}</p>
+            {else}
+            <p class="phone-num">去绑定手机号</p>
+            {/if}
+
+        </div>
+        <a href="/app/index.php?i=17&c=entry&m=ewei_shopv2&do=mobile&r=verify.user.info">
+            <i class="href-icon"></i>
+        </a>
+
+    </div>
+    {if !empty($userInfo) && $userInfo['mobile']}
+    <ul class="list-ul">
+        <li class="list-li">
+            <i class="icon"></i>
+            <span class="text">我的推广码</span>
+            <a href="tg-code.html">
+                <i class="href-icon"></i>
+            </a>
+        </li>
+        <li class="list-li">
+            <i class="icon icon1"></i>
+            <span class="text">我的核销记录</span>
+            <a href="hx-verify.html">
+                <i class="href-icon"></i>
+            </a>
+        </li>
+    </ul>
+    {/if}
+</div>
+</body>
+</html>

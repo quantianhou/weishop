@@ -1,1 +1,134 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('Z([\'m\'],7(m){b 3={9:1,X:0,n:0,5:\'\'};3.11=7(N){3.5=N.5;3.A();6(l.S){b d=$(Y).k(".e-u-13[B-12=\'"+l.S+"\']");6(l.J==1){d.k(".I-E").i()}x 6(l.J==2){d.k(".I-E").8()}}b H=$.y($(\'.o\').U());6(H==\'\'){3.9=1;3.h()}$(\'.e-4\').r({10:7(){3.h()}})};3.A=7(){$("#f a").C(\'s\').s(7(){b f=$(v).B("f");$(v).W("z").T().V("z");$(".f-4").8();$("#14"+f).i()});$(".e-19-1k").C(\'s\').s(7(){b 5=$.y($("#5").t());6(5==\'\'){O.1j.i("请输入搜索关键字");j}3.5=5;3.9=1;$(".o").g();3.h()});$("#5").1i(\'1h 1m\',7(){b 5=$.y($(v).t());6(5==\'\'){3.5=\'\';3.9=1;3.n=0;$(".o").g();3.h()}})};3.h=7(){b p={9:3.9,G:3.5,n:3.n};6(p.G!=\'\'){p.1n=3.K(\'1o\',M)}m.q(\'1l/1f/15\',p,7(q){6(q.1g!=1){j}b c=q.c;6(c.18<1){$(\'#4-g\').i();$(\'#4-w\').8();$(\'#4-P\').8();$(\'.e-4\').r(\'Q\')}x{$(\'#4-g\').8();$(\'.e-4\').r(\'17\');6(c.u.R<=0||c.u.R<c.16){$(\'#4-P\').8();$("#4-w").i();$("#4-g").8();$(\'.e-4\').r(\'Q\')}x{$("#4-w").8()}}3.9++;m.1a(\'.o\',\'1b\',c,3.9>1);O.1e.8()},1d,M)};3.K=7(d,L){6(L){j $("#"+d).k(\'D:F\').t()}j $("#"+d).k(\'D:F\').1c()};j 3});',62,87,'|||modal|content|keywords|if|function|hide|page||var|result|elm|fui|tab|empty|getList|show|return|find|window|core|offset|container|obj|json|infinite|click|val|list|this|nomore|else|trim|active|initClick|data|unbind|option|pin|selected|keyword|leng|icon|remarksaler|selectVal|isVal|true|params|FoxUI|more|stop|length|orderid|siblings|html|removeClass|addClass|type|document|define|onLoading|initList|order|group|tab_|orderData|pagesize|init|total|search|tpl|tpl_order|text|false|loader|verifyorder|status|input|bind|toast|btn|verify|propertychange|searchfield|searchfieid'.split('|'),0,{}))
+define(['core'], function (core) {
+    var modal = {
+        page: 1,
+        type: 0,
+        offset: 0,
+        keywords: ''
+    };
+    modal.initList = function (params) {
+        modal.keywords = params.keywords;
+        modal.initClick();
+        if (window.orderid) {
+            var elm = $(document).find(".fui-list-group[data-order='" + window.orderid + "']");
+            if (window.remarksaler == 1) {
+                elm.find(".icon-pin").show()
+            } else if (window.remarksaler == 2) {
+                elm.find(".icon-pin").hide()
+            }
+        }
+        var leng = $.trim($('.container').html());
+        if (leng == '') {
+            modal.page = 1;
+            modal.getList();
+            modal.getList2();
+        }
+        $('.fui-content').infinite({
+            onLoading: function () {
+                modal.getList();
+                modal.getList2();
+            }
+        })
+    };
+    modal.initClick = function () {
+        $("#tab a").unbind('click').click(function () {
+            var tab = $(this).data("tab");
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".tab-content").hide();
+            $("#tab_" + tab).show()
+        });
+        $(".fui-search-btn").unbind('click').click(function () {
+            var keywords = $.trim($("#keywords").val());
+            if (keywords == '') {
+                FoxUI.toast.show("请输入搜索关键字");
+                return
+            }
+            modal.keywords = keywords;
+            modal.page = 1;
+            $(".container").empty();
+            modal.getList()
+        });
+        $("#keywords").bind('input propertychange', function () {
+            var keywords = $.trim($(this).val());
+            if (keywords == '') {
+                modal.keywords = '';
+                modal.page = 1;
+                modal.offset = 0;
+                $(".container").empty();
+                modal.getList()
+            }
+        })
+    };
+    modal.getList2 = function () {
+
+        core.json('verify/verifyorder/orderData2', {}, function (json) {
+            if (json.status != 1) {
+                return
+            }
+            var result = json.result;
+            if (result.total < 1) {
+                $('#content-empty2').show();
+                $('#content-nomore2').hide();
+                $('#content-more2').hide();
+                $('.fui-content').infinite('stop')
+            } else {
+                $('#content-empty').hide();
+                $('.fui-content').infinite('init');
+                if (result.list.length <= 0 || result.list.length < result.pagesize) {
+                    $('#content-more2').hide();
+                    $("#content-nomore2").show();
+                    $("#content-empty2").hide();
+                    $('.fui-content').infinite('stop')
+                } else {
+                    $("#content-nomore2").hide()
+                }
+            }
+            modal.page++;
+            core.tpl('.coupon_container', 'tpl_order_coupon', result, modal.page > 1);
+            FoxUI.loader.hide()
+        }, false, true)
+
+    };
+    modal.getList = function () {
+        var obj = {
+            page: modal.page,
+            keyword: modal.keywords,
+            offset: modal.offset
+        };
+        if (obj.keyword != '') {
+            obj.searchfield = modal.selectVal('searchfieid', true)
+        }
+        core.json('verify/verifyorder/orderData', obj, function (json) {
+            if (json.status != 1) {
+                return
+            }
+            var result = json.result;
+            if (result.total < 1) {
+                $('#content-empty').show();
+                $('#content-nomore').hide();
+                $('#content-more').hide();
+                $('.fui-content').infinite('stop')
+            } else {
+                $('#content-empty').hide();
+                $('.fui-content').infinite('init');
+                if (result.list.length <= 0 || result.list.length < result.pagesize) {
+                    $('#content-more').hide();
+                    $("#content-nomore").show();
+                    $("#content-empty").hide();
+                    $('.fui-content').infinite('stop')
+                } else {
+                    $("#content-nomore").hide()
+                }
+            }
+            modal.page++;
+            core.tpl('.container', 'tpl_order', result, modal.page > 1);
+            FoxUI.loader.hide()
+        }, false, true)
+    };
+    modal.selectVal = function (elm, isVal) {
+        if (isVal) {
+            return $("#" + elm).find('option:selected').val()
+        }
+        return $("#" + elm).find('option:selected').text()
+    };
+    return modal
+});

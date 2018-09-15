@@ -27,7 +27,7 @@
         <!--<a {if $type==1}class="active"{/if} data-type="1">核销统计</a>-->
         <a data-tab="all" class="active">全部订单</a>
         <a data-tab="count">核销统计</a>
-        <!--<a {if $type==7}class="active"{/if} data-type="7">七日</a>-->
+        <a data-tab="coupon">全部优惠券</a>
         <!--<a {if $type==30}class="active"{/if} data-type="30">本月</a>-->
     </div>
 
@@ -59,6 +59,7 @@
                 <div class="fui-title center hide" id="content-empty">没有数据</div>
                 <div class="fui-title center hide" id="content-nomore">没有更多了</div>
         </div>
+
         <div class="tab-content " id="tab_count">
             <div class="verification">
                 <div class="verification-title">
@@ -209,8 +210,84 @@
             </div>
 
         </div>
+
+        <div class="tab-content " id="tab_coupon">
+            <!-- 优惠券列表 -->
+            <div class="fui-list-outer coupon_container"></div>
+
+            <div class="fui-title center" id="content-more2">加载更多</div>
+            <div class="fui-title center hide" id="content-empty2">没有数据</div>
+            <div class="fui-title center hide" id="content-nomore2">没有更多了</div>
+        </div>
+
     </div>
 
+    <script type="text/html" id="tpl_order_coupon">
+        <%each list as item%>
+        <%if item.merchname && item.merchid>0%>
+        <div class="fui-title small"><i class="icon icon-shop"></i> <%item.merchname%></div>
+        <%/if%>
+        <div class="fui-list-group <%if item.merchname && item.merchid>0%>nomargin<%/if%>" data-order="<%item.id%>">
+
+            <a class="fui-list order-list title-b" href="{php echo mobileUrl('verify/verifyorder/detail')}&id=<%item.id%>" data-nocache="true">
+                <div class="fui-list-media">
+                    <span class="fui-label fui-label-danger round"><%if item.statusvalue==0%><%if item.paytypevalue!=3%>未支付<%else%>货到付款<%/if%><%else%><%item.paytype%><%/if%></span>
+                </div>
+                <div class="fui-list-inner">
+                    <div class="row">
+                        <div class="row-text" style="font-size: 0.7rem; color: #666"><%item.ordersn%></div>
+                    </div>
+                    <div class="row gary">
+                        <div class="row-text"><%item.createtime%></div>
+                    </div>
+                </div>
+                <div class="angle"></div>
+            </a>
+            <%each item.goods as g%>
+            <div class="fui-list goods-list">
+                <div class="fui-list-media">
+                    <img class="round" src="<%g.thumb%>" onerror="this.src='../addons/ewei_shopv2/static/images/nopic100.jpg';" />
+                </div>
+                <div class="fui-list-inner">
+                    <div class="title"><%g.title%></div>
+                    <div class="subtitle">
+                        <div class="total">规格: <%g.optiontitle||"无"%> 编码: <%g.goodssn||"无"%></div>
+                    </div>
+                </div>
+                <div class="fui-list-angle auto">￥<span class="marketprice"><%g.realprice/g.total%><br> x<%g.total%></span></div>
+            </div>
+            <%/each%>
+            <div class="fui-list log-list noclick">
+                <div class="fui-list-inner">
+                    <div class="row log-row order">
+                        <div class="row-text">订单状态</div>
+                        <div class="row-remark"><span class="text-danger"><%item.status%></span></div>
+                    </div>
+                    <%if item.merchname && item.merchid%>
+                    <div class="row log-row order">
+                        <div class="row-text">店铺名称</div>
+                        <div class="row-remark"><%item.merchname%></div>
+                    </div>
+                    <%/if%>
+                    <div class="row log-row order">
+                        <div class="row-text">买家昵称</div>
+                        <div class="row-remark"><%item.nickname||'未更新'%></div>
+                    </div>
+                    <div class="row log-row order">
+                        <div class="row-text">核销时间</div>
+                        <div class="row-remark"><span class="text-success"><%item.verifytime%></span></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="fui-list-group-title text-left">
+                <small class="status">共<span class="text-success"><%item.goodscount%></span>个优惠券</small>
+            </div>
+
+        </div>
+        <%/each%>
+    </script>
     <script type="text/html" id="tpl_order">
         <%each list as item%>
         <%if item.merchname && item.merchid>0%>

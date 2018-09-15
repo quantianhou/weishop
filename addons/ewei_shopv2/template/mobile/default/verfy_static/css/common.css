@@ -1,0 +1,14 @@
+
+body, html, div, blockquote, img, label, p, h1, h2, h3, h4, h5, h6, pre, ul, ol,
+li, dl, dt, dd, form, a, fieldset, input, th, td,i
+{margin: 0; padding: 0; border: 0; outline: none; font-style: normal; font-weight: normal;}
+html{ height: 100%;}
+body{font-family: "微软雅黑";font-size: 14px;color:#333333;width:100%; background: #efeff4;}
+ul, ol{list-style: none;}
+a{color: black;text-decoration: none;}
+a:hover{text-decoration: none;}
+img{/*max-width: 100%;*/width: auto;height: auto;vertical-align: top;border: none;}
+li{
+    list-style: none;
+}
+

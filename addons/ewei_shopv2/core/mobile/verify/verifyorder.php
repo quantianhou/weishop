@@ -5,6 +5,9 @@ if (!(defined('IN_IA')))
 }
 class Verifyorder_EweiShopV2Page extends MobilePage 
 {
+    public function orderData2(){
+        echo 'sdf';
+    }
 	public function orderData() 
 	{
 		global $_W;
