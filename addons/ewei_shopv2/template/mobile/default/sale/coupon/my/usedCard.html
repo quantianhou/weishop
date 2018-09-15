@@ -9,42 +9,17 @@
 		<div class="fui-header-right">&nbsp;</div>
 	</div>
 	<div class='fui-content'>
-
-		<div class="coupon-headblock">
-			<div class="top-layer"></div>
-			<div class="line-layer"></div>
-			<div class="bottom-layer"></div>
-			<div class="gold"></div>
-			<div class="link-text">请至【<a href="{php echo mobileUrl('sale/coupon/my')}">我的优惠券</a>】查看</div>
-			<div class="paper">
-				<div class="title">恭喜获得</div>
-				<div class="text">
-					<i class="d1"></i>
-					<i class="d2"></i>
-					<p class="t1">{php echo $data['couponname']}</p>
-				</div>
-				<i class="line"></i>
-				<i class="dot-top"></i>
-				<i class="dot-left"></i>
-				<i class="dot-right"></i>
-				<i class="dot-1"></i>
-				<i class="dot-2"></i>
-				<i class="dot-3"></i>
-				<i class="dot-4"></i>
-				<i class="dot-5"></i>
-				<i class="dot-6"></i>
-			</div>
-		</div>
-
-
 		<div class="coupon-groupblock">
+			<div style="text-align: center;font-weight: bolder;font-size: 1.2rem;">
+				<span>{$data['couponname']}</span>
+			</div>
 			<div style="text-align: center">
 				<img src="{php echo $qrcode_uri;}" />
 			</div>
-			<div style="text-align: center">{php echo $qrcode;}</div>
+			<div style="text-align: center;background-color: #E0D1F1;font-weight: bolder; height: 40px; line-height: 40px;align-content: center;font-size: 20px;">{php echo $qrcode1;}&nbsp;&nbsp;{php echo $qrcode2;}</div>
 		</div>
-		<a href="{php echo mobileUrl('sale/coupon')}">
-			<div class="btn btn-danger block" style="margin: 0 0.5rem 0.5rem">继续领取优惠券</div>
+		<a href="{php echo mobileUrl('sale/coupon/my')}">
+			<div class="btn btn-danger block" style="margin: 0 0.5rem 0.5rem">查看我的优惠券</div>
 		</a>
 	</div>
 </div>

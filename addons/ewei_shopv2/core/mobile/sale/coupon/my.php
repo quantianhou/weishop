@@ -786,7 +786,7 @@ class My_EweiShopV2Page extends MobileLoginPage
         global $_W;
 
         $id = $_GPC['cd_id'];
-        $data = pdo_fetch('select cd.qrcode as qrcode  from ' . tablename('ewei_shop_coupon_data') . '  cd inner join  ' . tablename('ewei_shop_coupon') . ' c on cd.couponid = c.id  where cd.id=:id and cd.uniacid=:uniacid and coupontype = 2 and cd.qrcode is not null and cd.qrcode != ""  limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
+        $data = pdo_fetch('select cd.qrcode as qrcode, c.couponname as couponname  from ' . tablename('ewei_shop_coupon_data') . '  cd inner join  ' . tablename('ewei_shop_coupon') . ' c on cd.couponid = c.id  where cd.id=:id and cd.uniacid=:uniacid and coupontype = 2 and cd.qrcode is not null and cd.qrcode != ""  limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
 
         if (empty($data))
         {
@@ -812,6 +812,7 @@ class My_EweiShopV2Page extends MobileLoginPage
         }
         $qrcode_uri = $_W['siteroot'] . '/addons/ewei_shopv2/data/qrcode/' . $_W['uniacid'] . '/' . $file;
 
+        list($qrcode1 , $qrcode2) = str_split($qrcode,4);
         include $this->template();
     }
 	private function _condition($args) 
