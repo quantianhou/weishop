@@ -34,59 +34,18 @@
 				<i class="dot-5"></i>
 				<i class="dot-6"></i>
 			</div>
-			<div class="bottom-layer"><button class="btn usebtn qrcode-btn">立即使用</button></div>
 		</div>
 
 
 		<div class="coupon-groupblock">
-			<div class="group-top">
-				<div class="inner">
-					<div class="left">{php echo $title1}</div>
-					<div class="right">
-						<p class="title">优惠券</p>
-						<p class="subtitle">{php echo $title2}</p>
-					</div>
-				</div>
+			<div style="text-align: center">
+				<img src="{php echo $qrcode_uri;}" />
 			</div>
-			<div class="coupon-items">
-				<div class="container1">
-					{loop $goods $good}
-						<a href="{php echo mobileUrl('goods/detail',array('id'=>$good['id']))}">
-						<span class="item">
-							<div class="image">
-								<img src="{$good['thumb']}">
-							</div>
-							<div class="title">{$good['title']}</div>
-							<div class="price">
-								<div class="product">&yen;{$good['minprice']}</div>
-								<div class="market">&yen;{$good['couponprice']} <span>用劵价</span></div>
-							</div>
-						</span>
-					</a>
-					{/loop}
-					<span class="item">
-						<a href="{php echo mobileUrl('sale/coupon/my/showcoupongoods',array('id'=>$id))}"data-nocache="true" class="more" style="display: block;">
-								查看更多>>
-						</a>
-					</span>
-				</div>
-			</div>
+			<div style="text-align: center">{php echo $qrcode;}</div>
 		</div>
 		<a href="{php echo mobileUrl('sale/coupon')}">
 			<div class="btn btn-danger block" style="margin: 0 0.5rem 0.5rem">继续领取优惠券</div>
 		</a>
-
-		{template '_copyright'}
 	</div>
 </div>
-<script>
-	$(document).ready(function () {
-		$(".qrcode-btn").click(function () {
-		    console.log("{php echo $data['cd_id']}");
-			location.href = core.getUrl('sale/coupon/my/usedCard', {
-                cd_id: "{php echo $data['cd_id']}"
-            })
-        });
-    });
-</script>
 {template '_footer'}

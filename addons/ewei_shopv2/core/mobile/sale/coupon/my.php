@@ -470,7 +470,7 @@ class My_EweiShopV2Page extends MobileLoginPage
 		global $_W;
 		global $_GPC;
 		$id = intval($_GPC['id']);
-		$data = pdo_fetch('select c.*  from ' . tablename('ewei_shop_coupon_data') . '  cd inner join  ' . tablename('ewei_shop_coupon') . ' c on cd.couponid = c.id  where cd.id=:id and cd.uniacid=:uniacid and coupontype =0  limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
+		$data = pdo_fetch('select c.* , cd.id as cd_id  from ' . tablename('ewei_shop_coupon_data') . '  cd inner join  ' . tablename('ewei_shop_coupon') . ' c on cd.couponid = c.id  where cd.id=:id and cd.uniacid=:uniacid and coupontype in (0,2)  limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
 		if (empty($data)) 
 		{
 			if (empty($coupon)) 
@@ -576,7 +576,6 @@ class My_EweiShopV2Page extends MobileLoginPage
 			}
 			$row['couponprice'] = $couponprice;
 		}
-		unset($row);
 		$goods = set_medias($goods, 'thumb');
 		include $this->template();
 	}
@@ -780,6 +779,41 @@ class My_EweiShopV2Page extends MobileLoginPage
 		}
 		$this->_condition($args);
 	}
+
+	public function usedCard()
+    {
+        global $_GPC;
+        global $_W;
+
+        $id = $_GPC['cd_id'];
+        $data = pdo_fetch('select cd.qrcode as qrcode  from ' . tablename('ewei_shop_coupon_data') . '  cd inner join  ' . tablename('ewei_shop_coupon') . ' c on cd.couponid = c.id  where cd.id=:id and cd.uniacid=:uniacid and coupontype = 2 and cd.qrcode is not null and cd.qrcode != ""  limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
+
+        if (empty($data))
+        {
+            header('location: ' . mobileUrl('sale/coupon/my'));
+            exit();
+        }
+
+        $qrcode = $data['qrcode'];
+
+        $path = IA_ROOT . '/addons/ewei_shopv2/data/qrcode/' . $_W['uniacid'];
+        if (!(is_dir($path)))
+        {
+            load()->func('file');
+            mkdirs($path);
+        }
+
+        $file = 'order_verify_qrcode_' . $qrcode . '.png';
+        $qrcode_file = $path . '/' . $file;
+        if (!(is_file($qrcode_file)))
+        {
+            require IA_ROOT . '/framework/library/qrcode/phpqrcode.php';
+            QRcode::png($qrcode, $qrcode_file, QR_ECLEVEL_H, 4);
+        }
+        $qrcode_uri = $_W['siteroot'] . '/addons/ewei_shopv2/data/qrcode/' . $_W['uniacid'] . '/' . $file;
+
+        include $this->template();
+    }
 	private function _condition($args) 
 	{
 		global $_GPC;

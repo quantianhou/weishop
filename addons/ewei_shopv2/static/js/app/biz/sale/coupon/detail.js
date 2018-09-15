@@ -230,9 +230,15 @@ define(['core', 'tpl'], function(core, tpl) {
                     button = "现在就去充值~";
                     href = core.getUrl('member/recharge')
                 } else if (pay_json.result.coupontype == 2) {
-                    text = "恭喜您，收银台优惠券到手啦";
-                    button = "立即查看";
-                    href = core.getUrl('sale/coupon/my')
+                    location.href = core.getUrl('sale/coupon/my/showcoupons2', {
+                        id: pay_json.result.dataid
+                    });
+                    return
+                    // text = "恭喜您，到店优惠券到手啦";
+                    // button = "立即查看";
+                    // href = core.getUrl('sale/coupon/my/showcoupons2', {
+                    //     id: pay_json.result.dataid
+                    // });
                 } else {
                     text = "恭喜您，优惠券到手啦";
                     button = "立即查看";

@@ -239,7 +239,7 @@ class Detail_EweiShopV2Page extends MobilePage
 		$id = intval($_GPC['id']);
 		$coupon = pdo_fetch('select * from ' . tablename('ewei_shop_coupon') . ' where id=:id and uniacid=:uniacid  limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
 		$coupon = com('coupon')->setCoupon($coupon, time());
-		if (empty($coupon['gettype'])) 
+		if (empty($coupon['gettype']))
 		{
 			show_json(-1, '无法' . $coupon['gettypestr']);
 		}
@@ -278,7 +278,10 @@ class Detail_EweiShopV2Page extends MobilePage
 			pdo_delete('ewei_shop_coupon_log', array('couponid' => $id, 'openid' => $openid, 'status' => 0));
 		}
 		$logno = m('common')->createNO('coupon_log', 'logno', 'CC');
-		$log = array('uniacid' => $_W['uniacid'], 'merchid' => $coupon['merchid'], 'openid' => $openid, 'logno' => $logno, 'couponid' => $id, 'status' => 0, 'paystatus' => (0 < $coupon['money'] ? 0 : -1), 'creditstatus' => (0 < $coupon['credit'] ? 0 : -1), 'createtime' => time(), 'getfrom' => 1);
+        list($msec, $sec) = explode(' ', microtime());
+        $msectime =  (float)sprintf('%.0f', (floatval($msec) + floatval($sec)) * 1000);
+		$qrcode =  md5($_W['uniacid'].$openid.$id.$msectime);
+		$log = array('uniacid' => $_W['uniacid'], 'merchid' => $coupon['merchid'], 'openid' => $openid, 'logno' => $logno, 'couponid' => $id, 'status' => 0, 'paystatus' => (0 < $coupon['money'] ? 0 : -1), 'creditstatus' => (0 < $coupon['credit'] ? 0 : -1), 'createtime' => time(), 'getfrom' => 1 ,'qrcode' => $qrcode);
 		pdo_insert('ewei_shop_coupon_log', $log);
 		$logid = pdo_insertid();
 		if ($needpay) 
@@ -383,7 +386,7 @@ class Detail_EweiShopV2Page extends MobilePage
 					}
 				}
 				$wechat['jie'] = $jie;
-				if (!($wechat['success'])) 
+				if (!($wechat['success']))
 				{
 					show_json(0, '微信支付参数错误!');
 				}

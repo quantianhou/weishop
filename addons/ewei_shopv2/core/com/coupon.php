@@ -357,7 +357,7 @@ class Coupon_EweiShopV2ComModel extends ComModel
 
 			$update['status'] = 1;
 			pdo_update('ewei_shop_coupon_log', $update, array('id' => $log['id']));
-			$data = array('uniacid' => $_W['uniacid'], 'merchid' => $log['merchid'], 'openid' => $log['openid'], 'couponid' => $log['couponid'], 'gettype' => $log['getfrom'], 'gettime' => time());
+			$data = array('uniacid' => $_W['uniacid'], 'merchid' => $log['merchid'], 'openid' => $log['openid'], 'couponid' => $log['couponid'], 'gettype' => $log['getfrom'], 'gettime' => time(),'qrcode' => $log['qrcode']);
 			pdo_insert('ewei_shop_coupon_data', $data);
 			$dataid = pdo_insertid();
 			$coupon['dataid'] = $dataid;
