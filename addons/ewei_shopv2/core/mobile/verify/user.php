@@ -93,4 +93,37 @@ class User_EweiShopV2Page extends MobilePage
 
         include $this->template();
     }
+
+    /**
+     * 绑定手机号
+     */
+    public function bind(){
+
+        global $_W;
+        global $_GPC;
+
+        $mobile = $_GPC['mobile'];
+
+        if(!preg_match('/\d{11}/',$mobile)){
+            show_json(0,'手机号错误');
+        }
+
+        //判断是否该手机号已经注册
+        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where mobile=:mobile limit 1', array(':mobile' => $mobile));
+
+        if(empty($userInfo)){
+            show_json(10);
+        }
+
+        //进行绑定
+        $log = array(
+            'uniacid' => $_W['uniacid'],
+            'openid' => $_W['openid'],
+            'mobile'=>$mobile,
+            'salername' => $_W['fans']['nickname']
+        );
+        pdo_insert('ewei_shop_saler', $log);
+
+        show_json(1);
+    }
 }

@@ -19,7 +19,7 @@
            <label for="">姓名</label>
            <span class="text">{$_W['fans']['nickname']}</span>
        </li>
-       <li class="list-li">
+       <li class="list-li" onclick="$('.bangding').css('display','block')">
            <label for="">手机号</label>
            <span class="text">{if $userInfo['mobile']}{$userInfo['mobile']}{else}暂无{/if}</span>
            <i class="href-icon"></i>
@@ -31,21 +31,38 @@
    </ul>
 </div>
 
-<div class="zhezhao"></div>
-<div class="footer-content">
+<div class="zhezhao bangding"></div>
+<div class="footer-content bangding">
     <a href="javascript:void (0)" class="cancle">取消</a>
     <ul class="list-ul">
         <li class="list-li">
-            <input type="text" class="text" placeholder="新手机号">
+            <input id="mobile" type="text" class="text" placeholder="新手机号">
         </li>
         <li class="list-li">
             <input type="text" class="text" placeholder="验证码">
             <a href="javascript:void (0)" class="get-code">获取验证码</a>
         </li>
         <li class="list-li">
-            <input type="button" class="button" value="确定">
+            <input type="button" class="button" value="确定" onclick="tobangding()">
         </li>
     </ul>
 </div>
 </body>
 </html>
+<script>
+    function tobangding(){
+        $.post('/app/index.php?i=17&c=entry&m=ewei_shopv2&do=mobile&r=verify.user.bind',
+            {mobile:$('#mobile').val()},
+            function (res) {
+                if(res.status == 0){
+                    return alert('手机号格式错误');
+                }else if(res.status == 10){
+                    return alert('手机号已存在');
+                }else{
+                    alert('操作成功');
+                    return window.history.go(-1);
+                }
+            }
+        );
+    }
+</script>
