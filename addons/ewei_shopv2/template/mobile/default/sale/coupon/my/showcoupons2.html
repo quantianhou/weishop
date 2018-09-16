@@ -34,6 +34,7 @@
 				<i class="dot-5"></i>
 				<i class="dot-6"></i>
 			</div>
+			<div class="bottom-layer"><button class="btn usebtn qrcode-btn">立即使用</button></div>
 		</div>
 
 
@@ -78,4 +79,14 @@
 		{template '_copyright'}
 	</div>
 </div>
+<script>
+	$(document).ready(function () {
+		$(".qrcode-btn").click(function () {
+		    console.log("{php echo $data['cd_id']}");
+			location.href = core.getUrl('sale/coupon/my/usedCard', {
+                cd_id: "{php echo $data['cd_id']}"
+            })
+        });
+    });
+</script>
 {template '_footer'}
