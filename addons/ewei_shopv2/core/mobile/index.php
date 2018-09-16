@@ -24,6 +24,8 @@ class Index_EweiShopV2Page extends MobilePage
 
         if($lat && $lng){
             $order = "(ABS(`lat`-$lat) + ABS(`lng`-$lng)) ASC";
+        }else{
+            $order = 'id DESC';
         }
 		if(!$this_store_id){
             //获取第一个门店
@@ -130,7 +132,7 @@ class Index_EweiShopV2Page extends MobilePage
 		$defaults = array( 'adv' => array('text' => '幻灯片', 'visible' => 1), 'search' => array('text' => '搜索栏', 'visible' => 1), 'nav' => array('text' => '导航栏', 'visible' => 1), 'notice' => array('text' => '公告栏', 'visible' => 1), 'cube' => array('text' => '魔方栏', 'visible' => 1), 'banner' => array('text' => '广告栏', 'visible' => 1), 'goods' => array('text' => '推荐栏', 'visible' => 1) );
 		$sorts = ((isset($_W['shopset']['shop']['indexsort']) ? $_W['shopset']['shop']['indexsort'] : $defaults));
 		$sorts['recommand'] = array('text' => '系统推荐', 'visible' => 1);
-        $this_store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+        $this_store_id = $shopInfo['id'];
 		$advs = pdo_fetchall('select id,advname,link,thumb from ' . tablename('ewei_shop_adv') . ' where uniacid=:uniacid and iswxapp=0 and enabled=1 and storeid like "%,":store_id",%" order by displayorder desc', array(':uniacid' => $uniacid,':store_id'=>$this_store_id));
 		$navs = pdo_fetchall('select id,navname,url,icon from ' . tablename('ewei_shop_nav') . ' where uniacid=:uniacid and iswxapp=0 and status=1 and storeid like "%,":store_id",%" order by displayorder desc', array(':uniacid' => $uniacid,':store_id'=>$this_store_id));
 		$cubes = ((is_array($_W['shopset']['shop']['cubes']) ? $_W['shopset']['shop']['cubes'] : array()));
