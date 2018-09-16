@@ -9,14 +9,17 @@ class Verifyorder_EweiShopV2Page extends MobilePage
         //卡券核销
 
         global $_W;
-        global $_GPC;
+
+        $openid = $_W['openid'];
 
         $uniacid = $_W['uniacid'];
-        $paras = $paras1 = array(':uniacid' => $uniacid);
+        $paras = array(':uniacid' => $uniacid,':verify_openid' => $openid);
 
-        $sql = 'select * from ' . tablename('ewei_shop_order') . ' where uniacid = :uniacid and ismr=0 and deleted=0 and isparent=0 ORDER BY createtime DESC  ';
+        $sql = 'select cd.*,c.couponname,from_unixtime(cd.usetime) as usetime from ' . tablename('ewei_shop_coupon_data') . ' cd LEFT JOIN '.tablename('ewei_shop_coupon').' c ON cd.couponid=c.id where cd.uniacid = :uniacid and cd.verify_openid = :verify_openid ORDER BY usetime DESC  ';
 
         $list = pdo_fetchall($sql, $paras);
+
+        show_json(1, array('list' => $list));
 
     }
 	public function orderData() 

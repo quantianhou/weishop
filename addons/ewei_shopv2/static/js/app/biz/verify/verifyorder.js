@@ -83,6 +83,7 @@ define(['core'], function (core) {
                 }
             }
             modal.page++;
+            $('.coupon_container').html('');
             core.tpl('.coupon_container', 'tpl_order_coupon', result, modal.page > 1);
             FoxUI.loader.hide()
         }, false, true)
