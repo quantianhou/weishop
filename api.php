@@ -126,6 +126,13 @@ class WeEngine {
         exit($resp);
     }
 
+    public function wxHttpsRequest($url, $data = NULL)
+    {
+        load()->func('communication');
+        $result = ihttp_request($url, $data);
+        return @json_decode($result['content'], true);
+    }
+
 
     public function start() {
         global $_W;
@@ -159,6 +166,21 @@ class WeEngine {
             $this->booking($message);
             if($message['event'] == 'unsubscribe') {
                 $this->receive(array(), array(), array());
+                exit();
+            }
+            //fanhailong add 当【君梓店员之家】公众号下的用户（就是店员）领取会员卡并填写信息激活后，走入此逻辑
+            if($message['event'] == 'submit_membercard_user_info' && $message['tousername'] == 'gh_8ec8dbfd8d99') {
+                file_put_contents("fanwx.txt", var_export($message, true), FILE_APPEND);
+                //拿到当前消息所属的公众号的token
+                $account = WeAccount::create($_W['acid']);
+                $token = $account->fetch_token();
+                //拿着推送过来的cardid和code去请求用户激活时填写的微信会员卡信息
+                $url = 'https://api.weixin.qq.com/card/membercard/userinfo/get?access_token=' . $token;
+                $jsonData = json_encode(array('card_id' => $message['cardid'], 'code' => $message['usercardcode']));
+                $jsoninfo = $this->wxHttpsRequest($url, $jsonData);
+                //更新member表的激活信息
+                $arr = array('membercardid' => $message['cardid'], 'membercardcode' => $message['usercardcode'], 'membershipnumber' => $message['usercardcode'], 'membercardactive' => 1);
+                pdo_update('ewei_shop_member', $arr, array('openid' => $message['fromusername'], 'uniacid' => $_W['uniacid']));
                 exit();
             }
             $sessionid = md5($message['from'] . $message['to'] . $_W['uniacid']);
