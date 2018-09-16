@@ -179,7 +179,22 @@ class WeEngine {
                 $jsonData = json_encode(array('card_id' => $message['cardid'], 'code' => $message['usercardcode']));
                 $jsoninfo = $this->wxHttpsRequest($url, $jsonData);
                 //更新member表的激活信息
-                $arr = array('membercardid' => $message['cardid'], 'membercardcode' => $message['usercardcode'], 'membershipnumber' => $message['usercardcode'], 'membercardactive' => 1);
+                $common_field_list = $jsoninfo['user_info']['common_field_list'];
+                foreach($common_field_list as $val){
+                    if($val['name'] == 'USER_FORM_INFO_FLAG_MOBILE'){
+                        $mobile = $val['value'];
+                    }
+                    if($val['name'] == 'USER_FORM_INFO_FLAG_BIRTHDAY'){
+                        $birth = explode('-',$val['value']);
+                        $birthyear = $birth[0];
+                        $birthmonth = $birth[1];
+                        $birthday = $birth[02];
+                    }
+                    if($val['name'] == 'USER_FORM_INFO_FLAG_NAME'){
+                        $realname = $val['value'];
+                    }
+                }
+                $arr = array('membercardid' => $message['cardid'], 'membercardcode' => $message['usercardcode'], 'membershipnumber' => $message['usercardcode'], 'membercardactive' => 1, 'birthyear' => $birthyear, 'birthmonth' => $birthmonth, 'birthday' => $birthday, 'carrier_mobile' => $mobile, 'realname' => $realname);
                 pdo_update('ewei_shop_member', $arr, array('openid' => $message['fromusername'], 'uniacid' => $_W['uniacid']));
                 exit();
             }
