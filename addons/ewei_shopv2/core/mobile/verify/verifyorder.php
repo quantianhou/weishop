@@ -6,7 +6,18 @@ if (!(defined('IN_IA')))
 class Verifyorder_EweiShopV2Page extends MobilePage 
 {
     public function orderData2(){
-        echo 'sdf';
+        //卡券核销
+
+        global $_W;
+        global $_GPC;
+
+        $uniacid = $_W['uniacid'];
+        $paras = $paras1 = array(':uniacid' => $uniacid);
+
+        $sql = 'select * from ' . tablename('ewei_shop_order') . ' where uniacid = :uniacid and ismr=0 and deleted=0 and isparent=0 ORDER BY createtime DESC  ';
+
+        $list = pdo_fetchall($sql, $paras);
+
     }
 	public function orderData() 
 	{
@@ -139,6 +150,7 @@ class Verifyorder_EweiShopV2Page extends MobilePage
 			{
 				$sql .= 'LIMIT ' . (($pindex - 1) * $psize) . ',' . $psize;
 			}
+//			echo $sql;exit;
 			$list = pdo_fetchall($sql, $paras);
 		}
 		else 
@@ -149,6 +161,7 @@ class Verifyorder_EweiShopV2Page extends MobilePage
 			{
 				$sql .= 'LIMIT ' . (($pindex - 1) * $psize) . ',' . $psize;
 			}
+//            echo $sql;exit;
 			$list = pdo_fetchall($sql, $paras);
 			if (!(empty($list))) 
 			{
