@@ -32,8 +32,7 @@ function sendSms($phoneNumber, $templateCode = 'SMS_145235565', $templateParam =
     header('Content-Type: text/plain; charset=utf-8');
     require_once (IA_ROOT . '/framework/library/alisms/AliyunSms.php');
     $response = AliyunSms::sendSms($phoneNumber, $templateCode, $templateParam);
-    echo "发送短信(sendSms)接口返回的结果:\n";
-    print_r($response);
+    return ($response);
 }
 
 function istripslashes($var) {
