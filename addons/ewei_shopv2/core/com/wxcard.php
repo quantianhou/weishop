@@ -1294,7 +1294,7 @@ class Wxcard_EweiShopV2ComModel extends ComModel
             $params['wx_activate'] = 'true';
             unset($params['activate_url']);
             $params['center_title'] = '个人中心';
-            $params['center_url'] = 'http://weibo.com';//小段提供给我d端个人中心的链接地址
+            $params['center_url'] = $_W['siteroot'].'app/index.php?i='.$_W['uniacid'].'&c=entry&m=ewei_shopv2&do=mobile&r=verify.user';//小段提供给我d端个人中心的链接地址
         }
         if (empty($carddata['card_backgroundtype']))
         {
