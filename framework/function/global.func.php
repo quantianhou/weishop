@@ -20,6 +20,21 @@ function ver_compare($version1, $version2) {
 	return version_compare($version1, $version2);
 }
 
+/**
+ * 发送短信
+ * author fanhailong
+ * @return stdClass
+ */
+function sendSms($phoneNumber, $templateCode = 'SMS_145235565', $templateParam = array()) {
+
+    //SMS_145235565为【信息变更验证码】模板，模版内容:验证码${code}，您正在尝试变更重要信息，请妥善保管账户信息。
+    // 调用示例：
+    header('Content-Type: text/plain; charset=utf-8');
+    require_once (IA_ROOT . '/framework/library/alisms/AliyunSms.php');
+    $response = AliyunSms::sendSms($phoneNumber, $templateCode, $templateParam);
+    echo "发送短信(sendSms)接口返回的结果:\n";
+    print_r($response);
+}
 
 function istripslashes($var) {
 	if (is_array($var)) {
