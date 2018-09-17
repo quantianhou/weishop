@@ -33,7 +33,7 @@
 
 <div class="zhezhao bangding"></div>
 <div class="footer-content bangding">
-    <a href="javascript:void (0)" class="cancle">取消</a>
+    <a href="javascript:void (0)" class="cancle" onclick="$('.bangding').hide()">取消</a>
     <ul class="list-ul">
         <li class="list-li">
             <input id="mobile" type="text" class="text" placeholder="新手机号">
@@ -51,7 +51,7 @@
 </html>
 <script>
     function tobangding(){
-        $.post('/app/index.php?i=17&c=entry&m=ewei_shopv2&do=mobile&r=verify.user.bind',
+        $.post('/app/index.php?i={$_W["uniacid"]}&c=entry&m=ewei_shopv2&do=mobile&r=verify.user.bindmobile',
             {mobile:$('#mobile').val()},
             function (res) {
                 if(res.status == 0){
