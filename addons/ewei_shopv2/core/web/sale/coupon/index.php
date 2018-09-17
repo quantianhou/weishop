@@ -339,14 +339,12 @@ class Index_EweiShopV2Page extends ComWebPage
     public function checkMemberCard()
     {
         global $_W;
-
-        $set = pdo_fetch('select sets from '.tablename('ewei_shop_sysset')).' where uniaci = '.$_W['uniacid'].' order by id asc limit 1;';
+        $set = pdo_fetch('select sets from '.tablename('ewei_shop_sysset').' where uniacid=:uniacid order by id asc limit 1',[':uniacid' => $_W['uniacid']]);
         $sets = []; $status = 1;
         if(!empty($set))
         {
             $sets = iunserializer($set['sets']);
         }
-
         if(!empty($sets) && isset($sets['membercard']) && !empty($sets['membercard'])
             && isset($sets['membercard']['card_id']) && !empty($sets['membercard']['card_id']))
         {

@@ -65,7 +65,6 @@ class Index_EweiShopV2Page extends MobileLoginPage
         {
             $this_store_id = 0 ;
         }
-        $this_store_id = 63;
         $param[':store_id'] = $this_store_id;
 		$sql = 'select id,timelimit,coupontype,timedays,timestart,timeend,couponname,enough,backtype,deduct,discount,backmoney,backcredit,backredpack,bgcolor,thumb,credit,money,getmax,merchid,total as t,tagtitle,settitlecolor,titlecolor  from ' . tablename('ewei_shop_coupon');
 		$sql .= ' where uniacid=:uniacid';
