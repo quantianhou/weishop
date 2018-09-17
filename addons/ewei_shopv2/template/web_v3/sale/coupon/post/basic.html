@@ -24,11 +24,20 @@
 <div class="form-group">
 	<label class="col-lg control-label"> 标签名称</label>
 	<div class="col-sm-9 col-xs-12">
-		{ife 'sale.coupon' $item}
-		<input type="text" name="tagname" class="form-control" value="{$item['tagname']}" data-rule-required="true"  />
+		{if $type == 2}
+			{ife 'sale.coupon' $item}
+			<input type="text" name="tagname" class="form-control" value="兑换券" data-rule-required="true"  />
+			{else}
+			<div class='form-control-static'>{$item['tagname']}</div>
+			{/if}
 		{else}
-		<div class='form-control-static'>{$item['tagname']}</div>
+			{ife 'sale.coupon' $item}
+			<input type="text" name="tagname" class="form-control" value="{$item['tagname']}" data-rule-required="true"  />
+			{else}
+			<div class='form-control-static'>{$item['tagname']}</div>
+			{/if}
 		{/if}
+
 	</div>
 </div>
 
@@ -84,7 +93,18 @@
 	</div>
 </div>
 
-
+{if $type == 2}
+<div class="form-group">
+	<label class="col-lg control-label"> 兑换礼品名称</label>
+	<div class="col-sm-9 col-xs-12">
+		{ife 'sale.coupon' $item}
+		<input type="text" name="gift_name" class="form-control" value="{$item['giftname']}" data-rule-required="true"  />
+		{else}
+		<div class='form-control-static'>{$item['tagname']}</div>
+		{/if}
+	</div>
+</div>
+{/if}
 {ife 'sale.coupon' $item}
 
 <div class="form-group">

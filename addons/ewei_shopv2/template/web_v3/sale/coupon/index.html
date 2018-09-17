@@ -16,7 +16,8 @@
 			<span class='col-sm-4'>
 				<?php echo tpl_coupon_type_selector('coupon_type',
 						[
-							'name' => 'coupon_type',
+							'name' => '优惠券类型',
+							'div_name' => 'coupon_type',
 							'buttontext'=>'添加优惠券',
 							'item' =>[
 								['type'=>0,'title'=>'购物优惠券','desc'=>'支持满减券/折扣券'],
@@ -231,7 +232,6 @@
 <script>
 	function sendCoupon() {
         var type = $("input[name='radio_coupon_type']:checked").val();
-
         switch (type)
 		{
 			case '0':

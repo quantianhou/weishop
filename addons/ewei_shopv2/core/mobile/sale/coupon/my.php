@@ -794,7 +794,7 @@ class My_EweiShopV2Page extends MobileLoginPage
             exit();
         }
 
-        $qrcode = $data['qrcode'];
+        $qrcode = trim($_W['siteroot'],'/').trim(mobileUrl('verify.user.verify',['dataid' => $id]),'.');
 
         $path = IA_ROOT . '/addons/ewei_shopv2/data/qrcode/' . $_W['uniacid'];
         if (!(is_dir($path)))
@@ -803,7 +803,7 @@ class My_EweiShopV2Page extends MobileLoginPage
             mkdirs($path);
         }
 
-        $file = 'order_verify_qrcode_' . $qrcode . '.png';
+        $file = 'order_verify_qrcode_' . $id . '.png';
         $qrcode_file = $path . '/' . $file;
         if (!(is_file($qrcode_file)))
         {

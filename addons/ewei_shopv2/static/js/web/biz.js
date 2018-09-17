@@ -55,8 +55,9 @@ define(['jquery'], function($) {
         cmlove: function(params) {
             params = $.extend({}, params || {});
             var name = params.name === undefined ? 'default' : params.name;
+            var div_name = params.div_name === undefined ? 'default' : params.div_name;
             var item = params.item === undefined ? 'default' : params.item;
-            var modalid = name + "-selector-modal";
+            var modalid = div_name + "-selector-modal";
             modalObj = $('#' + modalid);
             if (modalObj.length <= 0) {
                 var modal = '<div id="' + modalid + '"  class="modal fade" tabindex="-1">';
@@ -68,12 +69,12 @@ define(['jquery'], function($) {
                 modal += '<div class="input-group">';
                 for(var i = 0 ; i < item.length ; i ++ )
                 {
-                    modal += '<input type="radio" name="radio_'+name+'" value="'+item[i]['type']+'"/>'+item[i]['title']
+                    modal += '<input type="radio" name="radio_'+div_name+'" value="'+item[i]['type']+'"/>'+item[i]['title']
                     modal += '<div>'+item[i]['desc']+'</div>';
                 }
                 modal += '</div>';
                 modal += '</div>';
-                modal += '<div class="content" style="padding-top:5px;" data-name="' + name + '"></div>';
+                modal += '<div class="content" style="padding-top:5px;" data-name="' + div_name + '"></div>';
                 modal += '</div>';
                 modal += '<div class="modal-footer">' +
                             '<a href="#" class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</a>' +
