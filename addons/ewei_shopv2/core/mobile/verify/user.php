@@ -16,6 +16,38 @@ class User_EweiShopV2Page extends MobilePage
         //判断当期啊openid 有没有绑定过核销员的身份
         $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where openid=:openid and uniacid=:uniacid limit 1', array(':openid' => $openid, ':uniacid' => $_W['uniacid']));
 
+        //信息不全去ewei_shop_member寻找信息
+        if(empty($userInfo) || !isset($userInfo['mobile'])){
+            $menberInfo = pdo_fetch('select * from ' . tablename('ewei_shop_member') . ' where openid=:openid and uniacid=:uniacid limit 1', array(':openid' => $openid, ':uniacid' => $_W['uniacid']));
+            //查询到对应信息
+            if(!empty($menberInfo)){
+                if(empty($userInfo)){
+                    //写入
+                    $log = array(
+                        'uniacid' => $_W['uniacid'],
+                        'openid' => $_W['openid'],
+                        'mobile'=>$menberInfo['carrier_mobile'],
+                        'salername' => $_W['fans']['nickname']
+                    );
+                    pdo_insert('ewei_shop_saler', $log);
+                }else{
+                    //更新
+                    pdo_update('ewei_shop_saler', array('mobile' => $menberInfo['carrier_mobile']), array('id' => $userInfo['id']));
+
+                }
+            }
+        }
+
+        //重新获取
+        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where openid=:openid and uniacid=:uniacid limit 1', array(':openid' => $openid, ':uniacid' => $_W['uniacid']));
+
+        //获取卡种id
+        $storesql = 'SELECT * FROM ' . tablename('ewei_shop_sysset') . ' WHERE uniacid = ' . intval($_W['uniacid']);
+        $store = pdo_fetch($storesql);
+        $storeInfo = iunserializer($store['sets']);
+
+        //echo '<p style="font-size: 60px;">'.$openid.'</p>';exit;
+
         include $this->template();
 
     }
