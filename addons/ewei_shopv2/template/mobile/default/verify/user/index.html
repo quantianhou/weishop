@@ -26,12 +26,14 @@
             {/if}
 
         </div>
+        {if !empty($userInfo) && $userInfo['mobile']}
         <a href="/app/index.php?i=17&c=entry&m=ewei_shopv2&do=mobile&r=verify.user.info">
             <i class="href-icon"></i>
         </a>
+        {/if}
 
     </div>
-    {if !empty($userInfo) && $userInfo['mobile']}
+    {if !empty($userInfo) && $userInfo['mobile'] && $userInfo['storeid']}
     <ul class="list-ul">
         <li class="list-li">
             <i class="icon"></i>
@@ -48,6 +50,15 @@
             </a>
         </li>
     </ul>
+    {else}
+
+    <ul class="list-ul">
+        <li class="list-li">
+            <i class="icon icon1"></i>
+            <span class="text">暂无权限</span>
+        </li>
+    </ul>
+
     {/if}
 </div>
 </body>
