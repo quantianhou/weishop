@@ -39,8 +39,8 @@
             <input id="mobile" type="text" class="text" placeholder="新手机号">
         </li>
         <li class="list-li">
-            <input type="text" class="text" placeholder="验证码">
-            <a href="javascript:void (0)" class="get-code">获取验证码</a>
+            <input id="code" type="text" class="text" placeholder="验证码">
+            <a onclick="getcode()" class="get-code">获取验证码</a>
         </li>
         <li class="list-li">
             <input type="button" class="button" value="确定" onclick="tobangding()">
@@ -51,18 +51,39 @@
 </html>
 <script>
     function tobangding(){
-        $.post('/app/index.php?i={$_W["uniacid"]}&c=entry&m=ewei_shopv2&do=mobile&r=verify.user.bindmobile',
-            {mobile:$('#mobile').val()},
+        $.post('/app/index.php?i={$_W["uniacid"]}&c=entry&m=ewei_shopv2&do=mobile&r=verify.user.bind&mobile='+$('#mobile').val()+'&code='+$('#code').val(),
             function (res) {
-                if(res.status == 0){
-                    return alert('手机号格式错误');
-                }else if(res.status == 10){
-                    return alert('手机号已存在');
-                }else{
+                if (res.status == 1) {
                     alert('操作成功');
-                    return window.history.go(-1);
+                    return window.location.reload();
+                } else {
+                    return alert(res.result.message);
                 }
-            }
+            },
+            'json'
+        );
+    }
+
+    var sindex = 60;
+
+    function getcode() {
+        $.post('/app/index.php?i={$_W["uniacid"]}&c=entry&m=ewei_shopv2&do=mobile&r=verify.user.getcode&mobile='+$('#mobile').val()+'&wxref=mp.weixin.qq.com',
+            function (res) {
+                if (res.status == 1) {
+                    var timer = setInterval(function () {
+                        $('.get-code').html(sindex);
+                        sindex --;
+
+                        if(sindex < 0){
+                            $('.get-code').html('获取验证码');
+                            clearInterval(timer);
+                        }
+                    },1000)
+                } else {
+                    return alert(res.result.message);
+                }
+            },
+            'json'
         );
     }
 </script>

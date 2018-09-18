@@ -70,21 +70,6 @@ class User_EweiShopV2Page extends MobilePage
     }
 
     /**
-     * 发送电话
-     */
-    public function sendsms(){
-        $mobile = '18310319013';
-        $response = sendSms($mobile, 'SMS_145235565', array('code'=>rand(1000,9999)));
-        if($response->Code =='OK'){
-            //成功
-            print_r($response->RequestId);
-            print_r($response);
-        }else{
-            //发送失败，给前端报错
-        }
-    }
-
-    /**
      * @param $url
      * @return string
      */
@@ -178,34 +163,74 @@ class User_EweiShopV2Page extends MobilePage
     }
 
     /**
-     * 绑定手机号
+     * 发送电话
      */
-    public function bindmobile(){
+    public function getcode(){
 
         global $_W;
         global $_GPC;
 
         $mobile = $_GPC['mobile'];
 
+        $code = rand(1000,9999);
+
         if(!preg_match('/\d{11}/',$mobile)){
             show_json(0,'手机号错误');
+        }
+
+        if(time() - $_SESSION['code_time'] <= 60){
+            show_json(0,'一分钟只能发送一条');
         }
 
         //判断是否该手机号已经注册
         $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where mobile=:mobile limit 1', array(':mobile' => $mobile));
 
-        if(empty($userInfo)){
-            show_json(10);
+        if(!empty($userInfo)){
+            show_json(10,'该手机号已注册');
+        }
+
+        $response = sendSms($mobile, 'SMS_145235565', array('code'=>$code));
+        if($response->Code =='OK'){
+            //成功
+            $_SESSION['code'] = $code;
+            $_SESSION['code_time'] = time();
+
+            show_json(1,'发送成功');
+        }else{
+            //发送失败，给前端报错
+            show_json(0,'发送失败');
+        }
+    }
+
+    /**
+     * 绑定手机号
+     */
+    public function bind(){
+
+        global $_W;
+        global $_GPC;
+
+        $mobile = $_GPC['mobile'];
+        $code = $_GPC['code'];
+
+        if(!preg_match('/\d{11}/',$mobile)){
+            show_json(0,'手机号错误');
+        }
+
+        //判断验证码
+        if(!$_SESSION['code'] || $_SESSION['code'] != $code){
+            show_json(0,'验证码错误');
+        }
+
+        //判断是否该手机号已经注册
+        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where mobile=:mobile limit 1', array(':mobile' => $mobile));
+
+        if(!empty($userInfo)){
+            show_json(10,'该手机号已注册');
         }
 
         //进行绑定
-        $log = array(
-            'uniacid' => $_W['uniacid'],
-            'openid' => $_W['openid'],
-            'mobile'=>$mobile,
-            'salername' => $_W['fans']['nickname']
-        );
-        pdo_insert('ewei_shop_saler', $log);
+        pdo_update('ewei_shop_saler', array('mobile' => $mobile), array('openid' => $_W['openid']));
 
         show_json(1);
     }
