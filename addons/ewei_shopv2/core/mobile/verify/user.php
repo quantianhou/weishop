@@ -14,10 +14,10 @@ class User_EweiShopV2Page extends MobilePage
         $uniacid = $_W['uniacid'];
 
         //判断当期啊openid 有没有绑定过核销员的身份
-        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where openid=:openid and uniacid=:uniacid limit 1', array(':openid' => $openid, ':uniacid' => $_W['uniacid']));
+        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where openid=:openid limit 1', array(':openid' => $openid));
 
         //信息不全去ewei_shop_member寻找信息
-        if(empty($userInfo) || !isset($userInfo['mobile'])){
+        if(empty($userInfo) || (!empty($userInfo) && $userInfo['mobile'] <= 0)){
             $menberInfo = pdo_fetch('select * from ' . tablename('ewei_shop_member') . ' where openid=:openid and uniacid=:uniacid limit 1', array(':openid' => $openid, ':uniacid' => $_W['uniacid']));
             //查询到对应信息
             if(!empty($menberInfo)){
@@ -39,17 +39,53 @@ class User_EweiShopV2Page extends MobilePage
         }
 
         //重新获取
-        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where openid=:openid and uniacid=:uniacid limit 1', array(':openid' => $openid, ':uniacid' => $_W['uniacid']));
+        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where openid=:openid limit 1', array(':openid' => $openid));
 
         //获取卡种id
         $storesql = 'SELECT * FROM ' . tablename('ewei_shop_sysset') . ' WHERE uniacid = ' . intval($_W['uniacid']);
         $store = pdo_fetch($storesql);
         $storeInfo = iunserializer($store['sets']);
 
-        //echo '<p style="font-size: 60px;">'.$openid.'</p>';exit;
+
+        //通过手机号判断是否需要同步storeid
+        if($userInfo['storeid'] == 0 && $userInfo['mobile'] > 0){
+            $res = json_decode($this->http_get_data('http://47.98.124.157:8822/api/v1/employee/query_employee?employeePhone='.$userInfo['mobile']),true);
+            $thisitem = current($res['data']['items']);
+            if(isset($thisitem['storeNo'])){
+                //更新storeid 获取门店信息
+                $store = pdo_fetch('select * from ' . tablename('ewei_shop_store') . ' where erp_shop_code=:erp_shop_code limit 1', array(':erp_shop_code' => $thisitem['storeNo']));
+                if(!empty($store) && isset($store['id'])){
+                    //更新
+                    pdo_update('ewei_shop_saler', array('storeid' => $store['id'],'uniacid'=>$uniacid,'status' => 1), array('id' => $userInfo['id']));
+                }
+            }
+        }
+
+        //重新获取
+        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where openid=:openid limit 1', array(':openid' => $openid));
+
 
         include $this->template();
 
+    }
+
+    /**
+     * @param $url
+     * @return string
+     */
+
+    public function http_get_data($url)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        ob_start();
+        curl_exec($ch);
+        $return_content = ob_get_contents();
+        ob_end_clean();
+        $return_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        return $return_content;
     }
 
     /**
@@ -127,6 +163,46 @@ class User_EweiShopV2Page extends MobilePage
     }
 
     /**
+     * 发送电话
+     */
+    public function getcode(){
+
+        global $_W;
+        global $_GPC;
+
+        $mobile = $_GPC['mobile'];
+
+        $code = rand(1000,9999);
+
+        if(!preg_match('/\d{11}/',$mobile)){
+            show_json(0,'手机号错误');
+        }
+
+        if(time() - $_SESSION['code_time'] <= 60){
+            show_json(0,'一分钟只能发送一条');
+        }
+
+        //判断是否该手机号已经注册
+        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where mobile=:mobile limit 1', array(':mobile' => $mobile));
+
+        if(!empty($userInfo)){
+            show_json(10,'该手机号已注册');
+        }
+
+        $response = sendSms($mobile, 'SMS_145235565', array('code'=>$code));
+        if($response->Code =='OK'){
+            //成功
+            $_SESSION['code'] = $code;
+            $_SESSION['code_time'] = time();
+
+            show_json(1,'发送成功');
+        }else{
+            //发送失败，给前端报错
+            show_json(0,'发送失败');
+        }
+    }
+
+    /**
      * 绑定手机号
      */
     public function bind(){
@@ -135,26 +211,26 @@ class User_EweiShopV2Page extends MobilePage
         global $_GPC;
 
         $mobile = $_GPC['mobile'];
+        $code = $_GPC['code'];
 
         if(!preg_match('/\d{11}/',$mobile)){
             show_json(0,'手机号错误');
         }
 
+        //判断验证码
+        if(!$_SESSION['code'] || $_SESSION['code'] != $code){
+            show_json(0,'验证码错误');
+        }
+
         //判断是否该手机号已经注册
         $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where mobile=:mobile limit 1', array(':mobile' => $mobile));
 
-        if(empty($userInfo)){
-            show_json(10);
+        if(!empty($userInfo)){
+            show_json(10,'该手机号已注册');
         }
 
         //进行绑定
-        $log = array(
-            'uniacid' => $_W['uniacid'],
-            'openid' => $_W['openid'],
-            'mobile'=>$mobile,
-            'salername' => $_W['fans']['nickname']
-        );
-        pdo_insert('ewei_shop_saler', $log);
+        pdo_update('ewei_shop_saler', array('mobile' => $mobile), array('openid' => $_W['openid']));
 
         show_json(1);
     }
