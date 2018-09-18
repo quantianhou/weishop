@@ -64,7 +64,6 @@ class User_EweiShopV2Page extends MobilePage
         //重新获取
         $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where openid=:openid limit 1', array(':openid' => $openid));
 
-
         include $this->template();
 
     }
@@ -158,6 +157,33 @@ class User_EweiShopV2Page extends MobilePage
 
         //查询门店信息
         $storeInfo = pdo_fetch('select * from ' . tablename('ewei_shop_store') . ' where id=:id and uniacid=:uniacid limit 1', array(':id' => $userInfo['storeid'], ':uniacid' => $_W['uniacid']));
+
+        //获取推广二维码
+        $dirname = '../addons/ewei_shopv2/data/qrcode/' . $_W['uniacid'] . '/' . 'tuiguang/';
+
+        $url = $dirname . '/' . $userInfo['id'] . '.png';
+
+        if (!file_exists($url)){
+            $token = WeAccount::token();
+            $customMessageSendUrl = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=' . $token;
+            $postJosnData = '{"action_name": "QR_LIMIT_SCENE", "action_info": {"scene": {"scene_id": '.$userInfo['id'].'}}}';
+            $ch = curl_init($customMessageSendUrl);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postJosnData);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            $data = curl_exec($ch);
+            $ticket = json_decode($data, true);
+            $qr_url = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' . $ticket['ticket'];
+            load()->func('file');
+            mkdirs($dirname);
+            $fileContents = file_get_contents($qr_url);
+            file_put_contents($dirname . '/' . $userInfo['id'] . '.png', $fileContents);
+        }
+
+
 
         include $this->template();
     }

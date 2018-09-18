@@ -328,6 +328,8 @@ class WeEngine {
                     pdo_update('stat_fans', $updatestat, array('id' => $todaystat['id']));
                 }
             } elseif ($message['event'] == 'subscribe') {
+
+//                file_put_contents('duan.txt',var_export($message,true));
                 if (empty($todaystat)) {
                     $updatestat = array(
                         'new' => 1,
