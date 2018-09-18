@@ -194,8 +194,20 @@ class WeEngine {
                         $realname = $val['value'];
                     }
                 }
-                $arr = array('membercardid' => $message['cardid'], 'membercardcode' => $message['usercardcode'], 'membershipnumber' => $message['usercardcode'], 'membercardactive' => 1, 'birthyear' => $birthyear, 'birthmonth' => $birthmonth, 'birthday' => $birthday, 'carrier_mobile' => $mobile, 'realname' => $realname);
-                pdo_update('ewei_shop_member', $arr, array('openid' => $message['fromusername'], 'uniacid' => $_W['uniacid']));
+                $saler = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where mobile=:mobile limit 1', array(':mobile' => $mobile));
+                if(empty($saler)){
+                    //如果不存在店员，视为erp线下门店店员直接过来绑卡登陆，我插入一条店员，让小段去java同步店员数据
+                    $user['storeid'] = 0;
+                    $user['uniacid'] = 0;
+                    $user['openid'] = $message['fromusername'];
+                    $user['salername'] = $realname;
+                    $user['mobile'] = $mobile;
+                    $result = pdo_insert('ewei_shop_saler', $user);
+                }else{
+                    //如果存在店员，视为商家在b端后台店员管理录入了一条店员，只需要更新openid，因为b端后台录入的店员openid是对应商家自己公众号的，为了验权登录，得更新为d端公众号的openid
+                    $arr = array('openid' => $message['fromusername']);
+                    pdo_update('ewei_shop_saler', $arr, array('mobile' => $mobile));
+                }
                 exit();
             }
             $sessionid = md5($message['from'] . $message['to'] . $_W['uniacid']);
@@ -328,8 +340,6 @@ class WeEngine {
                     pdo_update('stat_fans', $updatestat, array('id' => $todaystat['id']));
                 }
             } elseif ($message['event'] == 'subscribe') {
-
-//                file_put_contents('duan.txt',var_export($message,true));
                 if (empty($todaystat)) {
                     $updatestat = array(
                         'new' => 1,
