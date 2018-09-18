@@ -340,6 +340,8 @@ class WeEngine {
                     pdo_update('stat_fans', $updatestat, array('id' => $todaystat['id']));
                 }
             } elseif ($message['event'] == 'subscribe') {
+//                file_put_contents('duan.txt',var_export($message,true),FILE_APPEND);
+                $this->savemessage($message);
                 if (empty($todaystat)) {
                     $updatestat = array(
                         'new' => 1,
@@ -428,6 +430,56 @@ class WeEngine {
                 pdo_insert('mc_mapping_fans', $rec);
             }
         }
+    }
+
+    private function savemessage($message){
+
+        global $_W;
+
+        $data = array(
+            'addtime' => time(),
+            'uniacid' => $_W['uniacid'],
+            'scene_id' => $message['scene'],
+            'scan_openid' => $message['from']
+        );
+
+        pdo_insert('ewei_subscribe', $data);
+
+    }
+
+    private function member($openid = '',$uniacid = 0){
+
+        if(!$openid || !$uniacid){
+            return false;
+        }
+
+        //扫码关注信息
+        $subscribe = pdo_fetch('SELECT * FROM ' .tablename('ewei_subscribe') . ' WHERE uniacid = :uniacid AND scan_openid = :scan_openid', array(':uniacid' => $uniacid,':scan_openid' => $openid));
+
+        if(empty($subscribe)){
+            return false;
+        }
+
+        //先获取父saler信息
+        $saler = pdo_fetch('SELECT * FROM ' .tablename('ewei_shop_saler') . ' WHERE id = :id', array(':id' => $subscribe['scene_id']));
+
+        //查询父member信息
+        $pMember = pdo_fetch('SELECT * FROM ' .tablename('ewei_shop_member') . ' WHERE uniacid = :uniacid AND openid = :openid', array(':uniacid' => $uniacid,':openid' => $saler['openid']));
+
+        //查询子member信息
+        $sMember = pdo_fetch('SELECT * FROM ' .tablename('ewei_shop_member') . ' WHERE uniacid = :uniacid AND openid = :openid', array(':uniacid' => $uniacid,':openid' => $subscribe['scan_openid']));
+
+        if(empty($pMember) || empty($sMember)){
+            return false;
+        }
+
+        //添加父子关系
+        if($sMember['agentid'] != 0){
+            return false;
+        }
+
+        pdo_update('ewei_shop_member', ['agentid' => $pMember['id'],'isagent' => 1], array('id' => $sMember['id']));
+        return true;
     }
 
     private function receive($par, $keyword, $response) {

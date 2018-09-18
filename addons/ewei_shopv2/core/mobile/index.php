@@ -17,7 +17,7 @@ class Index_EweiShopV2Page extends MobilePage
         }
 
 		//查看是否有cookie
-		$this_store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+		$this_store_id = $urlstoreid ?: $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
 		$lat = $_COOKIE[$_W['config']['cookie']['pre'] . 'lat'];
 		$lng = $_COOKIE[$_W['config']['cookie']['pre'] . 'lng'];
         $order  = '';
