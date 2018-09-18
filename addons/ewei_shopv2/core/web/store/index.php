@@ -15,8 +15,12 @@ class Index_EweiShopV2Page extends ComWebPage
 		global $_GPC;
 		$pindex = max(1, intval($_GPC['page']));
 		$psize = 20;
-		$paras = array(':uniacid' => $_W['uniacid']);
-		$condition = ' uniacid = :uniacid';
+        //fanhailong修改，因为a端录入门店时，商家可能还没有公众号，所以添加门店无法插入uniacid（公众号id），而这套改成了1个商家只能部署一个公众号，所以用a_merchant_id代替（商家id）
+        //$paras = array(':uniacid' => $_W['uniacid']);
+        //$condition = ' uniacid = :uniacid';
+        $paras = array(':a_merchant_id' => $_W['user']['a_merchant_id']);
+        $condition = ' a_merchant_id = :a_merchant_id';
+        
 		if (!(empty($_GPC['keyword']))) 
 		{
 			$_GPC['keyword'] = trim($_GPC['keyword']);
