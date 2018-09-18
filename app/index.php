@@ -20,6 +20,23 @@ if ($_W['setting']['copyright']['status'] == 1) {
 	$_W['siteclose'] = true;
 	message('抱歉，站点已关闭，关闭原因：' . $_W['setting']['copyright']['reason']);
 }
+
+//进商城的时候，根据当前公众号隶属的商家，去查当前商家下的门店记录，有没有公众号id为0的，如果有，更新为商家下的唯一公众号id
+$merchant_code_param[':uni_account_id'] = $_W['uniacid'];
+$sql = "SELECT merchant_code FROM ". tablename('b_users_uniaccount_relationship'). "  WHERE uni_account_id = :uni_account_id";
+$merchant_code = pdo_fetch($sql, $merchant_code_param);
+
+$merchant_param[':merchant_code'] = $merchant_code['merchant_code'];
+$sql = "SELECT id FROM ". tablename('a_merchant'). "  WHERE merchant_code = :merchant_code";
+$merchant_id = pdo_fetch($sql, $merchant_param);
+
+$need_update_param = array('a_merchant_id' => $merchant_id['id'], 'uniacid' => 0);
+$sql = "SELECT count(1) as c FROM ". tablename('ewei_shop_store'). "  WHERE a_merchant_id = :a_merchant_id AND uniacid = :uniacid";
+$need_update_count = pdo_fetch($sql, $need_update_param);
+if($need_update_count['c'] > 0){
+    $update_store_res = pdo_update('ewei_shop_store', array('uniacid' => $_W['uniacid']), array('a_merchant_id' => $merchant_id['id'], 'uniacid' => 0));
+}
+
 $multiid = intval($_GPC['t']);
 if(empty($multiid)) {
 		$multiid = intval($unisetting['default_site']);
