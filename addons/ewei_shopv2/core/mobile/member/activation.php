@@ -197,6 +197,8 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 					$this->sendGift($_W['openid']);
 				}
 				pdo_update('ewei_shop_member', array('membercardactive' => 1), array('openid' => $_W['openid'], 'uniacid' => $_W['uniacid']));
+
+				$this->member($_W['openid'],$_W['uniacid']);
 				show_json(1, '您的会员卡已成功激活');
 			}
 		}
@@ -271,5 +273,40 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 	{
 		$this->message(array('message' => '您的会员卡已成功激活!', 'title' => '激活成功!', 'buttondisplay' => true), mobileUrl('member'), 'success');
 	}
+
+    private function member($openid = '',$uniacid = 0){
+
+        if(!$openid || !$uniacid){
+            return false;
+        }
+
+        //扫码关注信息
+        $subscribe = pdo_fetch('SELECT * FROM ' .tablename('ewei_subscribe') . ' WHERE uniacid = :uniacid AND scan_openid = :scan_openid', array(':uniacid' => $uniacid,':scan_openid' => $openid));
+
+        if(empty($subscribe)){
+            return false;
+        }
+
+        //先获取父saler信息
+        $saler = pdo_fetch('SELECT * FROM ' .tablename('ewei_shop_saler') . ' WHERE id = :id', array(':id' => $subscribe['scene_id']));
+
+        //查询父member信息
+        $pMember = pdo_fetch('SELECT * FROM ' .tablename('ewei_shop_member') . ' WHERE uniacid = :uniacid AND carrier_mobile = :mobile', array(':uniacid' => $uniacid,':mobile' => $saler['mobile']));
+
+        //查询子member信息
+        $sMember = pdo_fetch('SELECT * FROM ' .tablename('ewei_shop_member') . ' WHERE uniacid = :uniacid AND openid = :openid', array(':uniacid' => $uniacid,':openid' => $subscribe['scan_openid']));
+
+        if(empty($pMember) || empty($sMember)){
+            return false;
+        }
+
+        //添加父子关系
+        if($sMember['agentid'] != 0){
+            return false;
+        }
+
+        pdo_update('ewei_shop_member', ['agentid' => $pMember['id'],'isagent' => 1], array('id' => $sMember['id']));
+        return true;
+    }
 }
 ?>
