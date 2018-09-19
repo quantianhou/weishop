@@ -28,6 +28,15 @@ class Saler_EweiShopV2Page extends ComWebPage
 		}
 		$sql = 'SELECT s.*,m.nickname,m.avatar,m.realname,store.storename FROM ' . tablename('ewei_shop_saler') . '  s ' . ' left join ' . tablename('ewei_shop_member') . ' m on s.openid=m.openid and m.uniacid = s.uniacid ' . ' left join ' . tablename('ewei_shop_store') . ' store on store.id=s.storeid ' . ' WHERE ' . $condition . ' ORDER BY id asc';
 		$list = pdo_fetchall($sql, $params);
+
+		foreach ($list as &$val){
+		    //通过手机号与商家信息
+            $pMember = pdo_fetch('SELECT * FROM ' .tablename('ewei_shop_member') . ' WHERE uniacid = :uniacid AND carrier_mobile = :mobile', array(':uniacid' => $_W['uniacid'],':mobile' => $val['mobile']));
+		    //获取下级数量
+            $info = m('plugin')->loadModel('commission')->getInfo($pMember['openid'], array('total', 'pay'));
+		    $val['xiaji'] = $info['agentcount'];
+		    $val['xiajiid'] = $pMember['id'];
+        }
 		include $this->template();
 	}
 	public function add() 

@@ -36,6 +36,11 @@ class Index_EweiShopV2Page extends MobilePage
 
         //获取门店信息
         $shopInfo || $shopInfo = pdo_fetch('select *  from ' . tablename('ewei_shop_store') . ' og  where og.id=:id ', array(':id' => $this_store_id));
+        //如果当前门店信息不隶属于当前商户 重新获取门店信息
+        if($shopInfo['uniacid'] != $_W['uniacid']){
+            isetcookie('store_id', 0, 7 * 86400);
+            exit('<script language="JavaScript">document.location.reload()</script>');
+        }
 
         $this->diypage('home');
 		$trade = m('common')->getSysset('trade');

@@ -119,7 +119,7 @@ class User_EweiShopV2Page extends MobilePage
 
         $paras = array(':uniacid' => $uniacid,':id' => $dataid);
 
-        $sql = 'select cd.*,c.couponname,from_unixtime(cd.usetime) as usetime from ' . tablename('ewei_shop_coupon_data') . ' cd LEFT JOIN '.tablename('ewei_shop_coupon').' c ON cd.couponid=c.id where cd.uniacid = :uniacid and cd.id=:id ORDER BY usetime DESC  ';
+        $sql = 'select cd.*,c.couponname,from_unixtime(cd.usetime) as usetime from,c.giftname' . tablename('ewei_shop_coupon_data') . ' cd LEFT JOIN '.tablename('ewei_shop_coupon').' c ON cd.couponid=c.id where cd.uniacid = :uniacid and cd.id=:id ORDER BY usetime DESC  ';
 
         $info = pdo_fetch($sql, $paras);
 
