@@ -122,15 +122,20 @@
             <th style='width:80px;'>获得方式</th>
             <th style='width:100px;'>获得时间</th>
             <th style='width:100px;'>使用时间</th>
-            <th style='width:180px;'>使用单号</th>
+            <th style='width:100px;'>使用单号</th>
+            <th style='width:100px;'>核销人</th>
+            <th style='width:100px;'>核销门店</th>
         </tr>
         </thead>
         <tbody>
         {loop $list $row}
         <tr>
 
-            <td>{if $row['coupontype']==0}
+            <td>
+                {if $row['coupontype']==0}
                 <label class='label label-success'>消费</label>
+                {else if $row['coupontype'] = 2}
+                <label class='label label-warning'>兑换</label>
                 {else}
                 <label class='label label-warning'>充值</label>
                 {/if}{$row['couponname']}
@@ -154,6 +159,21 @@
             </td>
 
             <td>{php echo empty($row['ordersn'])?'---':$row['ordersn']}</td>
+            <td>
+                {if isset($verify_list[$row['verify_openid']]) && !empty($verify_list[$row['verify_openid']])}
+                  {php echo $verify_list[$row['verify_openid']]['salername']}
+                {else}
+                 --
+                {/if}
+
+            </td>
+            <td>
+                {if isset($verify_list[$row['verify_openid']]) && !empty($verify_list[$row['verify_openid']])}
+                {php echo $verify_list[$row['verify_openid']]['storename']}
+                {else}
+                --
+                {/if}
+            </td>
 
 
         </tr>

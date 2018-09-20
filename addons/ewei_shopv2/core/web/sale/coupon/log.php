@@ -18,36 +18,36 @@ class Log_EweiShopV2Page extends ComWebPage
 		$condition = ' d.uniacid = :uniacid and d.merchid=0';
 		$params = array(':uniacid' => $_W['uniacid']);
 		$couponid = intval($_GPC['couponid']);
-		if (!(empty($couponid))) 
+		if (!(empty($couponid)))
 		{
 			$coupon = pdo_fetch('select * from ' . tablename('ewei_shop_coupon') . ' where id=:id and uniacid=:uniacid and merchid=0 limit 1', array(':id' => $couponid, ':uniacid' => $_W['uniacid']));
 			$condition .= ' AND c.id=' . intval($couponid);
 		}
 		$searchfield = strtolower(trim($_GPC['searchfield']));
 		$keyword = trim($_GPC['keyword']);
-		if (!(empty($searchfield)) && !(empty($keyword))) 
+		if (!(empty($searchfield)) && !(empty($keyword)))
 		{
-			if ($searchfield == 'member') 
+			if ($searchfield == 'member')
 			{
 				$condition .= ' and ( m.realname like :keyword or m.nickname like :keyword or m.mobile like :keyword)';
 			}
-			else if ($searchfield == 'coupon') 
+			else if ($searchfield == 'coupon')
 			{
 				$condition .= ' and c.couponname like :keyword';
 			}
 			$params[':keyword'] = '%' . $keyword . '%';
 		}
-		if (empty($starttime) || empty($endtime)) 
+		if (empty($starttime) || empty($endtime))
 		{
 			$starttime = strtotime('-1 month');
 			$endtime = time();
 		}
-		if (empty($starttime1) || empty($endtime1)) 
+		if (empty($starttime1) || empty($endtime1))
 		{
 			$starttime1 = strtotime('-1 month');
 			$endtime1 = time();
 		}
-		if (!(empty($_GPC['time']['start'])) && !(empty($_GPC['time']['end']))) 
+		if (!(empty($_GPC['time']['start'])) && !(empty($_GPC['time']['end'])))
 		{
 			$starttime = strtotime($_GPC['time']['start']);
 			$endtime = strtotime($_GPC['time']['end']);
@@ -55,7 +55,7 @@ class Log_EweiShopV2Page extends ComWebPage
 			$params[':starttime'] = $starttime;
 			$params[':endtime'] = $endtime;
 		}
-		if (!(empty($_GPC['time1']['start'])) && !(empty($_GPC['time1']['end']))) 
+		if (!(empty($_GPC['time1']['start'])) && !(empty($_GPC['time1']['end'])))
 		{
 			$starttime1 = strtotime($_GPC['time1']['start']);
 			$endtime1 = strtotime($_GPC['time1']['end']);
@@ -63,111 +63,141 @@ class Log_EweiShopV2Page extends ComWebPage
 			$params[':starttime1'] = $starttime1;
 			$params[':endtime1'] = $endtime1;
 		}
-		if ($_GPC['type'] != '') 
+		if ($_GPC['type'] != '')
 		{
 			$condition .= ' AND c.coupontype = :coupontype';
 			$params[':coupontype'] = intval($_GPC['type']);
 		}
-		if ($_GPC['used'] != '') 
+		if ($_GPC['used'] != '')
 		{
 			$condition .= ' AND d.used =' . intval($_GPC['used']);
 		}
-		if ($_GPC['gettype'] != '') 
+		if ($_GPC['gettype'] != '')
 		{
 			$condition .= ' AND d.gettype = :gettype';
 			$params[':gettype'] = intval($_GPC['gettype']);
 		}
-		$sql = 'SELECT d.*, c.coupontype,c.couponname,m.nickname,m.avatar,m.realname,m.mobile FROM ' . tablename('ewei_shop_coupon_data') . ' d ' . ' left join ' . tablename('ewei_shop_coupon') . ' c on d.couponid = c.id ' . ' left join ' . tablename('ewei_shop_member') . ' m on m.openid = d.openid and m.uniacid = d.uniacid ' . ' where  1 and ' . $condition . ' ORDER BY gettime DESC';
-		if (empty($_GPC['export'])) 
+		$sql = 'SELECT d.*, c.coupontype，c.type as coupon_type,c.couponname,m.nickname,m.avatar,m.realname,m.mobile FROM ' . tablename('ewei_shop_coupon_data') . ' d ' . ' left join ' . tablename('ewei_shop_coupon') . ' c on d.couponid = c.id ' . ' left join ' . tablename('ewei_shop_member') . ' m on m.openid = d.openid and m.uniacid = d.uniacid ' . ' where  1 and ' . $condition . ' ORDER BY gettime DESC';
+		if (empty($_GPC['export']))
 		{
 			$sql .= ' LIMIT ' . (($pindex - 1) * $psize) . ',' . $psize;
 		}
 		$list = pdo_fetchall($sql, $params);
-		foreach ($list as &$row ) 
+		foreach ($list as &$row )
 		{
 			$couponstr = '消费';
-			if ($row['coupontype'] == 1) 
+			if ($row['coupontype'] == 1)
 			{
 				$couponstr = '充值';
 			}
 			$row['couponstr'] = $couponstr;
-			if ($row['gettype'] == 0) 
+			if ($row['gettype'] == 0)
 			{
 				$row['gettypestr'] = '后台发放';
 			}
-			else if ($row['gettype'] == 1) 
+			else if ($row['gettype'] == 1)
 			{
 				$row['gettypestr'] = '领券中心';
 			}
-			else if ($row['gettype'] == 2) 
+			else if ($row['gettype'] == 2)
 			{
 				$row['gettypestr'] = '积分商城';
 			}
-			else if ($row['gettype'] == 3) 
+			else if ($row['gettype'] == 3)
 			{
 				$row['gettypestr'] = '任务海报';
 			}
-			else if ($row['gettype'] == 4) 
+			else if ($row['gettype'] == 4)
 			{
 				$row['gettypestr'] = '超级海报';
 			}
-			else if ($row['gettype'] == 5) 
+			else if ($row['gettype'] == 5)
 			{
 				$row['gettypestr'] = '活动海报';
 			}
-			else if ($row['gettype'] == 6) 
+			else if ($row['gettype'] == 6)
 			{
 				$row['gettypestr'] = '任务发送';
 			}
-			else if ($row['gettype'] == 7) 
+			else if ($row['gettype'] == 7)
 			{
 				$row['gettypestr'] = '兑换中心';
 			}
-			else if ($row['gettype'] == 8) 
+			else if ($row['gettype'] == 8)
 			{
 				$row['gettypestr'] = '快速领取';
 			}
-			else if ($row['gettype'] == 9) 
+			else if ($row['gettype'] == 9)
 			{
 				$row['gettypestr'] = '收银台发送';
 			}
-			else if ($row['gettype'] == 10) 
+			else if ($row['gettype'] == 10)
 			{
 				$row['gettypestr'] = '微信会员卡激活发送';
 			}
-			else if ($row['gettype'] == 11) 
+			else if ($row['gettype'] == 11)
 			{
 				$row['gettypestr'] = '直播间领取优惠券';
 			}
-			else if ($row['gettype'] == 12) 
+			else if ($row['gettype'] == 12)
 			{
 				$row['gettypestr'] = '直播间推送优惠券';
 			}
-			else if ($row['gettype'] == 13) 
+			else if ($row['gettype'] == 13)
 			{
 				$row['gettypestr'] = '口令优惠券';
 			}
-			else if ($row['gettype'] == 14) 
+			else if ($row['gettype'] == 14)
 			{
 				$row['gettypestr'] = '新人领券';
 			}
-			else if ($row['gettype'] == 15) 
+			else if ($row['gettype'] == 15)
 			{
 				$row['gettypestr'] = '发券分享';
 			}
+
 		}
+		$verify_openids = array_column($list,'verify_openid');
+		$verify_list = [];
+		//拼装核销人员和核销门店
+        if(!empty($verify_openids))
+        {
+            $verify_where_str = '';
+            foreach($verify_openids as $val)
+            {
+                if(!empty($val))
+                {
+                    $verify_where_str .= "'".$val."',";
+                }
+            }
+            $verify_where_str = trim($verify_where_str,',');
+            $info = [];
+            if(!empty($verify_where_str))
+            {
+                $verify_sql = 'SELECT s.openid as openid , s.salername as salername , t.storename as storename  FROM ' . tablename('ewei_shop_saler') . ' s ' . ' left join ' . tablename('ewei_shop_store') . ' t on s.storeid = t.id   where  s.openid in  (' . $verify_where_str . ')';
+                $info = pdo_fetchall($verify_sql);
+                if(!empty($info))
+                {
+                    foreach($info as $k => $v)
+                    {
+                        $verify_list[$v['openid']] = $v;
+                    }
+                }
+            }
+        }
+
 		unset($row);
-		if ($_GPC['export'] == 1) 
+		if ($_GPC['export'] == 1)
 		{
 			ca('coupon.log.export');
-			foreach ($list as &$row ) 
+			foreach ($list as &$row )
 			{
 				$row['gettime'] = date('Y-m-d H:i', $row['gettime']);
-				if (!(empty($row['usetime']))) 
+				if (!(empty($row['usetime'])))
 				{
 					$row['usetime'] = date('Y-m-d H:i', $row['usetime']);
 				}
-				else 
+				else
 				{
 					$row['usetime'] = '---';
 				}
