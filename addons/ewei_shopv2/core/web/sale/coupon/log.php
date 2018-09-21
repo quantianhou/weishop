@@ -77,7 +77,7 @@ class Log_EweiShopV2Page extends ComWebPage
 			$condition .= ' AND d.gettype = :gettype';
 			$params[':gettype'] = intval($_GPC['gettype']);
 		}
-		$sql = 'SELECT d.*, c.coupontype，c.type as coupon_type,c.couponname,m.nickname,m.avatar,m.realname,m.mobile FROM ' . tablename('ewei_shop_coupon_data') . ' d ' . ' left join ' . tablename('ewei_shop_coupon') . ' c on d.couponid = c.id ' . ' left join ' . tablename('ewei_shop_member') . ' m on m.openid = d.openid and m.uniacid = d.uniacid ' . ' where  1 and ' . $condition . ' ORDER BY gettime DESC';
+		$sql = 'SELECT d.*, c.coupontype,c.type as coupon_type,c.couponname,m.nickname,m.avatar,m.realname,m.mobile FROM ' . tablename('ewei_shop_coupon_data') . ' d ' . ' left join ' . tablename('ewei_shop_coupon') . ' c on d.couponid = c.id ' . ' left join ' . tablename('ewei_shop_member') . ' m on m.openid = d.openid and m.uniacid = d.uniacid ' . ' where  1 and ' . $condition . ' ORDER BY gettime DESC';
 		if (empty($_GPC['export']))
 		{
 			$sql .= ' LIMIT ' . (($pindex - 1) * $psize) . ',' . $psize;
