@@ -356,7 +356,45 @@ class WeUtility {
     }
 
 
-    public static function createModuleProcessor($name) {
+    public static function createModuleProcessor($name,$parse = '') {
+        global $_W;
+        static $file;
+        $classname = "{$name}ModuleProcessor";
+        if(!class_exists($classname)) {
+            if($parse == 'cmlove')
+            {
+                $file = IA_ROOT . "/framework/builtin/{$name}/cmlove.php";
+            }else{
+                $file = IA_ROOT . "/addons/{$name}/processor.php";
+                if(!is_file($file)) {
+                    $file = IA_ROOT . "/framework/builtin/{$name}/processor.php";
+                }
+                if(!is_file($file)) {
+                    trigger_error('ModuleProcessor Definition File Not Found '.$file, E_USER_WARNING);
+                    return null;
+                }
+            }
+            require $file;
+        }
+        if(!class_exists($classname)) {
+            trigger_error('ModuleProcessor Definition Class Not Found', E_USER_WARNING);
+            return null;
+        }
+        $o = new $classname();
+        $o->uniacid = $o->weid = $_W['uniacid'];
+        $o->modulename = $name;
+        $o->module = module_fetch($name);
+        $o->__define = $file;
+        self::defineConst($o);
+        if($o instanceof WeModuleProcessor) {
+            return $o;
+        } else {
+            trigger_error('ModuleProcessor Class Definition Error', E_USER_WARNING);
+            return null;
+        }
+    }
+
+    public static function createCmloveModuleProcessor($name) {
         global $_W;
         static $file;
         $classname = "{$name}ModuleProcessor";
@@ -814,6 +852,39 @@ abstract class WeModuleProcessor extends WeBase {
         return $response;
     }
 
+    protected function respTextCmlove($content) {
+        if (empty($content)) {
+            return error(-1, 'Invaild value');
+        }
+        $resp = [];
+        foreach($content as $v)
+        {
+            if(stripos($v,'./') !== false) {
+                preg_match_all('/<a .*?href="(.*?)".*?>/is',$v,$urls);
+                if (!empty($urls[1])) {
+                    foreach ($urls[1] as $url) {
+                        $v = str_replace($url, $this->buildSiteUrl($url), $v);
+                    }
+                }
+            }
+            $v = str_replace("\r\n", "\n", $v);
+            $response = array();
+            $response['FromUserName'] = $this->message['to'];
+            $response['ToUserName'] = $this->message['from'];
+            $response['MsgType'] = 'text';
+            $response['Content'] = htmlspecialchars_decode($v);
+            preg_match_all('/\[U\+(\\w{4,})\]/i', $response['Content'], $matchArray);
+            if(!empty($matchArray[1])) {
+                foreach ($matchArray[1] as $emojiUSB) {
+                    $response['Content'] = str_ireplace("[U+{$emojiUSB}]", utf8_bytes(hexdec($emojiUSB)), $response['Content']);
+                }
+            }
+            $resp[] = $response;
+        }
+
+        return $resp;
+    }
+
     protected function respImage($mid) {
         if (empty($mid)) {
             return error(-1, 'Invaild value');
@@ -826,6 +897,25 @@ abstract class WeModuleProcessor extends WeBase {
         return $response;
     }
 
+    protected function respImageCmlove($mid) {
+        if (empty($mid)) {
+            return error(-1, 'Invaild value');
+        }
+        $resp = [];
+
+        foreach($mid as $v)
+        {
+            $response = array();
+            $response['FromUserName'] = $this->message['to'];
+            $response['ToUserName'] = $this->message['from'];
+            $response['MsgType'] = 'image';
+            $response['Image']['MediaId'] = $v['mediaid'];
+            $resp[] = $response;
+        }
+
+        return $resp;
+    }
+
     protected function respVoice($mid) {
         if (empty($mid)) {
             return error(-1, 'Invaild value');
@@ -836,6 +926,26 @@ abstract class WeModuleProcessor extends WeBase {
         $response['MsgType'] = 'voice';
         $response['Voice']['MediaId'] = $mid;
         return $response;
+    }
+
+    protected function respVoiceCmlove($mid) {
+        if (empty($mid)) {
+            return error(-1, 'Invaild value');
+        }
+
+        $resp = [];
+
+        foreach($mid as $v)
+        {
+            $response = array();
+            $response['FromUserName'] = $this->message['to'];
+            $response['ToUserName'] = $this->message['from'];
+            $response['MsgType'] = 'voice';
+            $response['Image']['MediaId'] = $v['mediaid'];
+            $resp[] = $response;
+        }
+
+        return $resp;
     }
 
     //fanhailong add
@@ -857,6 +967,18 @@ abstract class WeModuleProcessor extends WeBase {
         $account_api = WeAccount::create($_W['acid']);file_put_contents("fana.txt", var_export($_W, true),FILE_APPEND);
         $result = $account_api->sendCustomNotice($card_data);
         exit;
+    }
+
+    protected function respWxcardCmlove($cardid) {
+        if (empty($cardid)) {
+            return error(-1, 'Invaild value');
+        }
+
+        $card_data = array();
+        $card_data['touser'] = $this->message['from'];
+        $card_data['msgtype'] = 'wxcard';
+        $card_data['wxcard'] = array("card_id"=>$cardid);
+        return $card_data;
     }
 
     protected function respVideo(array $video) {
@@ -904,7 +1026,7 @@ abstract class WeModuleProcessor extends WeBase {
             return error(-1, 'Invaild value');
         }
         $news = array_change_key_case($news);
-        if (!empty($news['title'])) {
+        if (!empty($news['titlxe'])) {
             $news = array($news);
         }
         $response = array();
