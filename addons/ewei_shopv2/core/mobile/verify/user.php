@@ -138,9 +138,32 @@ class User_EweiShopV2Page extends MobilePage
         $dataid = $_GPC['dataid'];
 
         $paras = array(':uniacid' => $uniacid,':id' => $dataid);
-
+        $coupon_data = pdo_fetch('select * from '.tablename('ewei_shop_coupon').' where id=:id limit 1',[':id'=>$dataid]);
         pdo_update('ewei_shop_coupon_data', array('usetime' => time(),'verify_openid'=>$_W['openid']), array('id' => $dataid));
 
+        //优惠券信息
+        if(!empty($coupon_data))
+        {
+            $coupon_info = pdo_fetch('select * from '.tablename('ewei_shop_coupon').' where id=:id limit 1',[':id'=>$coupon_data['couponid']]);
+            $postdata = [
+                'first' => ['value' => '您的优惠券已经核销成功，期待再次光临！','color' => '#173177'],
+                'keyword1' => ['value' => $coupon_info['couponname'],'color' => '#173177'],
+                'keyword2' => ['value' => $coupon_data['qrcode'],'color' => '#173177'],
+                'keyword3' => ['value' => date("Y-m-d H:i:s"),'color' => '#173177'],
+                'keyword4' => ['value' => '测试门店','color' => '#173177'],
+                'remark' => ['value' => '感谢您的使用','color' => '#173177']
+            ];
+            $data['touser'] = $coupon_data['openid'];
+            $data['template_id'] = 'OPENTM409583769';
+            $data['data'] = $postdata;
+            $data = json_encode($data);
+            $token = $token = WeAccount::token();
+            $post_url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={$token}";
+            $response = ihttp_request($post_url, $data);
+            if(is_error($response)) {
+                return error(-1, "访问公众平台接口失败, 错误: {$response['message']}");
+            }
+        }
         include $this->template();
     }
 
