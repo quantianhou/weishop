@@ -144,13 +144,23 @@ class User_EweiShopV2Page extends MobilePage
         //优惠券信息
         if(!empty($coupon_data))
         {
+            $store_name = '门店';
+            $saler = pdo_fetch('select storeid from '.tablename('ewei_shop_saler') .' where openid=:openid limit 1',[':openid' => $_W['openid']]);
+            if(!empty($saler))
+            {
+                $storename = pdo_fetch('select storename from '.tablename('ewei_shop_store') .' where storeid=:storeid limit 1',[':openid' => $saler['storeid']]);
+                if(!empty($storename))
+                {
+                    $store_name = $storename['storename'];
+                }
+            }
             $coupon_info = pdo_fetch('select * from '.tablename('ewei_shop_coupon').' where id=:id limit 1',[':id'=>$coupon_data['couponid']]);
             $postdata = [
                 'first' => ['value' => '您的优惠券已经核销成功，期待再次光临！','color' => '#173177'],
                 'keyword1' => ['value' => $coupon_info['couponname'],'color' => '#173177'],
                 'keyword2' => ['value' => $coupon_data['qrcode'],'color' => '#173177'],
                 'keyword3' => ['value' => date("Y-m-d H:i:s"),'color' => '#173177'],
-                'keyword4' => ['value' => '测试门店','color' => '#173177'],
+                'keyword4' => ['value' => $store_name,'color' => '#173177'],
                 'remark' => ['value' => '感谢您的使用','color' => '#173177']
             ];
             $data['touser'] = $coupon_data['openid'];
