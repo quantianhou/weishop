@@ -976,7 +976,7 @@ abstract class WeModuleProcessor extends WeBase {
 
         $card_data = array();
         $card_data['touser'] = $this->message['from'];
-        $card_data['msgtype'] = 'wxcard';
+        $card_data['MsgType'] = 'wxcard';
         $card_data['wxcard'] = array("card_id"=>$cardid);
         return $card_data;
     }
