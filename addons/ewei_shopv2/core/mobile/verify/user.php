@@ -148,7 +148,7 @@ class User_EweiShopV2Page extends MobilePage
             $saler = pdo_fetch('select storeid from '.tablename('ewei_shop_saler') .' where openid=:openid limit 1',[':openid' => $_W['openid']]);
             if(!empty($saler))
             {
-                $storename = pdo_fetch('select storename from '.tablename('ewei_shop_store') .' where storeid=:storeid limit 1',[':openid' => $saler['storeid']]);
+                $storename = pdo_fetch('select storename from '.tablename('ewei_shop_store') .' where id=:storeid limit 1',[':storeid' => $saler['storeid']]);
                 if(!empty($storename))
                 {
                     $store_name = $storename['storename'];
@@ -164,7 +164,7 @@ class User_EweiShopV2Page extends MobilePage
                 'remark' => ['value' => '感谢您的使用','color' => '#173177']
             ];
             $data['touser'] = $coupon_data['openid'];
-            $data['template_id'] = 'OPENTM409583769';
+            $data['template_id'] = '0-JpjcpxM6VnqTpCU-VhobOQOFf9TA3Cp23VZVJilhE';
             $data['data'] = $postdata;
             $data = json_encode($data);
             $token = $token = WeAccount::token();

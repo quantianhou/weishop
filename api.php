@@ -168,6 +168,7 @@ class WeEngine {
                 $this->receive(array(), array(), array());
                 exit();
             }
+
             //fanhailong add 当【君梓店员之家】公众号下的用户（就是店员）领取会员卡并填写信息激活后，走入此逻辑
             if($message['event'] == 'submit_membercard_user_info' && $message['tousername'] == 'gh_8ec8dbfd8d99') {
                 file_put_contents("fanwx.txt", var_export($message, true), FILE_APPEND);
@@ -228,6 +229,112 @@ class WeEngine {
 
             $hitKeyword = array();
             $response = array();
+
+            //关注之后回复
+            if($message['event'] == 'subscribe')
+            {
+                foreach($pars as $par) {
+                    if(empty($par['module'])) {
+                        continue;
+                    }
+                    $par['message'] = $message;
+                    $response = $this->process($par,'cmlove');
+                    if($this->isValidResponse($response)) {
+                        $hitParam = $par;
+                        if(!empty($par['keyword'])) {
+                            $hitKeyword = $par['keyword'];
+                        }
+                        break;
+                    }
+                }
+
+                if(!empty($response))
+                {
+                    $resp_data =[];
+                    foreach($response as $k => $v)
+                    {
+                        $tmp_data = [];
+                        switch ($v['MsgType'])
+                        {
+                            case 'text':
+                                $tmp_data['touser'] = $v['ToUserName'];
+                                $tmp_data['msgtype'] = 'text';
+                                $tmp_data['text']['content'] = $v['Content'];
+                                break;
+                            case 'image':
+                                $tmp_data['touser'] = $v['ToUserName'];
+                                $tmp_data['msgtype'] = 'image';
+                                $tmp_data['image']['media_id'] = $v['Image']['MediaId'];
+                                break;
+                            case 'music':
+                                $tmp_data['touser'] = $v['ToUserName'];
+                                $tmp_data['msgtype'] = 'text';
+                                $tmp_data['music'] = [
+                                    'title' => $v['Music']['Title'],
+                                    'description' => $v['Music']['Description'],
+                                    'musicurl' => $v['Music']['MusicUrl'],
+                                    'hqmusicurl' => $v['Music']['HQMusicUrl'],
+                                    'thumb_media_id' => $v['Music']['ThumbMediaId'],
+                                ];
+                                break;
+                            case 'news':
+                                $tmp_data['touser'] = $v['ToUserName'];
+                                $tmp_data['msgtype'] = 'news';
+                                foreach($v['Articles'] as $nk => $nv)
+                                {
+                                    $tmp = [];
+                                    $tmp = [
+                                        'title' => $nv['Title'],
+                                        'description' => $nv['Description'],
+                                        'url' => $nv['Url'],
+                                        'picurl' => $nv['PicUrl'],
+
+                                    ];
+                                    $tmp_data['news']['articles'][] = $tmp;
+                                }
+                                break;
+                            case 'voice':
+                                $tmp_data['touser'] = $v['ToUserName'];
+                                $tmp_data['msgtype'] = 'voice';
+                                $tmp_data['voice']['media_id'] = $v['Image']['MediaId'];
+                                break;
+                            case 'video':
+                                $tmp_data['touser'] = $v['ToUserName'];
+                                $tmp_data['msgtype'] = 'video';
+                                $tmp_data['video'] = [
+                                    'media_id' => $v['Video']['MediaId'],
+                                    'thumb_media_id' => '',
+                                    'title' => $v['Video']['Title'],
+                                    'description' => $v['Video']['Description'],
+                                ];
+                                break;
+                            case 'wxcard':
+                                $tmp_data['touser'] = $v['ToUserName'];
+                                $tmp_data['msgtype'] = 'wxcard';
+                                $tmp_data['wxcard']['card_id'] = $v['wxcard']['card_id'];
+                                break;
+                        }
+
+                        $resp_data[] = $tmp_data;
+                    }
+
+                    if(!empty($resp_data))
+                    {
+                        $token = $this->account->getAccessToken();
+                        $url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=". $token;
+                        $resp_log = [];
+                        foreach($resp_data as $k => $v)
+                        {
+                            $log_tmp = [];
+                            $log_tmp['res'] = ihttp_request($url, urldecode(json_encode($v)));
+                            $log_tmp['info'] = $v;
+                            $resp_log[] = $log_tmp;
+                            file_put_contents('./log/wx'.date('Ymd').'.log',json_encode($resp_log)."\r\n",FILE_APPEND);
+                        }
+                    }
+                    exit();
+                }
+            }
 
             //关键词回复
             if($message['msgtype'] == 'text')
