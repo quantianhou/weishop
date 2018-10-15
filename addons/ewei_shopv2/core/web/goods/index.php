@@ -278,6 +278,19 @@ class Index_EweiShopV2Page extends WebPage
 		show_json(1);
 	}
 
+    /**
+     * 修改
+     */
+    public function edit()
+    {
+        $this->post();
+    }
+
+    protected function post()
+    {
+        require dirname(__FILE__) . '/post_sale.php';
+    }
+
 	public function change()
 	{
 		global $_W;

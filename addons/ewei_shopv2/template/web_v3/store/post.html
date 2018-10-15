@@ -19,7 +19,7 @@
 
 </style>
 <div class="page-header">
-    当前位置：<span class="text-primary">{if !empty($item['id'])}编辑{else}添加{/if}门店
+    当前f位置：<span class="text-primary">{if !empty($item['id'])}编辑{else}添加{/if}门店
         <small>{if !empty($item['id'])}修改【{$item['storename']}】{/if}</small>
     </span>
 </div>
@@ -353,6 +353,22 @@
             </label>
             <label class='radio-inline'>
                 <input type='radio' name='status' value=0' {if $item['status']==0}checked{/if} /> 禁用
+            </label>
+            {else}
+            <div class='form-control-static'>{if $item['status']==1}启用{else}禁用{/if}</div>
+            {/if}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg control-label">是否产生分销</label>
+        <div class="col-sm-9 col-xs-12">
+            {ife 'store' $item}
+            <label class='radio-inline'>
+                <input type='radio' name='is_fenxiao' value=1' {if $item['is_fenxiao']==1}checked{/if} /> 是
+            </label>
+            <label class='radio-inline'>
+                <input type='radio' name='is_fenxiao' value=0' {if $item['is_fenxiao']==0}checked{/if} /> 否
             </label>
             {else}
             <div class='form-control-static'>{if $item['status']==1}启用{else}禁用{/if}</div>

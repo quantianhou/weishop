@@ -64,7 +64,7 @@ class Saler_EweiShopV2Page extends ComWebPage
 		}
 		if ($_W['ispost']) 
 		{
-			$data = array('uniacid' => $_W['uniacid'], 'storeid' => intval($_GPC['storeid']), 'openid' => trim($_GPC['openid']), 'status' => intval($_GPC['status']), 'salername' => trim($_GPC['salername']), 'mobile' => trim($_GPC['mobile']), 'roleid' => intval($_GPC['roleid']));
+			$data = array('uniacid' => $_W['uniacid'], 'is_header' => intval($_GPC['is_header']),'storeid' => intval($_GPC['storeid']), 'openid' => trim($_GPC['openid']), 'status' => intval($_GPC['status']), 'salername' => trim($_GPC['salername']), 'mobile' => trim($_GPC['mobile']), 'roleid' => intval($_GPC['roleid']));
 			if (p('newstore')) 
 			{
 				$data['getnotice'] = intval($_GPC['getnotice']);
@@ -81,6 +81,7 @@ class Saler_EweiShopV2Page extends ComWebPage
 					}
 					$data['username'] = $_GPC['username'];
 				}
+
 				if (!(empty($_GPC['pwd']))) 
 				{
 					$salt = random(8);
@@ -102,6 +103,21 @@ class Saler_EweiShopV2Page extends ComWebPage
 					show_json(0, '用户密码不能为空!');
 				}
 			}
+
+            if(empty($_GPC['storeid'])){
+                if (empty($_GPC['storeid']))
+                {
+                    show_json(0, '请选择所属门店!');
+                }
+            }
+
+            if($_GPC['is_header'] == 1){
+                //判断是否还有店长
+                $hasHeader = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_saler') . ' WHERE uniacid=:uniacid AND storeid=:storeid AND is_header=1 AND id!=:id limit 1', array(':uniacid' => $_W['uniacid'], ':storeid' => $_GPC['storeid'],':id' => $id));
+
+                $hasHeader && show_json(0, '已有一位店长，请先撤销当前店长!');
+            }
+
 			$m = m('member')->getMember($data['openid']);
 			if (!(empty($id))) 
 			{
