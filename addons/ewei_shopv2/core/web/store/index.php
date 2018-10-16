@@ -53,6 +53,54 @@ class Index_EweiShopV2Page extends ComWebPage
 	{
 		$this->post();
 	}
+	public function setrelation(){
+	    //获取当前商家的门店
+        global $_W;
+        global $_GPC;
+
+        //$paras = array(':uniacid' => $_W['uniacid']);
+        //$condition = ' uniacid = :uniacid';
+        $paras = array(':a_merchant_id' => $_W['user']['a_merchant_id']);
+        $condition = ' a_merchant_id = :a_merchant_id';
+
+        $sql = 'SELECT * FROM ' . tablename('ewei_shop_store') . ' WHERE ' . $condition . ' ORDER BY displayorder desc,id desc';
+
+        $list = pdo_fetchall($sql, $paras);
+        foreach ($list as $val){
+            //设置每一家的分销关系
+            //找出店长
+            $sql = 'SELECT m.* FROM ' . tablename('ewei_shop_saler') . ' s LEFT JOIN ' . tablename('ewei_shop_member') . ' m ON s.uniacid=m.uniacid AND s.openid=m.openid WHERE s.storeid='.$val['id'].' AND s.is_header=1';
+            $header = pdo_fetchall($sql, $paras);
+
+            if(empty($header)){
+                continue;
+            }
+            //找出店员
+            $sql = 'SELECT m.* FROM ' . tablename('ewei_shop_saler') . ' s LEFT JOIN ' . tablename('ewei_shop_member') . ' m ON s.uniacid=m.uniacid AND s.openid=m.openid WHERE s.storeid='.$val['id'].' AND s.is_header=0';
+            $salers = pdo_fetchall($sql, $paras);
+
+            if(empty($salers)){
+                continue;
+            }
+            //设置店长顶级分销商
+            pdo_update('ewei_shop_member', [
+                'agentid' => 0,
+                'isagent' => 1,
+                'fixagentid' => 1
+            ], array('id' => $header[0]['id']));
+
+            //设置店员子集分销商
+            foreach ($salers as $v){
+                pdo_update('ewei_shop_member', [
+                    'agentid' => $header[0]['id'],
+                    'isagent' => 1,
+                    'fixagentid' => 1
+                ], array('id' => $v['id']));
+            }
+        }
+        show_json(1);
+
+    }
 	protected function post() 
 	{
 		global $_W;
