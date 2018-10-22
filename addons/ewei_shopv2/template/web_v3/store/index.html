@@ -14,7 +14,7 @@
                             <div class="col-sm-6">
                                 {ifp 'store.add'}
                                 <a class='btn btn-primary btn-sm' href="{php echo webUrl('store/add')}"><i class='fa fa-plus'></i> 添加门店</a>
-                                <a class='btn btn-primary btn-sm' data-toggle='batch' data-confirm="确认要设置?" disabled="false" data-href="{php echo webUrl('store/setrelation')}"><i class='fa fa-plus'></i> 一键设置分销关系</a>
+                                <a class='btn btn-primary btn-sm' data-toggle='batch' data-confirm="确认要设置?" data-href="{php echo webUrl('store/setrelation')}"><i class='fa fa-plus'></i> 一键设置分销关系</a>
                                 {/if}
                             </div>
                             <div class="col-sm-6 pull-right">
@@ -176,3 +176,9 @@
 {/if}
     </div>
 {template '_footer'}
+<script>
+    setInterval(function () {
+        $('.btn-primary').removeAttr('disabled');
+    },500)
+
+</script>
