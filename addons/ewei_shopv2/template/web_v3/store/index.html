@@ -12,10 +12,10 @@
                    <input type="hidden" name="r" value="store" />
             <div class="page-toolbar">
                             <div class="col-sm-6">
-                                {ifp 'store.add'}
-                                <a class='btn btn-primary btn-sm' href="{php echo webUrl('store/add')}"><i class='fa fa-plus'></i> 添加门店</a>
+                                {ifp 'store.add' && 0}
+                                <a class='btn btn-primary btn-sm' href="{php echo webUrl('store/add')}"><i class='fa fa-plus'></i> 添加门店</a>{/if}
                                 <a class='btn btn-primary btn-sm' data-toggle='batch' data-confirm="确认要设置?" data-href="{php echo webUrl('store/setrelation')}"><i class='fa fa-plus'></i> 一键设置分销关系</a>
-                                {/if}
+
                             </div>
                             <div class="col-sm-6 pull-right">
 				                <div class="input-group">
