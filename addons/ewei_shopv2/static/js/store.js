@@ -79,7 +79,7 @@ function selectBranch($this) {
     } else {
         showName = name;
     }
-    var vHtml = '<li class="showLiClass"><input type="hidden" value="'+data+'" name="storeid[]"><span title="'
+    var vHtml = '<li class="showLiClass" style="clear: both"><input type="hidden" value="'+data+'" name="storeid[]"><span style="float: left;display: inline-block" title="'
         + name
         + '" data="'
         + data
