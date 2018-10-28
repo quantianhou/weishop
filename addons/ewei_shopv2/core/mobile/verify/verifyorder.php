@@ -29,7 +29,8 @@ class Verifyorder_EweiShopV2Page extends MobilePage
 		$pindex = max(1, intval($_GPC['page']));
 		$psize = 20;
 		$condition = ' o.uniacid = :uniacid and o.ismr=0 and o.deleted=0 and o.isparent=0 ';
-		$uniacid = $_W['uniacid'];
+        $saler_info = pdo_fetch('select uniacid from ' . tablename('ewei_shop_saler') . ' where d_openid=:openid limit 1', array(':openid' => $_W['openid']));
+        $uniacid = $saler_info['uniacid'];
 		$paras = $paras1 = array(':uniacid' => $uniacid);
 		$condition .= ' AND ( o.status = 3 and (isverify=1 or o.istrade=1)) ';
 		if (!(empty($_GPC['searchfield'])) && !(empty($_GPC['keyword']))) 
@@ -836,7 +837,7 @@ class Verifyorder_EweiShopV2Page extends MobilePage
 		global $_GPC;
 		$id = intval($_GPC['id']);
 		$p = p('commission');
-		$item = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_order') . ' WHERE id = :id and uniacid=:uniacid', array(':id' => $id, ':uniacid' => $_W['uniacid']));
+        $item = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_order') . ' WHERE id = :id ', array(':id' => $id));
 		$item['statusvalue'] = $item['status'];
 		$item['paytypevalue'] = $item['paytype'];
 		$order_goods = array();
