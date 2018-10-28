@@ -6,6 +6,66 @@ if (!(defined('IN_IA')))
 class Shop_EweiShopV2Page extends WebPage
 {
 
+    public function categorytoshop(){
+
+        global $_W;
+        global $_GPC;
+
+        $goodsids = $_GPC['goodsids'];
+        $categoryids = $_GPC['cates'];
+
+        if(empty($goodsids)){
+            show_json(0, '请选择门店！');
+        }
+
+        $sql = 'UPDATE ' . tablename('ewei_business_goods') . ' SET pcate=:pcate WHERE id IN (' . implode(',', $goodsids) . ')';
+        $paras = array(':pcate' => $categoryids);
+        $goodslist = pdo_fetch($sql, $paras);
+
+        show_json(1, '下发成功！');
+
+    }
+
+    public function pricetoshop(){
+        global $_W;
+        global $_GPC;
+
+        $goodsids = $_GPC['goodsids'];
+        $shopsids = $_GPC['cates'];
+        $iscover = $_GPC['iscover'];    //0下发选中 1全部下发
+
+        if(empty($shopsids)){
+            show_json(0, '请选择门店！');
+        }
+
+        if($iscover == 1){
+            //获取全部商品
+            $condition = ' uniacid = :uniacid';
+        }else{
+            $condition = ' uniacid = :uniacid and id IN (' . implode(',', $goodsids) . ')';
+        }
+        $sql = 'SELECT * FROM ' . tablename('ewei_business_goods') . ' WHERE ' . $condition;
+        $paras = array(':uniacid' => $_W['uniacid']);
+        $goodslist = pdo_fetchall($sql, $paras);
+
+        foreach ($shopsids as $val){
+            foreach ($goodslist as $goods){
+
+                //判断门店存在该商品
+                $sql = 'SELECT * FROM ' . tablename('ewei_shop_goods') . ' WHERE business_goods_id='.$goods['id'].' AND shop_id='.$val;
+                $hasgood = pdo_fetchall($sql, $paras);
+
+                if(empty($hasgood)){
+                    continue;
+                }
+                //修改价格
+                pdo_update('ewei_shop_goods', [ 'productprice' =>  $goods['productprice'], 'marketprice' =>  $goods['marketprice']], array('business_goods_id' => $goods['id'],'shop_id'=>$val));
+            }
+        }
+        show_json(1, '下发成功！');
+
+    }
+
     public function pushtoshop(){
         global $_W;
         global $_GPC;
@@ -116,7 +176,7 @@ class Shop_EweiShopV2Page extends WebPage
         unset($total_all);
 
         if (!empty($total)) {
-            $sql = 'SELECT g.* FROM ' . tablename('ewei_business_goods') . 'g' . $sqlcondition . $condition . $groupcondition . " ORDER BY g.`status` DESC, g.`displayorder` DESC,\r\n                g.`id` DESC LIMIT " . (($pindex - 1) * $psize) . ',' . $psize;
+            $sql = 'SELECT g.* FROM ' . tablename('ewei_business_goods') . 'g' . $sqlcondition . $condition . $groupcondition . " ORDER BY g.`status` ASC, g.`displayorder` ASC,\r\n                g.`id` DESC LIMIT " . (($pindex - 1) * $psize) . ',' . $psize;
             $list = pdo_fetchall($sql, $params);
 
             foreach ($list as $key => &$value) {

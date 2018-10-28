@@ -552,7 +552,7 @@
                                             }
 </style>
 <!--这里是切换药房层-->
-<div class="change_store">
+<div class="change_store" style="overflow-y: scroll;">
     <div class="headFixed">
         <!--顶部-->
         <div id="new_head">
@@ -574,7 +574,7 @@
             </div>
             <div class="store_info ng-scope">
                 {loop $shoplist $name $item}
-                <div class="store_li" onclick="window.location.href='/app/index.php?i=17&c=entry&m=ewei_shopv2&do=mobile&r=index'+'&storeid={$item['id']}'">
+                <div class="store_li" onclick="window.location.href='/app/index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=index'+'&storeid={$item['id']}'">
                     <img src="/attachment/{$item['logo']}" class="fl store_pic ng-isolate-scope" width="100%"/>
                     <div class="store_info_rt">
                         <h2 class="store_name oh">
@@ -610,21 +610,25 @@
 
     var geoc = new BMap.Geocoder();
     var geolocation = new BMap.Geolocation();
-    geolocation.getCurrentPosition(function(r){
-        if(this.getStatus() == BMAP_STATUS_SUCCESS){
-            $('#address_area').html(r.address.city + r.address.district + r.address.street);
-            var lat = r.point.lat;
-            var lng = r.point.lng;
 
-            cookie.set("{$prefix_cookie}lat",lat,100);
-            cookie.set("{$prefix_cookie}lng",lng,100);
-            $('.s_range').each(function () {
-                $(this).html((getFlatternDistance(lat*1,lng*1,$(this).attr('data-lat')*1,$(this).attr('data-lng')*1)/1000).toFixed(2)+'km')
-            });
-        }else {
-            alert("您的浏览器不支持获取地理位置。");
-        }
-    },{enableHighAccuracy: true});
+    if(!cookie.get("{$prefix_cookie}lat")){
+        geolocation.getCurrentPosition(function(r){
+            if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                $('#address_area').html(r.address.city + r.address.district + r.address.street);
+                var lat = r.point.lat;
+                var lng = r.point.lng;
+
+                cookie.set("{$prefix_cookie}lat",lat,7);
+                cookie.set("{$prefix_cookie}lng",lng,7);
+                $('.s_range').each(function () {
+                    $(this).html((getFlatternDistance(lat*1,lng*1,$(this).attr('data-lat')*1,$(this).attr('data-lng')*1)/1000).toFixed(2)+'km')
+                });
+            }else {
+                alert("您的浏览器不支持获取地理位置。");
+            }
+        },{enableHighAccuracy: true});
+    }
+
 
     var EARTH_RADIUS = 6378137.0;    //单位M
     var PI = Math.PI;

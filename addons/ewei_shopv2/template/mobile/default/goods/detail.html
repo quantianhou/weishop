@@ -819,10 +819,10 @@
 <div class="fui-cell-group fui-shop-group">
     <a class='fui-list' href="{$shopdetail['btnurl2']}">
         <div class='fui-list-media'>
-            <img data-lazy="{php echo tomedia($shopdetail['logo'])}" />
+            <img data-lazy="{php echo tomedia(($shopdetail['logo'] ?? $thisstore['logo']))}" />
         </div>
         <div class='fui-list-inner'>
-            <div class='title' style="{if p('offic')}display: none;{/if}">{$shopdetail['shopname']}</div>
+            <div class='title' style="{if p('offic')}display: none;{/if}">{$thisstore['storename']}</div>
             <div class='subtitle'>{$shopdetail['description']}</div>
         </div>
         <div class="fui-list-angle " style="margin-right: 0.2rem;{if p('offic')}display: none;{/if}">

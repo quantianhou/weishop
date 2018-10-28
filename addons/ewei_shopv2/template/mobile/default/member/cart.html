@@ -223,7 +223,7 @@
 				<label class="checkbox-inline editcheckall"><input type="checkbox" name="checkbox" class="fui-radio fui-radio-danger " />&nbsp;全选</label>
 			</div>
 			<div class="fui-list-media">
-				<label class="checkbox-inline checkall"><input type="checkbox" name="checkbox"
+				<label class="checkbox-inline checkall" style="display: none;"><input type="checkbox" name="checkbox"
 															   class="fui-radio fui-radio-danger " <%if ischeckall%>checked<%/if%>/>&nbsp;全选</label>
 			</div>
 			<div class="fui-list-inner">
@@ -264,11 +264,11 @@
         );
     });
 
-    $(document).on('click','.shopallinput',function(){
-        $(this).parent().parent().find('.check-item').each(function () {
-			$(this).click();
-        });
-	});
+    // $(document).on('click','.shopallinput',function(){
+    //     $(this).parent().parent().find('.check-item').each(function () {
+	// 		$(this).click();
+    //     });
+	// });
 </script>
 </div>
 

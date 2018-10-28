@@ -39,7 +39,7 @@ class User_EweiShopV2Page extends MobilePage
 //        }
 
         //重新获取
-        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where openid=:openid limit 1', array(':openid' => $openid));
+        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where d_openid=:openid limit 1', array(':openid' => $openid));
 
         //获取卡种id
         $storesql = 'SELECT * FROM ' . tablename('ewei_shop_sysset') . ' WHERE uniacid = ' . intval($_W['uniacid']);
@@ -56,13 +56,13 @@ class User_EweiShopV2Page extends MobilePage
                 $store = pdo_fetch('select * from ' . tablename('ewei_shop_store') . ' where erp_shop_code=:erp_shop_code limit 1', array(':erp_shop_code' => $thisitem['storeNo']));
                 if(!empty($store) && isset($store['id'])){
                     //更新
-                    pdo_update('ewei_shop_saler', array('storeid' => $store['id'],'uniacid'=>$uniacid,'status' => 1), array('id' => $userInfo['id']));
+                    pdo_update('ewei_shop_saler', array('storeid' => $store['id'],'uniacid'=>$store['uniacid'],'status' => 1), array('id' => $userInfo['id']));
                 }
             }
         }
 
         //重新获取
-        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where openid=:openid limit 1', array(':openid' => $openid));
+        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where d_openid=:openid limit 1', array(':openid' => $openid));
 
         include $this->template();
 
@@ -98,10 +98,10 @@ class User_EweiShopV2Page extends MobilePage
         $openid = $_W['openid'];
         $uniacid = $_W['uniacid'];
 
-        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where openid=:openid and uniacid=:uniacid limit 1', array(':openid' => $openid, ':uniacid' => $_W['uniacid']));
+        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where d_openid=:openid limit 1', array(':openid' => $openid));
 
         //查询门店信息
-        $storeInfo = pdo_fetch('select * from ' . tablename('ewei_shop_store') . ' where id=:id and uniacid=:uniacid limit 1', array(':id' => $userInfo['storeid'], ':uniacid' => $_W['uniacid']));
+        $storeInfo = pdo_fetch('select * from ' . tablename('ewei_shop_store') . ' where id=:id limit 1', array(':id' => $userInfo['storeid']));
 
         include $this->template();
     }
@@ -113,15 +113,33 @@ class User_EweiShopV2Page extends MobilePage
         global $_W;
         global $_GPC;
 
+        $openid = $_W['openid'];
+
         $uniacid = $_W['uniacid'];
 
         $dataid = $_GPC['dataid'];
 
         $paras = array(':uniacid' => $uniacid,':id' => $dataid);
 
-        $sql = 'select cd.*,c.couponname,from_unixtime(cd.usetime) as usetime,c.giftname from' . tablename('ewei_shop_coupon_data') . ' cd LEFT JOIN '.tablename('ewei_shop_coupon').' c ON cd.couponid=c.id where cd.uniacid = :uniacid and cd.id=:id ORDER BY usetime DESC  ';
+        $sql = 'select cd.*,c.couponname,c.storeid, from_unixtime(cd.usetime) as usetime,c.giftname from' . tablename('ewei_shop_coupon_data') . ' cd LEFT JOIN '.tablename('ewei_shop_coupon').' c ON cd.couponid=c.id where cd.uniacid = :uniacid and cd.id=:id ORDER BY usetime DESC  ';
 
         $info = pdo_fetch($sql, $paras);
+
+        //查询当前用户是否是核销员 并且有权限
+        $userInfo = pdo_fetch('select storeid from' . tablename('ewei_shop_saler') . ' where d_openid=:openid', [':openid' => $openid]);
+        //判断是否有权限
+        $is_ok = false;
+        if(!empty($userInfo) && !empty($info)){
+            $stores = explode(',',$info['storeid']);
+            if(in_array($userInfo['storeid'],$stores)){
+                $is_ok = true;
+            }
+        }
+
+        $is_use  = false;
+        if($info['usetime']){
+            $is_use = true;
+        }
 
         include $this->template();
     }
@@ -145,7 +163,7 @@ class User_EweiShopV2Page extends MobilePage
         if(!empty($coupon_data))
         {
             $store_name = '门店';
-            $saler = pdo_fetch('select storeid from '.tablename('ewei_shop_saler') .' where openid=:openid limit 1',[':openid' => $_W['openid']]);
+            $saler = pdo_fetch('select storeid from '.tablename('ewei_shop_saler') .' where d_openid=:openid limit 1',[':openid' => $_W['openid']]);
             if(!empty($saler))
             {
                 $storename = pdo_fetch('select storename from '.tablename('ewei_shop_store') .' where id=:storeid limit 1',[':storeid' => $saler['storeid']]);
@@ -186,7 +204,7 @@ class User_EweiShopV2Page extends MobilePage
 
         $openid = $_W['openid'];
 
-        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where openid=:openid and uniacid=:uniacid limit 1', array(':openid' => $openid, ':uniacid' => $_W['uniacid']));
+        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where d_openid=:openid limit 1', array(':openid' => $openid));
 
         //查询member中是否有手机号与
         $memberInfo = pdo_fetch('select * from ' . tablename('ewei_shop_member') . ' where uniacid=:uniacid and carrier_mobile=:carrier_mobile limit 1', array(':carrier_mobile' => $userInfo['mobile'], ':uniacid' => $userInfo['uniacid']));
@@ -295,7 +313,7 @@ class User_EweiShopV2Page extends MobilePage
         }
 
         //进行绑定
-        pdo_update('ewei_shop_saler', array('mobile' => $mobile), array('openid' => $_W['openid']));
+        pdo_update('ewei_shop_saler', array('mobile' => $mobile), array('d_openid' => $_W['openid']));
 
         show_json(1);
     }
