@@ -814,7 +814,7 @@ class Verifyorder_EweiShopV2Page extends MobilePage
 			$createtime1 = strtotime(date('Y-m-d', time()));
 			$createtime2 = strtotime(date('Y-m-d', time() + (3600 * 24)));
 		}
-		$sql = 'SELECT o.id,o.price,o.createtime,s.openid,s.salername FROM' . tablename('ewei_shop_order') . ' o inner JOIN ' . tablename('ewei_shop_saler') . ' s ON o.verifyopenid=s.openid   WHERE ' . "\r\n" . '        o.uniacid=:uniacid AND o.ismr=0  AND   o.status =3  AND o.deleted=0 AND o.createtime between :createtime1 and :createtime2';
+		$sql = 'SELECT o.id,o.price,o.createtime,s.openid,s.salername FROM' . tablename('ewei_shop_order') . ' o inner JOIN ' . tablename('ewei_shop_saler') . ' s ON o.verifyopenid=s.openid   WHERE ' . "\r\n" . '       o.ismr=0  AND   o.status =3  AND o.deleted=0 AND o.createtime between :createtime1 and :createtime2';
 		$param = array(':uniacid' => $_W['uniacid'], ':createtime1' => $createtime1, ':createtime2' => $createtime2);
 		$pdo_res = pdo_fetchall($sql, $param);
 		$allprice = 0;
