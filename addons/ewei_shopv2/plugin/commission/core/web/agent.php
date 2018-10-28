@@ -206,6 +206,8 @@ class Agent_EweiShopV2Page extends PluginWebPage
 		$level1 = $member['level1'];
 		$level2 = $member['level2'];
 		$level3 = $member['level3'];
+
+		isset($member['id'])?null:$member['id'] = -1;
 		$level11 = pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_member') . ' where isagent=0 and agentid=:agentid and uniacid=:uniacid limit 1', array(':agentid' => $agentid, ':uniacid' => $_W['uniacid']));
 		$condition = '';
 		$params = array();
