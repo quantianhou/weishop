@@ -119,14 +119,13 @@ class User_EweiShopV2Page extends MobilePage
 
         $dataid = $_GPC['dataid'];
 
-        $paras = array(':uniacid' => $uniacid,':id' => $dataid);
+        //查询当前用户是否是核销员 并且有权限
+        $userInfo = pdo_fetch('select storeid,uniacid from' . tablename('ewei_shop_saler') . ' where d_openid=:openid', [':openid' => $openid]);
 
         $sql = 'select cd.*,c.couponname,c.storeid, from_unixtime(cd.usetime) as usetime,c.giftname from' . tablename('ewei_shop_coupon_data') . ' cd LEFT JOIN '.tablename('ewei_shop_coupon').' c ON cd.couponid=c.id where cd.uniacid = :uniacid and cd.id=:id ORDER BY usetime DESC  ';
+        $paras = array(':uniacid' => $userInfo['uniacid'],':id' => $dataid);
 
         $info = pdo_fetch($sql, $paras);
-
-        //查询当前用户是否是核销员 并且有权限
-        $userInfo = pdo_fetch('select storeid from' . tablename('ewei_shop_saler') . ' where d_openid=:openid', [':openid' => $openid]);
         //判断是否有权限
         $is_ok = false;
         if(!empty($userInfo) && !empty($info)){
@@ -210,7 +209,7 @@ class User_EweiShopV2Page extends MobilePage
         $memberInfo = pdo_fetch('select * from ' . tablename('ewei_shop_member') . ' where uniacid=:uniacid and carrier_mobile=:carrier_mobile limit 1', array(':carrier_mobile' => $userInfo['mobile'], ':uniacid' => $userInfo['uniacid']));
 
         if(empty($memberInfo)){
-            exit('请确保您已成为您所在商城的会员并已激活会员卡');
+            //exit('请确保您已成为您所在商城的会员并已激活会员卡');
         }
         //查询门店信息
         $storeInfo = pdo_fetch('select * from ' . tablename('ewei_shop_store') . ' where id=:id and uniacid=:uniacid limit 1', array(':id' => $userInfo['storeid'], ':uniacid' => $_W['uniacid']));
