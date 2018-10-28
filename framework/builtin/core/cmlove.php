@@ -93,7 +93,8 @@ class CoreModuleProcessor extends WeModuleProcessor {
             if(!empty($resp))
             {
                 $key = array_rand($resp);
-                return $resp[$key];
+                $ret[] = $resp[$key];
+                return $ret;
             }
         }
 
