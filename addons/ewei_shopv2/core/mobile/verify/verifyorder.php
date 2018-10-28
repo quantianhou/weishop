@@ -13,9 +13,9 @@ class Verifyorder_EweiShopV2Page extends MobilePage
         $openid = $_W['openid'];
 
         $uniacid = $_W['uniacid'];
-        $paras = array(':uniacid' => $uniacid,':verify_openid' => $openid);
+        $paras = array(':verify_openid' => $openid);
 
-        $sql = 'select cd.*,c.couponname,from_unixtime(cd.usetime) as usetime from ' . tablename('ewei_shop_coupon_data') . ' cd LEFT JOIN '.tablename('ewei_shop_coupon').' c ON cd.couponid=c.id where cd.uniacid = :uniacid and cd.verify_openid = :verify_openid ORDER BY usetime DESC  ';
+        $sql = 'select cd.*,c.couponname,from_unixtime(cd.usetime) as usetime from ' . tablename('ewei_shop_coupon_data') . ' cd LEFT JOIN '.tablename('ewei_shop_coupon').' c ON cd.couponid=c.id where cd.verify_openid = :verify_openid ORDER BY usetime DESC  ';
 
         $list = pdo_fetchall($sql, $paras);
 
