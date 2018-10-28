@@ -795,6 +795,7 @@ class My_EweiShopV2Page extends MobileLoginPage
         }
 
         $qrcode = trim($_W['siteroot'],'/').trim(mobileUrl('verify.user.verify',['dataid' => $id]),'.');
+        $qrcode = preg_replace('/\?i=\d+\&/','?i=17&',$qrcode);//fanhailong add因为是去d端公众号核销，所以生成的链接必须是d端的公众号id，写死为17
 
         $path = IA_ROOT . '/addons/ewei_shopv2/data/qrcode/' . $_W['uniacid'];
         if (!(is_dir($path)))
