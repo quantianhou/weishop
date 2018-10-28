@@ -182,7 +182,15 @@ class Shop_EweiShopV2Page extends WebPage
             foreach ($list as $key => &$value) {
                 $url = mobileUrl('goods/detail', array('id' => $value['id']), true);
                 $value['qrcode'] = m('qrcode')->createQrcode($url);
-                $value['has_shop'] = 10;
+                
+                //查询下发门店数
+                $sql = 'SELECT s.* FROM ' . tablename('ewei_shop_goods') . 'g LEFT JOIN ' .tablename('ewei_shop_store') . ' s ON g.shop_id=s.id WHERE business_goods_id='.$value['id'];
+                $needs = pdo_fetchall($sql, []);
+                $value['has_shop_name'] = '';
+                foreach ($needs as $vvvv){
+                    $value['has_shop_name'] .= '<li>'.$vvvv['storename'].'</li>';
+                }
+                $value['has_shop'] = count($needs);
             }
 
             $pager = pagination2($total, $pindex, $psize);

@@ -115,10 +115,11 @@
                 <th style="width:80px;text-align:center;">排序</th>
                 <th style="width:80px;">商品</th>
                 <th style="width: 170px;">&nbsp;</th>
-                <th style="width: 100px;">价格</th>
-                <th style="width: 100px;">原价</th>
                 <th style="width: 130px;">商品编码/国际条码</th>
-                <th style="width: 90px;">已下发门店</th>
+                <th style="width: 100px;">价格</th>
+                <th style="width: 100px;">划线价</th>
+                <th style="width: 100px;">规格/单位</th>
+                <th style="width: 150px;">已下发门店</th>
                 {if $goodsfrom!='cycle'}
                 <th  style="width:60px;" >状态</th>
                 {/if}
@@ -177,6 +178,10 @@
                         </span>
                 </td>
 
+                <td>
+                    {$item['goodssn']}<br />{$item['productsn']}
+                </td>
+
                 <td>&yen;
                     {if $item['hasoption']==1}
                     {ifp 'goods.edit'}
@@ -216,9 +221,14 @@
                 </td>
 
                 <td>
-                    {$item['goodssn']}<br />{$item['productsn']}
+                    {$item['guige']}
                 </td>
-                <td>{$item['has_shop']}</td>
+
+                <td><span onclick="$(this).next().show()">{$item['has_shop']}</span>
+                    <ul style="display: none;">
+                        {$item['has_shop_name']}
+                    </ul>
+                </td>
 
                 {if $goodsfrom!='cycle'}
                 <td  style="overflow:visible;">
