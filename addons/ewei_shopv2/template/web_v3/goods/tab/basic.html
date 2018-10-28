@@ -29,6 +29,17 @@
         </div>
 
         <div class="form-group">
+            <label class="col-sm-2 control-label">规格参数</label>
+            {ife 'goods' $item}
+            <div class="col-sm-7"  style="padding-right:0;" >
+                <input type="text" name="guige" id="guige" class="form-control" value="{$item['guige']}" />
+            </div>
+            {else}
+            <div class='form-control-static'>{$item['guige']}</div>
+            {/if}
+        </div>
+
+        <div class="form-group">
             <label class="col-sm-2 control-label">副标题</label>
             {ife 'goods' $item}
             <div class="col-sm-9 subtitle">
@@ -322,12 +333,12 @@
         </div>
     </div>
     <div class="form-group price" {if $item['type']==4}  style="display: none"{/if}>
-    <label class="col-sm-2 control-label">商品价格</label>
+    <label class="col-sm-2 control-label must">商品价格</label>
     <div class="col-sm-9 col-xs-12">
         {ife 'goods' $item}
         <div class="input-group">
-            <input type="text" name="marketprice" id="marketprice" class="form-control" value="{$item['marketprice']}" />
-            <span class="input-group-addon">元 原价</span>
+            <input type="text" name="marketprice" id="marketprice" class="form-control" value="{$item['marketprice']}" data-rule-required="true"/>
+            <span class="input-group-addon">元 划线价</span>
             <input type="text" name="productprice" id="productprice" class="form-control" value="{$item['productprice']}" />
             <span class="input-group-addon">元 成本</span>
             <input type="text" name="costprice" id="costprice" class="form-control" value="{$item['costprice']}" />

@@ -419,8 +419,15 @@
 </div>
 {template 'goods/batchcates'}
 {template 'goods/shoplist'}
+{template 'goods/shoppricelist'}
 {template '_footer'}
 <script>
+
+    //商品下发
+    $('#pricetoshop').click(function(){
+        $('#shoppricelist').show();
+    });
+
     //显示门店列表
     $('#goodstoshop').click(function(){
         $('#shoplist').show();
@@ -432,12 +439,12 @@
 
     //关闭批量分类
     $('.modal-header .close').click(function () {
-        $('#batchcates,#shoplist').hide();
+        $('#batchcates,#shoplist,#shoppricelist').hide();
     })
 
     // 取消批量分类
     $('.modal-footer .btn.btn-default').click(function () {
-        $('#batchcates,#shoplist').hide();
+        $('#batchcates,#shoplist,#shoppricelist').hide();
     })
 
     $(document).on("click", '[data-toggle="ajaxEdit2"]',

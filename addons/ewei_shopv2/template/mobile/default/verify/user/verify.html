@@ -40,7 +40,13 @@
             </div>
         </li>
     </ul>
+    {if $is_ok && !$is_use}
     <a href="/app/index.php?i=17&c=entry&m=ewei_shopv2&do=mobile&r=verify.user.success&dataid={$info['id']}" class="button">核销</a>
+    {elseif $is_ok && $is_use}
+    <a href="#" class="button" style="background: #ccc;">已核销</a>
+    {else}
+    <a href="#" class="button" style="background: #ccc;">暂无核销权限</a>
+    {/if}
 </div>
 
 </body>

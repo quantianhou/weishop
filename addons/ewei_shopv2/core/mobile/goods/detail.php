@@ -889,6 +889,10 @@ class Detail_EweiShopV2Page extends MobilePage
 				exit();
 			}
 		}
+
+		$storeThisId = $_GPC['store_id'];
+		$thisstore = pdo_fetch('select * from ' . tablename('ewei_shop_store') . ' where id = '.$storeThisId, array());
+
 		include $this->template();
 	}
 	public function querygift() 
