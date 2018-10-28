@@ -275,6 +275,7 @@ $("#ulId")
                             showName = name;
                         }
                         //<input type='hidden' name='storeid[]' value='"+a+"'/>
+                        //<!--cmlove-->
                         var vHtml = "<input type='hidden' name='storeid[]' value='"+a+"' /><span style='float: left; display: inline-block;' title='" + name + "' value='"+ a +"' data='" + a + "' name=storeid[]>" + showName + "</span>";
                         $("#selectUlId")
                             .append(
