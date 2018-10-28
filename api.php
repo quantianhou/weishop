@@ -200,13 +200,13 @@ class WeEngine {
                     //如果不存在店员，视为erp线下门店店员直接过来绑卡登陆，我插入一条店员，让小段去java同步店员数据
                     $user['storeid'] = 0;
                     $user['uniacid'] = 0;
-                    $user['openid'] = $message['fromusername'];
+                    $user['d_openid'] = $message['fromusername'];
                     $user['salername'] = $realname;
                     $user['mobile'] = $mobile;
                     $result = pdo_insert('ewei_shop_saler', $user);
                 }else{
                     //如果存在店员，视为商家在b端后台店员管理录入了一条店员，只需要更新openid，因为b端后台录入的店员openid是对应商家自己公众号的，为了验权登录，得更新为d端公众号的openid
-                    $arr = array('openid' => $message['fromusername']);
+                    $arr = array('d_openid' => $message['fromusername']);
                     pdo_update('ewei_shop_saler', $arr, array('mobile' => $mobile));
                 }
                 exit();
