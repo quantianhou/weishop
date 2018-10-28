@@ -1317,6 +1317,7 @@ class Wxcard_EweiShopV2ComModel extends ComModel
                 $result = $coupon_api->setActivateUserForm($create_result['card_id']);
                 return $create_result;
             }
+            return $create_result;
         }
         $params['card_id'] = $card_id;
         return $this->updateCard($params);
