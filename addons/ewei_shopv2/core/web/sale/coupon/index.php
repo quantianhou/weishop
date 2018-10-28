@@ -109,7 +109,6 @@ class Index_EweiShopV2Page extends ComWebPage
                 $data['enough'] = 0;
                 $data['type'] = $type;
             }
-            var_dump(isset($_GPC['gitfname']));
             if(isset($_GPC['giftname']))
             {
                 $data['giftname'] = $_GPC['giftname'];
