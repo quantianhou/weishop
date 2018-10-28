@@ -121,8 +121,8 @@ class User_EweiShopV2Page extends MobilePage
 
         //查询当前用户是否是核销员 并且有权限
         $userInfo = pdo_fetch('select storeid,uniacid from' . tablename('ewei_shop_saler') . ' where d_openid=:openid', [':openid' => $openid]);
-        
-        $sql = 'select cd.*,c.couponname,c.storeid, from_unixtime(cd.usetime) as usetime,c.giftname from' . tablename('ewei_shop_coupon_data') . ' cd LEFT JOIN '.tablename('ewei_shop_coupon').' c ON cd.couponid=c.id where cd.id=:id ORDER BY usetime DESC  ';
+
+        $sql = 'select cd.*,c.couponname,c.storeid, from_unixtime(cd.usetime) as usetime,cd.usetime as usedtime,c.giftname from' . tablename('ewei_shop_coupon_data') . ' cd LEFT JOIN '.tablename('ewei_shop_coupon').' c ON cd.couponid=c.id where cd.id=:id ORDER BY usetime DESC  ';
         $paras = array(':id' => $dataid);
 
         $info = pdo_fetch($sql, $paras);
