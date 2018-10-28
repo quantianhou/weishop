@@ -275,10 +275,10 @@ $("#ulId")
                             showName = name;
                         }
                         //<input type='hidden' name='storeid[]' value='"+a+"'/>
-                        var vHtml = "<input type='hidden' name='storeid[]' value='"+a+"' /><span title='" + name + "' value='"+ a +"' data='" + a + "' name=storeid[]>" + showName + "</span>";
+                        var vHtml = "<input type='hidden' name='storeid[]' value='"+a+"' /><span style='float: left; display: inline-block;' title='" + name + "' value='"+ a +"' data='" + a + "' name=storeid[]>" + showName + "</span>";
                         $("#selectUlId")
                             .append(
-                                "<li class='showLiClass'>"
+                                "<li class='showLiClass' style='clear: both'>"
                                 + vHtml
                                 + "<a style='float:right;margin-right:8px;cursor:pointer;'><img src=\"../../addons/ewei_shopv2/static/images/del.png\"></a><li>");
                         selectedBranch = parseInt(selectedBranch) + 1;

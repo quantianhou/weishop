@@ -98,7 +98,7 @@
 	<label class="col-lg control-label"> 兑换礼品名称</label>
 	<div class="col-sm-9 col-xs-12">
 		{ife 'sale.coupon' $item}
-		<input type="text" name="gift_name" class="form-control" value="{$item['giftname']}" data-rule-required="true"  />
+		<input type="text" name="giftname" class="form-control" value="{$item['giftname']}" data-rule-required="true"  />
 		{else}
 		<div class='form-control-static'>{$item['giftname']}</div>
 		{/if}
