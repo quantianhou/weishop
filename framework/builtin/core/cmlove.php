@@ -6,7 +6,8 @@ class CoreModuleProcessor extends WeModuleProcessor {
     public function respond() {
 
         $reply_type = $this->reply_type;
-
+        $rule = pdo_fetch('select * from ' . tablename('rule') . ' where id=:id limit 1', array(':id' => $this->rule));
+        $replyall = $rule['replyall'];
         $resp = [];
         foreach($reply_type as $v)
         {
@@ -88,7 +89,17 @@ class CoreModuleProcessor extends WeModuleProcessor {
                     break;
             }
         }
+        if($replyall == 2){
+            if(!empty($resp))
+            {
+                $key = array_rand($resp);
+                $ret[] = $resp[$key];
+                return $ret;
+            }
+        }
+
         return $resp;
+
     }
 
     //fanhailong add

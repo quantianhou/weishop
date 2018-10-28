@@ -108,7 +108,10 @@ class Index_EweiShopV2Page extends ComWebPage
             {
                 $data['enough'] = 0;
                 $data['type'] = $type;
-                $data['giftname'] = $_GPC['gift_name'];
+            }
+            if(isset($_GPC['giftname']))
+            {
+                $data['giftname'] = $_GPC['giftname'];
             }
             if(isset($_GPC['tagname']))
             {
@@ -249,10 +252,12 @@ class Index_EweiShopV2Page extends ComWebPage
 				pdo_delete('rule_keyword', array('rid' => $rule['id']));
 				pdo_delete('rule', array('id' => $rule['id']));
 			}
-			show_json(1, array('url' => webUrl('sale/coupon/edit', array('type' => $type , 'id' => $id, 'tab' => str_replace('#tab_', '', $_GPC['tab'])))));
+			//array('type' => $type , 'id' => $id, 'tab' => str_replace('#tab_', '', $_GPC['tab'])))
+			show_json(1, array('url' => webUrl('sale/coupon')));
 		}
 		$item = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_coupon') . ' WHERE id =:id and uniacid=:uniacid and merchid=0 limit 1', array(':uniacid' => $_W['uniacid'], ':id' => $id));
-		if (empty($item)) 
+//		var_dump($item);exit;
+		if (empty($item))
 		{
 			$starttime = time();
 			$endtime = strtotime(date('Y-m-d H:i:s', $starttime) . '+7 days');

@@ -197,7 +197,7 @@ class My_EweiShopV2Page extends MobileLoginPage
 		$pindex = max(1, intval($_GPC['page']));
 		$psize = 10;
 		$time = time();
-		$sql = 'select d.id,d.couponid,d.gettime,c.timelimit,c.coupontype,c.timedays,c.timestart,c.timeend,c.thumb,c.couponname,c.enough,c.backtype,c.deduct,c.discount,c.backmoney,c.backcredit,c.backredpack,c.bgcolor,c.thumb,c.merchid,c.tagtitle,c.settitlecolor,c.titlecolor from ' . tablename('ewei_shop_coupon_data') . ' d';
+		$sql = 'select d.id,d.couponid,d.gettime,c.timelimit,c.coupontype,c.tagname,c.timedays,c.timestart,c.timeend,c.thumb,c.couponname,c.enough,c.backtype,c.deduct,c.discount,c.backmoney,c.backcredit,c.backredpack,c.bgcolor,c.thumb,c.merchid,c.tagtitle,c.settitlecolor,c.titlecolor from ' . tablename('ewei_shop_coupon_data') . ' d';
 		$sql .= ' inner join ' . tablename('ewei_shop_coupon') . ' c on d.couponid = c.id';
 		$sql .= ' where d.openid=:openid and d.uniacid=:uniacid ';
 		if (!(empty($past))) 
@@ -318,10 +318,33 @@ class My_EweiShopV2Page extends MobileLoginPage
 					$title5 = '立返红包';
 				}
 			}
-			if ($row['tagtitle'] == '') 
-			{
-				$row['tagtitle'] = $tagtitle;
-			}
+
+            if(!empty($row['tagname']))
+            {
+                $tagtitle = $row['tagname'];
+            }else{
+                switch ($row['coupontype'])
+                {
+                    case 0 :
+                        $tagtitle = '购物券';
+                        break;
+                    case 1:
+                        $tagtitle = '充值券';
+                        break;
+                    case 2:
+                        $tagtitle = '门店券';
+                        break;
+                    default:
+                        $tagtitle = '优惠券';
+                }
+            }
+
+//			if ($row['tagtitle'] == '')
+//			{
+//				$row['tagtitle'] = $tagtitle;
+//			}
+
+            $row['tagtitle'] = $tagtitle;
 			if ($past == 1) 
 			{
 				$row['color'] = 'disa';

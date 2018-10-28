@@ -31,7 +31,7 @@ class Saler_EweiShopV2Page extends ComWebPage
 
 		foreach ($list as &$val){
 		    //通过手机号与商家信息
-            $pMember = pdo_fetch('SELECT * FROM ' .tablename('ewei_shop_member') . ' WHERE uniacid = :uniacid AND carrier_mobile = :mobile', array(':uniacid' => $_W['uniacid'],':mobile' => $val['mobile']));
+            $pMember = pdo_fetch('SELECT * FROM ' .tablename('ewei_shop_member') . ' WHERE openid = :openid', array(':openid' => $val['openid']));
 		    //获取下级数量
             $info = m('plugin')->loadModel('commission')->getInfo($pMember['openid'], array('total', 'pay'));
 		    $val['xiaji'] = $info['agentcount'];

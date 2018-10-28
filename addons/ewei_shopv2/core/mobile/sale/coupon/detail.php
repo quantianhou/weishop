@@ -282,6 +282,7 @@ class Detail_EweiShopV2Page extends MobilePage
 
 		$_used_total = $_count_total - $coupon['total'];
 		$qrcode =  10000000 + $_used_total + 1;
+		$qrcode = $_W['uniacid'].$coupon['merchid'].$qrcode;
 		$log = array('uniacid' => $_W['uniacid'], 'merchid' => $coupon['merchid'], 'openid' => $openid, 'logno' => $logno, 'couponid' => $id, 'status' => 0, 'paystatus' => (0 < $coupon['money'] ? 0 : -1), 'creditstatus' => (0 < $coupon['credit'] ? 0 : -1), 'createtime' => time(), 'getfrom' => 1 ,'qrcode' => $qrcode);
 		pdo_insert('ewei_shop_coupon_log', $log);
 		$logid = pdo_insertid();

@@ -29,7 +29,7 @@
 				<input id="istop-2" type="radio" name="istop" ng-model="reply.entry.istop" ng-value="0" value="0" {if intval($reply['displayorder'] < 255)} checked="checked"{/if}/>
 				<label for="istop-2">否</label>
 			</div>
-			
+
 		</div>
 		<div class="form-group" ng-show="reply.entry.istop == 0 && reply.showAdvance">
 			<label for="" class="control-label col-sm-2">回复优先级</label>
@@ -56,7 +56,7 @@
 				<input id="reply_type-2" type="radio" name="reply_type" ng-model="reply.entry.reply_type" ng-value="1" value="1" {if intval($reply['reply_type'] == 1)} checked="checked"{/if}/>
 				<label for="reply_type-2">混合</label>
 			</div>
-			
+
 			<div class="form-controls col-sm-8 col-sm-offset-2" ng-if="reply.entry.reply_type == 2">
 				<div class="input-group">
 					<div class="input-group-btn">
@@ -103,7 +103,7 @@
 					<span class="help-block"></span>
 				</div>
 				<span class="help-block">多个关键字请使用逗号隔开，如天气，今日天气</span>
-			</div>				
+			</div>
 
 		</div>
 		<div class="form-group">
@@ -111,11 +111,22 @@
 			<div class="form-controls col-sm-8">
 				<label>
 					<input name="status" class="form-control" ng-model="reply.status" ng-hide="1">
-					<div class="switch" ng-class="{'switchOn': reply.status}" ng-click="changeStatus()"></div>
+					<div class="switch" ng-class="{switchOn:reply.status}" id="key-replystatus" ng-click="changeStatus(key-replystatus)"></div>
 				</label>
 				<span class="help-block">您可以选择临时禁用这条回复.</span>
 			</div>
 		</div>
+			<div class="form-group">
+				<label for="" class="control-label col-sm-2">是否开启</label>
+				<div class="form-controls col-sm-8">
+					<input id="replyall-1" type="radio" name="replyall" value="1" {if intval($reply['replyall'] == 1)} checked="checked"{/if}/>
+					<label for="replyall-1" >开启</label>
+					<input id="replyall-2" type="radio" name="replyall" value="2" {if intval($reply['replyall'] == 2)} checked="checked"{/if}/>
+					<label for="replyall-2">关闭</label>
+					<span class="help-block">开启，则回复内容全部回复,否则是随机一条内容.</span>
+				</div>
+			</div>
+			<!--关闭则添加多条回复内容时, 随机回复其中一条-->
 		</div>
 		<div class="form-group">
 			<nav class="navbar navbar-wxapp-bottom navbar-fixed-bottom" role="navigation">
@@ -144,7 +155,7 @@
 		<div class="we7-step">
 			<ul>
 				<li class="active">
-					1 选择应用 
+					1 选择应用
 				</li>
 				<li>
 					2 添加应用关键字

@@ -20,7 +20,7 @@
 		{if !empty($frames['section']['platform_module_common']['menu']['platform_module_cover'])}
 		<li><a href="{url 'platform/cover' array('m' => $m)}">封面链接入口</a></li>
 		{/if}
-	</ul>	
+	</ul>
 {/if}
 {if $m == 'keyword' || $m == 'userapi' || !in_array($m, $sysmods)}
 	<div id="js-keyword-display" ng-controller="KeywordDisplay" ng-cloak>
@@ -87,7 +87,7 @@
 						</tr>
 						<tr>
 							{if !in_array($row['module'], $sysmods)}
-								
+
 							<td class="vertical-middle">
 								<img src="{$row['logo']}" alt="" class="keyword-img"/>
 							</td>

@@ -195,6 +195,7 @@ if ($do == 'post') {
 				'module' => $m == 'keyword' ? 'reply' : $m,
 				'containtype' => $containtype,
 				'reply_type' => intval($_GPC['reply_type']) == 2 ? 2 : 1,
+				'replyall' => intval($_GPC['replyall']) == 2 ? 2 : 1,
 				'status' => $_GPC['status'] == 'true' ? 1 : 0,
 				'displayorder' => intval($_GPC['displayorder_rule']),
 			);
