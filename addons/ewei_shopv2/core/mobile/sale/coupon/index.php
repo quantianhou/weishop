@@ -13,7 +13,7 @@ class Index_EweiShopV2Page extends MobileLoginPage
 		{
 			$is_openmerch = 1;
 		}
-		else 
+		else
 		{
 			$is_openmerch = 0;
 		}
@@ -276,6 +276,11 @@ class Index_EweiShopV2Page extends MobileLoginPage
 			{
 				$title4 = $row['timestr'];
 			}
+            if($row['coupontype'] == '2'){//fanhailong add，门店兑换券写死一些信息
+                $title2 = '到店使用';
+                $title3= '<span style="font-size:18px">'.$row['giftname'].'</span>';
+                $title5= '';
+            }
 			$row['title2'] = $title2;
 			$row['title3'] = $title3;
 			$row['title4'] = $title4;
