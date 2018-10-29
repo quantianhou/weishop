@@ -40,28 +40,23 @@ define(['core', 'tpl', 'biz/goods/picker', 'biz/plugin/diyform'], function (core
             }
         });
         //fanhailong add，数据初始化后会运行这里，判断每个店铺下的商品是否都选中了，如果都选中了，将店铺的选中勾上
-        $(".itemshop").each(function(){
-            var currentShopAllSelect = true;
-            $(this).find(".check-item").each(function () {
-                if($(this).prop("checked") == false){
-                    currentShopAllSelect = false;
-                }
-            });
-            $(this).find(".shopallinput").prop("checked", currentShopAllSelect);
-        });
+        modal.initShopCheck();
+
         //fanhailong add，勾选店铺后，店铺下商品全部选中或全不选中
         $('.shopallinput').unbind('click').click(function () {
+            FoxUI.loader.show('mini');//loading
             var checked = $(this).prop('checked');
             $(this).parent().parent().find('.check-item').each(function () {
                 $(".check-item").prop('checked', checked);
                 var cartid = $(this).closest('.goods-item').data('cartid');
-                modal.select(cartid, true);
+                modal.select_2(cartid, true);
                 $(this).closest(".fui-list-group").find(".cartcheck").prop('checked', $(this).closest(".fui-list-group").find('.check-item').length == $(this).closest(".fui-list-group").find('.check-item:checked').length)
             });
         });
         $('.check-item').unbind('click').click(function () {
+            FoxUI.loader.show('mini');//loading
             var cartid = $(this).closest('.goods-item').data('cartid');
-            modal.select(cartid, $(this).prop('checked'));
+            modal.select_2(cartid, $(this).prop('checked'));
             $(this).closest(".fui-list-group").find(".cartcheck").prop('checked', $(this).closest(".fui-list-group").find('.check-item').length == $(this).closest(".fui-list-group").find('.check-item:checked').length)
 
             //fanhailong add判断当前商品所在的门店下的所有商品是否都已经选中
@@ -72,6 +67,15 @@ define(['core', 'tpl', 'biz/goods/picker', 'biz/plugin/diyform'], function (core
                 }
             });
             $(this).parent().parent().parent().find(".shopallinput").prop("checked", currentShopAllSelect);
+
+            //fanhailong add 将其他店铺下的商品全不选中
+            $(this).parent().parent().parent().siblings().find(".check-item").each(function() {console.log("aa");
+                $(this).prop('checked', false);
+                var cartid = $(this).closest('.goods-item').data('cartid');
+                modal.select_2(cartid, false);
+                $(this).closest(".fui-list-group").find(".cartcheck").prop('checked', $(this).closest(".fui-list-group").find('.check-item').length == $(this).closest(".fui-list-group").find('.check-item:checked').length);
+                modal.initShopCheck();
+            })
         });
         $('.cartcheck').unbind('click').click(function () {
             var checked = $(this).prop('checked');
@@ -151,6 +155,18 @@ define(['core', 'tpl', 'biz/goods/picker', 'biz/plugin/diyform'], function (core
         });
         modal.caculate()
     };
+    //fanhailong add初始化每个店铺下的商品是否全部选中，如果全部选中或不选中，店铺的checkbox相应变化
+    modal.initShopCheck = function(){
+        $(".itemshop").each(function(){
+            var currentShopAllSelect = true;
+            $(this).find(".check-item").each(function () {
+                if($(this).prop("checked") == false){
+                    currentShopAllSelect = false;
+                }
+            });
+            $(this).find(".shopallinput").prop("checked", currentShopAllSelect);
+        });
+    };
     modal.changeMode = function () {
         if ($('.goods-item').length <= 0) {
             $('.btn-edit').remove();
@@ -181,6 +197,18 @@ define(['core', 'tpl', 'biz/goods/picker', 'biz/plugin/diyform'], function (core
             modal.status = 'cart';
             $('.btn-edit').html('编辑')
         }
+    };
+    //fanhailong add复制出一份改的，只是为了优化多次loading的问题(好像还是不太行)
+    modal.select_2 = function (cartid, select) {
+        core.json('member/cart/select', {
+            id: cartid,
+            select: select ? "1" : '0'
+        }, function (ret) {
+            if (ret.status == 0) {
+                FoxUI.toast.show(ret.result.message)
+            }
+            modal.caculate()
+        }, false, true)
     };
     modal.select = function (cartid, select) {
         core.json('member/cart/select', {
