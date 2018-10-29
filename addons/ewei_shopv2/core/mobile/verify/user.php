@@ -188,7 +188,9 @@ class User_EweiShopV2Page extends MobilePage
             $_W['acid'] = $tmp_acid;
             $account = m('common')->getAccount();
             $token = $account->fetch_token();
-            $url = 'https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token=' . $token;
+
+            //先查询是否订阅的有核销模板
+            $url = 'https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=' . $token;
             $ch1 = curl_init();
             curl_setopt($ch1, CURLOPT_URL, $url);
             curl_setopt($ch1, CURLOPT_POST, 1);
@@ -198,33 +200,51 @@ class User_EweiShopV2Page extends MobilePage
             curl_setopt($ch1, CURLOPT_POSTFIELDS, $bb);
             $c = curl_exec($ch1);
             $result = @json_decode($c, true);
-            if (!(is_array($result)))
-            {
-                return false;
+            foreach($result['template_list'] as $val){
+                if($val['title'] == "核销成功提醒"){
+                    $template_id = $val['template_id'];
+                }
             }
-            if (!(empty($result['errcode'])))
-            {
-                if (strstr($result['errmsg'], 'template conflict with industry hint'))
+            if(empty($template_id)){//如果没订阅核销模板，自动订阅
+                $url = 'https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token=' . $token;
+                $ch1 = curl_init();
+                curl_setopt($ch1, CURLOPT_URL, $url);
+                curl_setopt($ch1, CURLOPT_POST, 1);
+                curl_setopt($ch1, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch1, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($ch1, CURLOPT_POSTFIELDS, $bb);
+                $c = curl_exec($ch1);
+                $result = @json_decode($c, true);
+                if (!(is_array($result)))
                 {
                     return false;
                 }
-                if (strstr($result['errmsg'], 'system error hint'))
+                if (!(empty($result['errcode'])))
                 {
+                    if (strstr($result['errmsg'], 'template conflict with industry hint'))
+                    {
+                        return false;
+                    }
+                    if (strstr($result['errmsg'], 'system error hint'))
+                    {
+                        return false;
+                    }
+                    if (strstr($result['errmsg'], 'invalid industry id hint'))
+                    {
+                        return false;
+                    }
+                    if (strstr($result['errmsg'], 'access_token is invalid or not latest hint'))
+                    {
+                        return false;
+                    }
                     return false;
                 }
-                if (strstr($result['errmsg'], 'invalid industry id hint'))
-                {
-                    return false;
-                }
-                if (strstr($result['errmsg'], 'access_token is invalid or not latest hint'))
-                {
-                    return false;
-                }
-                return false;
+                $template_id = $result['template_id'];
             }
 
             $data['touser'] = $coupon_data['openid'];
-            $data['template_id'] = $result['template_id'];
+            $data['template_id'] = $template_id;
             $data['data'] = $postdata;
             $data = json_encode($data);
             //$token = $token = WeAccount::token();
