@@ -39,10 +39,39 @@ define(['core', 'tpl', 'biz/goods/picker', 'biz/plugin/diyform'], function (core
                 modal.caculate()
             }
         });
+        //fanhailong add，数据初始化后会运行这里，判断每个店铺下的商品是否都选中了，如果都选中了，将店铺的选中勾上
+        $(".itemshop").each(function(){
+            var currentShopAllSelect = true;
+            $(this).find(".check-item").each(function () {
+                if($(this).prop("checked") == false){
+                    currentShopAllSelect = false;
+                }
+            });
+            $(this).find(".shopallinput").prop("checked", currentShopAllSelect);
+        });
+        //fanhailong add，勾选店铺后，店铺下商品全部选中或全不选中
+        $('.shopallinput').unbind('click').click(function () {
+            var checked = $(this).prop('checked');
+            $(this).parent().parent().find('.check-item').each(function () {
+                $(".check-item").prop('checked', checked);
+                var cartid = $(this).closest('.goods-item').data('cartid');
+                modal.select(cartid, true);
+                $(this).closest(".fui-list-group").find(".cartcheck").prop('checked', $(this).closest(".fui-list-group").find('.check-item').length == $(this).closest(".fui-list-group").find('.check-item:checked').length)
+            });
+        });
         $('.check-item').unbind('click').click(function () {
             var cartid = $(this).closest('.goods-item').data('cartid');
             modal.select(cartid, $(this).prop('checked'));
             $(this).closest(".fui-list-group").find(".cartcheck").prop('checked', $(this).closest(".fui-list-group").find('.check-item').length == $(this).closest(".fui-list-group").find('.check-item:checked').length)
+
+            //fanhailong add判断当前商品所在的门店下的所有商品是否都已经选中
+            var currentShopAllSelect = true;
+            $(this).parent().parent().parent().find(".check-item").each(function () {
+                if($(this).prop("checked") == false){
+                    currentShopAllSelect = false;
+                }
+            });
+            $(this).parent().parent().parent().find(".shopallinput").prop("checked", currentShopAllSelect);
         });
         $('.cartcheck').unbind('click').click(function () {
             var checked = $(this).prop('checked');
