@@ -156,7 +156,7 @@ class User_EweiShopV2Page extends MobilePage
 
         $paras = array(':uniacid' => $uniacid,':id' => $dataid);
         $coupon_data = pdo_fetch('select * from '.tablename('ewei_shop_coupon_data').' where id=:id limit 1',[':id'=>$dataid]);
-        pdo_update('ewei_shop_coupon_data', array('usetime' => time(),'verify_openid'=>$_W['openid']), array('id' => $dataid));
+        pdo_update('ewei_shop_coupon_data', array('usetime' => time(),'used' => 1,'verify_openid'=>$_W['openid']), array('id' => $dataid));
 
         //优惠券信息
         if(!empty($coupon_data))
