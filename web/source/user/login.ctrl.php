@@ -50,6 +50,12 @@ function _login($forward = '') {
 		if (!empty($_W['siteclose']) && empty($_W['isfounder'])) {
 			itoast('站点已关闭，关闭原因：' . $_W['setting']['copyright']['reason'], '', '');
 		}
+
+        $merchant_status = pdo_fetch('SELECT status FROM ' . tablename('a_merchant') . " WHERE id = {$record['a_merchant_id']}");
+		if($merchant_status['status']!=7){
+            itoast('您的账号已被冻结，请联系网站管理员解决！', '', '');
+        }
+
 		$cookie = array();
 		$cookie['uid'] = $record['uid'];
 		$cookie['lastvisit'] = $record['lastvisit'];
