@@ -180,16 +180,60 @@ class User_EweiShopV2Page extends MobilePage
                 'keyword4' => ['value' => $store_name,'color' => '#173177'],
                 'remark' => ['value' => '感谢您的使用','color' => '#173177']
             ];
+
+            //fanhailong add
+            $bb = '{"template_id_short":"OPENTM409583769"}';
+            $last_acid = $_W['acid'];//因为是在d端公众号下核销，但要给客户所在公众号发模板消息，所以得切换为客户公众号，d端公众号id先保存起来，用完后再替换回来
+            $tmp_acid = pdo_fetchcolumn('SELECT acid FROM ' . tablename('account_wechats') . ' WHERE `uniacid`=:uniacid LIMIT 1', array(':uniacid' => $coupon_info['uniacid']));
+            $_W['acid'] = $tmp_acid;
+            $account = m('common')->getAccount();
+            $token = $account->fetch_token();
+            $url = 'https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token=' . $token;
+            $ch1 = curl_init();
+            curl_setopt($ch1, CURLOPT_URL, $url);
+            curl_setopt($ch1, CURLOPT_POST, 1);
+            curl_setopt($ch1, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch1, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch1, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch1, CURLOPT_POSTFIELDS, $bb);
+            $c = curl_exec($ch1);
+            $result = @json_decode($c, true);
+            if (!(is_array($result)))
+            {
+                return false;
+            }
+            if (!(empty($result['errcode'])))
+            {
+                if (strstr($result['errmsg'], 'template conflict with industry hint'))
+                {
+                    return false;
+                }
+                if (strstr($result['errmsg'], 'system error hint'))
+                {
+                    return false;
+                }
+                if (strstr($result['errmsg'], 'invalid industry id hint'))
+                {
+                    return false;
+                }
+                if (strstr($result['errmsg'], 'access_token is invalid or not latest hint'))
+                {
+                    return false;
+                }
+                return false;
+            }
+
             $data['touser'] = $coupon_data['openid'];
-            $data['template_id'] = '0-JpjcpxM6VnqTpCU-VhobOQOFf9TA3Cp23VZVJilhE';
+            $data['template_id'] = $result['template_id'];
             $data['data'] = $postdata;
             $data = json_encode($data);
-            $token = $token = WeAccount::token();
+            //$token = $token = WeAccount::token();
             $post_url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={$token}";
             $response = ihttp_request($post_url, $data);
             if(is_error($response)) {
                 return error(-1, "访问公众平台接口失败, 错误: {$response['message']}");
             }
+            $_W['acid'] = $last_acid;//恢复为d端公众号
         }
         include $this->template();
     }
