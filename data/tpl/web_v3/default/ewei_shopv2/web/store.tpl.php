@@ -12,10 +12,10 @@
                    <input type="hidden" name="r" value="store" />
             <div class="page-toolbar">
                             <div class="col-sm-6">
-                                <?php if(cv('store.add' && 0)) { ?>
-                                <a class='btn btn-primary btn-sm' href="<?php  echo webUrl('store/add')?>"><i class='fa fa-plus'></i> 添加门店</a><?php  } ?>
-                                <a class='btn btn-primary btn-sm' data-toggle='batch' data-confirm="确认要设置?" data-href="<?php  echo webUrl('store/setrelation')?>"><i class='fa fa-plus'></i> 一键设置分销关系</a>
-
+<!--                                不允许商家自己添加门店，只能在a端添加，所以隐藏-->
+                                <?php if(cv('store.add') && 0) { ?>
+                                <a class='btn btn-primary btn-sm' href="<?php  echo webUrl('store/add')?>"><i class='fa fa-plus'></i> 添加门店</a>
+                                <?php  } ?>
                             </div>
                             <div class="col-sm-6 pull-right">
 				                <div class="input-group">
@@ -59,11 +59,12 @@
 				 <th style="width:25px;"></th>
 				  <th style='width:50px'>顺序</th>
                         <th style=''>门店名称</th>
+                        <th style=''>ERP门店编码</th>
                         <th style="width:160px;">电话/地址</th>
                         <th style="width:60px;">核销员</th>
                         <th style="width:90px;">门店支持</th>
-                        <th style="width:60px;">状态</th>
-                        <th style="width: 125px;">操作</th>
+<!--                        <th style="width:60px;">状态</th>-->
+<!--                        <th style="width: 125px;">操作</th>-->
                     </tr>
                 </thead>
                 <tbody>
@@ -81,6 +82,7 @@
                     <?php  } ?>
                 </td>
                         <td><?php  echo $row['storename'];?></td>
+                        <td><?php  echo $row['erp_shop_code'];?></td>
                         
                         <td><p><?php  echo $row['tel'];?></p><?php  echo $row['address'];?></td>
                         <td><?php  echo $row['salercount'];?></td>
@@ -88,53 +90,53 @@
                             <?php  if($row['type']==1) { ?>自提<?php  } else if($row['type']==2) { ?>核销<?php  } else if($row['type']==3) { ?>自提+核销<?php  } ?>
 
                         </td>
-                        <td>
-                                 <span class='label <?php  if($row['status']==1) { ?>label-primary<?php  } else { ?>label-default<?php  } ?>'
-										  <?php if(cv('store.edit')) { ?>
-										  data-toggle='ajaxSwitch' 
-										  data-switch-value='<?php  echo $row['status'];?>'
-										  data-switch-value0='0|禁用|label label-default|<?php  echo webUrl('store/status',array('status'=>1,'id'=>$row['id']))?>'
-										  data-switch-value1='1|启用|label label-success|<?php  echo webUrl('store/status',array('status'=>0,'id'=>$row['id']))?>'
-										  <?php  } ?>
-										>
-										  <?php  if($row['status']==1) { ?>启用<?php  } else { ?>禁用<?php  } ?></span>
-                            </td>
-                        <td>
-                            <?php  if(p('newstore')) { ?>
-                            <a class='btn btn-default  btn-sm btn-op btn-operation' href="<?php  echo webUrl('store/goods', array('id' => $row['id']))?>">
-                                <span data-toggle="tooltip" data-placement="top" title="" data-original-title="商品">
-                                     <i class='icow icow-goods'></i>
-                                </span>
-                            </a>
-                            <?php  } ?>
-                          <?php if(cv('store.edit|store.view')) { ?>
-                              <a class='btn btn-default btn-sm btn-op btn-operation' href="<?php  echo webUrl('store/edit', array('id' => $row['id']))?>">
-                                  <span data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php if(cv('shop.verify.store.edit')) { ?>编辑<?php  } else { ?>查看<?php  } ?>">
-                                      <?php if(cv('shop.verify.store.edit')) { ?>
-                                        <i class="icow icow-bianji2"></i>
-                                      <?php  } else { ?>
-                                        <i class="icow icow-chakan-copy"></i>
-                                      <?php  } ?>
-                                 </span>
-                              </a>
-                             <?php  } ?>
-                            <?php  if(p('newstore')) { ?>
-                                <?php if(cv('store.diypage')) { ?>
-                                    <a class="btn btn-default btn-sm btn-op btn-operation" href="<?php  echo webUrl('store/diypage/settings', array('id'=>$row['id']))?>">
-                                        <span data-toggle="tooltip" data-placement="top" title="" data-original-title="装修">
-                                             <i class='icow icow-mendianzhuangxiu' style="font-weight: bolder"></i>
-                                        </span>
-                                    </a>
-                                <?php  } ?>
-                            <?php  } ?>
-                            <?php if(cv('store.delete')) { ?>
-                            <a class='btn btn-default  btn-sm btn-op btn-operation' data-toggle="ajaxRemove"  href="<?php  echo webUrl('store/delete', array('id' => $row['id']))?>" data-confirm="确认删除此门店吗？">
-                                  <span data-toggle="tooltip" data-placement="top" title="" data-original-title="删除">
-                                     <i class='icow icow-shanchu1'></i>
-                                </span>
-                            </a>
-                            <?php  } ?>
-                        </td>
+<!--                        <td>-->
+<!--                                 <span class='label --><?php // if($row['status']==1) { ?><!--label-primary--><?php // } else { ?><!--label-default--><?php // } ?><!--'-->
+<!--										  --><?php //if(cv('store.edit')) { ?>
+<!--										  data-toggle='ajaxSwitch' -->
+<!--										  data-switch-value='--><?php // echo $row['status'];?><!--'-->
+<!--										  data-switch-value0='0|禁用|label label-default|--><?php // echo webUrl('store/status',array('status'=>1,'id'=>$row['id']))?><!--'-->
+<!--										  data-switch-value1='1|启用|label label-success|--><?php // echo webUrl('store/status',array('status'=>0,'id'=>$row['id']))?><!--'-->
+<!--										  --><?php // } ?>
+<!--										>-->
+<!--										  --><?php // if($row['status']==1) { ?><!--启用--><?php // } else { ?><!--禁用--><?php // } ?><!--</span>-->
+<!--                            </td>-->
+<!--                        <td>-->
+<!--                            --><?php // if(p('newstore')) { ?>
+<!--                            <a class='btn btn-default  btn-sm btn-op btn-operation' href="--><?php // echo webUrl('store/goods', array('id' => $row['id']))?><!--">-->
+<!--                                <span data-toggle="tooltip" data-placement="top" title="" data-original-title="商品">-->
+<!--                                     <i class='icow icow-goods'></i>-->
+<!--                                </span>-->
+<!--                            </a>-->
+<!--                            --><?php // } ?>
+<!--                          --><?php //if(cv('store.edit|store.view')) { ?>
+<!--                              <a class='btn btn-default btn-sm btn-op btn-operation' href="--><?php // echo webUrl('store/edit', array('id' => $row['id']))?><!--">-->
+<!--                                  <span data-toggle="tooltip" data-placement="top" title="" data-original-title="--><?php //if(cv('shop.verify.store.edit')) { ?><!--编辑--><?php // } else { ?><!--查看--><?php // } ?><!--">-->
+<!--                                      --><?php //if(cv('shop.verify.store.edit')) { ?>
+<!--                                        <i class="icow icow-bianji2"></i>-->
+<!--                                      --><?php // } else { ?>
+<!--                                        <i class="icow icow-chakan-copy"></i>-->
+<!--                                      --><?php // } ?>
+<!--                                 </span>-->
+<!--                              </a>-->
+<!--                             --><?php // } ?>
+<!--                            --><?php // if(p('newstore')) { ?>
+<!--                                --><?php //if(cv('store.diypage')) { ?>
+<!--                                    <a class="btn btn-default btn-sm btn-op btn-operation" href="--><?php // echo webUrl('store/diypage/settings', array('id'=>$row['id']))?><!--">-->
+<!--                                        <span data-toggle="tooltip" data-placement="top" title="" data-original-title="装修">-->
+<!--                                             <i class='icow icow-mendianzhuangxiu' style="font-weight: bolder"></i>-->
+<!--                                        </span>-->
+<!--                                    </a>-->
+<!--                                --><?php // } ?>
+<!--                            --><?php // } ?>
+<!--                            --><?php //if(cv('store.delete')) { ?>
+<!--                            <a class='btn btn-default  btn-sm btn-op btn-operation' data-toggle="ajaxRemove"  href="--><?php // echo webUrl('store/delete', array('id' => $row['id']))?><!--" data-confirm="确认删除此门店吗？">-->
+<!--                                  <span data-toggle="tooltip" data-placement="top" title="" data-original-title="删除">-->
+<!--                                     <i class='icow icow-shanchu1'></i>-->
+<!--                                </span>-->
+<!--                            </a>-->
+<!--                            --><?php // } ?>
+<!--                        </td>-->
 
                     </tr>
                     <?php  } } ?>
@@ -176,9 +178,3 @@
 <?php  } ?>
     </div>
 <?php (!empty($this) && $this instanceof WeModuleSite || 1) ? (include $this->template('_footer', TEMPLATE_INCLUDEPATH)) : (include template('_footer', TEMPLATE_INCLUDEPATH));?>
-<script>
-    setInterval(function () {
-        $('.btn-primary').removeAttr('disabled');
-    },500)
-
-</script>
