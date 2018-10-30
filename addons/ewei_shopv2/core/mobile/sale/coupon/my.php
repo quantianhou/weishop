@@ -841,7 +841,7 @@ class My_EweiShopV2Page extends MobileLoginPage
         }
         $qrcode_uri = $_W['siteroot'] . '/addons/ewei_shopv2/data/qrcode/' . $_W['uniacid'] . '/' . $file;
 
-        list($qrcode1 , $qrcode2) = str_split($data['qrcode'],4);
+        $qrcodes = str_split($data['qrcode'],4);
         include $this->template();
     }
 	private function _condition($args) 
