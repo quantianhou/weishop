@@ -66,10 +66,18 @@ define(['core', 'tpl', 'biz/goods/picker', 'biz/plugin/diyform'], function (core
             FoxUI.loader.show('mini');//loading
             var checked = $(this).prop('checked');
             $(this).parent().parent().find('.check-item').each(function () {
-                $(".check-item").prop('checked', checked);
+                $(this).prop('checked', checked);
                 var cartid = $(this).closest('.goods-item').data('cartid');
-                modal.select_2(cartid, true);
+                modal.select_2(cartid, checked);
                 $(this).closest(".fui-list-group").find(".cartcheck").prop('checked', $(this).closest(".fui-list-group").find('.check-item').length == $(this).closest(".fui-list-group").find('.check-item:checked').length)
+            });
+            //fanhailong add 将其他店铺下的商品全不选中
+            $(this).parent().parent().siblings().find(".check-item").each(function() {
+                $(this).prop('checked', false);
+                var cartid = $(this).closest('.goods-item').data('cartid');
+                modal.select_2(cartid, false);
+                $(this).closest(".fui-list-group").find(".cartcheck").prop('checked', $(this).closest(".fui-list-group").find('.check-item').length == $(this).closest(".fui-list-group").find('.check-item:checked').length);
+                modal.initShopCheck();
             });
         });
         $('.check-item').unbind('click').click(function () {
