@@ -1,4 +1,5 @@
 <script type="text/javascript" src="http://api.map.baidu.com/api?ak=5Vhsp264Bf2jj1KE8dPEz214&v=2.0"></script>
+{template '_header'}
 <style>
     .fui-content{
         top:50px !important;
@@ -119,7 +120,7 @@
                 height: 400px!important;
             }
             .dn {
-                display: none;
+                display: block;
             }
             #store_wrap .store_pay {
                 color: #fff;
@@ -433,7 +434,7 @@
                                                 left:0;
                                                 top:0;
                                                 z-index: 999999;
-                                                display: none;
+                                                display: block;
                                             }
                                             .headFixed {
                                                 position: fixed;
@@ -553,25 +554,8 @@
 </style>
 <!--这里是切换药房层-->
 <div class="change_store" style="overflow-y: scroll;">
-    <div class="headFixed">
-        <!--顶部-->
-        <div id="new_head">
-            <a class="goSearch" href="#">
-                <img src="/attachment/images/icon_search.png" alt="">
-                <input id="searchinput" type="search" placeholder="请输入要搜索的药房"/>
-            </a>
-        </div>
-    </div>
     <div class="chain ng-scope">
-        <div class="location ng-scope" >
-            <p class="ellipsis ng-binding">&nbsp;</p>
-            <img src="/attachment/images/refresh1.png">
-        </div>
         <div class="col-10 stores_box ng-isolate-scope" >
-            <div class="location ng-scope">
-                <p id="address_area" class="ellipsis ng-binding">当前：龙沙小区38号楼1号</p>
-                <img src="/attachment/images/refresh1.png">
-            </div>
             <div class="store_info ng-scope">
                 {loop $shoplist $name $item}
                 <div class="store_li" onclick="window.location.href='../../../../../../../index.php'uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=index'+'&storeid={$item['id']}'">
