@@ -32,7 +32,8 @@ define(['core', 'tpl', 'biz/goods/picker', 'biz/plugin/diyform'], function (core
                     }
                 });
                 var checkitem = container.closest('.goods-item').find('.check-item');
-                modal.select(cartid, true);
+                FoxUI.loader.show('mini');//loading
+                modal.select_2(cartid, true);
                 checkitem.prop('checked', true);
                 $(this).closest(".fui-list-group").find(".cartcheck").prop('checked', $(this).closest(".fui-list-group").find('.check-item').length == $(this).closest(".fui-list-group").find('.check-item:checked').length);
                 //fanhailong add判断当前商品所在的门店下的所有商品是否都已经选中
