@@ -286,13 +286,18 @@ class User_EweiShopV2Page extends MobilePage
         //查询门店信息
         $storeInfo = pdo_fetch('select * from ' . tablename('ewei_shop_store') . ' where id=:id and uniacid=:uniacid limit 1', array(':id' => $userInfo['storeid'], ':uniacid' => $_W['uniacid']));
 
+        $last_acid = $_W['acid'];//因为店员的推广二维码扫描后是要关注到店员所在单位的公众号，所以得切换为客户公众号去生成二维码，d端公众号id先保存起来，用完后再替换回来
+        $tmp_acid = pdo_fetchcolumn('SELECT acid FROM ' . tablename('account_wechats') . ' WHERE `uniacid`=:uniacid LIMIT 1', array(':uniacid' => $userInfo['uniacid']));
+        $_W['acid'] = $tmp_acid;
+
         //获取推广二维码
         $dirname = '../addons/ewei_shopv2/data/qrcode/' . $_W['uniacid'] . '/' . 'tuiguang/';
 
         $url = $dirname . '/' . $userInfo['id'] . '.png';
 
         if (!file_exists($url)){
-            $token = WeAccount::token();
+            $account = m('common')->getAccount();
+            $token = $account->fetch_token();
             $customMessageSendUrl = 'https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=' . $token;
             $postJosnData = '{"action_name": "QR_LIMIT_SCENE", "action_info": {"scene": {"scene_id": '.$userInfo['id'].'}}}';
             $ch = curl_init($customMessageSendUrl);
