@@ -161,6 +161,9 @@ class WeEngine {
                 WeUtility::logging('waring', 'Request Failed');
                 exit('Request Failed');
             }
+            if($message['event'] == 'VIEW') {//fanhailong add 点击菜单跳转链接时的事件推送，不做任何处理
+                exit();
+            }
             $_W['openid'] = $message['from'];
             $_W['fans'] = array('from_user' => $_W['openid']);
             $this->booking($message);
