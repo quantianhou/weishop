@@ -76,7 +76,8 @@
 				<div class="coupon-right">
 					<div class="title"><%coupon.couponname%></div>
 					<div class="subtitle"><%=coupon.title5%></div>
-					<div class="subtitle light"><%if coupon.t>0%>剩余<%coupon.t%>/<%coupon.last%>张<%/if%></div>
+					<!--<div class="subtitle light"><%if coupon.t>0%>剩余<%coupon.t%>/<%coupon.last%>张<%/if%></div>-->
+					<div class="subtitle light"><%if coupon.all_shop%>所有门店适用<%else%>部分门店适用<%/if%></div>
 					<div class="usetime">
 						<div class="text"><%=coupon.title4%></div>
 						<div class="usebtn"><% if coupon.isdisa =='1'%>已发完<%else%>立即领取<%/if%></div>

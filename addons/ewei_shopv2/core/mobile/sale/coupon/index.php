@@ -60,16 +60,22 @@ class Index_EweiShopV2Page extends MobileLoginPage
 		$time = time();
 		$param = array();
 		$param[':uniacid'] = $_W['uniacid'];
-        $this_store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
-        if(empty($this_store_id))
-        {
-            $this_store_id = 0 ;
-        }
-        $param[':store_id'] = $this_store_id;
-		$sql = 'select id,timelimit,coupontype,timedays,timestart,timeend,couponname,enough,backtype,deduct,discount,backmoney,backcredit,backredpack,bgcolor,thumb,credit,money,getmax,merchid,total as t,tagtitle,settitlecolor,titlecolor,giftname  from ' . tablename('ewei_shop_coupon');
+        //$this_store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+//        if(empty($this_store_id))
+//        {
+//            $this_store_id = 0 ;
+//        }
+        //$param[':store_id'] = $this_store_id;
+		$sql = 'select id,timelimit,coupontype,timedays,timestart,timeend,couponname,enough,backtype,deduct,discount,backmoney,backcredit,backredpack,bgcolor,thumb,credit,money,getmax,merchid,total as t,tagtitle,settitlecolor,titlecolor,giftname,storeid  from ' . tablename('ewei_shop_coupon');
 		$sql .= ' where uniacid=:uniacid';
-		$sql .= ' and storeid like "%,":store_id",%" ';
-        $this_store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+		//$sql .= ' and storeid like "%,":store_id",%" ';
+        //$this_store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+
+        //fanhailong add 读取当前公众号下的店铺数量
+        $shop_count_param = array('uniacid' => $_W['uniacid']);
+        $sshop_count_sql = "SELECT count(1) as count FROM ". tablename('ewei_shop_store'). "  WHERE uniacid = :uniacid";
+        $shop_count = pdo_fetch($sshop_count_sql, $shop_count_param);
+
 		if ($is_openmerch == 0)
 		{
 			$sql .= ' and merchid=0';
@@ -131,6 +137,13 @@ class Index_EweiShopV2Page extends MobileLoginPage
 		}
 		foreach ($coupons as $i => &$row ) 
 		{
+		    $storeids = trim($row['storeid'],",");
+            $storeids = explode(',',$storeids);
+		    if(count($storeids) == $shop_count['count']){
+		        $row['all_shop'] = true;
+            }else{
+                $row['all_shop'] = false;
+            }
 			$row = com('coupon')->setCoupon($row, $time);
 			$last = com('coupon')->get_last_count($row['id']);
 			$row['contype'] = 2;
