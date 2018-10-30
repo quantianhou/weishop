@@ -35,14 +35,14 @@
     </div>
     {if !empty($userInfo) && $userInfo['mobile'] && $userInfo['storeid']}
     <ul class="list-ul">
-        <li class="list-li">
+        <li class="list-li" onclick="document.location.href='/app/index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=verify.user.code'">
             <i class="icon"></i>
             <span class="text">我的推广码</span>
             <a href="/app/index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=verify.user.code">
                 <i class="href-icon"></i>
             </a>
         </li>
-        <li class="list-li">
+        <li class="list-li" onclick="document.location.href='/app/index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=verify.verifyorder.log'">
             <i class="icon icon1"></i>
             <span class="text">我的核销记录</span>
             <a href="/app/index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=verify.verifyorder.log">
@@ -64,6 +64,13 @@
 </body>
 </html>
 <script>
+    $('.user-info,.touxiang').click(function(){
+        {if !empty($userInfo) && $userInfo['mobile']}
+        document.location.href = '/app/index.php?i=17&c=entry&m=ewei_shopv2&do=mobile&r=verify.user.info'
+        {else}
+        addCard('{$storeInfo['membercard']['card_id']}','');
+        {/if}
+    });
     function addCard(card_id,code) {
 
         var data = {'openid': '{php echo $_W["openid"]}', 'card_id': card_id, 'code': code};
