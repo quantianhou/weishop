@@ -35,6 +35,24 @@ define(['core', 'tpl', 'biz/goods/picker', 'biz/plugin/diyform'], function (core
                 modal.select(cartid, true);
                 checkitem.prop('checked', true);
                 $(this).closest(".fui-list-group").find(".cartcheck").prop('checked', $(this).closest(".fui-list-group").find('.check-item').length == $(this).closest(".fui-list-group").find('.check-item:checked').length);
+                //fanhailong add判断当前商品所在的门店下的所有商品是否都已经选中
+                var currentShopAllSelect = true;
+                checkitem.parent().parent().parent().find(".check-item").each(function () {console.log("inn");
+                    if($(this).prop("checked") == false){
+                        currentShopAllSelect = false;
+                    }
+                });
+                checkitem.parent().parent().parent().find(".shopallinput").prop("checked", currentShopAllSelect);
+
+                //fanhailong add 将其他店铺下的商品全不选中
+                checkitem.parent().parent().parent().siblings().find(".check-item").each(function() {console.log("aa");
+                    $(this).prop('checked', false);
+                    var cartid = $(this).closest('.goods-item').data('cartid');
+                    modal.select_2(cartid, false);
+                    $(this).closest(".fui-list-group").find(".cartcheck").prop('checked', $(this).closest(".fui-list-group").find('.check-item').length == $(this).closest(".fui-list-group").find('.check-item:checked').length);
+                    modal.initShopCheck();
+                })
+
                 modal.update(cartid, num, optionid);
                 modal.caculate()
             }
@@ -228,11 +246,12 @@ define(['core', 'tpl', 'biz/goods/picker', 'biz/plugin/diyform'], function (core
             goods: modal.goods
         }, function (ret) {
             $('.goods-item').each(function () {
+                var t = parseInt($(this).find('.shownum').val());
                 var seckillmaxbuy = $(this).data('seckillMaxbuy') || 0,
                     seckillselfcount = $(this).data('seckillSelfcount') || 0,
                     seckillprice = $(this).data('seckillPrice') || 0;
                 if ($(this).find('.check-item').prop('checked')) {
-                    var t = parseInt($(this).find('.shownum').val());
+
                     total += t;
                     if ($(this).data('type') == 4) {
                         var good = ret.result.goods[$(this).data('cartid')];
