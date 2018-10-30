@@ -24,7 +24,10 @@
 				<img src="{php echo $qrcode_uri;}" />
 			</div>
 			<p class="tishi-text">请向收银员出示</p>
-			<div style=" text-align: center;background-color: #efefef;font-weight: bolder;height: 40px;line-height: 40px; align-content: center;font-size: 20px;width: 70%;margin: 0 auto;">{php echo $qrcode1;}&nbsp;&nbsp;{php echo $qrcode2;}</div>
+			<div style=" text-align: center;background-color: #efefef;font-weight: bolder;height: 40px;line-height: 40px; align-content: center;font-size: 20px;width: 70%;margin: 0 auto;">
+				{loop $qrcodes  $qr}
+				{$qr}&nbsp;
+				{/loop}</div>
 		</div>
 		<!--<a href="{php echo mobileUrl('sale/coupon/my')}">-->
 			<!--<div class="btn btn-danger block" style="margin: 0 0.5rem 0.5rem">查看我的优惠券</div>-->
