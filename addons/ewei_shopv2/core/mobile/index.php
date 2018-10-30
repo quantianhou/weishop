@@ -157,6 +157,8 @@ class Index_EweiShopV2Page extends MobilePage
             $store_id = (isset($_GPC['storeid']) &&!empty($_GPC['storeid'])) ? $_GPC['storeid'] : 0;
             if(!empty($store_id)){
                 $store_id && isetcookie('store_id', $store_id, 7 * 86400);
+            }else{
+                $store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
             }
             if(!empty($store_id) && isset($_W['shopset']['shop']['indexrecommands'][$store_id]) && !empty($_W['shopset']['shop']['indexrecommands'][$store_id]))
             {
