@@ -12,6 +12,10 @@ class User_EweiShopV2Page extends MobilePage
 
         $openid = $_W['openid'];
         $uniacid = $_W['uniacid'];
+        //fanhailong add，调用微信用户基础信息接口读取头像
+        $account_obj = WeAccount::create($_W['account']);
+        $userinfo = $account_obj->fansQueryInfo($openid);
+        $_W['fans']['headimgurl'] = $userinfo['headimgurl'];
 
         //判断当期啊openid 有没有绑定过核销员的身份
 //        $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where openid=:openid limit 1', array(':openid' => $openid));
@@ -266,6 +270,10 @@ class User_EweiShopV2Page extends MobilePage
         global $_W;
 
         $openid = $_W['openid'];
+        //fanhailong add，调用微信用户基础信息接口读取头像
+        $account_obj = WeAccount::create($_W['account']);
+        $userinfo = $account_obj->fansQueryInfo($openid);
+        $_W['fans']['headimgurl'] = $userinfo['headimgurl'];
 
         $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where d_openid=:openid limit 1', array(':openid' => $openid));
 
