@@ -143,13 +143,20 @@ class Index_EweiShopV2Page extends MobilePage
 		$cubes = ((is_array($_W['shopset']['shop']['cubes']) ? $_W['shopset']['shop']['cubes'] : array()));
 		$banners = pdo_fetchall('select id,bannername,link,thumb from ' . tablename('ewei_shop_banner') . ' where uniacid=:uniacid and iswxapp=0 and enabled=1 and storeid like "%,":store_id",%" order by displayorder desc', array(':uniacid' => $uniacid,':store_id'=>$this_store_id));
 		$bannerswipe = $_W['shopset']['shop']['bannerswipe'];
-		if (!(empty($_W['shopset']['shop']['indexrecommands']))) 
+		if (isset($_W['shopset']['shop']['indexrecommands']) && !empty(isset($_W['shopset']['shop']['indexrecommands'])))
 		{
-			$goodids = implode(',', $_W['shopset']['shop']['indexrecommands']);
-			if (!(empty($goodids))) 
+            $goodsids = [];
+            $this_store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+            if(!empty($this_store_id) && isset($_W['shopset']['shop']['indexrecommands'][$this_store_id]) && !empty($_W['shopset']['shop']['indexrecommands'][$this_store_id]))
+            {
+                $goodsids = $_W['shopset']['shop']['indexrecommands'][$this_store_id];
+            }
+			if (!(empty($goodsids)))
 			{
-				$indexrecommands = pdo_fetchall('select id, title, thumb, marketprice,ispresell,presellprice, productprice, minprice, total from ' . tablename('ewei_shop_goods') . ' where id in( ' . $goodids . ' ) and uniacid=:uniacid and status=1 order by instr(\'' . $goodids . '\',id),displayorder desc', array(':uniacid' => $uniacid));
-				foreach ($indexrecommands as $key => $value ) 
+//				$indexrecommands = pdo_fetchall('select id, title, thumb, marketprice,ispresell,presellprice, productprice, minprice, total from ' . tablename('ewei_shop_goods') . ' where id in( ' . $goodids . ' ) and uniacid=:uniacid and status=1 order by instr(\'' . $goodids . '\',id),displayorder desc', array(':uniacid' => $uniacid));
+				$indexrecommands = pdo_fetchall('select bg.title as bgtitle , bg.thumb as bgthumb , sg.* from '. tablename('ewei_business_goods') .' as bg right join '. tablename('ewei_shop_goods') .' as sg on bg.id = sg.business_goods_id where bg.id in ('. implode(',' , $goodsids).') and sg.uniacid=:uniacid and sg.shop_id = '. $this_store_id.' and sg.status=1 order by instr(\'' . implode(',',$goodsids) . '\',bg.id), sg.displayorder desc', array(':uniacid' => $uniacid));
+//				var_dump($indexrecommands);exit;
+				foreach ($indexrecommands as $key => $value )
 				{
 					if (0 < $value['ispresell']) 
 					{
