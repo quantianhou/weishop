@@ -292,7 +292,7 @@ class Cart_EweiShopV2Page extends MobileLoginPage
 		$total = intval($_GPC['total']);
 		($total <= 0) && ($total = 1);
 		$optionid = intval($_GPC['optionid']);
-		$goods = pdo_fetch('select id,marketprice,diyformid,diyformtype,diyfields, isverify, `type`,merchid, cannotrefund from ' . tablename('ewei_shop_goods') . ' where id=:id and uniacid=:uniacid limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
+		$goods = pdo_fetch('select id,shop_id,marketprice,diyformid,diyformtype,diyfields, isverify, `type`,merchid, cannotrefund from ' . tablename('ewei_shop_goods') . ' where id=:id and uniacid=:uniacid limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
 		if (empty($goods)) 
 		{
 			show_json(0, '商品未找到');
@@ -350,9 +350,20 @@ class Cart_EweiShopV2Page extends MobileLoginPage
 			$data['diyformid'] = $diyformid;
 			$data['diyformdata'] = $diyformdata;
 			$data['diyformfields'] = $diyformfields;
+            $data['selected'] = 1;
 			$data['total'] += $total;
 			pdo_update('ewei_shop_member_cart', $data, array('id' => $data['id']));
 		}
+		//fanhailong add 将当前商品加入购物车后，之前购物车勾选的商品如果和当前商品是一个门店，则不处理，如不是，之前勾选的商品取消勾选
+        $after_selected_list = pdo_fetchall('select c.id,c.goodsid,g.shop_id from ' . tablename('ewei_shop_member_cart') . ' c left join '.tablename('ewei_shop_goods') .' g ON c.goodsid=g.id where c.openid=:openid and c.deleted=0 and c.selected=1 and  c.uniacid=:uniacid and c.goodsid!=:goodsid', array(':uniacid' => $_W['uniacid'], ':openid' => $_W['openid'], ':goodsid' => $id));
+		//echo '<pre>';print_r($after_selected_list);print_r($id);exit;
+		foreach($after_selected_list as $val){
+		    if($val['shop_id'] != $goods['shop_id']){
+		        $data = array('selected' => 0);
+                pdo_update('ewei_shop_member_cart', $data, array('id' => $val['id']));
+            }
+        }
+
 		$cartcount = pdo_fetchcolumn('select sum(total) from ' . tablename('ewei_shop_member_cart') . ' where openid=:openid and deleted=0 and uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid'], ':openid' => $_W['openid']));
 		show_json(1, array('isnew' => false, 'cartcount' => $cartcount));
 	}
