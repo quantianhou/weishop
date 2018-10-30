@@ -364,7 +364,7 @@ class Cart_EweiShopV2Page extends MobileLoginPage
             }
         }
 
-		$cartcount = pdo_fetchcolumn('select sum(total) from ' . tablename('ewei_shop_member_cart') . ' where openid=:openid and deleted=0 and uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid'], ':openid' => $_W['openid']));
+		$cartcount = pdo_fetchcolumn('select sum(total) from ' . tablename('ewei_shop_member_cart') . ' where openid=:openid and deleted=0 and selected = 1 and uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid'], ':openid' => $_W['openid']));
 		show_json(1, array('isnew' => false, 'cartcount' => $cartcount));
 	}
 	public function addwholesale() 
