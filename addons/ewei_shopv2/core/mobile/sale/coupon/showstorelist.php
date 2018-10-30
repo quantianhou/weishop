@@ -3,7 +3,7 @@ if (!(defined('IN_IA')))
 {
 	exit('Access Denied');
 }
-class Detail_EweiShopV2Page extends MobilePage 
+class Showstorelist_EweiShopV2Page extends MobilePage
 {
 	public function main() 
 	{
@@ -22,6 +22,11 @@ class Detail_EweiShopV2Page extends MobilePage
 			exit();
 		}
 		$coupon = com('coupon')->setCoupon($coupon, time());
+
+        //获取商户门店
+        $prefix_cookie = $_W['config']['cookie']['pre'];
+        $shoplist = pdo_fetchall('select *  from ' . tablename('ewei_shop_store') . ' og  where og.uniacid=:uniacid ', array(':uniacid' => $_W['uniacid']));;
+        print_r($shoplist);exit;
 		include $this->template();
 	}
 }

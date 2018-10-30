@@ -16,7 +16,7 @@ class Detail_EweiShopV2Page extends MobilePage
         $shop_count_param = array('uniacid' => $_W['uniacid']);
         $sshop_count_sql = "SELECT count(1) as count FROM ". tablename('ewei_shop_store'). "  WHERE uniacid = :uniacid";
         $shop_count = pdo_fetch($sshop_count_sql, $shop_count_param);
-        $store_list_url = $_W['siteroot']."index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=sale.coupon.detail_storelist&id={$id}";
+        $store_list_url = $_W['siteroot']."index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=sale.coupon.showstorelist&id={$id}";
 
 		if (empty($coupon)) 
 		{
