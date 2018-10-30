@@ -14,19 +14,11 @@
 </div>
 
 <div class="page-content">
-    <form action="./index.php" method="get" class="form-horizontal form-search" role="form">
-        <input type="hidden" name="c" value="site" />
-        <input type="hidden" name="a" value="entry" />
-        <input type="hidden" name="m" value="ewei_shopv2" />
-        <input type="hidden" name="do" value="web" />
-        <input type="hidden" name="r"  value="shop.banner" />
-
-        <div class="page-toolbar">
-            <div class="col-md-4">
-                <a class='btn btn-primary btn-sm' href="{php echo webUrl('shop/recommand/toAdd')}"><i class='fa fa-plus'></i> 添加推荐商品</a>
-            </div>
+    <div class="page-toolbar">
+        <div class="col-md-4">
+            <a class='btn btn-primary btn-sm' href="{php echo webUrl('shop/recommand/toAdd')}"><i class='fa fa-plus'></i> 添加推荐商品</a>
         </div>
-    </form>
+    </div>
 
     {if empty($gsdata)}
     <div class="panel panel-default">

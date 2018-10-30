@@ -11,7 +11,7 @@
             <div class="form-group" style="height: auto; overflow:hidden;">
                 <div class="col-sm-9 col-xs-12">
                     {ifp 'shop.recommand.main'}
-                    <?php echo tpl_selector_cmlove('goodsid',
+                    <?php echo tpl_selector('goodsid',
                         array(
                             'preview'=>true,
                     'readonly'=>true,
@@ -87,7 +87,7 @@
                 {ife 'shop.banner' $item}
                     <input type="submit" value="提交" class="btn btn-primary"/>
                 {/if}
-                <input type="button" name="back" onclick='history.back()' style='margin-left:10px;' value="返回列表" class="btn btn-default"/>
+                <input type="button" id="jump" data-uri="{php echo webUrl('shop/recommand');}" name="back" onclick="toJump()" style='margin-left:10px;' value="返回列表" class="btn btn-default"/>
             </div>
         </div>
     </form>
@@ -95,9 +95,14 @@
 </div>
 <script src="{php echo EWEI_SHOPV2_LOCAL}static/js/store.js?_V=3"></script>
 <script>
+    function toJump(obj) {
+        window.location.href = $("#jump").attr('data-uri');
+    }
     $(document).ready(function () {
         var name = $("#branchName").val();
         getBranch(true,name);
+
+
     })
 </script>
 {template '_footer'}
