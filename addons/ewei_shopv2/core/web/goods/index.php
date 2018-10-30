@@ -393,13 +393,46 @@ class Index_EweiShopV2Page extends WebPage
 
 		$ds = pdo_fetchall('SELECT id,title,thumb,marketprice,productprice,share_title,share_icon,description,minprice,costprice,total,sales,islive,liveprice FROM ' . tablename('ewei_shop_goods') . ' WHERE 1 ' . $condition . ' order by createtime desc', $params);
 		$ds = set_medias($ds, array('thumb', 'share_icon'));
-
 		if ($_GPC['suggest']) {
 			exit(json_encode(array('value' => $ds)));
 		}
 
 		include $this->template();
 	}
+
+    public function queryCm()
+    {
+        global $_W;
+        global $_GPC;
+        $kwd = trim($_GPC['keyword']);
+        $type = intval($_GPC['type']);
+        $live = intval($_GPC['live']);
+        $params = array();
+        $params[':uniacid'] = $_W['uniacid'];
+        $condition = ' and status=1 and deleted=0 and uniacid=:uniacid';
+
+        if (!empty($kwd)) {
+            $condition .= ' AND (`title` LIKE :keywords OR `keywords` LIKE :keywords)';
+            $params[':keywords'] = '%' . $kwd . '%';
+        }
+
+        if (empty($type)) {
+            $condition .= ' AND `type` != 10 ';
+        }
+        else {
+            $condition .= ' AND `type` = :type ';
+            $params[':type'] = $type;
+        }
+
+        $ds = pdo_fetchall('SELECT id,title,thumb,marketprice,productprice,share_title,share_icon,description,minprice,costprice,total,sales,islive,liveprice FROM ' . tablename('ewei_business_goods') . ' WHERE 1 ' . $condition . ' order by createtime desc', $params);
+        $ds = set_medias($ds, array('thumb', 'share_icon'));
+
+        if ($_GPC['suggest']) {
+            exit(json_encode(array('value' => $ds)));
+        }
+
+        include $this->template();
+    }
 
 	public function goodsprice()
 	{

@@ -1,0 +1,104 @@
+{template '_header'}
+
+<div class="page-header">
+    当前位置：<span class="text-primary">添加推荐商品</span>
+</div>
+
+<div class="page-content">
+    <form action="<?php echo webUrl('shop/recommand/doAdd') ;?>" method="post" class="form-horizontal form-validate" enctype="multipart/form-data">
+        <label class="col-lg control-label">添加商品</label>
+        <div class="form-group">
+            <div class="form-group" style="height: auto; overflow:hidden;">
+                <div class="col-sm-9 col-xs-12">
+                    {ifp 'shop.recommand.main'}
+                    <?php echo tpl_selector_cmlove('goodsid',
+                        array(
+                            'preview'=>true,
+                    'readonly'=>true,
+                    'multi'=>1,
+                    'value'=>$item['title'],
+                    'url'=>webUrl('goods/queryCm'),
+                    'items'=>$goods,
+                    'nokeywords'=>1,
+                    'autosearch'=>1,
+                    'buttontext'=>'选择商品',
+                    'placeholder'=>'请选择商品')
+                    )?>
+                    {else}
+                    <div class="input-group multi-img-details container ui-sortable">
+                        {loop $goods $item}
+                        <div data-name="goodsid" data-id="426" class="multi-item">
+                            <img src="{php echo tomedia($item['thumb'])}" class="img-responsive img-thumbnail">
+                            <div class="img-nickname">{$item['title']}</div>
+                        </div>
+                        {/loop}
+                    </div>
+                    {/if}
+                </div>
+            </div>
+            <label class="col-lg control-label">店铺</label>
+            <div class="col-sm-9 col-xs-12">
+                <table>
+                    <tbody><tr>
+                        <td>
+                            <div id="allBranchDiv" class="box" style="width: 350px; height: 450px; border: 1px solid #F8F8F8;overflow:auto;background:#F8F8F8">
+                                <div class="box-header well" style="background:#F8F8F8;border: 0px;">
+                                    <input type="hidden" id="allBranchUrl" name="allBranchUrl" value="{php echo webUrl('shop/store/me')}">
+                                    <input type="hidden" id="selectedBranchUrl" name="selectedBranchUrl" value="{php echo webUrl('shop/banner/me')}">
+                                    <input id="branchName" name="branchName" size="16" type="text" value="" style="width:180px;border: 1px solid #cccccc;background-color: #fff;border-radius:3px; height: 30px; line-height: 30px;">
+                                    <button type="button" onclick="searchBranch()" class="btn btn-primary btn-sm" style="margin-top: 5px;">查 询</button>
+                                </div>
+                                <div class="box-content">
+                                    <div class="row-fluid">
+                                        <div style="overflow:auto;height: 400px;background:#F8F8F8; ">
+                                            <ul id="ulId" class="allBranch">
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <img src="{php echo EWEI_SHOPV2_LOCAL}static/images/move.png">
+                        </td>
+                        <td>
+                            <div id="selectedBranchDiv" class="box" style="width: 350px; height: 450px; border: 1px solid #F8F8F8;background:#F8F8F8">
+                                <div class="box-header well" style="background:#F8F8F8;border: 0px">
+                                    <span style="color: blue;margin-left: 85%;cursor:pointer" onclick="cleanSelected()">清 空</span>
+                                </div>
+                                <div class="box-content">
+                                    <div class="row-fluid">
+                                        <div style="overflow:auto;height: 400px;background:#F8F8F8 ">
+                                            <ul id="selectUlId" class="selectBranch">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody></table>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg control-label"></label>
+            <div class="col-sm-9 col-xs-12">
+                {ife 'shop.banner' $item}
+                    <input type="submit" value="提交" class="btn btn-primary"/>
+                {/if}
+                <input type="button" name="back" onclick='history.back()' style='margin-left:10px;' value="返回列表" class="btn btn-default"/>
+            </div>
+        </div>
+    </form>
+
+</div>
+<script src="{php echo EWEI_SHOPV2_LOCAL}static/js/store.js?_V=3"></script>
+<script>
+    $(document).ready(function () {
+        var name = $("#branchName").val();
+        getBranch(true,name);
+    })
+</script>
+{template '_footer'}
+<!--efwww_com54mI5p2D5omA5pyJ-->
