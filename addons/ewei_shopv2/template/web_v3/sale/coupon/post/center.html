@@ -31,10 +31,10 @@
     <div class="col-sm-9 col-xs-12" >
         {ife 'sale.coupon' $item}
         <label class="radio-inline">
-            <input type="radio" name="gettype" value="1" {if $item['gettype'] == 1}checked="true"{/if} onclick="$('.gettype').show()" /> 可以
+            <input type="radio" name="gettype" value="1" {if $item['gettype'] == 1 || empty($item['gettype'])}checked="true"{/if} onclick="$('.gettype').show()" /> 可以
         </label>
         <label class="radio-inline">
-            <input type="radio" name="gettype" value="0" {if $item['gettype'] == 0}checked="true"{/if}  onclick="$('.gettype').hide()"/> 不可以
+            <input type="radio" name="gettype" value="0" {if $item['gettype'] == 0 && $item['gettype'] != null}checked="true"{/if}  onclick="$('.gettype').hide()"/> 不可以
         </label>
 
         <span class='help-block'>会员是否可以在领券中心直接领取或购买</span>
@@ -45,7 +45,7 @@
         {/if}
     </div>
 </div>
-<div class="gettype" {if $item['gettype']!=1}style="display:none"{/if}>
+<div class="gettype" {if $item['gettype']==0 && $item['gettype']!= null}style="display:none"{/if}>
 
     {ife 'sale.coupon' $item}
 

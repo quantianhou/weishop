@@ -4,7 +4,7 @@
 		<?php  } else if($_GPC['a'] == 'mass') { ?>群发内容
 		<?php  } else { ?>
 			<?php  if($_GPC['c'] == 'mc' && $_GPC['a'] == 'chats') { ?>发送聊天内容<?php  } else { ?>触发后回复内容<?php  } ?>
-			<?php  if($_GPC['a'] == 'reply' && $_GPC['m'] == 'keyword') { ?><span class="pull-right color-gray">添加多条回复内容时, 随机回复其中一条</span><?php  } ?>
+			<?php  if($_GPC['a'] == 'reply' && $_GPC['m'] == 'keyword') { ?><!--span class="pull-right color-gray">添加多条回复内容时, 随机回复其中一条</span--><?php  } ?>
 		<?php  } ?>
 	</div>
 	<div class="panel-body we7-padding">
@@ -46,11 +46,8 @@
 				<li class="tab-nav tab-cardmsg <?php  if($options['keyword']) { ?>hidden<?php  } ?>">
 					<a href="javascript:void(0);" onclick="select_mediaid('keyword');">&nbsp;<i class="wi wi-keyword"></i><span class="msg-tab-title">触发关键字</span></a>
 				</li>
-				<li class="tab-nav tab-cardmsg <?php  if($options['module']) { ?>hidden<?php  } ?>">
+				<li class="tab-nav tab-cardmsg <?php  if($options['module']) { ?><?php  } ?>">
 					<a href="javascript:void(0);" onclick="select_mediaid('module');">&nbsp;<i class="wi wi-keyword"></i><span class="msg-tab-title">模块</span></a>
-				</li>
-				<li class="tab-nav tab-cardmsg <?php  if($_GPC['m'] != 'keyword') { ?>hidden<?php  } ?>"">
-					<a href="javascript:void(0);" onclick="select_wxcard();">&nbsp;<i class="wi wi-keyword"></i><span class="msg-tab-title">微信会员卡</span></a>
 				</li>
 			</ul>
 		</div>
@@ -59,31 +56,6 @@
 <script>
 	var action = "<?php  echo $_GPC['a']?>";
 	var m = "<?php  echo $_GPC['m']?>";
-	
-	function select_wxcard(){
-	    console.log("wxcard");
-	    var type='wxcard';
-	    var keywords = '回复微信卡券';
-	    var replyVal = '回复微信卡券';
-        $(':hidden[name="reply[reply_'+type+']"]').val(replyVal);
-        $('.keywords-list').append(
-            '<li>'+
-            '<div class="del-'+type+'-media">'+
-            '	<div class="desc">'+
-            '		<div class="media-content">'+
-            '				<a class="title-wrp" href="javascript:;">'+
-            '					<span class="title">[微信会员卡]</span>'+
-            '				</a>'+
-            '				<p class="desc"><a href="javascript:;" class="appmsg-desc">'+keywords+'</a></p>'+
-            '		</div>'+
-            '	</div>'+
-            '	<div class="opr">'+
-            '		<a href="javascript:;" data-media="微信会员卡" class="del-gray" onclick="delmedia(\''+type+'\', this)">删除</a>'+
-            '	</div>'+
-            '</div>'+
-            '</li>'
-        );
-    }
 
 	//删除已选素材
 	var delmedia = function(type, ele) {
@@ -272,13 +244,12 @@
 				if($.trim(material.id).length == 0) {
 					return false;
 				}
-				replyVal.push(angular.toJson(material.id));console.log(replyVal);
+				replyVal.push(angular.toJson(material.id));
 				$(':hidden[name="reply[reply_'+type+']"]').val(replyVal);
 				var keywords = [];
 				for(var i = 0; i < material.child_items.length; i++) {
 					keywords += '&nbsp;&nbsp;' + material.child_items[i].content;
 				}
-				console.log("aaa");console.log(material);console.log(material.child_items);
 				$('.keywords-list').append(
 					'<li>'+
 					'<div class="del-'+type+'-media">'+
@@ -683,7 +654,13 @@
 							'<div class="del-'+type+'-media">'+
 							'	<div class="desc">'+
 							'		<div class="media-content">'+
-                            '<span data-toggle="tooltip" data-placement="bottom"  title="微信会员卡">[微信会员卡]</span>'+
+							'			<div class="appmsgSendedItem">'+
+							'				<a class="title-wrp" href="javascript:;">'+
+							'					 <span class="icon cover" style="background-image:url('+wxcardVal.logo_url+');"></span>'+
+							'					<span class="title">[卡券]'+(wxcardVal.title ? wxcardVal.title : '--')+'</span>'+
+							'				<p class="desc"><a href="javascript:;" class="appmsg-desc">'+(wxcardVal.brand_name ? wxcardVal.brand_name : '--')+'</a></p>'+
+							'				</a>'+
+							'			</div>'+
 							'		</div>'+
 							'	</div>'+
 							'	<div class="opr">'+
