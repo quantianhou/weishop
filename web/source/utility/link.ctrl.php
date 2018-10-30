@@ -220,6 +220,14 @@ if ($do == 'entry') {
 			array('title'=>'消息','url'=> murl('entry', array('m' => 'we7_coupon', 'do' => 'card', 'op' => 'notice'))),
 			array('title'=>'签到','url'=> murl('entry', array('m' => 'we7_coupon', 'do' => 'card', 'op' => 'sign_display'))),
 			array('title'=>'完善会员资料','url'=> murl('mc/profile')),
+
+            //fanhailong add
+            array('title'=>'我的优惠券','url'=>$_W['siteroot']."index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=sale.coupon.my"),
+            array('title'=>'我的订单','url'=>$_W['siteroot']."index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=order"),
+            array('title'=>'购物车','url'=>$_W['siteroot']."index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=member.cart"),
+            array('title'=>'会员中心','url'=>$_W['siteroot']."index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=member"),
+
+
 		);
 	}
 		if(empty($has_permission) || (!empty($has_permission) && in_array('site_multi_display', $has_permission['system']))) {
