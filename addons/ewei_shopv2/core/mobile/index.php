@@ -146,7 +146,7 @@ class Index_EweiShopV2Page extends MobilePage
 		if (isset($_W['shopset']['shop']['indexrecommands']) && !empty(isset($_W['shopset']['shop']['indexrecommands'])))
 		{
             $goodsids = [];
-            $store_id = $_GPC['storeid'];
+            $store_id = (isset($_GPC['storeid']) &&!empty($_GPC['storeid'])) ? $_GPC['storeid'] : 0;
             if(!empty($store_id) && isset($_W['shopset']['shop']['indexrecommands'][$store_id]) && !empty($_W['shopset']['shop']['indexrecommands'][$store_id]))
             {
                 $goodsids = $_W['shopset']['shop']['indexrecommands'][$store_id];
