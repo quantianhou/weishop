@@ -1,0 +1,693 @@
+<script type="text/javascript" src="http://api.map.baidu.com/api?ak=5Vhsp264Bf2jj1KE8dPEz214&v=2.0"></script>
+<style>
+    .fui-content{
+        top:50px !important;
+    }
+    .head1 {
+        background-color: #fff;
+        width: auto;
+        line-height: normal;
+        font-size: 14px;
+        color: #fff;
+        padding: 8px 13px;
+    }
+    .head1 .branchBtn {
+        position: relative;
+        width: 80%;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 25px;
+        -webkit-border-radius: 25px;
+        display: inline-block;
+    }
+    .head1 .branchBtn img {
+        width: 28px;
+        height: 28px;
+        line-height: normal;
+        border: .5px solid #e4e4e4;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+    }
+    .fl {
+        float: left;
+    }
+    .head1 .branchBtn .bName {
+        max-width: 70%;
+        color: #000;
+        margin-left: 10px;
+        margin-right: 8px;
+        letter-spacing: 1px;
+    }
+    .fl {
+        float: left;
+    }
+    .head1 .branchBtn .bArrow {
+
+        background-size: 14px 8px;
+        width: 14px;
+        height: 14px;
+        line-height: normal;
+        display: inline-block;
+        position: absolute;
+        top: 8px;
+    }
+    .head1 .change {
+        display: inline-block;
+        float: right;
+        margin: 5px 0;
+        color: #353535;
+        width: 36px;
+        height: 20px;
+        line-height: 20px;
+        border: 1px solid #353535;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        text-align: center;
+    }
+
+    /*遮罩层*/
+    .mask {
+        background-color: rgba(0,0,0,.6);
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        line-height: normal;
+        top: 0;
+        left: 0;
+        z-index: 99999;
+    }
+    #store_wrap {
+        width: 100%;
+        height: 400px;
+        line-height: normal;
+    }
+    .slide_down {
+        -webkit-animation: slideDown .3s ease;
+        animation: slideDown .3s ease;
+    }
+    @media screen and (max-width: 320px)
+        #store_wrap #storeMap, #store_wrap .bg_line_store, #store_wrap .evaluate_list {
+            height: 290px!important;
+        }
+
+        #store_wrap .bg_line_store {
+            background: #fff;
+            background: -moz-linear-gradient(top,rgba(255,255,255,.9),#fff);
+            background: -webkit-gradient(linear,0 0,0 bottom,from(rgba(255,255,255,.9)),to(#fff));
+            background: -o-linear-gradient(top,rgba(255,255,255,.9),#fff);
+            height: 400px;
+        }
+        .col-10 {
+            width: 100%;
+        }
+        #store_wrap #store_tab {
+            width: 100%;
+            height: 45px;
+            line-height: normal;
+        }
+        #store_wrap #store_detail_tab {
+            height: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        @media screen and (max-width: 320px)
+            #store_wrap #storeMap, #store_wrap .bg_line_store, #store_wrap .evaluate_list {
+                height: 290px!important;
+            }
+
+            #store_wrap #storeMap {
+                height: 400px!important;
+            }
+            .dn {
+                display: none;
+            }
+            #store_wrap .store_pay {
+                color: #fff;
+                font-size: 13px;
+                padding: 5px 0;
+                background-color: #2b2b2b;
+            }
+            #store_wrap .store {
+                padding: 15px 10px 0;
+            }
+            #store_wrap .store_about {
+                width: 100%;
+                padding: 10px 0;
+            }
+            #store_wrap .store_about .item {
+                width: 33%;
+                float: left;
+                font-size: 14px;
+                color: #333;
+            }
+            #store_wrap .store_about .item.store_tel i {
+                background-image: url(/attachment/images/icon_tel.png);
+                width: 60px;
+                height: 60px;
+                line-height: normal;
+            }
+            #store_wrap .store_about .item.store_product i {
+                background-image: url(/attachment/images/icon_product.png);
+                width: 60px;
+                height: 60px;
+                line-height: normal;
+            }
+            #store_wrap .store_about .item.favorite i.collect {
+                background-image: url(/attachment/images/collect_no.png);
+            }
+
+            #store_wrap .store_about .item.favorite i {
+                width: 60px;
+                height: 60px;
+                line-height: normal;
+            }
+            #store_wrap .store_about .item i {
+                display: inline-block;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 100%;
+                position: relative;
+            }
+            .mt1 {
+                margin-top: 5px;
+            }
+            .ellipsis, .oh {
+                overflow: hidden;
+            }
+            .mk_geo, .tc {
+                text-align: center;
+            }
+            #store_wrap .store_ps_types {
+                border: 1px solid #b2b2b2;
+                border-radius: 10px;
+                -webkit-border-radius: 10px;
+                margin-bottom: 10px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            .mt1 {
+                margin-top: 5px;
+            }
+            #store_wrap .w50 {
+                width: 50%;
+            }
+            #store_wrap .store .zizzm {
+                position: absolute;
+                top: 0;
+                right: 0;
+                z-index: 9999;
+                background: url(/attachment/images/zzzm.png) no-repeat;
+                background-size: 72px 20px;
+                width: 72px;
+                height: 20px;
+                line-height: normal;
+            }
+            #store_wrap .w50, #store_wrap .w95 {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #store_wrap #pay p {
+                background: url(/attachment/images/pay.png) center left no-repeat;
+                background-size: 17px;
+                height: 20px;
+                line-height: 20px;
+                margin-left: 8%;
+                padding: 0 0 0 27px;
+            }
+            #store_wrap .store .store_pic {
+                /*background-image: url(/QWWAP_NG/common/img/yaofang_logo.png);*/
+                width: 70px;
+                height: 70px;
+                line-height: normal;
+                background-size: cover;
+                vertical-align: middle;
+                background-color: #fff;
+                border: .5px solid #e4e4e4;
+            }
+            #store_wrap .store .store_info_rt {
+                margin: 0 0 0 80px;
+                position: relative;
+            }
+            #store_wrap .store .store_name {
+                font-size: 18px;
+                color: #000;
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+            #store_wrap .store_evaluates {
+                display: inline-block;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #store_wrap .store #store_star {
+                float: left;
+            }
+            @media screen and (max-width: 320px)
+                #store_wrap #evaluates {
+                    padding-top: 2px;
+                }
+                @media screen and (max-width: 320px)
+                    #store_wrap #evaluates span {
+                        font-size: 11px;
+                    }
+
+                    #store_wrap #evaluates span {
+                        color: #9e8052;
+                        font-size: 12px;
+                    }
+                    #store_wrap #evaluates {
+                        padding-top: 1px;
+                    }
+                    .pl1 {
+                        padding-left: 5px;
+                    }
+                    @media screen and (max-width: 320px)
+                        #store_wrap #evaluates span.bl {
+                            margin-left: 0;
+                        }
+                        #store_wrap #evaluates span.bl {
+                            margin-left: 5px;
+                            border-left: 1px solid #9e8052;
+                        }
+                        #store_wrap .store .store_star img {
+                            width: 14px;
+                        }
+
+                        @media screen and (max-width: 320px)
+                            #store_wrap .store_star img {
+                                margin-right: 0;
+                                width: 15px;
+                            }
+                            img {
+                                max-width: 100%;
+                                height: auto;
+                                border: 0;
+                            }
+                            #store_wrap .addr {
+                                margin-top: 5px;
+                            }
+                            #store_wrap .store_address {
+                                background: url(/attachment/images/poi.png) center left no-repeat;
+                                background-size: 11px;
+                                color: #666;
+                                font-size: 12px;
+                            }
+
+                            #store_wrap .store_i {
+                                padding: 0 5px 0 15px;
+                                position: relative;
+                            }
+                            #store_wrap .store_i:after {
+                                content: "";
+                                width: 15px;
+                                height: 10px;
+                                line-height: normal;
+                                position: absolute;
+                                top: 50%;
+                                right: 0;
+                                z-index: 9;
+                                margin-top: -5px;
+                                background: url(/attachment/images/arrow_r.png) center right no-repeat;
+                                background-size: 7px 12px;
+                            }
+                            :after, :before {
+                                -webkit-box-sizing: border-box;
+                                box-sizing: border-box;
+                            }
+                            @media screen and (max-width: 320px)
+                                #store_wrap #evaluates font {
+                                    font-size: 11px;
+                                    margin-left: 0;
+                                }
+                                #store_wrap #evaluates font {
+                                    color: #f60;
+                                    font-size: 12px;
+                                    margin-left: 5px;
+                                }
+                                #store_wrap .store_ps_types {
+                                    border: 1px solid #b2b2b2;
+                                    border-radius: 10px;
+                                    -webkit-border-radius: 10px;
+                                    margin-bottom: 10px;
+                                    margin-left: 10px;
+                                    margin-right: 10px;
+                                }
+                                #store_wrap .store_ps_types {
+                                    border: 1px solid #b2b2b2;
+                                    border-radius: 10px;
+                                    -webkit-border-radius: 10px;
+                                    margin-bottom: 10px;
+                                    margin-left: 10px;
+                                    margin-right: 10px;
+                                }
+                                #store_wrap #evaluate_list li, #store_wrap .store_info:not(:last-child) {
+                                    border-bottom: .5px solid #e4e4e4;
+                                }
+
+                                #store_wrap .store_info {
+                                    padding: 10px;
+                                    min-height: 28px;
+                                }
+                                @media screen and (max-width: 320px)
+                                    #store_wrap .ps_type, #store_wrap .ps_type_info {
+                                        font-size: 14px;
+                                    }
+
+                                    #store_wrap .ps_type {
+                                        width: 80px;
+                                        padding-right: 10px;
+                                        margin-right: 10px;
+                                        color: #000;
+                                        font-size: 17px;
+                                    }
+                                    @media screen and (max-width: 320px)
+                                        #store_wrap .ps_type, #store_wrap .ps_type_info {
+                                            font-size: 14px;
+                                        }
+
+                                        #store_wrap .ps_type_info {
+                                            margin-left: 40%;
+                                            color: #353535;
+                                            font-size: 17px;
+                                        }
+                                        #store_wrap .ps_type p, #store_wrap .ps_type_info p {
+                                            line-height: 20px;
+                                            font-size: 14px;
+                                        }
+                                        #store_wrap .ps_type p:nth-child(2), #store_wrap .ps_type_info p:nth-child(2){
+                                            font-size: 12px;
+                                        }
+                                        @media screen and (max-width: 320px)
+                                            #store_wrap .ps_type p:nth-child(2), #store_wrap .ps_type_info p:nth-child(2) {
+                                                font-size: 12px;
+                                            }
+                                            #store_wrap #store_tab {
+                                                width: 100%;
+                                                height: 45px;
+                                                line-height: normal;
+                                            }
+                                            #store_wrap #store_tab ul {
+                                                height: 45px;
+                                                line-height: 45px;
+                                                background-color: #748297;
+                                                border-bottom-left-radius: 5px;
+                                                -webkit-border-bottom-left-radius: 5px;
+                                                border-bottom-right-radius: 5px;
+                                                -webkit-border-bottom-right-radius: 5px;
+                                            }
+                                            #store_wrap #store_tab li.active_tab_left {
+                                                color: #000;
+                                                border-bottom-left-radius: 5px;
+                                                border-bottom-right-radius: 5px;
+                                                background: url(/attachment/images/active_tab_left.png) center left no-repeat;
+                                                background-size: 100% 50px;
+                                            }
+                                            li{
+                                                list-style: none;
+                                            }
+                                            #store_wrap #store_tab li {
+                                                width: 33.3%;
+                                                color: #fff;
+                                                font-size: 16px;
+                                                float: left;
+                                                text-align: center;
+                                                padding: 4px 0 8px;
+                                                margin: -4px 0 0;
+                                                position: relative;
+                                            }
+                                            #store_wrap .store_close {
+                                                width: 47px;
+                                                height: 47px;
+                                                line-height: normal;
+                                                margin: 20px auto;
+                                                background: url(/attachment/images/store_close_btn.png) center center no-repeat;
+                                                background-size: 100%;
+                                            }
+                                            .change_store{
+                                                width: 100%;
+                                                height:100%;
+                                                background: #ffffff;
+                                                position: fixed;
+                                                left:0;
+                                                top:0;
+                                                z-index: 999999;
+                                                display: none;
+                                            }
+                                            .headFixed {
+                                                position: fixed;
+                                                width: 100%;
+                                                z-index: 999;
+                                            }
+                                            #new_head {
+                                                width: 100%;
+                                                height: 39px;
+                                                line-height: normal;
+                                                background-color: #efeff4;
+                                                padding: 6px 0 0;
+                                            }
+                                            #new_head .goSearch {
+                                                width: 80%;
+                                                margin-left: auto;
+                                                margin-right: auto;
+                                                background-color: #fff;
+                                                color: #b2b2b2;
+                                                display: block;
+                                                border-radius: 5px;
+                                                -webkit-border-radius: 5px;
+                                                border: .5px solid #e4e4e4;
+                                                font-size: 14px;
+                                                padding: 5px 10px;
+                                            }
+                                            #new_head .goSearch img {
+                                                width: 14px;
+                                                height: 13.5px;
+                                                line-height: normal;
+                                                margin: -2px 5px 0 0;
+                                            }
+                                            #new_head .goSearch input{
+                                                border: none;
+                                                color: #b2b2b2;
+                                            }
+                                            .change_store .location {
+                                                width: 100%;
+                                                height: 40px;
+                                                line-height: 40px;
+                                                padding: 0 4%;
+                                                border-bottom: .5px solid #e4e4e4;
+                                            }
+                                            .change_store .location p {
+                                                width: 88%;
+                                                float: left;
+                                                font-size: 14px;
+                                                color: #888;
+                                            }
+                                            .change_store .location img {
+                                                height: 21px;
+                                                margin-top:10px;
+                                                float: right;
+                                            }
+                                            .col-10 {
+                                                width: 100%;
+                                            }
+                                            .change_store .store_info {
+                                                background-color: #fff;
+                                            }
+                                            .change_store .store_info .store_li {
+                                                margin: auto;
+                                                padding: 15px 0;
+                                                border-bottom: .5px solid #e4e4e4;
+                                                overflow: hidden;
+                                            }
+                                            .change_store .store_pic {
+                                                width: 80px;
+                                                height: 80px;
+                                                line-height: normal;
+                                                border-radius: 3px;
+                                                -webkit-border-radius: 3px;
+                                                margin-left: 10px;
+                                            }
+                                            .change_store .store_info_rt {
+                                                margin-left: 100px;
+                                            }
+                                            .change_store .store_name {
+                                                font-weight: 100;
+                                                margin-bottom: 10px;
+                                                line-height: 0;
+                                            }
+                                            .change_store .s_name {
+                                                width: 70%;
+                                            }
+                                            .change_store .s_range {
+                                                width: 50px;
+                                                height: 20px;
+                                                line-height: 20px;
+                                                background-color: #efeff4;
+                                                border-radius: 3px;
+                                                -webkit-border-radius: 3px;
+                                                color: #999;
+                                                font-size: 12px;
+                                                text-align: center;
+                                            }
+                                            .change_store .s_name_ {
+                                                width: 100%;
+                                                height: 16px;
+                                                line-height: 16px;
+                                                display: inline-block;
+                                                font-size: 16px;
+                                                color: #000;
+                                            }
+                                            .change_store .ps_types {
+                                                font-size: 12px;
+                                                color: #666;
+                                            }
+                                            .change_store .s_location {
+                                                font-size: 12px;
+                                                color: #999;
+                                                margin-top: 18px;
+                                                background: url(/attachment/images/s_loc.png) center left no-repeat;
+                                                background-size: 11px 14px;
+                                                padding-left: 20px;
+                                            }
+</style>
+<!--这里是切换药房层-->
+<div class="change_store" style="overflow-y: scroll;">
+    <div class="headFixed">
+        <!--顶部-->
+        <div id="new_head">
+            <a class="goSearch" href="#">
+                <img src="/attachment/images/icon_search.png" alt="">
+                <input id="searchinput" type="search" placeholder="请输入要搜索的药房"/>
+            </a>
+        </div>
+    </div>
+    <div class="chain ng-scope">
+        <div class="location ng-scope" >
+            <p class="ellipsis ng-binding">&nbsp;</p>
+            <img src="/attachment/images/refresh1.png">
+        </div>
+        <div class="col-10 stores_box ng-isolate-scope" >
+            <div class="location ng-scope">
+                <p id="address_area" class="ellipsis ng-binding">当前：龙沙小区38号楼1号</p>
+                <img src="/attachment/images/refresh1.png">
+            </div>
+            <div class="store_info ng-scope">
+                {loop $shoplist $name $item}
+                <div class="store_li" onclick="window.location.href='../../../../../../../index.php'uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=index'+'&storeid={$item['id']}'">
+                    <img src="/attachment/{$item['logo']}" class="fl store_pic ng-isolate-scope" width="100%"/>
+                    <div class="store_info_rt">
+                        <h2 class="store_name oh">
+							<span class="s_name fl">
+								<a class="s_name_ ellipsis ng-binding">{$item['storename']}</a>
+							</span>
+                            <span class="s_range fr ng-binding ng-scope" data-lat="{$item['lat']}" data-lng="{$item['lng']}">≥50km</span>
+                        </h2>
+                        <p class="ps_types ng-binding">到店取货</p>
+                        <p class="s_location ng-binding">{$item['address']}</p>
+                    </div>
+                </div>
+                {/loop}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $('#searchinput').on('input',function () {
+        var _this = $(this);
+        $('.store_li').each(function(){
+            var name = $(this).find('a').html();
+            var search = _this.val();
+            var reg = new RegExp(search);
+            if(reg.test(name)){
+                $(this).css('display','block');
+            }else{
+                $(this).css('display','none');
+            }
+        });
+    });
+
+    var geoc = new BMap.Geocoder();
+    var geolocation = new BMap.Geolocation();
+
+    if(!cookie.get("{$prefix_cookie}lat")){
+        geolocation.getCurrentPosition(function(r){
+            if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                $('#address_area').html(r.address.city + r.address.district + r.address.street);
+                var lat = r.point.lat;
+                var lng = r.point.lng;
+
+                cookie.set("{$prefix_cookie}lat",lat,7);
+                cookie.set("{$prefix_cookie}lng",lng,7);
+                $('.s_range').each(function () {
+                    $(this).html((getFlatternDistance(lat*1,lng*1,$(this).attr('data-lat')*1,$(this).attr('data-lng')*1)/1000).toFixed(2)+'km')
+                });
+            }else {
+                alert("您的浏览器不支持获取地理位置。");
+            }
+        },{enableHighAccuracy: true});
+    }
+
+
+    var EARTH_RADIUS = 6378137.0;    //单位M
+    var PI = Math.PI;
+
+    function getRad(d){
+        return d*PI/180.0;
+    }
+
+    function getFlatternDistance(lat1,lng1,lat2,lng2){
+        var f = getRad((lat1 + lat2)/2);
+        var g = getRad((lat1 - lat2)/2);
+        var l = getRad((lng1 - lng2)/2);
+
+        var sg = Math.sin(g);
+        var sl = Math.sin(l);
+        var sf = Math.sin(f);
+
+        var s,c,w,r,d,h1,h2;
+        var a = EARTH_RADIUS;
+        var fl = 1/298.257;
+
+        sg = sg*sg;
+        sl = sl*sl;
+        sf = sf*sf;
+
+        s = sg*(1-sl) + (1-sf)*sl;
+        c = (1-sg)*(1-sl) + sf*sl;
+
+        w = Math.atan(Math.sqrt(s/c));
+        r = Math.sqrt(s*c)/w;
+        d = 2*w*a;
+        h1 = (3*r -1)/2/c;
+        h2 = (3*r +1)/2/s;
+
+        return d*(1 + fl*(h1*sf*(1-sg) - h2*(1-sf)*sg));
+    }
+
+    var cookie = {
+        set:function(key,val,time){//设置cookie方法
+            var date=new Date(); //获取当前时间
+            var expiresDays=time;  //将date设置为n天以后的时间
+            date.setTime(date.getTime()+expiresDays*24*3600*1000); //格式化为cookie识别的时间
+            document.cookie=key + "=" + val +";expires="+date.toGMTString();  //设置cookie
+        },
+        get:function(key){//获取cookie方法
+            /*获取cookie参数*/
+            var getCookie = document.cookie.replace(/[ ]/g,"");  //获取cookie，并且将获得的cookie格式化，去掉空格字符
+            var arrCookie = getCookie.split(";")  //将获得的cookie以"分号"为标识 将cookie保存到arrCookie的数组中
+            var tips;  //声明变量tips
+            for(var i=0;i<arrCookie.length;i++){   //使用for循环查找cookie中的tips变量
+                var arr=arrCookie[i].split("=");   //将单条cookie用"等号"为标识，将单条cookie保存为arr数组
+                if(key==arr[0]){  //匹配变量名称，其中arr[0]是指的cookie名称，如果该条变量为tips则执行判断语句中的赋值操作
+                    tips=arr[1];   //将cookie的值赋给变量tips
+                    break;   //终止for循环遍历
+                }
+            }
+
+            return tips;
+        }
+    }
+
+</script>
