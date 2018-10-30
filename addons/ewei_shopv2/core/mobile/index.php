@@ -120,6 +120,8 @@ class Index_EweiShopV2Page extends MobilePage
 		global $_W;
 		global $_GPC;
 		$args = array('page' => $_GPC['page'], 'pagesize' => 6, 'isrecommand' => 1, 'order' => 'displayorder desc,createtime desc', 'by' => '');
+        $store_id = (isset($_GPC['storeid']) &&!empty($_GPC['storeid'])) ? $_GPC['storeid'] : 0;
+        $args['shop_id'] = $store_id;
 		$recommand = m('goods')->getList($args);
 		show_json(1, array('list' => $recommand['list'], 'pagesize' => $args['pagesize'], 'total' => $recommand['total'], 'page' => intval($_GPC['page'])));
 	}
