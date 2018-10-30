@@ -243,11 +243,13 @@ define(['core', 'tpl', 'biz/goods/picker', 'biz/plugin/diyform'], function (core
     modal.caculate = function () {
         var total = 0;
         var totalprice = 0;
+        var carttotal = 0;//fanhailong add 购物车的总数是读取购物车里全部的商品数量，而不是勾选的商品数量
         core.json('member/cart/caculategoodsprice', {
             goods: modal.goods
         }, function (ret) {
             $('.goods-item').each(function () {
                 var t = parseInt($(this).find('.shownum').val());
+                carttotal += t;
                 var seckillmaxbuy = $(this).data('seckillMaxbuy') || 0,
                     seckillselfcount = $(this).data('seckillSelfcount') || 0,
                     seckillprice = $(this).data('seckillPrice') || 0;
@@ -288,9 +290,9 @@ define(['core', 'tpl', 'biz/goods/picker', 'biz/plugin/diyform'], function (core
                 modal.update($(this).data('cartid'), t, $(this).data('optionid'))
             });
             $(".total").html(total);
-            window.cartcount = total;
-            if (total != 0) {
-                $("#menucart span.badge").text(total).show()
+            window.cartcount = carttotal;
+            if (carttotal != 0) {
+                $("#menucart span.badge").text(carttotal).show()
             } else {
                 $("#menucart span.badge").hide()
             }
