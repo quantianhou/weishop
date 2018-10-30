@@ -13,7 +13,7 @@ class Detail_EweiShopV2Page extends MobilePage
 		$id = intval($_GPC['id']);
 		$coupon = pdo_fetch('select * from ' . tablename('ewei_shop_coupon') . ' where id=:id and uniacid=:uniacid  limit 1', array(':id' => $id, ':uniacid' => $_W['uniacid']));
         //fanhailong add 读取当前公众号下的店铺数量
-        $shop_count = count(trim($coupon['storeid'], ','));
+        $shop_count = count(explode(',',trim($coupon['storeid'], ',')));
         $store_list_url = $_W['siteroot']."index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=sale.coupon.showstorelist&id={$id}";
 
 		if (empty($coupon)) 
