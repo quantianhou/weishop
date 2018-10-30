@@ -61,6 +61,9 @@ class Goods_EweiShopV2Model
 		}
 
 		$condition = ' and `uniacid` = :uniacid AND `deleted` = 0 and status=1';
+        if (isset($args['shop_id'])) {
+            $condition .= ' AND `shop_id`=' . intval($args['shop_id']);
+        }
 		$params = array(':uniacid' => $_W['uniacid']);
 
 		if (!(empty($merchid))) {
@@ -131,10 +134,6 @@ class Goods_EweiShopV2Model
 		if (isset($args['nocommission'])) {
 			$condition .= ' AND `nocommission`=' . intval($args['nocommission']);
 		}
-
-        if (isset($args['shop_id'])) {
-            $condition .= ' AND `shop_id`=' . intval($args['shop_id']);
-        }
 
 		$keywords = ((!(empty($args['keywords'])) ? $args['keywords'] : ''));
 
