@@ -146,15 +146,15 @@ class Index_EweiShopV2Page extends MobilePage
 		if (isset($_W['shopset']['shop']['indexrecommands']) && !empty(isset($_W['shopset']['shop']['indexrecommands'])))
 		{
             $goodsids = [];
-            $this_store_id = $_GPC['storeid'];
-            if(!empty($this_store_id) && isset($_W['shopset']['shop']['indexrecommands'][$this_store_id]) && !empty($_W['shopset']['shop']['indexrecommands'][$this_store_id]))
+            $store_id = $_GPC['storeid'];
+            if(!empty($store_id) && isset($_W['shopset']['shop']['indexrecommands'][$store_id]) && !empty($_W['shopset']['shop']['indexrecommands'][$store_id]))
             {
-                $goodsids = $_W['shopset']['shop']['indexrecommands'][$this_store_id];
+                $goodsids = $_W['shopset']['shop']['indexrecommands'][$store_id];
             }
 			if (!(empty($goodsids)))
 			{
 //				$indexrecommands = pdo_fetchall('select id, title, thumb, marketprice,ispresell,presellprice, productprice, minprice, total from ' . tablename('ewei_shop_goods') . ' where id in( ' . $goodids . ' ) and uniacid=:uniacid and status=1 order by instr(\'' . $goodids . '\',id),displayorder desc', array(':uniacid' => $uniacid));
-				$indexrecommands = pdo_fetchall('select bg.title as bgtitle , bg.thumb as bgthumb , sg.* from '. tablename('ewei_business_goods') .' as bg right join '. tablename('ewei_shop_goods') .' as sg on bg.id = sg.business_goods_id where bg.id in ('. implode(',' , $goodsids).') and sg.uniacid=:uniacid and sg.shop_id = '. $this_store_id.' and sg.status=1 order by instr(\'' . implode(',',$goodsids) . '\',bg.id), sg.displayorder desc', array(':uniacid' => $uniacid));
+				$indexrecommands = pdo_fetchall('select bg.title as bgtitle , bg.thumb as bgthumb , sg.* from '. tablename('ewei_business_goods') .' as bg right join '. tablename('ewei_shop_goods') .' as sg on bg.id = sg.business_goods_id where bg.id in ('. implode(',' , $goodsids).') and sg.uniacid=:uniacid and sg.shop_id = '. $store_id.' and sg.status=1 order by instr(\'' . implode(',',$goodsids) . '\',bg.id), sg.displayorder desc', array(':uniacid' => $uniacid));
 //				var_dump($indexrecommands);exit;
 				foreach ($indexrecommands as $key => $value )
 				{
