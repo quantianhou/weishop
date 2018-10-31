@@ -817,7 +817,7 @@
 
 <!--店铺信息-->
 <div class="fui-cell-group fui-shop-group">
-    <a class='fui-list' href="{$shopdetail['btnurl2']}">
+    <a class='fui-list' data-href="{$shopdetail['btnurl2']}" onclick="window.location.href='/app/index.php?i={$_W['uniacid']}&c=entry&m=ewei_shopv2&do=mobile&r=index'+'&storeid={$goods['shop_id']}'">
         <div class='fui-list-media'>
             <img data-lazy="{php echo tomedia(($shopdetail['logo'] ?? $thisstore['logo']))}" />
         </div>
