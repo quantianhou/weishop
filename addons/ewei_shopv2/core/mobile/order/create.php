@@ -1182,7 +1182,9 @@ class Create_EweiShopV2Page extends MobileLoginPage
 		{
 			$taskcut = $goodsprice - $taskreward['price'];
 		}
-		include $this->template();
+        $storeThisId = $goods['shop_id'] ?? $_GPC['store_id'];
+        $thisstore = pdo_fetch('select * from ' . tablename('ewei_shop_store') . ' where id = '.$storeThisId, array());
+        include $this->template();
 	}
 	public function getcouponprice() 
 	{

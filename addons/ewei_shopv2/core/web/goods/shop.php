@@ -18,8 +18,12 @@ class Shop_EweiShopV2Page extends WebPage
             show_json(0, '请选择门店！');
         }
 
+        if(empty($categoryids)){
+            show_json(0, '请选择分类！');
+        }
+
         $sql = 'UPDATE ' . tablename('ewei_business_goods') . ' SET pcate=:pcate WHERE id IN (' . implode(',', $goodsids) . ')';
-        $paras = array(':pcate' => $categoryids);
+        $paras = array(':pcate' => current($categoryids));
         $goodslist = pdo_fetch($sql, $paras);
 
         show_json(1, '下发成功！');
