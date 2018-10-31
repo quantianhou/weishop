@@ -890,7 +890,7 @@ class Detail_EweiShopV2Page extends MobilePage
 			}
 		}
 
-		$storeThisId = $_GPC['store_id'];
+		$storeThisId = $goods['shop_id'] ?? $_GPC['store_id'];
 		$thisstore = pdo_fetch('select * from ' . tablename('ewei_shop_store') . ' where id = '.$storeThisId, array());
 
 		include $this->template();
