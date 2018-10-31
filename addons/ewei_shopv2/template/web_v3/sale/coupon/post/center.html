@@ -55,7 +55,7 @@
         <div class="col-sm-9 col-xs-12" >
             <div class="input-group">
                 {ife 'sale.coupon' $item}
-                    <input type='text' class='form-control' value="{$item['tagtitle']}" name='tagtitle' maxlength="8"/>
+                    <input type='text' class='form-control' value="{if empty($item['tagtitle'])}{if empty($type)}购物券{elseif $type==1}充值券{elseif $type==2}兑换券{/if}{else}{$item['tagtitle']}{/if}" name='tagtitle' maxlength="8"/>
                 {else}
                     {$item['title']}
                 {/if}
