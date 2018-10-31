@@ -23,6 +23,7 @@ class Category_EweiShopV2Page extends MobilePage
 		}
 		$category = $this->getCategory($category_set['level'], $merchid);
 		$set = m('common')->getSysset('category');
+
 		include $this->template();
 	}
 	protected function getCategory($level, $merchid = 0) 
