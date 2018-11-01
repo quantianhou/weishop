@@ -21,9 +21,9 @@
             <p class="name1">{$storeInfo['storename']}</p>
         </div>
     </div>
-    <div class="code-info">
+    <div class="code-info" style="padding-top:1rem">
         <img src="{$url}" class="code-img">
-        <p class="text">打开微信扫一扫</p>
+        <p class="text" {if $not_scan}style="display:none"{/if}>打开微信扫一扫</p>
     </div>
 </div>
 </body>
