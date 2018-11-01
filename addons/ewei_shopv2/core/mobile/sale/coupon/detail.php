@@ -233,6 +233,11 @@ class Detail_EweiShopV2Page extends MobilePage
 				}
 			}
 		}
+        if($coupon['coupontype'] == '2'){//fanhailong add，门店兑换券写死一些信息
+            $coupon['title2'] = '到店使用';
+            $coupon['title3']= '<span style="font-size:18px">'.$coupon['giftname'].'</span>';
+            $coupon['title5']= '';
+        }
 		include $this->template();
 	}
 	public function pay($a = array(), $b = array()) 
