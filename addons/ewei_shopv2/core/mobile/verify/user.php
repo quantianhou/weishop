@@ -67,6 +67,9 @@ class User_EweiShopV2Page extends MobilePage
 
         //重新获取
         $userInfo = pdo_fetch('select * from ' . tablename('ewei_shop_saler') . ' where d_openid=:openid limit 1', array(':openid' => $openid));
+        if(!empty($userInfo)){
+            $_W['fans']['nickname'] = $userInfo['salername']
+        }
 
         include $this->template();
 
