@@ -315,10 +315,11 @@ class User_EweiShopV2Page extends MobilePage
             $fileContents = file_get_contents($qr_url);
             file_put_contents($dirname . '/' . $userInfo['id'] . '.png', $fileContents);
         }
+        $_W['acid'] = $last_acid;
 
         //如果用户没注册，就显示公众号logo
         if(empty($userInfo) || empty($userInfo['storeid'])) {
-            $url = $_W['siteroot'] . 'attachment/headimg_' . $acid . '.jpg';
+            $url = $_W['siteroot'] . 'attachment/headimg_' . $_W['acid'] . '.jpg';
             $userInfo['salername'] = $_W['fans']['nickname'];
             $not_scan = "true";
         }
