@@ -46,8 +46,11 @@
 				<li class="tab-nav tab-cardmsg {if $options['keyword']}hidden{/if}">
 					<a href="javascript:void(0);" onclick="select_mediaid('keyword');">&nbsp;<i class="wi wi-keyword"></i><span class="msg-tab-title">触发关键字</span></a>
 				</li>
-				<li class="tab-nav tab-cardmsg {if $options['module']}{/if}">
+				<li class="tab-nav tab-cardmsg {if $options['module']}hidden{/if}">
 					<a href="javascript:void(0);" onclick="select_mediaid('module');">&nbsp;<i class="wi wi-keyword"></i><span class="msg-tab-title">模块</span></a>
+				</li>
+				<li class="tab-nav tab-cardmsg {if $_GPC['m'] != 'keyword'}hidden{/if}">
+					<a href="javascript:void(0);" onclick="select_wxcard();">&nbsp;<i class="wi wi-keyword"></i><span class="msg-tab-title">微信会员卡</span></a>
 				</li>
 			</ul>
 		</div>
@@ -56,6 +59,31 @@
 <script>
 	var action = "{php echo $_GPC['a']}";
 	var m = "{php echo $_GPC['m']}";
+
+    function select_wxcard(){
+        console.log("wxcard");
+        var type='wxcard';
+        var keywords = '回复微信卡券';
+        var replyVal = '回复微信卡券';
+        $(':hidden[name="reply[reply_'+type+']"]').val(replyVal);
+        $('.keywords-list').append(
+            '<li>'+
+            '<div class="del-'+type+'-media">'+
+            '	<div class="desc">'+
+            '		<div class="media-content">'+
+            '				<a class="title-wrp" href="javascript:;">'+
+            '					<span class="title">[微信会员卡]</span>'+
+            '				</a>'+
+            '				<p class="desc"><a href="javascript:;" class="appmsg-desc">'+keywords+'</a></p>'+
+            '		</div>'+
+            '	</div>'+
+            '	<div class="opr">'+
+            '		<a href="javascript:;" data-media="微信会员卡" class="del-gray" onclick="delmedia(\''+type+'\', this)">删除</a>'+
+            '	</div>'+
+            '</div>'+
+            '</li>'
+        );
+    }
 
 	//删除已选素材
 	var delmedia = function(type, ele) {
@@ -607,7 +635,7 @@
 						);
 					});
 					$(':hidden[name="reply[reply_'+type+']"]').val(replyVal);
-					break;	
+					break;
 				case 'video':
 					angular.forEach(val, function(videoVal, videoKey) {
 						replyVal.push(angular.toJson({
