@@ -79,7 +79,7 @@
     </form>
     {if count($list)>0 && cv('goods.main')}
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" style="overflow: scroll;">
             <div class="page-table-header">
                 <input type='checkbox' />
                 <div class="btn-group">
@@ -132,8 +132,8 @@
                 {if $goodsfrom!='cycle'}
                 <th  style="width:80px;" >状态/门店</th>
                 {/if}
-                <th>属性</th>
-                <th style="width: 120px;">操作</th>
+                <th style="width: 280px;">属性</th>
+                <th style="width: 280px;">操作</th>
             </tr>
 
         </thead>
