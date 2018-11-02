@@ -206,7 +206,7 @@
 
             <div class="fui-list-group"  id="carrierInfo" style="display: none;margin: 0 0 .5rem">
 
-                <a class="fui-list" href="{php echo mobileUrl('store/selector', array('type'=>1,'merchid'=>$merch_id))}" data-nocache='true'>
+                <a class="fui-list" __href="{php echo mobileUrl('store/selector', array('type'=>1,'merchid'=>$merch_id))}" data-nocache='true'>
 
                     <div class="fui-list-media" style="display: none">
 
@@ -216,19 +216,19 @@
 
                     <div class="fui-list-inner">
 
-                        <div class="no-address"><i class="icon icon-icon02"></i> 请选择自提门店</div>
+                        <div class="no-address" style="display: none"><i class="icon icon-icon02"></i> 请选择自提门店</div>
 
-                        <div class="subtitle" style="display: none">
+                        <div class="subtitle">
 
-                            <span style="overflow: hidden;display: inline-block;">联系人：</span>
+                            <span style="overflow: hidden;display: inline-block;">联系人：{$thisstore['store_contacts']}</span>
 
-                            <span class='realname'></span>
+                            <span class='realname'>{$thisstore['storename']}</span>
 
-                            <span class='mobile' id="carrierInfo_mobile"></span>
+                            <span class='mobile' id="carrierInfo_mobile">{$thisstore['tel']}</span>
 
                         </div>
 
-                        <div class="text" style="display: none"><span class='address'>地址：</span></div>
+                        <div class="text"><span class='address'>地址：{$thisstore['address']}</span></div>
 
                     </div>
 
