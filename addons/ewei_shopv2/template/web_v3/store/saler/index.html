@@ -103,7 +103,7 @@
                                    </span>
                             </a>
                             {/if}
-                             {ifp 'store.saler.delete'}
+                             {ifp 'store.saler.delete' && 0}
                                 <a class='btn btn-default btn-sm btn-op btn-operation'  data-toggle='ajaxRemove' href="{php echo webUrl('store/saler/delete', array('id' => $row['id']))}" data-confirm="确认删除此店员吗？">
                                    <span data-toggle="tooltip" data-placement="top" title="" data-original-title="删除">
                                      <i class='icow icow-shanchu1'></i>
