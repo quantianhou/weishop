@@ -329,7 +329,7 @@ class WeEngine {
                         foreach($resp_data as $k => $v)
                         {
                             $log_tmp = [];
-                            $log_tmp['res'] = ihttp_request($url, urldecode(json_encode($v)));
+                            $log_tmp['res'] = ihttp_request($url, urldecode(json_encode($v,JSON_UNESCAPED_UNICODE)));
                             $log_tmp['info'] = $v;
                             $resp_log[] = $log_tmp;
                             file_put_contents('./log/wx'.date('Ymd').'.log',json_encode($resp_log)."\r\n",FILE_APPEND);
@@ -435,7 +435,7 @@ class WeEngine {
                         foreach($resp_data as $k => $v)
                         {
                             $log_tmp = [];
-                            $log_tmp['res'] = ihttp_request($url, urldecode(json_encode($v)));
+                            $log_tmp['res'] = ihttp_request($url, urldecode(json_encode($v,JSON_UNESCAPED_UNICODE)));
                             $log_tmp['info'] = $v;
                             $resp_log[] = $log_tmp;
                             file_put_contents('./log/wx'.date('Ymd').'.log',json_encode($resp_log)."\r\n",FILE_APPEND);
