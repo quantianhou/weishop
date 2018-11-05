@@ -127,7 +127,7 @@ class Saler_EweiShopV2Page extends ComWebPage
 			else 
 			{
 			    //fanhailong add 验证手机号在整个店员表不允许重复
-                $is_has = pdo_fetchall('SELECT * FROM ' . tablename('ewei_shop_saler') . ' WHERE mobile =:mobile limit 1', array(':mobile' => trim($_GPC['mobile'])));
+                $is_has = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_saler') . ' WHERE mobile =:mobile limit 1', array(':mobile' => trim($_GPC['mobile'])));
                 if(!empty($is_has)){
                     if($is_has['status'] == 0){
                         show_json(0, '当前手机号已是店员，店员状态为禁用，请勿重复添加，可选择启用');
