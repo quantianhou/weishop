@@ -10,13 +10,14 @@ class Store_EweiShopV2Page extends WebPage
         global $_W;
         global $_GPC;
         $name = trim($_GPC['branchName'],' ');
-        $uniacid = (!empty($_W['uniacid'])) ? intval($_W['uniacid']) : 0 ;
+        $a_merchant_id =  (!empty($_W['user']['a_merchant_id'])) ? intval($_W['user']['a_merchant_id']) : 0;
 
+        $uniacid = (!empty($_W['uniacid'])) ? intval($_W['uniacid']) : 0 ;
         if(!empty($name))
         {
-            $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and storename like "%'.$name.'%"' , [':id' => $uniacid]);
+            $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and store_status = 1 and storename like "%'.$name.'%"' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
         }else{
-            $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id' , [':id' => $uniacid]);
+            $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and store_status = 1' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
         }
         if(empty($store))
         {
@@ -24,6 +25,13 @@ class Store_EweiShopV2Page extends WebPage
             return ;
         }
 
+        foreach($store as $k => $v){
+            if( !(time() >= strtotime($v['contract_start_time']) && time() <= strtotime($v['contract_end_time'])))
+            {
+                unset($store[$k]);
+            }
+        }
+        $store = array_values($store);
         show_json(1, array('childBranchList' => $store , 'parentBranchList' =>[['name' => '全部店铺']]));
 	}
 }

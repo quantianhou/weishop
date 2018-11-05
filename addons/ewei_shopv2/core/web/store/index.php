@@ -20,18 +20,20 @@ class Index_EweiShopV2Page extends ComWebPage
         //$condition = ' uniacid = :uniacid';
         $paras = array(':a_merchant_id' => $_W['user']['a_merchant_id']);
         $condition = ' a_merchant_id = :a_merchant_id';
-        
-		if (!(empty($_GPC['keyword']))) 
+
+		if (!(empty($_GPC['keyword'])))
 		{
 			$_GPC['keyword'] = trim($_GPC['keyword']);
 			$condition .= ' AND (storename LIKE \'%' . $_GPC['keyword'] . '%\' OR address LIKE \'%' . $_GPC['keyword'] . '%\' OR tel LIKE \'%' . $_GPC['keyword'] . '%\')';
 		}
-		if (!(empty($_GPC['type']))) 
+		if (!(empty($_GPC['type'])))
 		{
 			$type = intval($_GPC['type']);
 			$condition .= ' AND type = :type';
 			$paras[':type'] = $type;
 		}
+
+		$condition .= ' and store_status = 1';
 		$sql = 'SELECT * FROM ' . tablename('ewei_shop_store') . ' WHERE ' . $condition . ' ORDER BY displayorder desc,id desc';
 		$sql .= ' LIMIT ' . (($pindex - 1) * $psize) . ',' . $psize;
 		$sql_count = 'SELECT count(1) FROM ' . tablename('ewei_shop_store') . ' WHERE ' . $condition;
