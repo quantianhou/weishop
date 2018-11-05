@@ -45,7 +45,7 @@
                     <button class="btn btn-default btn-sm btn-operation" type="button" data-toggle='batch' data-href="{php echo webUrl('store/saler/status',array('status'=>1))}"><i class='icow icow-qiyong'></i> 启用</button>
                     <button class="btn btn-default btn-sm btn-operation" type="button" data-toggle='batch'  data-href="{php echo webUrl('store/saler/status',array('status'=>0))}"><i class='icow icow-jinyong'></i> 禁用</button>
                     {/if}
-                    {ifp 'store.saler.delete'}
+                    {ifp 'store.saler.delete' && 0}
                     <button class="btn btn-default btn-sm btn-operation" type="button" data-toggle='batch-remove' data-confirm="确认要删除?" data-href="{php echo webUrl('store/saler/delete')}"><i class='icow icow-shanchu1'></i> 删除</button>
                     {/if}
                 </div>
