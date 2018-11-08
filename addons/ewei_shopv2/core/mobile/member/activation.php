@@ -3,7 +3,7 @@ if (!(defined('IN_IA')))
 {
 	exit('Access Denied');
 }
-class Activation_EweiShopV2Page extends MobileLoginPage 
+class Activation_EweiShopV2Page extends MobileLoginPage
 {
 	public function main() 
 	{
@@ -133,7 +133,7 @@ class Activation_EweiShopV2Page extends MobileLoginPage
             $data['sex'] = 3;
         }
 
-        $data['tokenUrl'] = $_W['siteroot'].'app'.trim(mobileUrl('member/return'),'.');
+        $data['tokenUrl'] = $_W['siteroot'].'member.php';
         $url = 'http://47.98.124.157:8822/api/v1/associator/register';
 		$java_info = com('curl')->callHttpPost($url,$data);
         /**同步java数据 end**/
@@ -179,9 +179,9 @@ class Activation_EweiShopV2Page extends MobileLoginPage
             }
 
             if(isset($java_info['success']) && $java_info['success'] && isset($java_info['code']) && $java_info['code'] == 1
-                && isset($info['data']['cardId']) && !empty($info['data']['cardId']))
+                && isset($java_info['data']['cardId']) && !empty($java_info['data']['cardId']))
             {
-                $arr['cardId'] = $info['data']['cardId'];
+                $arr['cardId'] = $java_info['data']['cardId'];
             }
 
 			pdo_update('ewei_shop_member', $arr, array('openid' => $_W['openid'], 'uniacid' => $_W['uniacid']));
