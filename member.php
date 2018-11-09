@@ -8,7 +8,7 @@ load()->classs('wesession');
 global $_W;
 global $_GPC;
 
-file_put_contents('./javacallback.log',json_encode($_GPC['__input']),FILE_APPEND);
+file_put_contents('./data/logs/user-javacallback.log',json_encode($_GPC['__input']),FILE_APPEND);
 // $_GPC['__input'] = '{"success":true,"code":"200","msg":"\u6ce8\u518c\u6210\u529f","data":{"companyNo":"100003","associatorPhone":"15900000000","cardId":"123"}}';
 if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
     $info = json_decode($_GPC['__input'], true);
