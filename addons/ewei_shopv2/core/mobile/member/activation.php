@@ -103,7 +103,7 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 		$data['associatorAddress'] = $data['associatorBirthday'] = $data['associatorIdentityCard'] = '';
 		$data['associatorName'] = $data['associatorPhone'] = $data['companyNo'] = $data['erpCardId'] = '';
 		$data['erpCardNo'] = $data['sex'] = $data['storeNo'] = $data['tokenUrl'] = '';
-
+        $data['associatorBirthday'] = '1990-01-01';
         $data['storeNo'] = $this_store_id;
 
         if(isset($merchant_code_info['merchant_code']) && !empty($merchant_code_info['merchant_code']))
@@ -123,7 +123,7 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 
         if(isset($_GPC['birth']) && !empty($_GPC['birth']))
         {
-            $data['associatorBirthday'] = $_GPC['birth'];
+            $data['associatorBirthday'] = date('Y-m-d',strtotime($_GPC['birth']));
         }
 
         if(isset($_GPC['sex']) && !empty($_GPC['sex']))
