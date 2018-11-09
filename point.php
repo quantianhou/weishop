@@ -5,8 +5,8 @@ load()->model('reply');
 load()->app('common');
 load()->classs('wesession');
 
-file_put_contents('./point_javacallback.'.date('Ymd').'.log','start===>'."\r\n",FILE_APPEND);
-file_put_contents('./point_javacallback.'.date('Ymd').'.log',$_GPC['__input']."\r\n",FILE_APPEND);
+file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log','start===>'."\r\n",FILE_APPEND);
+file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',json_encode($_GPC['__input'])."\r\n",FILE_APPEND);
 // $_GPC['__input'] = '{"success":true,"code":"200","msg":"\u6ce8\u518c\u6210\u529f","data":{"companyNo":"100003","cardId":"erp55338","integration":5}}';
 if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
     $info = json_decode($_GPC['__input'], true);
@@ -64,7 +64,7 @@ if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
        }
     }
 }
-file_put_contents('./point_javacallback.'.date('Ymd').'.log','<====end'."\r\n",FILE_APPEND);
+file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log','<====end'."\r\n",FILE_APPEND);
 exit(['code' => 200]);
 
 

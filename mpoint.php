@@ -5,6 +5,7 @@ load()->model('reply');
 load()->app('common');
 load()->classs('wesession');
 
+file_put_contents('./data/logs/point-'.date('Ymd').'.log','start===>'."\r\n",FILE_APPEND);
 $company = pdo_fetchall("select merchant_code,uni_account_id from ".tablename("b_users_uniaccount_relationship"));
 
 $company_list = [];
@@ -19,7 +20,7 @@ if(!empty($company))
 
 $last_id = 0 ;
 $run = true;
-file_put_contents('./point.'.date('Ymd').'.log','start===>'."\r\n",FILE_APPEND);
+
 if(!empty($company_list))
 {
     do{
@@ -58,7 +59,8 @@ if(!empty($company_list))
 
     }while($run);
 }
-file_put_contents('./point_javacallback.'.date('Ymd').'.log','<====end'."\r\n",FILE_APPEND);
+
+file_put_contents('./data/logs/point-'.date('Ymd').'.log','<====end'."\r\n",FILE_APPEND);
 
 
 class Curl
