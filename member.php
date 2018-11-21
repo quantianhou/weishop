@@ -10,8 +10,14 @@ global $_GPC;
 file_put_contents('./data/logs/user-javacallback-'.date('Ymd').'.log',date('Y-m-d H:i:s').'start===>'."\r\n",FILE_APPEND);
 file_put_contents('./data/logs/user-javacallback-'.date('Ymd').'.log',json_encode($_GPC['__input'])."\r\n",FILE_APPEND);
 // $_GPC['__input'] = '{"success":true,"code":"200","msg":"\u6ce8\u518c\u6210\u529f","data":{"companyNo":"100003","associatorPhone":"15900000000","cardId":"123"}}';
+file_put_contents('./data/logs/fanuser-javacallback-'.date('Ymd').'.log',var_export($_GPC['__input'], true),FILE_APPEND);
+file_put_contents('./data/logs/fanuser-javacallback-'.date('Ymd').'.log','-------11111111----------',FILE_APPEND);
+//file_put_contents('./data/logs/fanuser-javacallback-'.date('Ymd').'.log',var_export(json_decode($_GPC['__input'], true)),FILE_APPEND);
 if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
-    $info = json_decode($_GPC['__input'], true);
+    //$info = json_decode($_GPC['__input'], true);
+    file_put_contents('./data/logs/fanuser-javacallback-'.date('Ymd').'.log','-------22222222222----------',FILE_APPEND);
+    $info = $_GPC['__input'];file_put_contents('./data/logs/fanuser-javacallback-'.date('Ymd').'.log',var_export($info, true),FILE_APPEND);
+    file_put_contents('./data/logs/fanuser-javacallback-'.date('Ymd').'.log','-------33333333333----------',FILE_APPEND);
     if (!empty($info) && isset($info['success']) && $info['success']
         && isset($info['code']) && $info['code'] == 200
         && isset($info['data']) && !empty($info['data'])) {

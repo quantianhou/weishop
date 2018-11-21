@@ -104,7 +104,7 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 		$data['associatorName'] = $data['associatorPhone'] = $data['companyNo'] = $data['erpCardId'] = '';
 		$data['erpCardNo'] = $data['sex'] = $data['storeNo'] = $data['tokenUrl'] = '';
         $data['associatorBirthday'] = '1990-01-01';
-        $data['storeNo'] = $this_store_id;
+        $data['storeNo'] = 0;//fanhailong 修改，这个版本先不传递门店
 
         if(isset($merchant_code_info['merchant_code']) && !empty($merchant_code_info['merchant_code']))
         {
@@ -119,6 +119,8 @@ class Activation_EweiShopV2Page extends MobileLoginPage
         if(isset($_GPC['realname']) && !empty($_GPC['realname']))
         {
             $data['associatorName'] = $_GPC['realname'];
+        }else{
+            $data['associatorName'] = $item['nickname'];//fanhailong add，性别用数据库里的
         }
 
         if(isset($_GPC['birth']) && !empty($_GPC['birth']))
@@ -131,6 +133,7 @@ class Activation_EweiShopV2Page extends MobileLoginPage
             $data['sex'] = $_GPC['sex'];
         }else{
             $data['sex'] = 3;
+            $data['sex'] = $item['gender'];//fanhailong add，性别用数据库里的
         }
 
         $data['tokenUrl'] = $_W['siteroot'].'member.php';
