@@ -43,6 +43,7 @@ if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
                $arr = [];
                $update_point = 0 ;
                $info = pdo_fetch('select id,point from '.tablename('ewei_shop_point')."where uid={$uinfo['uid']} and uniacid={$uinfo['uniacid']} order by id desc limit 1");
+               file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',date('Y-m-d H:i:s').':[ewei_shop_point]'.json_encode($info)."\r\n",FILE_APPEND);
                if(!empty($info))
                {
                    $update_point = $info['point'];
@@ -50,19 +51,24 @@ if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
 
                $update_point = $point - $update_point;
 
-               $arr['credit1'] = $uinfo['credit1'] + $update_point;
-
-               $fans_info = pdo_fetch('select uid from '.tablename('mc_mapping_fans')."where openid={$v['openid']} and uniacid={$v['uniacid']} order by id desc limit 1");
+               $fans_info = pdo_fetch('select uid from '.tablename('mc_mapping_fans').'where openid="'.$v['openid'].'" and uniacid="' . $v['uniacid'] .'"');
+               file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',date('Y-m-d H:i:s').':[ims_mc_mapping_fans_table]'.json_encode($fans_info)."\r\n",FILE_APPEND);
                if(!empty($fans_info))
                {
-                   pdo_update('mc_members', $arr, array('uid' => $fans_info['uid']));
+                   $mc_info = pdo_fetch('select uid,credit1 from '.tablename('mc_members').' where uid="'.$fans_info['uid'].'"');
+                   file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',date('Y-m-d H:i:s').':[ims_mc_members_table]'.json_encode($mc_info)."\r\n",FILE_APPEND);
+                   if(!empty($mc_info))
+                   {
+                       $arr['credit1'] = $mc_info['credit1'] + $update_point;
+                       pdo_update('mc_members', $arr, array('uid' => $fans_info['uid']));
 
-                   $idata['uid'] = $uinfo['uid'];
-                   $idata['point'] = $arr['credit1'];
-                   $idata['uniacid'] = $uinfo['uniacid'];
-                   $idata['create_time'] = time();
-                   $idata['update_time'] = time();
-                   pdo_insert('ewei_shop_point',$idata);
+                       $idata['uid'] = $uinfo['uid'];
+                       $idata['point'] = $arr['credit1'];
+                       $idata['uniacid'] = $uinfo['uniacid'];
+                       $idata['create_time'] = time();
+                       $idata['update_time'] = time();
+                       pdo_insert('ewei_shop_point',$idata);
+                   }
                }
            }
        }
