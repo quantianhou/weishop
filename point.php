@@ -36,7 +36,7 @@ if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
 
        if(!empty($uniacid) && !empty($cardid))
        {
-           $uinfo = pdo_fetch("SELECT id,uniacid,uid,cardId,credit1 FROM " . tablename('ewei_shop_member') . " WHERE cardId = '{$cardid}' and uniacid = {$uniacid};");
+           $uinfo = pdo_fetch("SELECT id,uniacid,openid,uid,cardId,credit1 FROM " . tablename('ewei_shop_member') . " WHERE cardId = '{$cardid}' and uniacid = {$uniacid};");
 
            if(!empty($uinfo))
            {
@@ -52,14 +52,18 @@ if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
 
                $arr['credit1'] = $uinfo['credit1'] + $update_point;
 
-               pdo_update('ewei_shop_member', $arr, array('id' => $uinfo['id']));
+               $fans_info = pdo_fetch('select uid from '.tablename('mc_mapping_fans')."where openid={$v['openid']} and uniacid={$v['uniacid']} order by id desc limit 1");
+               if(!empty($fans_info))
+               {
+                   pdo_update('mc_members', $arr, array('uid' => $fans_info['uid']));
 
-               $idata['uid'] = $uinfo['uid'];
-               $idata['point'] = $arr['credit1'];
-               $idata['uniacid'] = $uinfo['uniacid'];
-               $idata['create_time'] = time();
-               $idata['update_time'] = time();
-               pdo_insert('ewei_shop_point',$idata);
+                   $idata['uid'] = $uinfo['uid'];
+                   $idata['point'] = $arr['credit1'];
+                   $idata['uniacid'] = $uinfo['uniacid'];
+                   $idata['create_time'] = time();
+                   $idata['update_time'] = time();
+                   pdo_insert('ewei_shop_point',$idata);
+               }
            }
        }
     }

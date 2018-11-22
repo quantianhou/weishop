@@ -24,7 +24,7 @@ $run = true;
 if(!empty($company_list))
 {
     do{
-        $member = pdo_fetchall("SELECT id,uniacid,uid,cardId,credit1 FROM " . tablename('ewei_shop_member') . " WHERE cardId != '0' and cardId != '' and cardId is not null and id > {$last_id} order by id asc limit 10;");
+        $member = pdo_fetchall("SELECT id,uniacid,openid,uid,cardId,credit1 FROM " . tablename('ewei_shop_member') . " WHERE cardId != '0' and cardId != '' and cardId is not null and id > {$last_id} order by id asc limit 10;");
 
         if(!empty($member))
         {
@@ -34,11 +34,15 @@ if(!empty($company_list))
                 {
                     $last_id = $v['id'];
                     $update_point = 0;
-                    $info = pdo_fetch('select id,point from '.tablename('ewei_shop_point')."where uid={$v['uid']} and uniacid={$v['uniacid']} order by id desc limit 1");
+                    $fans_info = pdo_fetch('select uid from '.tablename('mc_mapping_fans')."where openid={$v['openid']} and uniacid={$v['uniacid']} order by id desc limit 1");
 
-                    if(!empty($info))
+                    if(!empty($fans_info))
                     {
-                        $update_point = $info['point'];
+                        $mc_member_info = pdo_fetch('select uid ,credit1 from ' .tablename('mc_members') ." where uid = {$$fans_info['uid']}");
+                        if(!empty($mc_member_info))
+                        {
+                            $update_point = $info['point'];
+                        }
                     }
 
                     $syn_point = $v['credit1'] - $update_point;
