@@ -7,7 +7,7 @@ load()->classs('wesession');
 
 file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',date('Y-m-d H:i:s').'start===>'."\r\n",FILE_APPEND);
 file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',json_encode($_GPC['__input'])."\r\n",FILE_APPEND);
-// $_GPC['__input'] = '{"success":true,"code":"200","msg":"\u6ce8\u518c\u6210\u529f","data":{"companyNo":"100003","cardId":"erp55338","integration":5}}';
+ $_GPC['__input'] = '{"success":true,"code":"200","msg":"\u6ce8\u518c\u6210\u529f","data":{"companyNo":"100003","cardId":"erp55338","integration":5}}';
 if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
     $info = json_decode($_GPC['__input'], true);
     if (!empty($info) && isset($info['success']) && $info['success']
@@ -43,7 +43,7 @@ if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
                $arr = [];
                $update_point = 0 ;
                $info = pdo_fetch('select id,point from '.tablename('ewei_shop_point')."where uid={$uinfo['uid']} and uniacid={$uinfo['uniacid']} order by id desc limit 1");
-               file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',date('Y-m-d H:i:s').':[ewei_shop_point]'.json_encode($info)."\r\n",FILE_APPEND);
+               file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',date('Y-m-d H:i:s').':[ewei_shop_point:uid:'.$uinfo['uid'].'-uniacid:'.$uinfo['uniacid'].']'.json_encode($info)."\r\n",FILE_APPEND);
                if(!empty($info))
                {
                    $update_point = $info['point'];
@@ -51,12 +51,12 @@ if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
 
                $update_point = $point - $update_point;
 
-               $fans_info = pdo_fetch('select uid from '.tablename('mc_mapping_fans').'where openid="'.$v['openid'].'" and uniacid="' . $v['uniacid'] .'"');
-               file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',date('Y-m-d H:i:s').':[ims_mc_mapping_fans_table]'.json_encode($fans_info)."\r\n",FILE_APPEND);
+               $fans_info = pdo_fetch('select uid from '.tablename('mc_mapping_fans').'where openid="'.$uinfo['openid'].'" and uniacid="' . $uinfo['uniacid'] .'"');
+               file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',date('Y-m-d H:i:s').':[mc_mapping_fans:openid:'.$uinfo['openid'].'-uniacid:'.$uinfo['uniacid'].']'.json_encode($info)."\r\n",FILE_APPEND);
                if(!empty($fans_info))
                {
                    $mc_info = pdo_fetch('select uid,credit1 from '.tablename('mc_members').' where uid="'.$fans_info['uid'].'"');
-                   file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',date('Y-m-d H:i:s').':[ims_mc_members_table]'.json_encode($mc_info)."\r\n",FILE_APPEND);
+                   file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',date('Y-m-d H:i:s').':[ims_mc_members_table:uid-'.$fans_info['uid'].']'.json_encode($mc_info)."\r\n",FILE_APPEND);
                    if(!empty($mc_info))
                    {
                        $arr['credit1'] = $mc_info['credit1'] + $update_point;
