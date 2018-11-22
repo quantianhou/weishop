@@ -41,7 +41,7 @@ if(!empty($company_list))
                     if(!empty($fans_info))
                     {
                         $mc_info = pdo_fetch('select uid,credit1 from '.tablename('mc_members').' where uid="'.$fans_info['uid'].'"');
-                        if(!empty($fans_info)){
+                        if(!empty($mc_info)){
                             $credit1 = $mc_info['credit1'];
                         }
 

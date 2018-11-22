@@ -7,7 +7,7 @@ load()->classs('wesession');
 
 file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',date('Y-m-d H:i:s').'start===>'."\r\n",FILE_APPEND);
 file_put_contents('./data/logs/point-javacallback-'.date('Ymd').'.log',json_encode($_GPC['__input'])."\r\n",FILE_APPEND);
- $_GPC['__input'] = '{"success":true,"code":"200","msg":"\u6ce8\u518c\u6210\u529f","data":{"companyNo":"100003","cardId":"erp55338","integration":5}}';
+// $_GPC['__input'] = '{"success":true,"code":"200","msg":"\u6ce8\u518c\u6210\u529f","data":{"companyNo":"100003","cardId":"erp55338","integration":5}}';
 if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
     $info = json_decode($_GPC['__input'], true);
     if (!empty($info) && isset($info['success']) && $info['success']
@@ -16,7 +16,7 @@ if (isset($_GPC['__input']) && !empty($_GPC['__input'])) {
         $cardid = $companyno = $uniacid = '';
         $point = 0 ;
 
-        if (isset($info['data']['integration']) && !empty($info['data']['integration'])) {
+        if (isset($info['data']['integration']) && !empty($info['data']['integration']) && $info['data']['integration'] > 0) {
             $point = $info['data']['integration'];
         }
 
