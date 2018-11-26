@@ -50,7 +50,8 @@ if(!empty($company_list))
                         $data['cardId'] = $v['cardId'];
                         $data['companyNo'] = $company_list[$v['uniacid']];
                         $data['integration'] = $syn_point;
-                        $data['tokenUrl'] =  $_W['siteroot'] .'/point.php';
+                        $data['tokenUrl'] =  'http://stores.ymkchen.com/point.php';//正式地址
+//                        $data['tokenUrl'] =  'http://b.test.ymkchen.com/point.php';//测试环境地址
                         $url = 'http://47.98.124.157:8822/api/v1/associator/update_integration';
                         file_put_contents('./data/logs/point-'.date('Ymd').'.log','request-data:'.json_encode($data)."\r\n",FILE_APPEND);
                         $java_info = $curl->callHttpPost($url,$data);
