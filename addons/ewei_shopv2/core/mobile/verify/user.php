@@ -357,7 +357,7 @@ class User_EweiShopV2Page extends MobilePage
             show_json(10,'该手机号已注册');
         }
 
-        $response = sendSms($mobile, 'SMS_145235565', array('code'=>$code));
+        $response = d_sendSms($mobile, 'SMS_145235565', array('code'=>$code));
         if($response->Code =='OK'){
             //成功
             $_SESSION['code'] = $code;

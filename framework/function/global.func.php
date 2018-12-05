@@ -25,7 +25,7 @@ function ver_compare($version1, $version2) {
  * author fanhailong
  * @return stdClass
  */
-function sendSms($phoneNumber, $templateCode = 'SMS_145235565', $templateParam = array()) {
+function d_sendSms($phoneNumber, $templateCode = 'SMS_145235565', $templateParam = array()) {
 
     //SMS_145235565为【信息变更验证码】模板，模版内容:验证码${code}，您正在尝试变更重要信息，请妥善保管账户信息。
     // 调用示例：
