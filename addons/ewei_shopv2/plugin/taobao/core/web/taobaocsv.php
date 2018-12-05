@@ -18,7 +18,7 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
 
 		if ($_W['ispost']) {
 			$rows = m('excel')->import('excelfile');
-			$num = count($rows);
+            $num = count($rows);
 			$i = 0;
 			$colsIndex = array();
 
@@ -56,17 +56,18 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
 
 			$filename = $_FILES['excelfile']['name'];
 			$filename = substr($filename, 0, strpos($filename, '.'));
-			$rows = array_slice($rows, 2, count($rows) - 2);
+			$rows = array_slice($rows, 1, count($rows) - 1);
+			print_r($rows);exit;
 			$items = array();
 			//$this->get_zip_originalsize($_FILES['zipfile']['tmp_name'], '../attachment/images/' . $_W['uniacid'] . '/' . date('Y') . '/' . date('m') . '/');
 
 			foreach ($rows as $rownu => $col) {
 				$item = [];
-				$item['name']	= $col[0];
-				$item['sn']		= $col[1];
-                $item['price']	= $col[3];
-                $item['nation_sn']	= $col[2];
-				$item['inventory']	= $col[4];
+				$item['goodsname']	= $col[0];
+				$item['goodscode']		= $col[1];
+                $item['goodsretailprice']	= $col[3];
+                $item['barcode']	= $col[2];
+				$item['goodsstock']	= $col[4];
 
                 $items[] = $item;
 			}
@@ -80,7 +81,7 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
             $cfg['post'] = $post;
             $cfg['ssl'] = true;
 
-			$res = $this->curlOpen('http://api.test.ymkchen.com/goods',$cfg);
+			$res = $this->curlOpen('http://api.ymkchen.com/goods',$cfg);
 		}
 
 		include $this->template();
