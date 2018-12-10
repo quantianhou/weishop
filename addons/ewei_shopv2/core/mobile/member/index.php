@@ -168,7 +168,7 @@ class Index_EweiShopV2Page extends MobileLoginPage
         if (empty($CardActivation))
         {
             $needrealname = 0;
-            $needmobile = 0;
+            $needmobile = 1;
             $needsmscode = 0;
         }
         else
