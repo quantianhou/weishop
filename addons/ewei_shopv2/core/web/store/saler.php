@@ -26,15 +26,17 @@ class Saler_EweiShopV2Page extends ComWebPage
 			$condition .= ' and ( s.salername like :keyword or m.realname like :keyword or m.mobile like :keyword or m.nickname like :keyword)';
 			$params[':keyword'] = '%' . $_GPC['keyword'] . '%';
 		}
-		$sql = 'SELECT s.*,m.nickname,m.avatar,m.realname,store.storename FROM ' . tablename('ewei_shop_saler') . '  s ' . ' left join ' . tablename('ewei_shop_member') . ' m on s.openid=m.openid and m.uniacid = s.uniacid ' . ' left join ' . tablename('ewei_shop_store') . ' store on store.id=s.storeid ' . ' WHERE ' . $condition . ' ORDER BY id asc';
+		$sql = 'SELECT s.*,m.nickname,m.avatar,m.realname,store.store_short_name as storename,m.id as agentid FROM ' . tablename('ewei_shop_saler') . '  s ' . ' left join ' . tablename('ewei_shop_member') . ' m on s.openid=m.openid and m.uniacid = s.uniacid ' . ' left join ' . tablename('ewei_shop_store') . ' store on store.id=s.storeid ' . ' WHERE ' . $condition . ' ORDER BY id asc';
 		$list = pdo_fetchall($sql, $params);
 
 		foreach ($list as &$val){
 		    //通过手机号与商家信息
             $pMember = pdo_fetch('SELECT * FROM ' .tablename('ewei_shop_member') . ' WHERE openid = :openid', array(':openid' => $val['openid']));
 		    //获取下级数量
-            $info = m('plugin')->loadModel('commission')->getInfo($pMember['openid'], array('total', 'pay'));
-		    $val['xiaji'] = $info['agentcount'];
+//            $info = m('plugin')->loadModel('commission')->getInfo($pMember['openid'], array('total', 'pay'));
+//            $val['xiaji'] = $info['agentcount'];
+            $info = pdo_fetch('SELECT count(*) as tt FROM ' .tablename('ewei_shop_member') . ' WHERE agentid = :agentid', array(':agentid' => $val['agentid']));
+		    $val['xiaji'] = $info['tt'];
 		    $val['xiajiid'] = $pMember['id'];
         }
 		include $this->template();

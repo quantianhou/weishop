@@ -712,12 +712,12 @@ class Detail_EweiShopV2Page extends MobilePage
 			}
 		}
 		$stores = array();
-		if ($goods['isverify'] == 2) 
+		if ($goods['isverify'] == 2)
 		{
 			$storeids = array();
-			if (!(empty($goods['storeids']))) 
+			if (!(empty($goods['shop_id'])))
 			{
-				$storeids = array_merge(explode(',', $goods['storeids']), $storeids);
+				$storeids = array_merge(explode(',', $goods['shop_id']), $storeids);
 			}
 			if (empty($storeids)) 
 			{
@@ -736,7 +736,7 @@ class Detail_EweiShopV2Page extends MobilePage
 			}
 			else 
 			{
-				$stores = pdo_fetchall('select * from ' . tablename('ewei_shop_store') . ' where id in (' . implode(',', $storeids) . ') and uniacid=:uniacid and status=1 and type in(2,3) order by displayorder desc,id desc', array(':uniacid' => $_W['uniacid']));
+				$stores = pdo_fetchall('select * from ' . tablename('ewei_shop_store') . ' where id in (' . implode(',', $storeids) . ') and uniacid=:uniacid and status=1 order by displayorder desc,id desc', array(':uniacid' => $_W['uniacid']));
 			}
 		}
 		$share = m('common')->getSysset('share');
