@@ -84,6 +84,17 @@
 
     <div class='fui-content  navbar'>
 
+        {if count($carrier_list)>0 && !$isverify && !$isvirtual&&!$isonlyverifygoods}
+
+         <div id="carrierTab" class="fui-tab fui-tab-danger" style="margin-bottom: 0">
+
+             <a data-tab="tab1" class="active">商家配送</a>
+
+             <a data-tab="tab2">门店自提</a>
+
+         </div>
+
+         {/if}
 
         {if !empty($quickinfo)}
 
