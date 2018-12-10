@@ -161,5 +161,23 @@ class Index_EweiShopV2Page extends MobileLoginPage
 		}
 		include $this->template();
 	}
+
+	public function setMemberPhone()
+    {
+        $CardActivation = m('common')->getSysset('memberCardActivation');
+        if (empty($CardActivation))
+        {
+            $needrealname = 0;
+            $needmobile = 0;
+            $needsmscode = 0;
+        }
+        else
+        {
+            $needrealname = $CardActivation['realname'];
+            $needmobile = $CardActivation['mobile'];
+            $needsmscode = $CardActivation['sms_active'];
+        }
+        include $this->template();
+    }
 }
 ?>

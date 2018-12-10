@@ -12,13 +12,13 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 		$iserror = false;
 		$card_id = $_GPC['card_id'];
 		$encrypt_code = $_GPC['encrypt_code'];
-		if (empty($card_id) || empty($encrypt_code)) 
+		if (empty($card_id) || empty($encrypt_code))
 		{
 			$iserror = true;
 		}
 		$encrypt_code = htmlspecialchars_decode($encrypt_code, ENT_QUOTES);
 		$result = com_run('wxcard::wxCardCodeDecrypt', $encrypt_code);
-		if (is_wxerror($result)) 
+		if (is_wxerror($result))
 		{
 			$iserror = true;
 		}
@@ -210,6 +210,137 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 			show_json(0);
 		}
 	}
+
+    public function submit1()
+    {
+        global $_W;
+        global $_GPC;
+        $iserror = false;
+
+        $this_store_id = $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+
+        $item = pdo_fetch('select * from ' . tablename('ewei_shop_member') . ' where uniacid=:uniacid and openid =:openid limit 1 ', array(':uniacid' => $_W['uniacid'], ':openid' => $_W['openid']));
+//        $arr = array('membercardid' => $card_id, 'membercardcode' => $code, 'membershipnumber' => $code, 'membercardactive' => 0);
+        $arr = [];
+        $CardActivation = m('common')->getSysset('memberCardActivation');
+        /**同步java数据 start**/
+        $merchant_code_info = pdo_fetch('select * from '.tablename('b_users_uniaccount_relationship').' where uni_account_id=:uni_account_id limit 1',[':uni_account_id' => $_W['uniacid']]);
+        $url = 'http://47.98.124.157:8822/api/v1/associator/register';
+        $data['associatorAddress'] = $data['associatorBirthday'] = $data['associatorIdentityCard'] = '';
+        $data['associatorName'] = $data['associatorPhone'] = $data['companyNo'] = $data['erpCardId'] = '';
+        $data['erpCardNo'] = $data['sex'] = $data['storeNo'] = $data['tokenUrl'] = '';
+        $data['associatorBirthday'] = '1990-01-01';
+        $data['storeNo'] = 0;//fanhailong 修改，这个版本先不传递门店
+
+        if(isset($merchant_code_info['merchant_code']) && !empty($merchant_code_info['merchant_code']))
+        {
+            $data['companyNo'] = $merchant_code_info['merchant_code'];
+        }
+
+        if(isset($_GPC['mobile']) && !empty($_GPC['mobile']))
+        {
+            $data['associatorPhone'] = $_GPC['mobile'];
+        }
+
+        if(isset($_GPC['realname']) && !empty($_GPC['realname']))
+        {
+            $data['associatorName'] = $_GPC['realname'];
+        }else{
+            $data['associatorName'] = $item['nickname'];//fanhailong add，性别用数据库里的
+        }
+
+        if(isset($_GPC['birth']) && !empty($_GPC['birth']))
+        {
+            $data['associatorBirthday'] = date('Y-m-d',strtotime($_GPC['birth']));
+        }
+
+        if(isset($_GPC['sex']) && !empty($_GPC['sex']))
+        {
+            $data['sex'] = $_GPC['sex'];
+        }else{
+            $data['sex'] = 3;
+            $data['sex'] = $item['gender'];//fanhailong add，性别用数据库里的
+        }
+
+        $data['tokenUrl'] = $_W['siteroot'].'member.php';
+        $url = 'http://47.98.124.157:8822/api/v1/associator/register';
+        $java_info = com('curl')->callHttpPost($url,$data);
+        /**同步java数据 end**/
+
+        if (!(empty($CardActivation['openactive'])))
+        {
+            if (!(empty($CardActivation['sms_active'])) && !(empty($CardActivation['mobile'])))
+            {
+                @session_start();
+                $key = '__ewei_shopv2_member_verifycodesession_' . $_W['uniacid'] . '_' . trim($_GPC['mobile']);
+                $code = $_SESSION[$key];
+                if (empty($code))
+                {
+                    show_json(0, '请获取验证码!');
+                }
+                if (trim($_GPC['sms_code']) != $code)
+                {
+                    show_json(0, '验证码错误!');
+                }
+            }
+            if (!(empty($CardActivation['realname'])))
+            {
+                if (empty($_GPC['realname']))
+                {
+                    show_json(0, '真实姓名不能为空!');
+                }
+                $arr['realname'] = trim($_GPC['realname']);
+            }
+            if (!(empty($CardActivation['mobile'])))
+            {
+                if (empty($_GPC['mobile']))
+                {
+                    show_json(0, '电话号码不能为空');
+                }
+                $arr['mobile'] = trim($_GPC['mobile']);
+            }
+
+            if(isset($_GPC['birth']) && !empty($_GPC['birth']))
+            {
+                $arr['birthyear'] = date('Y' , strtotime($_GPC['birth']));
+                $arr['birthmonth'] = date('m' , strtotime($_GPC['birth']));
+                $arr['birthday'] = date('d' , strtotime($_GPC['birth']));
+            }
+
+            if(isset($java_info['success']) && $java_info['success'] && isset($java_info['code']) && $java_info['code'] == 1
+                && isset($java_info['data']['cardId']) && !empty($java_info['data']['cardId']))
+            {
+                $arr['cardId'] = $java_info['data']['cardId'];
+            }
+
+            pdo_update('ewei_shop_member', $arr, array('openid' => $_W['openid'], 'uniacid' => $_W['uniacid']));
+            $result = com_run('wxcard::ActivateMembercardbyopenid', $_W['openid']);
+            if (is_wxerror($result))
+            {
+                show_json(0, '手机绑定失败失败');
+            }
+            else
+            {
+                if (empty($item['membercardactive']))
+                {
+                    $this->sendGift($_W['openid']);
+                }
+                pdo_update('ewei_shop_member', array('membercardactive' => 1), array('openid' => $_W['openid'], 'uniacid' => $_W['uniacid']));
+                $this->member($_W['openid'],$_W['uniacid']);
+                show_json(1, '您的手机已成功绑定');
+            }
+        }
+        else
+        {
+            show_json(0);
+        }
+    }
+
+	public function setMemberPhone()
+    {
+        include $this->template();
+    }
+
 	public function sendGift($openid) 
 	{
 		$CardActivation = m('common')->getSysset('memberCardActivation');
@@ -272,6 +403,10 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 		}
 		show_json(0, $ret['message']);
 	}
+    public function success1()
+    {
+        $this->message(array('message' => '您的手机号已成功绑定!', 'title' => '绑定成功!', 'buttondisplay' => true), mobileUrl('sale.coupon'), 'success');
+    }
 	public function success() 
 	{
 		$this->message(array('message' => '您的会员卡已成功激活!', 'title' => '激活成功!', 'buttondisplay' => true), mobileUrl('member'), 'success');
