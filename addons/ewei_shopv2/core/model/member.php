@@ -85,13 +85,13 @@ class Member_EweiShopV2Model
 		}
 		return $info;
 	}
-	public function getMember($openid = '') 
+	public function getMember($openid = '')
 	{
 		global $_W;
 		$uid = (int) $openid;
 		if ($uid == 0) 
 		{
-			$info = pdo_fetch('select * from ' . tablename('ewei_shop_member') . ' where  openid=:openid and uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid'], ':openid' => $openid));
+			$info = pdo_fetch('select * from ' . tablename('ewei_shop_member') . ' where  openid=:openid limit 1', array( ':openid' => $openid));
 			if (empty($info)) 
 			{
 				if (strexists($openid, 'sns_qq_')) 

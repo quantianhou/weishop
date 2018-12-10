@@ -1017,7 +1017,7 @@ class Verifyorder_EweiShopV2Page extends MobilePage
 			$verifyinfo = iunserializer($item['verifyinfo']);
 			if (!(empty($item['verifyopenid']))) 
 			{
-				$saler = m('member')->getMember($item['verifyopenid']);
+				$saler = m('member')->getMember($item['verifyopenid'],1);
 				$saler['salername'] = pdo_fetchcolumn('select salername from ' . tablename('ewei_shop_saler') . ' where openid=:openid and uniacid=:uniacid limit 1 ', array(':uniacid' => $_W['uniacid'], ':openid' => $item['verifyopenid']));
 			}
 			if (!(empty($item['verifystoreid']))) 
