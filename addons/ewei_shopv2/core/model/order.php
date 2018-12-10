@@ -213,7 +213,7 @@ class Order_EweiShopV2Model
 						{
 							p('task')->checkTaskProgress(1, 'goods', 0, '', $item['goodsid']);
 						}
-						if (!(pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_order') . ' where openid = ' . $_W['openid'] . ' and uniacid = ' . $_W['uniacid']))) 
+						if (!(pdo_fetchcolumn('select count(*) from ' . tablename('ewei_shop_order') . ' where openid = "' . $_W['openid'] . '" and uniacid = ' . $_W['uniacid'])))
 						{
 							p('task')->checkTaskProgress(1, 'order_first');
 						}
