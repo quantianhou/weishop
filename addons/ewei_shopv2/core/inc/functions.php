@@ -1929,18 +1929,18 @@ if (!(function_exists('tpl_form_field_textarea'))) {
 }
 
 if (!function_exists('tpl_form_field_position')) {
-	function tpl_form_field_position($field, $value = array())
-	{
-		$s = '';
+    function tpl_form_field_position($field, $value = array())
+    {
+        $s = '';
 
-		if (!defined('TPL_INIT_COORDINATE')) {
-			$s .= "<script type=\"text/javascript\">\r\n                    function showCoordinate(elm) {\r\n                        \r\n                            var val = {};\r\n                            val.lng = parseFloat(\$(elm).parent().prev().prev().find(\":text\").val());\r\n                            val.lat = parseFloat(\$(elm).parent().prev().find(\":text\").val());\r\n                            val = biz.BdMapToTxMap(val.lat,val.lng);\r\n                            biz.map(val, function(r){\r\n                                var address_label = \$(\"#address_label\");\r\n                                if (address_label.length>0)\r\n                                {\r\n                                    address_label.val(r.label);\r\n                                }\r\n                                r = biz.TxMapToBdMap(r.lat,r.lng);\r\n                                \$(elm).parent().prev().prev().find(\":text\").val(r.lng);\r\n                                \$(elm).parent().prev().find(\":text\").val(r.lat);\r\n                            },\"" . EWEI_SHOPV2_URL . 'template/web/util/area/map.html' . "\");\r\n    }\r\n    \r\n                </script>";
-			define('TPL_INIT_COORDINATE', true);
-		}
+        if (!defined('TPL_INIT_COORDINATE')) {
+            $s .= "<script type=\"text/javascript\">\r\n                    function showCoordinate(elm) {\r\n                        \r\n                            var val = {};\r\n                            val.lng = parseFloat(\$(elm).parent().prev().prev().find(\":text\").val());\r\n                            val.lat = parseFloat(\$(elm).parent().prev().find(\":text\").val());\r\n                            val = biz.BdMapToTxMap(val.lat,val.lng);\r\n                            biz.map(val, function(r){\r\n                                var address_label = \$(\"#address_label\");\r\n                                if (address_label.length>0)\r\n                                {\r\n                                    address_label.val(r.label);\r\n                                }\r\n                                \r\n                                \$(elm).parent().prev().prev().find(\":text\").val(r.lng);\r\n                                \$(elm).parent().prev().find(\":text\").val(r.lat);\r\n                            },\"" . EWEI_SHOPV2_URL . 'template/web/util/area/map.html' . "\");\r\n    }\r\n    \r\n                </script>";
+            define('TPL_INIT_COORDINATE', true);
+        }
 
-		$s .= "\r\n            <div class=\"row row-fix\">\r\n                <div class=\"col-xs-4 col-sm-4\">\r\n                    <input type=\"text\" name=\"" . $field . '[lng]" value="' . $value['lng'] . "\" placeholder=\"地理经度\"  class=\"form-control\" />\r\n                </div>\r\n                <div class=\"col-xs-4 col-sm-4\">\r\n                    <input type=\"text\" name=\"" . $field . '[lat]" value="' . $value['lat'] . "\" placeholder=\"地理纬度\"  class=\"form-control\" />\r\n                </div>\r\n                <div class=\"col-xs-4 col-sm-4\">\r\n                    <button onclick=\"showCoordinate(this);\" class=\"btn btn-default\" type=\"button\">选择坐标</button>\r\n                </div>\r\n            </div>";
-		return $s;
-	}
+        $s .= "\r\n            <div class=\"row row-fix\">\r\n                <div class=\"col-xs-4 col-sm-4\">\r\n                    <input type=\"text\" name=\"" . $field . '[lng]" value="' . $value['lng'] . "\" placeholder=\"地理经度\"  class=\"form-control\" />\r\n                </div>\r\n                <div class=\"col-xs-4 col-sm-4\">\r\n                    <input type=\"text\" name=\"" . $field . '[lat]" value="' . $value['lat'] . "\" placeholder=\"地理纬度\"  class=\"form-control\" />\r\n                </div>\r\n                <div class=\"col-xs-4 col-sm-4\">\r\n                    <button onclick=\"showCoordinate(this);\" class=\"btn btn-default\" type=\"button\">选择坐标</button>\r\n                </div>\r\n            </div>";
+        return $s;
+    }
 }
 
 if (!(function_exists('tpl_goods_selector'))) {

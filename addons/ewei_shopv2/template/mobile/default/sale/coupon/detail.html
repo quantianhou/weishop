@@ -1,5 +1,9 @@
 {template '_header'}
-
+<script language='javascript'>
+    require(['biz/sale/coupon/detail'], function (modal) {
+        modal.init({coupon: {php echo json_encode($coupon)}});
+    });
+</script>
 <link rel="stylesheet" type="text/css" href="../addons/ewei_shopv2/template/mobile/default/static/css/coupon-new.css?v=2017030310125">
 <div class="fui-page">
 
@@ -135,7 +139,8 @@
 					{/if}
 					<input type="hidden" id="set_phone" value="{$coupon['set_phone']}" />
 					<input type="hidden" id="set_phone_uri" value="{php echo mobileUrl('sale/coupon/checkMemberPhone');}" />
-					<input type="hidden" id="jump_uri" value="{php echo mobileUrl('member/activation');}" />
+					<!--<input type="hidden" id="jump_uri" value="{php echo mobileUrl('member/activation');}" />-->
+					<input type="hidden" id="jump_uri" value="{php echo mobileUrl('member/setMemberPhone');}" />
 					{if $coupon['set_phone'] == '1'}
 					<div class="text dot">
 						用户需已完善手机号
@@ -210,12 +215,4 @@
 		{/if}
 	</div>
 </div>
-
-
-
-<script language='javascript'>
-	require(['biz/sale/coupon/detail'], function (modal) {
-		modal.init({coupon: {php echo json_encode($coupon)}});
-	});
-</script>
 {template '_footer'}

@@ -123,7 +123,7 @@
         <label class="col-lg control-label">门店地址</label>
         <div class="col-sm-9 col-xs-12">
             {ife 'store' $item}
-            <input type="text" name="address" class="form-control" value="{$item['address']}"/>
+            <input type="text" name="address" id="address_label" class="form-control" value="{$item['address']}"/>
             {else}
             <div class='form-control-static'>{$item['address']}</div>
             {/if}

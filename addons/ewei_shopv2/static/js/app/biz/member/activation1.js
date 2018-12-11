@@ -36,6 +36,29 @@ define(['core', 'tpl'], function(core, tpl) {
                 }
             }, false, true)
         });
+        $('#btnSubmit1').click(function() {
+            if ($('#btnSubmit1').attr('stop')) {
+                return
+            }
+            if (!$('#mobile').isMobile() && modal.params.needmobile == 1) {
+                FoxUI.toast.show('请输入11位手机号码');
+                return
+            }
+            core.json('member/activation/submit1', {
+                realname: $('#realname').val(),
+                mobile: $('#mobile').val(),
+                birth: $('#birth').val(),
+                sms_code: $('#sms_code').val()
+            }, function(ret) {
+                if (ret.status != 1) {
+                    FoxUI.toast.show(ret.result.message);
+                    $('#btnSubmit1').html('立即绑定').removeAttr('stop');
+                    return
+                } else {
+                    location.href = core.getUrl('member/activation/success1')
+                }
+            }, false, true)
+        });
         $('#btnCode').click(function() {
             alert('11');
             if ($('#btnCode').hasClass('disabled')) {
