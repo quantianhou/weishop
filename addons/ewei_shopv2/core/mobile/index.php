@@ -82,8 +82,7 @@ class Index_EweiShopV2Page extends MobilePage
 		}
 		$shop_data = m('common')->getSysset('shop');
 		$cpinfos = com('coupon')->getInfo();
-//		echo '<pre>';
-//print_r($shopInfo);exit;
+
 		//获取门店ID 没有的话写入一个
 		include $this->template();
 	}
