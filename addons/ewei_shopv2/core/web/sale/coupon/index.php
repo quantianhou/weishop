@@ -355,16 +355,16 @@ class Index_EweiShopV2Page extends ComWebPage
         {
             if($type == 2)
             {
-                $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and store_status = 1 and `type` in (2,3) and storename like "%'.$name.'%"' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
+                $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and status = 1 and `type` in (2,3) and storename like "%'.$name.'%"' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
             }else{
-                $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and store_status = 1 and storename like "%'.$name.'%"' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
+                $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and status = 1 and storename like "%'.$name.'%"' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
             }
         }else{
             if($type == 2)
             {
-                $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and store_status = 1 and  `type` in (2,3)' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
+                $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and status = 1 and  `type` in (2,3)' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
             }else{
-                $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and store_status = 1' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
+                $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and status = 1' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
             }
 
         }
