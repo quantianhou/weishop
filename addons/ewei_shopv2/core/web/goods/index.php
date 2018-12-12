@@ -45,13 +45,15 @@ class Index_EweiShopV2Page extends WebPage
 		if (!empty($_GPC['keyword'])) {
 			$_GPC['keyword'] = trim($_GPC['keyword']);
 			$sqlcondition = ' left join ' . tablename('ewei_shop_goods_option') . ' op on g.business_goods_id = op.goodsid';
+			//fanhailong add，支持门店简称查询
+            $sqlcondition .= ' left join ' . tablename('ewei_shop_store') . ' ss on g.shop_id = ss.id';
 
 			if ($merch_plugin) {
 				$sqlcondition .= ' left join ' . tablename('ewei_shop_merch_user') . ' merch on merch.id = g.merchid and merch.uniacid=g.uniacid';
 			}
 
 			$groupcondition = ' group by g.`id`';
-			$condition .= ' AND (g.`id` = :id or g.`title` LIKE :keyword or g.`keywords` LIKE :keyword or g.`goodssn` LIKE :keyword or g.`productsn` LIKE :keyword or op.`title` LIKE :keyword or op.`goodssn` LIKE :keyword or op.`productsn` LIKE :keyword';
+			$condition .= ' AND (g.`id` = :id or g.`title` LIKE :keyword or g.`keywords` LIKE :keyword or g.`goodssn` LIKE :keyword or g.`productsn` LIKE :keyword or op.`title` LIKE :keyword or op.`goodssn` LIKE :keyword or op.`productsn` LIKE :keyword  or ss.`store_short_name` LIKE :keyword';
 
 			if ($merch_plugin) {
 				$condition .= ' or merch.`merchname` LIKE :keyword';
