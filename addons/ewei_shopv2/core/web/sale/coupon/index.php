@@ -341,6 +341,49 @@ class Index_EweiShopV2Page extends ComWebPage
         show_json(2);
     }
 
+    public function me2()
+    {
+        global $_W;
+        global $_GPC;
+
+        $name = trim($_GPC['branchName'],' ');
+        $type = intval($_GPC['couponType']);
+        $a_merchant_id =  (!empty($_W['user']['a_merchant_id'])) ? intval($_W['user']['a_merchant_id']) : 0;
+
+        $uniacid = (!empty($_W['uniacid'])) ? intval($_W['uniacid']) : 0 ;
+        if(!empty($name))
+        {
+            if($type == 2)
+            {
+                $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and store_status = 1 and `type` in (2,3) and storename like "%'.$name.'%"' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
+            }else{
+                $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and store_status = 1 and storename like "%'.$name.'%"' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
+            }
+        }else{
+            if($type == 2)
+            {
+                $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and store_status = 1 and  `type` in (2,3)' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
+            }else{
+                $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and store_status = 1' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
+            }
+
+        }
+        if(empty($store))
+        {
+            show_json(2, array('childBranchList' => false , 'parentBranchList' =>false));
+            return ;
+        }
+
+//        foreach($store as $k => $v){
+//            if( !(time() >= strtotime($v['contract_start_time']) && time() <= strtotime($v['contract_end_time'])))
+//            {
+//                unset($store[$k]);
+//            }
+//        }
+        $store = array_values($store);
+        show_json(1, array('childBranchList' => $store , 'parentBranchList' =>[['name' => '全部店铺']]));
+    }
+
     public function checkMemberCard()
     {
         global $_W;
