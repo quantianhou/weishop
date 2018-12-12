@@ -16,7 +16,7 @@
             <br><span style="padding-left: 64px;">2. 确认上传即可</span>
             <dl style="margin:5px 0;">
                 <dt style="float:left;font-weight:normal;">示例文件：</dt>
-                <dd style="float:left;"><a href="{php echo $excelurl}" >Excel示例文件下载</a></dd>
+                <dd style="float:left;"><a href="{php echo $excelurl}" >Excel示例文件下载.</a></dd>
             </dl>
             <div style="clear:both;"></div>
         </div>
@@ -33,7 +33,7 @@
         <div class="form-group">
             <label class="col-lg control-label"> </label>
             <div class="col-sm-9">
-                <input id="btn_submit" type="submit"  value="确认导入" class="btn btn-primary" />
+                <input id="btn_submit" type="submit"  value="确认导入" class="btn btn-primary" />{php echo $sign}
             </div>
         </div>
     </form>
@@ -47,7 +47,7 @@
     if(uploadStart ==1)
     {
         $("#dataform").attr("disabled", "true");
-        $("#btn_submit").val("正在获取中...").removeClass("btn-primary").attr("disabled", "true");
+        $("#btn_submit").val("正在获取中....").removeClass("btn-primary").attr("disabled", "true");
         $("#btn_submit").val("已经获取  " + len + " / " + total + " 个宝贝, 请等待....");
         fetch_next();
     }
