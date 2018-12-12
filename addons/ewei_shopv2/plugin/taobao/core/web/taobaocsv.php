@@ -15,13 +15,12 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
 		$uploadnum = '0';
 		$excelurl = $_W['siteroot'] . 'addons/ewei_shopv2/plugin/taobao/data/test.xlsx';
 		$zipurl = $_W['siteroot'] . 'addons/ewei_shopv2/plugin/taobao/data/test.zip';
-
+		$sign = '';
 		if ($_W['ispost']) {
 			$rows = m('excel')->import('excelfile');
             $num = count($rows);
 			$i = 0;
 			$colsIndex = array();
-
 			foreach ($rows[0] as $cols => $col) {
 				if ($col == 'title') {
 					$colsIndex['title'] = $i;
@@ -57,7 +56,6 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
 			$filename = $_FILES['excelfile']['name'];
 			$filename = substr($filename, 0, strpos($filename, '.'));
 			$rows = array_slice($rows, 1, count($rows) - 1);
-			print_r($rows);exit;
 			$items = array();
 			//$this->get_zip_originalsize($_FILES['zipfile']['tmp_name'], '../attachment/images/' . $_W['uniacid'] . '/' . date('Y') . '/' . date('m') . '/');
 
@@ -82,7 +80,9 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
             $cfg['ssl'] = true;
 
 			$res = $this->curlOpen('http://api.ymkchen.com/goods',$cfg);
-		}
+            $sign = '导入成功';
+
+        }
 
 		include $this->template();
 	}

@@ -84,7 +84,7 @@
 
     <div class='fui-content  navbar'>
 
-        {if count($carrier_list)>0 && !$isverify && !$isvirtual&&!$isonlyverifygoods}
+        {if count($carrier_list)>0 && !$isverify && !$isvirtual&&!$isonlyverifygoods && $thisstore['type'] != 2}
 
          <div id="carrierTab" class="fui-tab fui-tab-danger" style="margin-bottom: 0">
 
