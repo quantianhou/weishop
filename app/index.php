@@ -21,7 +21,7 @@ if ($_W['setting']['copyright']['status'] == 1) {
 	message('抱歉，站点已关闭，关闭原因：' . $_W['setting']['copyright']['reason']);
 }
 
-//进商城的时候，根据当前公众号隶属的商家，去查当前商家下的门店记录，有没有公众号id为0的，如果有，更新为商家下的唯一公众号id
+//fanhailong add 因为a端录入门店时，商家可能还没有公众号，所以a端添加门店时无法插入uniacid（公众号id）,进商城的时候，根据当前公众号隶属的商家，去查当前商家下的门店记录，有没有公众号id为0的，如果有，更新为商家下的唯一公众号id
 $merchant_code_param[':uni_account_id'] = $_W['uniacid'];
 $sql = "SELECT merchant_code FROM ". tablename('b_users_uniaccount_relationship'). "  WHERE uni_account_id = :uni_account_id";
 $merchant_code = pdo_fetch($sql, $merchant_code_param);
