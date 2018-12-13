@@ -228,7 +228,8 @@ class Index_EweiShopV2Page extends ComWebPage
 			$storegroup = pdo_fetchall('SELECT * FROM ' . tablename('ewei_shop_newstore_storegroup') . ' WHERE  uniacid=:uniacid  ', array(':uniacid' => $_W['uniacid']));
 			$category = pdo_fetchall('SELECT *FROM ' . tablename('ewei_shop_newstore_category') . ' WHERE uniacid = :uniacid', array(':uniacid' => $_W['uniacid']));
 		}
-		$item = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_store') . ' WHERE id =:id and uniacid=:uniacid limit 1', array(':uniacid' => $_W['uniacid'], ':id' => $id));
+        //fanhailong修改，因为a端录入门店时，商家可能还没有公众号，所以添加门店无法插入uniacid（公众号id），而这套改成了1个商家只能部署一个公众号，所以用a_merchant_id代替（商家id）
+		$item = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_store') . ' WHERE id =:id and a_merchant_id=:a_merchant_id limit 1', array(':a_merchant_id' => $_W['user']['a_merchant_id'], ':id' => $id));
 		$perms = explode(',', $item['perms']);
 		if ($printer = com('printer')) 
 		{

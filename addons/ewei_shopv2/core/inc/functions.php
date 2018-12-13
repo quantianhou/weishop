@@ -1521,6 +1521,13 @@ if (!function_exists('tpl_form_field_image2')) {
 		$val = $default;
 
 		if (!empty($value)) {
+			if($name === 'logo')
+			{
+				if((substr($value, 0, 6) === 'upload'))
+				{
+					$value = 'http://resource.ymkchen.com/' . $value ;
+                }
+			}
 			$val = tomedia($value);
 		}
 		else {

@@ -26,12 +26,14 @@ function getBranch(loadRight,name,flagMshop) {
     // name = name.replace(/[ ]/g, "");
     // console.log(name);
     var url = $("#allBranchUrl").val();
+    var couponTypeC = $("#couponTypeC").val();
     $.ajax({
-        url : url,
+        url : url+'&branchName='+name+'&flagMshop='+flagMshop+'&couponType='+couponTypeC,
         type : "GET",
         data : {
-            branchName : name,
-            flagMshop : flagMshop
+            // branchName : name,
+            // flagMshop : flagMshop,
+            // couponType: couponTypeC
         },
         success : function(data) {
             console.log(data);

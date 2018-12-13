@@ -175,7 +175,8 @@
 				<td>
 					<div id="allBranchDiv" class="box" style="width: 350px; height: 450px; border: 1px solid #F8F8F8;overflow:auto;background:#F8F8F8">
 						<div class="box-header well" style="background:#F8F8F8;border: 0px;">
-							<input type="hidden" id="allBranchUrl" name="allBranchUrl" value="{php echo webUrl('shop/store/me')}">
+							<input type="hidden" id="couponTypeC" name="couponTypeC" value="{$type}">
+							<input type="hidden" id="allBranchUrl" name="allBranchUrl" value="{php echo webUrl('sale/coupon/me2')}">
 							<input type="hidden" id="selectedBranchUrl" name="selectedBranchUrl" value="{php echo webUrl('sale/coupon/me')}">
 							<input id="branchName" name="branchName" size="16" type="text" value="" style="width:180px;border: 1px solid #cccccc;background-color: #fff;border-radius:3px; height: 30px; line-height: 30px;">
 							<button type="button" onclick="searchBranch()" class="btn btn-primary btn-sm" style="margin-top: 5px;">查 询</button>

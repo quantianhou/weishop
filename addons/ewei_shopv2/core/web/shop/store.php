@@ -15,9 +15,9 @@ class Store_EweiShopV2Page extends WebPage
         $uniacid = (!empty($_W['uniacid'])) ? intval($_W['uniacid']) : 0 ;
         if(!empty($name))
         {
-            $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and store_status = 1 and storename like "%'.$name.'%"' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
+            $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and status = 1 and storename like "%'.$name.'%"' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
         }else{
-            $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and store_status = 1' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
+            $store = pdo_fetchall('select * from '.tablename('ewei_shop_store').' where uniacid = :id and a_merchant_id = :a_merchant_id and status = 1' , [':a_merchant_id'=>  $a_merchant_id , ':id' => $uniacid]);
         }
         if(empty($store))
         {
