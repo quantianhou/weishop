@@ -29,7 +29,7 @@ class Index_EweiShopV2Page extends MobilePage
         }
 		if(!$this_store_id){
             //获取第一个门店
-            $shopInfo = pdo_fetch('select *  from ' . tablename('ewei_shop_store') . ' og  where og.uniacid=:uniacid ORDER BY '.$order, array(':uniacid' => $_W['uniacid']));
+            $shopInfo = pdo_fetch('select *  from ' . tablename('ewei_shop_store') . ' og  where status=1 and og.uniacid=:uniacid ORDER BY '.$order, array(':uniacid' => $_W['uniacid']));
             $shopInfo && isetcookie('store_id', $shopInfo['id'], 7 * 86400);
             $this_store_id = $shopInfo['id'];
         }
@@ -37,7 +37,7 @@ class Index_EweiShopV2Page extends MobilePage
         //获取门店信息
         $shopInfo || $shopInfo = pdo_fetch('select *  from ' . tablename('ewei_shop_store') . ' og  where og.id=:id ', array(':id' => $this_store_id));
         //如果当前门店信息不隶属于当前商户 重新获取门店信息
-        if($shopInfo['uniacid'] != $_W['uniacid']){
+        if($shopInfo['uniacid'] != $_W['uniacid'] || $shopInfo['status'] != 1){
             isetcookie('store_id', 0, 7 * 86400);
             exit('<script language="JavaScript">document.location.reload()</script>');
         }
@@ -185,7 +185,7 @@ class Index_EweiShopV2Page extends MobilePage
 		ob_implicit_flush(false);
         //获取商户门店
         $prefix_cookie = $_W['config']['cookie']['pre'];
-        $shoplist = pdo_fetchall('select *  from ' . tablename('ewei_shop_store') . ' og  where og.uniacid=:uniacid ', array(':uniacid' => $_W['uniacid']));;
+        $shoplist = pdo_fetchall('select *  from ' . tablename('ewei_shop_store') . ' og  where status = 1 and og.uniacid=:uniacid ', array(':uniacid' => $_W['uniacid']));;
         require $this->template('index_tpl');
 		return ob_get_clean();
 	}

@@ -862,12 +862,12 @@ class Create_EweiShopV2Page extends MobileLoginPage
 				foreach ($goods as $g ) 
 				{
 					$merchid = $g['merchid'];
-					if (!(empty($g['storeids']))) 
+					if (!(empty($g['shop_id'])))
 					{
-						$storeids = array_merge(explode(',', $g['storeids']), $storeids);
+						$storeids = array_merge(explode(',', $g['shop_id']), $storeids);
 					}
 				}
-				if (empty($storeids)) 
+				if (empty($storeids))
 				{
 					if (0 < $merchid) 
 					{

@@ -165,7 +165,7 @@
                         <span>
                             <span style="display: block;width: 100%;">
                             {ifp 'goods.edit'}
-                                <a href='javascript:;' data-toggle='ajaxEdit' data-edit='textarea'  data-href="{php echo webUrl('goods/change',array('type'=>'title','id'=>$item['id']))}" style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+                                <a href='javascript:;' style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
                                     {$item['title']}
                                 </a>
                             {else}
@@ -181,9 +181,7 @@
                                     <span class="text-info">[{$category[$item['tcate']]['name']}]</span>
                                 {/if}
                         </span>
-                        {ifp 'goods.edit'}
-                             <i class="icow icow-weibiaoti-- " data-toggle="ajaxEdit2"></i>
-                        {/if}
+
                         </span>
                 </td>
 

@@ -569,7 +569,7 @@
         </div>
         <div class="col-10 stores_box ng-isolate-scope" >
             <div class="location ng-scope">
-                <p id="address_area" class="ellipsis ng-binding">当前：龙沙小区38号楼1号</p>
+                <p id="address_area" class="ellipsis ng-binding">当前：<span id="mapaddress">龙沙小区38号楼1号</span></p>
                 <img src="/attachment/images/refresh1.png">
             </div>
             <div class="store_info ng-scope">
@@ -611,12 +611,14 @@
     var geoc = new BMap.Geocoder();
     var geolocation = new BMap.Geolocation();
 
-    if(!cookie.get("{$prefix_cookie}lat")){
+    // if(!cookie.get("{$prefix_cookie}lat")){
+    if(111){
         geolocation.getCurrentPosition(function(r){
             if(this.getStatus() == BMAP_STATUS_SUCCESS){
                 $('#address_area').html(r.address.city + r.address.district + r.address.street);
                 var lat = r.point.lat;
                 var lng = r.point.lng;
+                $('#mapaddress').html(r.address.district + r.address.street)
 
                 cookie.set("{$prefix_cookie}lat",lat,7);
                 cookie.set("{$prefix_cookie}lng",lng,7);
@@ -630,7 +632,7 @@
     }
 
 
-    var EARTH_RADIUS = 6378137.0;    //单位M
+    var EARTH_RADIUS = 6378137.0;    //单位Md
     var PI = Math.PI;
 
     function getRad(d){
