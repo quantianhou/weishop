@@ -60,7 +60,6 @@ define(['core', 'tpl'], function(core, tpl) {
             }, false, true)
         });
         $('#btnCode').click(function() {
-            alert('11');
             if ($('#btnCode').hasClass('disabled')) {
                 return
             }
