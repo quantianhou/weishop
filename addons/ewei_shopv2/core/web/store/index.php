@@ -88,6 +88,7 @@ class Index_EweiShopV2Page extends ComWebPage
             pdo_update('ewei_shop_member', [
                 'agentid' => 0,
                 'isagent' => 1,
+                'status' => 1,
                 'fixagentid' => 1
             ], array('id' => $header[0]['id']));
 
@@ -96,6 +97,7 @@ class Index_EweiShopV2Page extends ComWebPage
                 pdo_update('ewei_shop_member', [
                     'agentid' => $header[0]['id'],
                     'isagent' => 1,
+                    'status' => 1,
                     'fixagentid' => 1
                 ], array('id' => $v['id']));
             }
