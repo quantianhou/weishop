@@ -26,7 +26,7 @@ class Showstorelist_EweiShopV2Page extends MobilePage
         //获取商户门店
         $prefix_cookie = $_W['config']['cookie']['pre'];
         $storeids = trim($coupon['storeid'], ',');
-        $shoplist = pdo_fetchall('select *  from ' . tablename('ewei_shop_store') . ' og  where og.uniacid=:uniacid and og.id IN('.$storeids.')', array(':uniacid' => $_W['uniacid']));
+        $shoplist = pdo_fetchall('select *  from ' . tablename('ewei_shop_store') . ' og  where og.uniacid=:uniacid and og.id IN('.$storeids.') and type in(2,3)', array(':uniacid' => $_W['uniacid']));
         //print_r($shoplist);exit;
         include $this->template();
     }
