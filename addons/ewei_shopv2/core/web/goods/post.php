@@ -590,8 +590,8 @@ if ($_W['ispost'])
 	{
 		unset($data['createtime']);
         $sql2 = 'UPDATE ' . tablename('ewei_shop_goods') . ' SET cates=:cates WHERE business_goods_id IN (' . $id . ')';
-        $parassss = array(':cates' => implode(',',$data['cates']));
-        $goodslist = pdo_fetch($sql2, $parassss);
+        $parassss = array(':cates' => $data['cates']);
+        pdo_fetch($sql2, $parassss);
 		pdo_update('ewei_business_goods', $data, array('id' => $id));
 		plog('goods.edit', '编辑商品 ID: ' . $id . '<br>' . ((!(empty($data['nocommission'])) ? '是否参与分销 -- 否' : '是否参与分销 -- 是')));
 	}
@@ -1191,7 +1191,7 @@ if (!(empty($id)))
 					else 
 					{
 						$c_i = 0;
-						while ($c_i < $shopset_level) 
+						while ($c_i < $shopset_level)
 						{
 							$cc .= '<input data-name="commission_level_' . $level['id'] . '_' . $ids . '"  type="text" class="form-control commission_level' . $level['id'] . ' commission_level' . $level['id'] . '_' . $ids . '" value="" style="display:inline;width: ' . (96 / $shopset_level) . '%;"/> ';
 							++$c_i;
