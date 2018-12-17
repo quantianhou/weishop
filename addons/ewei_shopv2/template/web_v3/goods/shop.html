@@ -162,8 +162,9 @@
                             {else}
                                   {$item['title']}
                             {/if}
-                                {if !empty($category[$item['pcate']])}
-                                    <span class="text-danger">[{$category[$item['pcate']]['name']}]</span>
+                                <?php $cates = explode(',', $item['cates']);?>
+                                {if !empty($category[$cates[0]])}
+                                    <span class="text-danger">[{$category[$cates[0]]['name']}]</span>
                                 {/if}
                                 {if !empty($category[$item['ccate']])}
                                     <span class="text-info">[{$category[$item['ccate']]['name']}]</span>

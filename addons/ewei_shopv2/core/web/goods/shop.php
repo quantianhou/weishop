@@ -22,9 +22,9 @@ class Shop_EweiShopV2Page extends WebPage
             show_json(0, '请选择分类！');
         }
 
-        $sql = 'UPDATE ' . tablename('ewei_business_goods') . ' SET pcate=:pcate WHERE id IN (' . implode(',', $goodsids) . ')';
-        $sql2 = 'UPDATE ' . tablename('ewei_shop_goods') . ' SET pcate=:pcate WHERE business_goods_id IN (' . implode(',', $goodsids) . ')';
-        $paras = array(':pcate' => current($categoryids));
+        $sql = 'UPDATE ' . tablename('ewei_business_goods') . ' SET cates=:cates WHERE id IN (' . implode(',', $goodsids) . ')';
+        $sql2 = 'UPDATE ' . tablename('ewei_shop_goods') . ' SET cates=:cates WHERE business_goods_id IN (' . implode(',', $goodsids) . ')';
+        $paras = array(':cates' => implode(',',$categoryids));
         $goodslist = pdo_fetch($sql, $paras);
         $goodslist = pdo_fetch($sql2, $paras);
 

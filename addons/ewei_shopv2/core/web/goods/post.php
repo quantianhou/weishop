@@ -589,6 +589,9 @@ if ($_W['ispost'])
 	else 
 	{
 		unset($data['createtime']);
+        $sql2 = 'UPDATE ' . tablename('ewei_shop_goods') . ' SET cates=:cates WHERE business_goods_id IN (' . $id . ')';
+        $parassss = array(':cates' => implode(',',$data['cates']));
+        $goodslist = pdo_fetch($sql2, $parassss);
 		pdo_update('ewei_business_goods', $data, array('id' => $id));
 		plog('goods.edit', '编辑商品 ID: ' . $id . '<br>' . ((!(empty($data['nocommission'])) ? '是否参与分销 -- 否' : '是否参与分销 -- 是')));
 	}
