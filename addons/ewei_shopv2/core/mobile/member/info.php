@@ -61,16 +61,19 @@ class Info_EweiShopV2Page extends MobileLoginPage
 		$diyform_data = $this->diyformData();
 		extract($diyform_data);
 		$memberdata = $_GPC['memberdata'];
-        @session_start();
-        $key = '__ewei_shopv2_member_verifycodesession_' . $_W['uniacid'] . '_' . ($memberdata['mobile']);
-        $code = $_SESSION[$key];
-        if (empty($code))
+        if(isset($memberdata['sms_code_status']) && $memberdata['sms_code_status'] == 1)
         {
-            show_json(0, '请获取验证码!');
-        }
-        if (trim($memberdata['sms_code']) != $code)
-        {
-            show_json(0, '验证码错误!');
+            @session_start();
+            $key = '__ewei_shopv2_member_verifycodesession_' . $_W['uniacid'] . '_' . ($memberdata['mobile']);
+            $code = $_SESSION[$key];
+            if (empty($code))
+            {
+                show_json(0, '请获取验证码!');
+            }
+            if (trim($memberdata['sms_code']) != $code)
+            {
+                show_json(0, '验证码错误!');
+            }
         }
 		if ($template_flag == 1) 
 		{

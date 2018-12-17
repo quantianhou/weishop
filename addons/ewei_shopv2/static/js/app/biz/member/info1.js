@@ -25,6 +25,21 @@ define(['core', 'tpl'], function (core, tpl) {
             });
             $('#birthday').datePicker()
         });
+        $("#mobile").blur(function(){
+            var new_mobile = $("#mobile").val();
+            var old_mobile = $("#old_mobile").val();
+            if(new_mobile != old_mobile)
+            {
+                $("#check_mobile_status").val(1);
+                $("#sms_code_show").removeClass('yincang');
+            }else{
+                $("#check_mobile_status").val(0);
+                $("#sms_code_show").addClass('yincang')
+            }
+        });
+        // $("#mobile").focus(function(){
+        //
+        // });
         $('#btn-submit').click(function () {
             var postdata = {};
             if (params.template_flag == 0) {
@@ -43,6 +58,12 @@ define(['core', 'tpl'], function (core, tpl) {
                 if ($(this).attr('submit')) {
                     return
                 }
+                if(($("#check_mobile_status").val() == 1) && !$("#sms_code").val())
+                {
+                    FoxUI.toast.show('请填写正确手机验证码');
+                    return
+                }
+
                 var birthday = $('#birthday').val().split('-');
                 var citys = $('#city').val().split(' ');
                 $(this).html('处理中...').attr('submit', 1);
@@ -74,7 +95,9 @@ define(['core', 'tpl'], function (core, tpl) {
                     postdata.memberdata.mobile = $('#mobile').val();
                     postdata.mcdata.mobile = $('#mobile').val()
                     postdata.mcdata.sms_code = $('#sms_code').val()
+                    postdata.mcdata.sms_code_status = $('#check_mobile_status').val()
                     postdata.memberdata.sms_code = $('#sms_code').val()
+                    postdata.memberdata.sms_code_status = $('#check_mobile_status').val()
                 }
                 core.json('member/info/submit', postdata, function (json) {
                     modal.complete(params, json)
