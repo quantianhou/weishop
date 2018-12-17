@@ -35,7 +35,7 @@
 
 	<div class='fui-content'>
 		{if is_weixin()}
-		<div id='btn-getinfo' class='text-danger' style="text-decoration: underline;text-align: right;padding-right: .6rem;padding-top: .3rem">读取微信资料</div>
+		<!--<div id='btn-getinfo' class='text-danger' style="text-decoration: underline;text-align: right;padding-right: .6rem;padding-top: .3rem">读取微信资料</div>-->
 		{/if}
 		<!--<div class="fui-list-group">-->
 			<!--<a class="fui-list" href="{php echo mobileUrl('member/info/face')}" data-nocache="true">-->
@@ -97,6 +97,15 @@
 					<div class="fui-cell-label">手机号</div>
 					<div class="fui-cell-info c000"><input type="text" class='fui-input' id='mobile' name='mobile' placeholder="请输入您的手机号"  value="{$member['mobile']}" /></div>
 				</div>
+				<div class="fui-cell must">
+					<div class="fui-cell-label">验证码</div>
+					<div class="fui-cell-info">
+						<input type="text"id='sms_code' name='sms_code' placeholder="请输入短信验证码"  value="{$member['mobile']}" />
+					</div>
+					<div class="fui-cell-info">
+						<div class="fui-cell-remark noremark"><a class="btn btn-default btn-default-o btn-sm" id="btnCode">获取验证码</a></div>
+					</div>
+				</div>
 			{/if}
 			
 			<div class="fui-cell">
@@ -121,7 +130,7 @@
 		<a href='#' id='btn-submit' class='btn btn-danger block mtop'>确认修改</a>
 	</div>
 	<script language='javascript'>
-		require(['biz/member/info'], function (modal) {
+		require(['biz/member/info1'], function (modal) {
 		  	modal.init({
 			    new_area:{php echo $new_area},
 			    returnurl:"{php echo $returnurl}",
@@ -131,7 +140,7 @@
 	});
 </script>
 	<script language='javascript'>
-        require(['biz/member/info'], function (modal) {
+        require(['biz/member/info1'], function (modal) {
             modal.initFace({});
         });
 	</script>
