@@ -632,12 +632,15 @@
                         <div class="ps_type_info"><p class="ng-binding">营业时间：{$yysj['time1']} - {$yysj['time2']}</p></div>
                     </div>
                 </div><!-- end ngRepeat: post in branchDetail.postTips track by $index -->
+                {if $thishop['type']==1 || $thishop['type']==3}
                 <div class="store_info ng-scope">
                     <div class="oh">
                         <div class="ps_type fl"><p class="ng-binding">到店取货</p><p class="ng-binding"></p></div>
                         <div class="ps_type_info"><p class="ng-binding">营业时间：{$yysj['time1']} - {$yysj['time2']}</p><p class="ng-binding"></p></div>
                     </div>
+
                 </div>
+                {/if}
                     <!-- end ngRepeat: post in branchDetail.postTips track by $index -->
         </div><!-- end ngIf: !showBranchTel -->
         </div><!-- end ngIf: branchDetail && storeTabFlg == 1 -->

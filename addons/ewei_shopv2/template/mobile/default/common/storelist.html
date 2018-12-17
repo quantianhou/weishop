@@ -583,7 +583,9 @@
 							</span>
                             <span class="s_range fr ng-binding ng-scope" data-lat="{$item['lat']}" data-lng="{$item['lng']}">≥50km</span>
                         </h2>
-                        <p class="ps_types ng-binding">到店取货</p>
+                        {if $item['type']==1}<p class="ps_types ng-binding">支持自提</p>{/if}
+                        {if $item['type']==2}<p class="ps_types ng-binding">支持核销</p>{/if}
+                        {if $item['type']==3}<p class="ps_types ng-binding">支持自提+核销</p>{/if}
                         <p class="s_location ng-binding">{$item['address']}</p>
                     </div>
                 </div>
