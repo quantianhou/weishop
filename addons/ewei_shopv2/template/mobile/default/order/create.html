@@ -222,6 +222,9 @@
 
                             <span class='mobile' id="carrierInfo_mobile">{$thisstore['mobile']}</span>
 
+                            <!--fanhailong add 修正选择门店自提后，自提门店id没传递给php的bug-->
+                            <input id='storeid' type="hidden" value="{$thisstore['id']}"></span>
+
                         </div>
 
                         <div class="text"><span class='address'>地址：{$thisstore['address']}</span></div>
