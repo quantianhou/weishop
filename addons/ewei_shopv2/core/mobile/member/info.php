@@ -62,7 +62,7 @@ class Info_EweiShopV2Page extends MobileLoginPage
 		extract($diyform_data);
 		$memberdata = $_GPC['memberdata'];
         @session_start();
-        $key = '__ewei_shopv2_member_verifycodesession_' . $_W['uniacid'] . '_' . $memberdata($_GPC['mobile']);
+        $key = '__ewei_shopv2_member_verifycodesession_' . $_W['uniacid'] . '_' . ($memberdata['mobile']);
         $code = $_SESSION[$key];
         if (empty($code))
         {
