@@ -188,5 +188,16 @@ define(['core', 'tpl'], function (core, tpl) {
             })
         })
     };
+    modal.verifycode = function() {
+        modal.seconds--;
+        if (modal.seconds > 0) {
+            $('#btnCode').html(modal.seconds + '秒后重发').addClass('disabled').attr('disabled', 'disabled');
+            setTimeout(function() {
+                modal.verifycode()
+            }, 1000)
+        } else {
+            $('#btnCode').html('获取验证码').removeClass('disabled').removeAttr('disabled')
+        }
+    };
     return modal
 });
