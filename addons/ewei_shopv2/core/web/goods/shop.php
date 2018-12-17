@@ -145,7 +145,7 @@ class Shop_EweiShopV2Page extends WebPage
         $pindex = max(1, intval($_GPC['page']));
         $psize = 20;
         $sqlcondition = $groupcondition = '';
-        $condition = ' WHERE g.`uniacid` = :uniacid';
+        $condition = ' WHERE g.`uniacid` = :uniacid and deleted != 1';
         $params = array(':uniacid' => $_W['uniacid']);
 
         if (!empty($_GPC['keyword'])) {
@@ -574,7 +574,7 @@ class Shop_EweiShopV2Page extends WebPage
             $id = (is_array($_GPC['ids']) ? implode(',', $_GPC['ids']) : 0);
         }
 
-        $items = pdo_fetchall('SELECT id,title FROM ' . tablename('ewei_business_goods') . ' WHERE id in( ' . $id . ' ) AND uniacid=' . $_W['uniacid']);
+        $items = pdo_fetchall('SELECT id,title FROM ' . tablename('ewei_business_goods') . ' WHERE id in( ' . $id . ' )');
 
         foreach ($items as $item) {
             pdo_update('ewei_business_goods', array('deleted' => 1), array('id' => $item['id']));
