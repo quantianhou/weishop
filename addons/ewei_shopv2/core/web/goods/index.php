@@ -66,7 +66,7 @@ class Index_EweiShopV2Page extends WebPage
 
 		if (!empty($_GPC['cate'])) {
 			$_GPC['cate'] = intval($_GPC['cate']);
-			$condition .= ' AND FIND_IN_SET(' . $_GPC['cate'] . ',cates)<>0 ';
+			$condition .= ' AND FIND_IN_SET(' . $_GPC['cate'] . ',g.cates)<>0 ';
 		}
 
 		empty($goodsfrom) && $_GPC['goodsfrom'] = $goodsfrom = 'sale';
