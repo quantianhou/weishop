@@ -213,7 +213,7 @@ class Index_EweiShopV2Page extends ComWebPage
 			$data['ordertype'] = ((is_array($_GPC['ordertype']) ? implode(',', $_GPC['ordertype']) : ''));
 			if (!(empty($id))) 
 			{
-				pdo_update('ewei_shop_store', $data, array('id' => $id, 'uniacid' => $_W['uniacid']));
+				pdo_update('ewei_shop_store', $data, array('id' => $id));
 				plog('shop.verify.store.edit', '编辑门店 ID: ' . $id);
 			}
 			else 
