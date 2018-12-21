@@ -285,7 +285,7 @@ class Index_EweiShopV2Page extends ComWebPage
 		{
 			$id = ((is_array($_GPC['ids']) ? implode(',', $_GPC['ids']) : 0));
 		}
-		$items = pdo_fetchall('SELECT id,storename FROM ' . tablename('ewei_shop_store') . ' WHERE id in( ' . $id . ' ) AND uniacid=' . $_W['uniacid']);
+		$items = pdo_fetchall('SELECT id,storename FROM ' . tablename('ewei_shop_store') . ' WHERE id in( ' . $id . ' ) ');
 		foreach ($items as $item ) 
 		{
 			pdo_update('ewei_shop_store', array('status' => intval($_GPC['status'])), array('id' => $item['id']));
