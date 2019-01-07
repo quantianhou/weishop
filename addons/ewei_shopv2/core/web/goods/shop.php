@@ -83,6 +83,20 @@ class Shop_EweiShopV2Page extends WebPage
         if(empty($shopsids)){
             show_json(0, '请选择门店！');
         }
+        //增加一个全部门店下发的逻辑 fanhailong add
+        foreach($shopsids as $val){
+            if($val == "all"){
+                $paras = array(':a_merchant_id' => $_W['user']['a_merchant_id'],':status' => 1, 'store_status'=>1);
+                $store_condition = ' a_merchant_id = :a_merchant_id AND status = :status AND store_status = :store_status';
+                $sql = 'SELECT * FROM ' . tablename('ewei_shop_store') . ' WHERE ' . $store_condition . ' ORDER BY displayorder desc,id desc';
+                $list = pdo_fetchall($sql, $paras);
+                $shopsids = array();
+                foreach($list as $val){
+                    $shopsids[] = $val['id'];
+                }
+                continue ;
+            }
+        }
 
         if($iscover == 1){
             //获取全部商品

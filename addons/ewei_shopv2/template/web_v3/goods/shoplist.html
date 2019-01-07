@@ -27,6 +27,7 @@
                     <div class="col-sm-8 col-xs-12">
                         {ife 'goods' $item}
                         <select id="shop_list"  name='cates[]' class="form-control select2" style='width:550px;' multiple='' >
+                            <option value="all">全部门店</option>
                             {loop $shop $c}
                             <option value="{$c['id']}">{$c['storename']}</option>
                             {/loop}
