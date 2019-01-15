@@ -41,6 +41,12 @@ class Index_EweiShopV2Page extends MobilePage
             isetcookie('store_id', 0, 7 * 86400);
             exit('<script language="JavaScript">document.location.reload()</script>');
         }
+        //fanhailong add, 门店logo如果不包含resource.ymkchen.com，则加上图片显示相对路径/attachment/
+        if(strpos($shopInfo['logo'], 'resource.ymkchen.com') !== false){
+        }else{
+            //如果不包含resource.ymkchen.com，则是b端人人商城后台上传的logo，用相对路径
+            $shopInfo['logo'] = "/attachment/{$shopInfo['logo']}";
+        }
 
         $this->diypage('home');
 		$trade = m('common')->getSysset('trade');
@@ -106,6 +112,12 @@ class Index_EweiShopV2Page extends MobilePage
 
 	    $store_id = $_GPC['stroeid'];
         $thishop = pdo_fetch('select *  from ' . tablename('ewei_shop_store') . ' s where s.id=:id ', array(':id' => $store_id));
+        //fanhailong add, 门店logo如果不包含resource.ymkchen.com，则加上图片显示相对路径/attachment/
+        if(strpos($thishop['logo'], 'resource.ymkchen.com') !== false){
+        }else{
+            //如果不包含resource.ymkchen.com，则是b端人人商城后台上传的logo，用相对路径
+            $thishop['logo'] = "/attachment/{$thishop['logo']}";
+        }
 
         //获取营业时间配置
         $yysj = pdo_fetch('select *  from ' . tablename('ewei_shop_city_express') . ' s where s.uniacid=:id ', array(':id' => $uniacid));
@@ -186,6 +198,14 @@ class Index_EweiShopV2Page extends MobilePage
         //获取商户门店
         $prefix_cookie = $_W['config']['cookie']['pre'];
         $shoplist = pdo_fetchall('select *  from ' . tablename('ewei_shop_store') . ' og  where status = 1 and og.uniacid=:uniacid ', array(':uniacid' => $_W['uniacid']));;
+        //fanhailong add, 门店logo如果不包含resource.ymkchen.com，则加上图片显示相对路径/attachment/
+        foreach($shoplist as $key=>$val){
+            if(strpos($val['logo'], 'resource.ymkchen.com') !== false){
+            }else{
+                //如果不包含resource.ymkchen.com，则是b端人人商城后台上传的logo，用相对路径
+                $shoplist[$key]['logo'] = "/attachment/{$val['logo']}";
+            }
+        }
         require $this->template('index_tpl');
 		return ob_get_clean();
 	}
