@@ -44,6 +44,18 @@ class Shop_EweiShopV2Page extends WebPage
             show_json(0, '请选择门店！');
         }
 
+        if(in_array( 'all',$shopsids)){
+            //获取全部门店
+            $condition = ' uniacid = :uniacid';
+            $sql = 'SELECT id FROM ' . tablename('ewei_shop_store') . ' WHERE ' . $condition . ' ORDER BY displayorder desc,id desc';
+            $paras = array(':uniacid' => $_W['uniacid']);
+            $shop = pdo_fetchall($sql, $paras);
+            $shopsids = [];
+            foreach ($shop as $val){
+                $shopsids[] = $val['id'];
+            }
+        }
+
         if($iscover == 1){
             //获取全部商品
             $condition = ' uniacid = :uniacid';
@@ -65,7 +77,17 @@ class Shop_EweiShopV2Page extends WebPage
                     continue;
                 }
                 //修改价格
-                pdo_update('ewei_shop_goods', [ 'productprice' =>  $goods['productprice'], 'marketprice' =>  $goods['marketprice']], array('business_goods_id' => $goods['id'],'shop_id'=>$val));
+                pdo_update('ewei_shop_goods', [
+                    'productprice' =>  $goods['productprice'],
+                    'marketprice' =>  $goods['marketprice'],
+                    'isnew' =>  $goods['isnew'],
+                    'ishot' =>  $goods['ishot'],
+                    'isdiscount' =>  $goods['isdiscount'],
+                    'isrecommand' =>  $goods['isrecommand'],
+                    'issendfree' =>  $goods['issendfree'],
+                    'istime' =>  $goods['istime'],
+                    'iscomment' =>  $goods['iscomment'],
+                ], array('business_goods_id' => $goods['id'],'shop_id'=>$val));
             }
         }
         show_json(1, '下发成功！');

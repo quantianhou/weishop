@@ -281,7 +281,7 @@ class Selecturl_EweiShopV2Page extends WebPage
 		$platform = trim($_GPC['platform']);
 		if (!empty($kw) && !empty($type)) {
 			if ($type == 'good') {
-				$list = pdo_fetchall('SELECT id,title,productprice,marketprice,thumb,sales,unit,minprice FROM ' . tablename('ewei_shop_goods') . ' WHERE uniacid= :uniacid and status=:status and deleted=0 AND title LIKE :title ', array(':title' => '%' . $kw . '%', ':uniacid' => $_W['uniacid'], ':status' => '1'));
+				$list = pdo_fetchall('SELECT id,title,productprice,marketprice,thumb,sales,unit,minprice FROM ' . tablename('ewei_shop_goods') . ' WHERE uniacid= :uniacid and status=:status and deleted=0 AND title LIKE :title GROUP BY business_goods_id ', array(':title' => '%' . $kw . '%', ':uniacid' => $_W['uniacid'], ':status' => '1'));
 				$list = set_medias($list, 'thumb');
 			}
 			else if ($type == 'article') {
