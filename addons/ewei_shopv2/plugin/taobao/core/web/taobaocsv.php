@@ -67,19 +67,22 @@ class Taobaocsv_EweiShopV2Page extends PluginWebPage
                 $item['barcode']	= $col[2];
 				$item['goodsstock']	= $col[4];
 
-                $items[] = $item;
+                $items[$rownu%10][] = $item;
 			}
 
-			//组合数据 发送写入商家商品库
-            $post = [
-            	'uniacid' => $_W['uniacid'],
-				'items' => $items
-			];
+			foreach ($items as $vvvv){
+                //组合数据 发送写入商家商品库
+                $post = [
+                    'uniacid' => $_W['uniacid'],
+                    'items' => $vvvv
+                ];
 
-            $cfg['post'] = $post;
-            $cfg['ssl'] = true;
+                $cfg['post'] = $post;
+                $cfg['ssl'] = true;
 
-			$res = $this->curlOpen('http://api.ymkchen.com/goods',$cfg);
+                $res = $this->curlOpen('http://api.ymkchen.com/goods',$cfg);
+			}
+
             $sign = '导入成功';
 
         }
