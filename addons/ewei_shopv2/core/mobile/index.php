@@ -161,6 +161,29 @@ class Index_EweiShopV2Page extends MobilePage
 		$advs = pdo_fetchall('select id,advname,link,thumb from ' . tablename('ewei_shop_adv') . ' where uniacid=:uniacid and iswxapp=0 and enabled=1 and storeid like "%,":store_id",%" order by displayorder desc', array(':uniacid' => $uniacid,':store_id'=>$this_store_id));
 		$navs = pdo_fetchall('select id,navname,url,icon from ' . tablename('ewei_shop_nav') . ' where uniacid=:uniacid and iswxapp=0 and status=1 and storeid like "%,":store_id",%" order by displayorder desc', array(':uniacid' => $uniacid,':store_id'=>$this_store_id));
 		$cubes = ((is_array($_W['shopset']['shop']['cubes']) ? $_W['shopset']['shop']['cubes'] : array()));
+        //fanhailong add，后台设置魔方推荐的商品时，选择时是选择商家商品库的商品，但插入到库里时是转换为门店商品库的商品，前台需要根据当前店铺有没有这个商品来决定是否显示这个魔方
+        foreach($cubes as $key=>$val){
+            if(strpos($val['url'], 'goods.detail&id') === false){
+            }else{
+                //由于数据库里存的是url，所以先截取取出当前商品id，然后读取商家商品库商品信息
+                $id = explode("id=", $val['url']);
+                $id = $id[1];
+                $tsql = "SELECT b.* FROM " . tablename('ewei_shop_goods'). " as a LEFT JOIN". tablename('ewei_business_goods'). " as b ON a.business_goods_id = b.id WHERE a.id={$id}";
+                $goods = pdo_fetch($tsql, $param);
+                if(empty($goods) || !$goods){
+                    unset($cubes[$key]);
+                    continue ;
+                }
+                //再读取出当前店铺是否有这个商品，如果有，替换为当前店铺的商品id，没有，则删除
+                $tsql = "SELECT id FROM " . tablename('ewei_shop_goods'). " as a WHERE a.business_goods_id={$goods['id']} AND a.shop_id = {$this_store_id}";
+                $curren_shop_goods = pdo_fetch($tsql, $param);
+                if(empty($curren_shop_goods) || !$curren_shop_goods){
+                    unset($cubes[$key]);
+                    continue ;
+                }
+                $cubes[$key]['url'] = str_replace($id, $curren_shop_goods['id'], $cubes[$key]['url']);
+            }
+        }
 		$banners = pdo_fetchall('select id,bannername,link,thumb from ' . tablename('ewei_shop_banner') . ' where uniacid=:uniacid and iswxapp=0 and enabled=1 and storeid like "%,":store_id",%" order by displayorder desc', array(':uniacid' => $uniacid,':store_id'=>$this_store_id));
 		$bannerswipe = $_W['shopset']['shop']['bannerswipe'];
 		if (isset($_W['shopset']['shop']['indexrecommands']) && !empty(isset($_W['shopset']['shop']['indexrecommands'])))
