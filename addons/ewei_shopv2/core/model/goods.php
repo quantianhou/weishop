@@ -390,6 +390,19 @@ class Goods_EweiShopV2Model
 
 		if (0 < $couponid) {
 			$data = pdo_fetch('select c.*  from ' . tablename('ewei_shop_coupon_data') . '  cd inner join  ' . tablename('ewei_shop_coupon') . ' c on cd.couponid = c.id  where cd.id=:id and cd.uniacid=:uniacid and coupontype =0  limit 1', array(':id' => $couponid, ':uniacid' => $_W['uniacid']));
+            //fanhailong add，由于优惠券设定可用商品时是选择的商家商品库的商品，所以需要转换成门店商品库的商品，如果当前门店不存在某个商品，则不显示
+            if(!empty($data['limitgoodids'])){
+                $this_store_id = $urlstoreid ?: $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+                $replace_sql = 'select id from ' . tablename('ewei_shop_goods') . ' where shop_id = '.$this_store_id.' AND business_goods_id IN(' . $data['limitgoodids'] . ')';
+                $replace_data = pdo_fetchall($replace_sql, $param);
+                if(!empty($replace_data)){
+                    $data['limitgoodids'] = '';
+                    foreach($replace_data as $kk=>$vv){
+                        $data['limitgoodids'] .= $vv['id'].',';
+                    }
+                    $data['limitgoodids'] = substr($data['limitgoodids'], 0, -1);
+                }
+            }
 
 			if (!(empty($data))) {
 				if (($data['limitgoodcatetype'] == 1) && !(empty($data['limitgoodcateids']))) {

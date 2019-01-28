@@ -195,8 +195,8 @@ class Activation_EweiShopV2Page extends MobileLoginPage
 			}
 			else 
 			{
-				if (empty($item['membercardactive'])) 
-				{
+                if (empty($item['membercardactive']) || !$item['membercardactive'])
+                {
 					$this->sendGift($_W['openid']);
 				}
 				pdo_update('ewei_shop_member', array('membercardactive' => 1), array('openid' => $_W['openid'], 'uniacid' => $_W['uniacid']));

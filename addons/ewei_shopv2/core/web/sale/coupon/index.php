@@ -276,7 +276,7 @@ class Index_EweiShopV2Page extends ComWebPage
 			{
 				if ($item['limitgoodids']) 
 				{
-					$goods = pdo_fetchall('SELECT id,title,thumb FROM ' . tablename('ewei_shop_goods') . ' WHERE uniacid = :uniacid and id in (' . $item['limitgoodids'] . ') ', array(':uniacid' => $_W['uniacid']));
+					$goods = pdo_fetchall('SELECT id,title,thumb FROM ' . tablename('ewei_business_goods') . ' WHERE uniacid = :uniacid and id in (' . $item['limitgoodids'] . ') ', array(':uniacid' => $_W['uniacid']));
 				}
 			}
 			$limitmemberlevels = explode(',', $item['limitmemberlevels']);
@@ -656,7 +656,7 @@ class Index_EweiShopV2Page extends ComWebPage
 			$condition .= ' AND `title` LIKE :keyword';
 			$params[':keyword'] = '%' . $kwd . '%';
 		}
-		$ds = pdo_fetchall('SELECT id,title,thumb FROM ' . tablename('ewei_shop_goods') . ' WHERE 1 ' . $condition . ' order by createtime desc', $params);
+		$ds = pdo_fetchall('SELECT id,title,thumb FROM ' . tablename('ewei_business_goods') . ' WHERE 1 ' . $condition . ' order by createtime desc', $params);
 		$ds = set_medias($ds, array('thumb', 'share_icon'));
 		if ($_GPC['suggest']) 
 		{
