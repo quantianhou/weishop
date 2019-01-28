@@ -146,7 +146,7 @@ class My_EweiShopV2Page extends MobileLoginPage
 			{
 				$where = 'and id in(' . $coupon['limitgoodids'] . ')';
 			}
-			$goods = pdo_fetchall('select `title` from ' . tablename('ewei_shop_goods') . ' where uniacid=:uniacid ' . $where, array(':uniacid' => $_W['uniacid']), 'id');
+			$goods = pdo_fetchall('select `title` from ' . tablename('ewei_business_goods') . ' where uniacid=:uniacid ' . $where, array(':uniacid' => $_W['uniacid']), 'id');
 		}
 		if ($coupon['limitgoodcatetype'] != 0) 
 		{
