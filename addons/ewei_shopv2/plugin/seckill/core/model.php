@@ -920,10 +920,21 @@ class SeckillModel extends PluginModel
 		}
 
 		$goodsids = array_keys($allgoods);
-		$dbgoods = pdo_fetchall('select id,thumb,marketprice from ' . tablename('ewei_shop_goods') . ' where id in (' . implode(',', $goodsids) . ') and uniacid=' . $_W['uniacid'], array(), 'id');
+		$dbgoods = pdo_fetchall('select id,thumb,marketprice,shop_id from ' . tablename('ewei_shop_goods') . ' where id in (' . implode(',', $goodsids) . ') and uniacid=' . $_W['uniacid'], array(), 'id');
 		$goods = array();
 
-		foreach ($allgoods as $gid => $tgs) {
+		//fanhailong add，只读取当前店铺的秒杀商品，如果不是当前店铺的秒杀商品，就unset
+        global $_GPC;
+        $urlstoreid = $_GPC['storeid'];
+        $this_store_id = $urlstoreid ?: $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+
+        foreach ($allgoods as $gid => $tgs) {
+            //fanhailong add，只读取当前店铺的秒杀商品，如果不是当前店铺的秒杀商品，就unset
+            if($dbgoods[$gid]['shop_id'] != $this_store_id){
+                unset($allgoods[$gid]);
+                continue;
+            }
+
 			$price = $tgs[0]['price'];
 
 			foreach ($tgs as $tg) {
@@ -934,6 +945,11 @@ class SeckillModel extends PluginModel
 
 			$goods[] = array('thumb' => tomedia($dbgoods[$gid]['thumb']), 'price' => price_format($price), 'marketprice' => price_format($dbgoods[$gid]['marketprice']));
 		}
+
+        //fanhailong add，只读取当前店铺的秒杀商品，如果当前店铺的秒杀商品为空，返回假，不然虽然没有秒杀商品，但仍然会有秒杀区域
+        if(empty($allgoods)){
+            return false;
+        }
 
 		return array('tag' => $task['tag'], 'status' => $status, 'time' => $sktime < 10 ? '0' . $sktime : $sktime, 'endtime' => $goods_endtime, 'starttime' => $goods_starttime, 'goods' => $goods);
 	}
