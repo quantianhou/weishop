@@ -75,10 +75,22 @@ class Index_EweiShopV2Page extends PluginMobilePage
 		$times = array();
 		$validtimes = array();
 
+		//fanhailong add，只读取当前店铺的秒杀商品，如果不是当前店铺的秒杀商品，就unset
+        global $_GPC;
+        $urlstoreid = $_GPC['storeid'];
+        $this_store_id = $urlstoreid ?: $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
 		foreach ($alltimes as $key => $time) {
 			$oldshow = true;
 			$timegoods = $this->model->getSeckillGoods($taskid, $time['time'], 'all');
 			$hasGoods = false;
+
+            //fanhailong add，只读取当前店铺的秒杀商品，如果不是当前店铺的秒杀商品，就unset
+            foreach ($timegoods as $kkk => $vvv) {
+                $dbgoods = pdo_fetch('select id,thumb,marketprice,shop_id from ' . tablename('ewei_shop_goods') . ' where id ='.$vvv['goodsid'].' and uniacid=' . $_W['uniacid'], array(), 'id');
+                if($dbgoods['shop_id'] != $this_store_id){
+                    unset($timegoods[$kkk]);
+                }
+            }
 
 			foreach ($timegoods as $tg) {
 				if ($tg['roomid'] == $roomid) {
