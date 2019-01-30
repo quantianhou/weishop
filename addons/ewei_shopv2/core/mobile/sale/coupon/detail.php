@@ -112,9 +112,13 @@ class Detail_EweiShopV2Page extends MobilePage
 		{
 			if (!(empty($coupon['limitgoodids']))) 
 			{
-				$where = 'and id in(' . $coupon['limitgoodids'] . ')';
+				$where = 'and business_goods_id in(' . $coupon['limitgoodids'] . ')';
 			}
-			$goods = pdo_fetchall('select `title` from ' . tablename('ewei_business_goods') . ' where uniacid=:uniacid ' . $where, array(':uniacid' => $_W['uniacid']), 'id');
+            //fanhailong add,只读取当前店铺的商品
+            global $_GPC;
+            $urlstoreid = $_GPC['storeid'];
+            $this_store_id = $urlstoreid ?: $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+            $goods = pdo_fetchall('select `title` from ' . tablename('ewei_shop_goods') . ' where uniacid=:uniacid AND shop_id = '. $this_store_id .' and deleted != 1 '. $where, array(':uniacid' => $_W['uniacid']), 'id');
 		}
 		if ($coupon['limitgoodcatetype'] != 0) 
 		{

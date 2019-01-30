@@ -385,6 +385,12 @@ class Goods_EweiShopV2Model
 			$condition .= ' and   ifnull(g.showgroups,\'\')=\'\' ';
 		}
 
+        //fanhailong add,只读取当前店铺的商品
+        global $_GPC;
+        $urlstoreid = $_GPC['storeid'];
+        $this_store_id = $urlstoreid ?: $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+        $condition .= ' and shop_id = '. $this_store_id.' ';
+
 		$table = tablename('ewei_shop_goods') . ' g';
 		$distinct = '';
 
