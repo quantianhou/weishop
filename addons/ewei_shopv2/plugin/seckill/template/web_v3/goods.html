@@ -46,6 +46,7 @@
                 <th  style="">&nbsp;</th>
 
                 <th style="" >秒杀价格</th>
+                <th style="" >门店</th>
                 <th style="" >已付款/未付款/库存</th>
                 <th style="width: 45px;">操作</th>
             </tr>
@@ -67,6 +68,7 @@
 
                 <td><span class="text text-danger" style="font-size:14px">&yen; {$row['price']}</span><br />
                     <span style="text-decoration: line-through;color:#666;">&yen;{$row['marketprice']}</span></td>
+                <td>{$row['store_short_name']}</td>
                 <td>{php echo $row['count']-$row['notpay']}&nbsp;/&nbsp;{$row['notpay']}&nbsp;/&nbsp;{$row['total']} </td>
 
                 <td  style="overflow:visible;position:relative">
