@@ -187,23 +187,23 @@ class Activation_EweiShopV2Page extends MobileLoginPage
                 $arr['cardId'] = $java_info['data']['cardId'];
             }
 
-			pdo_update('ewei_shop_member', $arr, array('openid' => $_W['openid'], 'uniacid' => $_W['uniacid']));
-			$result = com_run('wxcard::ActivateMembercardbyopenid', $_W['openid']);
-			if (is_wxerror($result)) 
-			{
-				show_json(0, '会员卡激活失败');
-			}
-			else 
-			{
-                if (empty($item['membercardactive']) || !$item['membercardactive'])
-                {
-					$this->sendGift($_W['openid']);
-				}
-				pdo_update('ewei_shop_member', array('membercardactive' => 1), array('openid' => $_W['openid'], 'uniacid' => $_W['uniacid']));
+            pdo_update('ewei_shop_member', $arr, array('openid' => $_W['openid'], 'uniacid' => $_W['uniacid']));
+            if (empty($item['membercardactive']) || !$item['membercardactive'])
+            {
+                $this->sendGift($_W['openid']);
+            }
+            pdo_update('ewei_shop_member', array('membercardactive' => 1), array('openid' => $_W['openid'], 'uniacid' => $_W['uniacid']));
 
-				$this->member($_W['openid'],$_W['uniacid']);
-				show_json(1, '您的会员卡已成功激活');
-			}
+            $this->member($_W['openid'],$_W['uniacid']);
+            $result = com_run('wxcard::ActivateMembercardbyopenid', $_W['openid']);
+            if (is_wxerror($result))
+            {
+                show_json(0, '会员卡激活失败');
+            }
+            else
+            {
+                show_json(1, '您的会员卡已成功激活');
+            }
 		}
 		else 
 		{

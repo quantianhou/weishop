@@ -75,10 +75,22 @@ class Index_EweiShopV2Page extends PluginMobilePage
 		$times = array();
 		$validtimes = array();
 
+		//fanhailong add，只读取当前店铺的秒杀商品，如果不是当前店铺的秒杀商品，就unset
+        global $_GPC;
+        $urlstoreid = $_GPC['storeid'];
+        $this_store_id = $urlstoreid ?: $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
 		foreach ($alltimes as $key => $time) {
 			$oldshow = true;
 			$timegoods = $this->model->getSeckillGoods($taskid, $time['time'], 'all');
 			$hasGoods = false;
+
+            //fanhailong add，只读取当前店铺的秒杀商品，如果不是当前店铺的秒杀商品，就unset
+            foreach ($timegoods as $kkk => $vvv) {
+                $dbgoods = pdo_fetch('select id,thumb,marketprice,shop_id from ' . tablename('ewei_shop_goods') . ' where id ='.$vvv['goodsid'].' and uniacid=' . $_W['uniacid'], array(), 'id');
+                if($dbgoods['shop_id'] != $this_store_id){
+                    unset($timegoods[$kkk]);
+                }
+            }
 
 			foreach ($timegoods as $tg) {
 				if ($tg['roomid'] == $roomid) {
@@ -281,6 +293,17 @@ class Index_EweiShopV2Page extends PluginMobilePage
 
 		$sql = 'select tg.id,tg.goodsid, tg.price, g.title,g.thumb,g.hasoption,g.marketprice,tg.commission1,tg.commission2,tg.commission3,tg.total from ' . tablename('ewei_shop_seckill_task_goods') . " tg  \r\n                  left join " . tablename('ewei_shop_goods') . " g on tg.goodsid = g.id \r\n                  where tg.taskid=:taskid and tg.roomid=:roomid and tg.timeid=:timeid and tg.uniacid=:uniacid  group by tg.goodsid order by tg.displayorder asc ";
 		$goods = pdo_fetchall($sql, array(':taskid' => $taskid, ':roomid' => $roomid, ':uniacid' => $_W['uniacid'], ':timeid' => $time['id']));
+
+        //fanhailong add，只读取当前店铺的秒杀商品，如果不是当前店铺的秒杀商品，就unset
+        global $_GPC;
+        $urlstoreid = $_GPC['storeid'];
+        $this_store_id = $urlstoreid ?: $_COOKIE[$_W['config']['cookie']['pre'] . 'store_id'];
+        foreach ($goods as $kkk => $vvv) {
+            $dbgoods = pdo_fetch('select id,thumb,marketprice,shop_id from ' . tablename('ewei_shop_goods') . ' where id ='.$vvv['goodsid'].' and uniacid=' . $_W['uniacid'], array(), 'id');
+            if($dbgoods['shop_id'] != $this_store_id){
+                unset($goods[$kkk]);
+            }
+        }
 
 		foreach ($goods as &$g) {
 			$seckillinfo = $this->model->getSeckill($g['goodsid'], 0, false);
