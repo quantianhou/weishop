@@ -65,10 +65,13 @@ class Goods_EweiShopV2Page extends SeckillWebPage
 			$params[':keyword'] = '%' . $_GPC['keyword'] . '%';
 		}
 
-		$list = pdo_fetchall("select tg.id,tg.goodsid,tg.total, tg.taskid,tg.roomid, tg.timeid, tg.price, g.title,g.thumb, t.time ,task.title as tasktitle, r.title as roomtitle,g.hasoption,g.marketprice \r\nfrom " . tablename('ewei_shop_seckill_task_goods') . " tg\r\n                  left join " . tablename('ewei_shop_goods') . " g on tg.goodsid = g.id\r\n                  left join " . tablename('ewei_shop_seckill_task_room') . " r on tg.roomid = r.id\r\n                  left join " . tablename('ewei_shop_seckill_task_time') . " t on tg.timeid = t.id\r\n                  left join " . tablename('ewei_shop_seckill_task') . " task on tg.taskid =task.id\r\n                  where 1 " . $condition . '  group by tg.timeid,tg.goodsid order by t.time asc , tg.displayorder asc limit ' . (($pindex - 1) * $psize) . ',' . $psize, $params);
+		$list = pdo_fetchall("select g.shop_id,tg.id,tg.goodsid,tg.total, tg.taskid,tg.roomid, tg.timeid, tg.price, g.title,g.thumb, t.time ,task.title as tasktitle, r.title as roomtitle,g.hasoption,g.marketprice \r\nfrom " . tablename('ewei_shop_seckill_task_goods') . " tg\r\n                  left join " . tablename('ewei_shop_goods') . " g on tg.goodsid = g.id\r\n                  left join " . tablename('ewei_shop_seckill_task_room') . " r on tg.roomid = r.id\r\n                  left join " . tablename('ewei_shop_seckill_task_time') . " t on tg.timeid = t.id\r\n                  left join " . tablename('ewei_shop_seckill_task') . " task on tg.taskid =task.id\r\n                  where 1 " . $condition . '  group by tg.timeid,tg.goodsid order by t.time asc , tg.displayorder asc limit ' . (($pindex - 1) * $psize) . ',' . $psize, $params);
 		$redis = redis();
 
 		foreach ($list as &$g) {
+			//查询门店
+			$shopInfo = pdo_fetch('select store_short_name from ' . tablename('ewei_shop_store') . ' where id='.$g['shop_id']);
+			$g['store_short_name'] = $shopInfo['store_short_name'];
 			if ($g['hasoption']) {
 				$total = 0;
 				$count = 0;

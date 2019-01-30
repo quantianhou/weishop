@@ -112,8 +112,23 @@ class Room_EweiShopV2Page extends SeckillWebPage
 					if (empty($timegoods)) {
 						show_json(0, '未添加任何商品');
 					}
+					//反转ID
+					$tmpids = '';
+					foreach ($timegoods as $k => $v){
+                        $tmpids .= $k.',';
+					}
+                    $tmp = pdo_fetchall('select business_goods_id from ' . tablename('ewei_shop_goods') . ' where id IN ('.trim($tmpids,',').') group by business_goods_id');
+					foreach ($tmp as $k=>$v){
+                        $tmpids .= $v['business_goods_id'].',';
+					}
+					$tmpgoods = pdo_fetchall('select id from ' . tablename('ewei_shop_goods') . ' where business_goods_id IN ('.trim($tmpids,',').')');
 
-					if (is_array($timegoods)) {
+                    $timegoods = [];
+                    foreach ($tmpgoods as $v){
+                        $timegoods[$v['id']] = '';
+					}
+
+                    if (is_array($timegoods)) {
 						$goodsids = array();
 
 						foreach ($timegoods as $k => $v) {
