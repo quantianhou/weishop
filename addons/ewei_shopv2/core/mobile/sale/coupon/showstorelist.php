@@ -33,6 +33,14 @@ class Showstorelist_EweiShopV2Page extends MobilePage
         }else{
             $shoplist = pdo_fetchall('select *  from ' . tablename('ewei_shop_store') . ' og  where og.uniacid=:uniacid and og.id IN('.$storeids.')', array(':uniacid' => $_W['uniacid']));
         }
+        //fanhailong add, 门店logo如果不包含resource.ymkchen.com，则加上图片显示相对路径/attachment/
+        foreach($shoplist as $key=>$val){
+            if(strpos($val['logo'], 'resource.ymkchen.com') !== false){
+            }else{
+                //如果不包含resource.ymkchen.com，则是b端人人商城后台上传的logo，用相对路径
+                $shoplist[$key]['logo'] = "/attachment/{$val['logo']}";
+            }
+        }
 
         //print_r($shoplist);exit;
         include $this->template();
