@@ -113,10 +113,13 @@ class Room_EweiShopV2Page extends SeckillWebPage
 						show_json(0, '未添加任何商品');
 					}
 					//反转ID
-					$tmpids = '';
+					$tmpids = '';$business = [];
 					foreach ($timegoods as $k => $v){
+                        $ttmpgoods = pdo_fetch('select business_goods_id from ' . tablename('ewei_shop_goods') . ' where id = '.$k);
+                        $business[$ttmpgoods['business_goods_id']] = explode(',', trim($_GPC['time-' . $time['time'] . 'packgoods' . $k]));
                         $tmpids .= $k.',';
 					}
+
                     $tmp = pdo_fetchall('select business_goods_id from ' . tablename('ewei_shop_goods') . ' where id IN ('.trim($tmpids,',').') group by business_goods_id');
 					foreach ($tmp as $k=>$v){
                         $tmpids .= $v['business_goods_id'].',';
@@ -149,7 +152,8 @@ class Room_EweiShopV2Page extends SeckillWebPage
 
 						foreach ($timegoods as $k => $v) {
 							if (empty($v)) {
-								$prices = explode(',', trim($_GPC['time-' . $time['time'] . 'packgoods' . $k]));
+                                $ttmpgoods = pdo_fetch('select business_goods_id from ' . tablename('ewei_shop_goods') . ' where id = '.$k);
+                                $prices = $business[$ttmpgoods['business_goods_id']];
 								$data = array('displayorder' => $displayorder, 'uniacid' => $_W['uniacid'], 'taskid' => $taskid, 'roomid' => $roomid, 'timeid' => $timeid, 'goodsid' => $k, 'price' => $prices[0], 'commission1' => $prices[1], 'commission2' => $prices[2], 'commission3' => $prices[3], 'total' => $prices[4], 'maxbuy' => $prices[5], 'totalmaxbuy' => $prices[5]);
 								$goods = pdo_fetch('select * from ' . tablename('ewei_shop_seckill_task_goods') . ' where taskid=:taskid and roomid=:roomid and timeid=:timeid and goodsid=:goodsid  limit 1', array(':taskid' => $taskid, ':roomid' => $roomid, ':timeid' => $timeid, ':goodsid' => $k));
 
@@ -210,7 +214,7 @@ class Room_EweiShopV2Page extends SeckillWebPage
 
 		if (!empty($item)) {
 			foreach ($times as &$t) {
-				$sql = 'select tg.id,tg.goodsid, tg.price as packageprice, tg.maxbuy,tg.totalmaxbuy, g.title,g.thumb,g.hasoption,tg.commission1,tg.commission2,tg.commission3,tg.total from ' . tablename('ewei_shop_seckill_task_goods') . " tg  \r\n                  left join " . tablename('ewei_shop_goods') . " g on tg.goodsid = g.id \r\n                  where tg.taskid=:taskid and tg.roomid=:roomid and  tg.timeid=:timeid and tg.uniacid=:uniacid  group by tg.goodsid order by tg.displayorder asc ";
+				$sql = 'select tg.id,tg.goodsid, tg.price as packageprice, tg.maxbuy,tg.totalmaxbuy, g.title,g.thumb,g.hasoption,tg.commission1,tg.commission2,tg.commission3,tg.total from ' . tablename('ewei_shop_seckill_task_goods') . " tg  \r\n                  left join " . tablename('ewei_shop_goods') . " g on tg.goodsid = g.id \r\n                  where tg.taskid=:taskid and tg.roomid=:roomid and  tg.timeid=:timeid and tg.uniacid=:uniacid  group by g.business_goods_id order by tg.displayorder asc ";
 				$goods = pdo_fetchall($sql, array(':taskid' => $item['taskid'], ':roomid' => $roomid, ':timeid' => $t['id'], ':uniacid' => $_W['uniacid']), 'time');
 
 				foreach ($goods as &$g) {
