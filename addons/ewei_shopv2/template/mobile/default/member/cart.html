@@ -182,7 +182,11 @@
 						</div>
 					<%/if%>
 					<div class='price'>
+						<%if g.seckillprice>0%>
+						<span class="bigprice text-danger">￥<span class='marketprice'><%g.seckillprice%></span>&nbsp;&nbsp;<del style="color: #ccc; font-size: 12px;"><%g.productprice%></del></span>
+						<%else%>
 						<span class="bigprice text-danger">￥<span class='marketprice'><%g.marketprice%></span>&nbsp;&nbsp;<del style="color: #ccc; font-size: 12px;"><%g.productprice%></del></span>
+						<%/if%>
 						<%if g.type==4%>
 						<div class="fui-number small "
 							 data-value="<%g.total%>"
