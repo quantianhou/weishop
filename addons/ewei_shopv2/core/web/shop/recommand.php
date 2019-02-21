@@ -34,7 +34,7 @@ class Recommand_EweiShopV2Page extends WebPage
 		$goods = $store = false;
 		if (!(empty($goodsids))) 
 		{
-			$goods_list = pdo_fetchall('select id,title,thumb from ' . tablename('ewei_business_goods') . ' where id in (' . implode(',',$goodsids) . ') and status=1 and deleted=0 and uniacid=' . $_W['uniacid'] . ' order by instr(\'' . $goodsids . '\',id)');
+			$goods_list = pdo_fetchall('select id,title,thumb from ' . tablename('ewei_business_goods') . ' where id in (' . implode(',',$goodsids) . ') and deleted=0 and uniacid=' . $_W['uniacid'] );
 			if(!empty($goods_list))
             {
                 foreach($goods_list as $value)

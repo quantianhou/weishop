@@ -411,7 +411,7 @@ class Index_EweiShopV2Page extends WebPage
         $live = intval($_GPC['live']);
         $params = array();
         $params[':uniacid'] = $_W['uniacid'];
-        $condition = ' and status=1 and deleted=0 and uniacid=:uniacid';
+        $condition = ' and deleted=0 and uniacid=:uniacid';
 
         if (!empty($kwd)) {
             $condition .= ' AND (`title` LIKE :keywords OR `keywords` LIKE :keywords)';
