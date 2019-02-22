@@ -69,7 +69,7 @@ class Index_EweiShopV2Page extends WebPage
                 $storeids = implode(',',$_GPC['storeid']);
                 $storeids = ','.$storeids.',';
             }
-			$data = array('uniacid' => $uniacid, 'displayorder' => intval($_GPC['displayorder']), 'title' => trim($_GPC['title']), 'thumb' => trim($_GPC['thumb']), 'price' => floatval($_GPC['price']), 'goodsid' => $_GPC['goodsid'], 'cash' => intval($_GPC['cash']), 'freight' => floatval($_GPC['freight']), 'starttime' => strtotime($_GPC['starttime']), 'endtime' => strtotime($_GPC['endtime']), 'status' => intval($_GPC['status']), 'share_title' => trim($_GPC['share_title']), 'share_icon' => trim($_GPC['share_icon']), 'share_desc' => trim($_GPC['share_desc']),'storeid' => $storeids);
+			$data = array('uniacid' => $uniacid, 'displayorder' => intval($_GPC['displayorder']), 'title' => trim($_GPC['title']), 'thumb' => trim($_GPC['thumb']), 'price' => floatval($_GPC['price']), 'goodsid' => $_GPC['goodsid'], 'cash' => intval($_GPC['cash']), 'freight' => floatval($_GPC['freight']), 'starttime' => strtotime($_GPC['starttime']), 'endtime' => strtotime($_GPC['endtime']), 'status' => intval($_GPC['status']), 'share_title' => trim($_GPC['share_title']), 'share_icon' => trim($_GPC['share_icon']), 'share_desc' => trim($_GPC['share_desc']));//fanhailong在左边的数组里删除了一个,'storeid' => $storeids，因为ewei_shop_package表没有storeid这个字段，有这个字段执行sql语句会报错
 			if ($data['thumb'] || $data['share_icon']) 
 			{
 				$data['thumb'] = save_media($data['thumb']);
