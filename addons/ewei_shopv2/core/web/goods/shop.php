@@ -135,9 +135,18 @@ class Shop_EweiShopV2Page extends WebPage
 
                 //判断门店存在该商品
                 $sql = 'SELECT * FROM ' . tablename('ewei_shop_goods') . ' WHERE business_goods_id='.$goods['id'].' AND shop_id='.$val;
-                $hasgood = pdo_fetchall($sql, $paras);
+                $hasgood = pdo_fetch($sql, $paras);
 
                 if(!empty($hasgood)){
+                    pdo_update('ewei_shop_goods', [
+                        'isnew' => $hasgood['isnew'],
+                        'ishot' => $hasgood['ishot'],
+                        'isdiscount' => $hasgood['isdiscount'],
+                        'isrecommand' => $hasgood['isrecommand'],
+                        'issendfree' => $hasgood['issendfree'],
+                        'istime' => $hasgood['istime'],
+                        'iscomment' => $hasgood['iscomment'],
+                    ], array('id' => $hasgood['id']));
                     continue;
                 }
                 //不存在添加
