@@ -139,14 +139,14 @@ class Shop_EweiShopV2Page extends WebPage
 
                 if(!empty($hasgood)){
                     pdo_update('ewei_shop_goods', [
-                        'isnew' => $hasgood['isnew'],
-                        'ishot' => $hasgood['ishot'],
-                        'isdiscount' => $hasgood['isdiscount'],
-                        'isrecommand' => $hasgood['isrecommand'],
-                        'issendfree' => $hasgood['issendfree'],
-                        'istime' => $hasgood['istime'],
-                        'iscomment' => $hasgood['iscomment'],
-                    ], array('id' => $hasgood['id']));
+                        'isnew' => $goods['isnew'],
+                        'ishot' => $goods['ishot'],
+                        'isdiscount' => $goods['isdiscount'],
+                        'isrecommand' => $goods['isrecommand'],
+                        'issendfree' => $goods['issendfree'],
+                        'istime' => $goods['istime'],
+                        'iscomment' => $goods['iscomment'],
+                    ], array('business_goods_id' => $goods['id']));
                     continue;
                 }
                 //不存在添加
@@ -643,6 +643,20 @@ class Shop_EweiShopV2Page extends WebPage
 
         if (in_array($type, array('new', 'hot', 'recommand', 'discount', 'time', 'sendfree', 'nodiscount'))) {
             pdo_update('ewei_business_goods', array('is' . $type => $data), array('id' => $id, 'uniacid' => $_W['uniacid']));
+
+            $condition = ' id = :id';
+            $sql = 'SELECT * FROM ' . tablename('ewei_business_goods') . ' WHERE ' . $condition;
+            $paras = array(':id' => $id);
+            $goods = pdo_fetch($sql, $paras);
+            pdo_update('ewei_shop_goods', [
+                'isnew' => $goods['isnew'],
+                'ishot' => $goods['ishot'],
+                'isdiscount' => $goods['isdiscount'],
+                'isrecommand' => $goods['isrecommand'],
+                'issendfree' => $goods['issendfree'],
+                'istime' => $goods['istime'],
+                'iscomment' => $goods['iscomment'],
+            ], array('business_goods_id' => $goods['id']));
 
             if ($type == 'new') {
                 $typestr = '新品';
