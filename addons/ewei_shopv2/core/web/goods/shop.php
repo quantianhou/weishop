@@ -747,6 +747,15 @@ class Shop_EweiShopV2Page extends WebPage
             pdo_query($sql);
         }
 
+        $id = intval($_GPC['id']);
+        $condition = ' id = :id';
+        $sql = 'SELECT * FROM ' . tablename('ewei_business_goods') . ' WHERE ' . $condition;
+        $paras = array(':id' => $id);
+        $goods = pdo_fetch($sql, $paras);
+        $goodsid = $goods['id'];
+        unset($goods['id']);
+        pdo_update('ewei_shop_goods', $goods, array('business_goods_id' => $goodsid));
+
         show_json(1);
     }
 }
