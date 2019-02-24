@@ -211,6 +211,7 @@
                 <div class="table-header" style='background:#f8f8f8;height: 35px;line-height: 35px;padding: 0 20px'>
                     <div style='border-left:1px solid #f2f2f2;width: 400px;text-align: left;'>商品</div>
                     <div class="others">买家</div>
+                    <div class="others">来源门店</div>
                     <div class="others">支付/配送</div>
                     <div class="others">价格</div>
                     <div class="others">操作</div>
@@ -332,6 +333,7 @@
                                 {$item['addressdata']['realname']}<br/>{$item['addressdata']['mobile']}
                             </div>
                         </div>
+                        <div class="list-inner paystyle"  style='text-align:center;' >{$item['from_store']}</div>
                         <div class="list-inner paystyle"  style='text-align:center;' >
 
                             <!-- 已支付 -->

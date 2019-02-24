@@ -309,6 +309,10 @@ class List_EweiShopV2Page extends WebPage
 			$diy_data = array();
 			foreach ($list as &$value ) 
 			{
+                //fanhailong add，给每个订单加一个来源门店字段
+                $from_store = pdo_fetch('select store.store_short_name from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join ' . tablename('ewei_shop_goods') . ' g on g.id=og.goodsid ' . ' left join ' . tablename('ewei_shop_store') . ' store on g.shop_id = store.id ' . ' where og.uniacid=:uniacid and og.orderid=:orderid ', array(':uniacid' => $uniacid, ':orderid' => $value['id']));
+                $value['from_store'] = $from_store['store_short_name'];
+
 				if ($is_merchname == 1) 
 				{
 					$value['merchname'] = (($merch_user[$value['merchid']]['merchname'] ? $merch_user[$value['merchid']]['merchname'] : ''));
