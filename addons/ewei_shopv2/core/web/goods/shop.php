@@ -754,6 +754,10 @@ class Shop_EweiShopV2Page extends WebPage
         $goods = pdo_fetch($sql, $paras);
         $goodsid = $goods['id'];
         unset($goods['id']);
+        unset($goods['status']);
+        unset($goods['total']);
+        unset($goods['productprice']);
+        unset($goods['marketprice']);
         pdo_update('ewei_shop_goods', $goods, array('business_goods_id' => $goodsid));
 
         show_json(1);

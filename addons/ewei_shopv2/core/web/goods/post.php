@@ -882,6 +882,10 @@ if ($_W['ispost'])
     $goods = pdo_fetch($sql, $paras);
     $goodsid = $goods['id'];
     unset($goods['id']);
+    unset($goods['status']);
+    unset($goods['total']);
+    unset($goods['productprice']);
+    unset($goods['marketprice']);
     pdo_update('ewei_shop_goods', $goods, array('business_goods_id' => $goodsid));
 
 	show_json(1, array('url' => webUrl('goods/shop', array('id' => $id, 'tab' => str_replace('#tab_', '', $_GPC['tab'])))));
