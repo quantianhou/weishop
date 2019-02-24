@@ -650,7 +650,7 @@ class Index_EweiShopV2Page extends ComWebPage
 		$kwd = trim($_GPC['keyword']);
 		$params = array();
 		$params[':uniacid'] = $_W['uniacid'];
-		$condition = ' and uniacid=:uniacid and deleted = 0 and (bargain =0 or bargain is null) and status =1';
+		$condition = ' and uniacid=:uniacid and deleted = 0 and (bargain =0 or bargain is null)';
 		if (!(empty($kwd))) 
 		{
 			$condition .= ' AND `title` LIKE :keyword';
