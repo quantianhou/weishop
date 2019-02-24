@@ -125,6 +125,8 @@ class User_EweiShopV2Page extends WebPage
 				{
 					$data['uid'] = user_register(array('username' => $data['username'], 'password' => $_GPC['password']));
 					pdo_insert('uni_account_users', array('uid' => $data['uid'], 'uniacid' => $data['uniacid'], 'role' => 'operator'));
+                    //fanhailong add，权限分配时，新字段a_merchant_id也要写入，这里为了不改动模型文件，改为做一次更新
+                    pdo_update('users', array('a_merchant_id' => $_W['user']['a_merchant_id'] ), array('uid' => intval($data['uid'])));
 				}
 				pdo_insert('ewei_shop_perm_user', $data);
 				$id = pdo_insertid();
