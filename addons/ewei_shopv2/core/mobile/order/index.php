@@ -672,6 +672,9 @@ class Index_EweiShopV2Page extends MobileLoginPage
 			$ordervirtual = m('order')->getOrderVirtual($order);
 			$virtualtemp = pdo_fetch('SELECT linktext, linkurl FROM ' . tablename('ewei_shop_virtual_type') . ' WHERE id=:id AND uniacid=:uniacid LIMIT 1', array(':id' => $order['virtual'], ':uniacid' => $_W['uniacid']));
 		}
+        //fanhailong add，给每个订单加一个门店字段
+        $from_store = pdo_fetch('select store.store_short_name from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join ' . tablename('ewei_shop_goods') . ' g on g.id=og.goodsid ' . ' left join ' . tablename('ewei_shop_store') . ' store on g.shop_id = store.id ' . ' where og.uniacid=:uniacid and og.orderid=:orderid ', array(':uniacid' => $_W['uniacid'], ':orderid' => $order['id']));
+        $shopname = $from_store['store_short_name'];
 		include $this->template();
 	}
 	public function express() 
