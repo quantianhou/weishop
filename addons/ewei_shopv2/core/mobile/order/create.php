@@ -2108,7 +2108,8 @@ class Create_EweiShopV2Page extends MobileLoginPage
 			}
 			$sql = 'SELECT id as goodsid,' . $sql_condition . 'title,type,shop_id,intervalfloor,intervalprice, weight,total,issendfree,isnodiscount, thumb,marketprice,liveprice,cash,isverify,verifytype,' . ' goodssn,productsn,sales,istime,timestart,timeend,hasoption,isendtime,usetime,endtime,ispresell,presellprice,preselltimeend,' . ' usermaxbuy,minbuy,maxbuy,unit,buylevels,buygroups,deleted,unite_total,' . ' status,deduct,manydeduct,`virtual`,discounts,deduct2,ednum,edmoney,edareas,edareas_code,diyformtype,diyformid,diymode,' . ' dispatchtype,dispatchid,dispatchprice,merchid,merchsale,cates,' . ' isdiscount,isdiscount_time,isdiscount_discounts, virtualsend,' . ' buyagain,buyagain_islong,buyagain_condition, buyagain_sale ,verifygoodslimittype,verifygoodslimitdate  ' . $threensql . ' FROM ' . tablename('ewei_shop_goods') . ' where id=:id and uniacid=:uniacid  limit 1';
 			$data = pdo_fetch($sql, array(':uniacid' => $uniacid, ':id' => $goodsid));
-			$data['seckillinfo'] = plugin_run('seckill::getSeckill', $goodsid, $optionid, true, $_W['openid']);
+            $thisShopId = intval($data['shop_id']);
+            $data['seckillinfo'] = plugin_run('seckill::getSeckill', $goodsid, $optionid, true, $_W['openid']);
 			if ((0 < $data['ispresell']) && (($data['preselltimeend'] == 0) || (time() < $data['preselltimeend']))) 
 			{
 				$data['marketprice'] = $data['presellprice'];
@@ -3075,6 +3076,7 @@ class Create_EweiShopV2Page extends MobileLoginPage
 		{
 			$order['address'] = iserializer($address);
 		}
+		$order['from_storeid'] = $thisShopId or 0;
 		pdo_insert('ewei_shop_order', $order);
 		$orderid = pdo_insertid();
 		if (!(empty($goods[0]['bargain_id'])) && p('bargain')) 
