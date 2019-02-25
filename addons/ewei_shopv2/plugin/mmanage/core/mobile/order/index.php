@@ -427,8 +427,15 @@ class Index_EweiShopV2Page extends MmanageMobilePage
 			$paras[':authorid'] = $authorid;
 		}
 
+		//fanhailong add，根据权限管理设置操作员时的openid，去读取这个店员隶属哪个门店，从而只读取这个门店的订单
+		$current_storeid = pdo_fetch('select s.storeid from ' . tablename('ewei_shop_perm_user') . ' u left join ' . tablename('ewei_shop_saler') . ' s ON u.openid = s.openid where u.uid = '. $_W['mmanage']['uid'] . ' AND s.status = 1');
+		$store_condition = '';
+		if(!empty($current_storeid)){
+			$store_condition = " AND o.from_storeid = {$current_storeid['storeid']} ";
+		}
+		
 		if (($condition != ' o.uniacid = :uniacid and and o.deleted=0 and o.isparent=0') || !empty($sqlcondition)) {
-			$sql = "select o.* , a.realname as arealname,a.mobile as amobile,a.province as aprovince ,a.city as acity , a.area as aarea,a.address as aaddress,\r\n                  d.dispatchname,m.nickname,m.id as mid,m.realname as mrealname,m.mobile as mmobile,sm.id as salerid,sm.nickname as salernickname,s.salername,\r\n                  r.rtype,r.status as rstatus,o.sendtype from " . tablename('ewei_shop_order') . ' o' . ' left join ' . tablename('ewei_shop_order_refund') . ' r on r.id =o.refundid ' . ' left join ' . tablename('ewei_shop_member') . ' m on m.openid=o.openid and m.uniacid =  o.uniacid ' . ' left join ' . tablename('ewei_shop_member_address') . ' a on a.id=o.addressid ' . ' left join ' . tablename('ewei_shop_dispatch') . ' d on d.id = o.dispatchid ' . ' left join ' . tablename('ewei_shop_saler') . ' s on s.openid = o.verifyopenid and s.uniacid=o.uniacid' . ' left join ' . tablename('ewei_shop_member') . ' sm on sm.openid = s.openid and sm.uniacid=s.uniacid' . ' ' . $sqlcondition . ' where ' . $condition . ' ' . $statuscondition . ' GROUP BY o.id ORDER BY o.createtime DESC  ';
+			$sql = "select o.* , a.realname as arealname,a.mobile as amobile,a.province as aprovince ,a.city as acity , a.area as aarea,a.address as aaddress,\r\n                  d.dispatchname,m.nickname,m.id as mid,m.realname as mrealname,m.mobile as mmobile,sm.id as salerid,sm.nickname as salernickname,s.salername,\r\n                  r.rtype,r.status as rstatus,o.sendtype from " . tablename('ewei_shop_order') . ' o' . ' left join ' . tablename('ewei_shop_order_refund') . ' r on r.id =o.refundid ' . ' left join ' . tablename('ewei_shop_member') . ' m on m.openid=o.openid and m.uniacid =  o.uniacid ' . ' left join ' . tablename('ewei_shop_member_address') . ' a on a.id=o.addressid ' . ' left join ' . tablename('ewei_shop_dispatch') . ' d on d.id = o.dispatchid ' . ' left join ' . tablename('ewei_shop_saler') . ' s on s.openid = o.verifyopenid and s.uniacid=o.uniacid' . ' left join ' . tablename('ewei_shop_member') . ' sm on sm.openid = s.openid and sm.uniacid=s.uniacid' . ' ' . $sqlcondition . ' where ' . $condition . ' ' . $statuscondition . $store_condition .' GROUP BY o.id ORDER BY o.createtime DESC  ';
 
 			if (empty($_GPC['export'])) {
 				$sql .= 'LIMIT ' . (($pindex - 1) * $psize) . ',' . $psize;
@@ -438,7 +445,8 @@ class Index_EweiShopV2Page extends MmanageMobilePage
 		}
 		else {
 			$status_condition = str_replace('o.', '', $statuscondition);
-			$sql = 'select * from ' . tablename('ewei_shop_order') . ' where uniacid = :uniacid and deleted=0 and isparent=0 ' . $status_condition . ' GROUP BY id ORDER BY createtime DESC  ';
+			$store_condition = str_replace('o.', '', $store_condition);
+			$sql = 'select * from ' . tablename('ewei_shop_order') . ' where uniacid = :uniacid and deleted=0 and isparent=0 ' . $status_condition . $store_condition . ' GROUP BY id ORDER BY createtime DESC  ';
 
 			if (empty($_GPC['export'])) {
 				$sql .= 'LIMIT ' . (($pindex - 1) * $psize) . ',' . $psize;
@@ -849,10 +857,10 @@ class Index_EweiShopV2Page extends MmanageMobilePage
 
 		unset($value);
 		if (($condition != ' o.uniacid = :uniacid and and o.deleted=0 and o.isparent=0') || !empty($sqlcondition)) {
-			$t = pdo_fetch('SELECT COUNT(*) as count, ifnull(sum(o.price),0) as sumprice   FROM ' . tablename('ewei_shop_order') . ' o ' . ' left join ' . tablename('ewei_shop_order_refund') . ' r on r.id =o.refundid ' . ' left join ' . tablename('ewei_shop_member') . ' m on m.openid=o.openid  and m.uniacid =  o.uniacid' . ' left join ' . tablename('ewei_shop_member_address') . ' a on o.addressid = a.id ' . ' left join ' . tablename('ewei_shop_saler') . ' s on s.openid = o.verifyopenid and s.uniacid=o.uniacid' . ' left join ' . tablename('ewei_shop_member') . ' sm on sm.openid = s.openid and sm.uniacid=s.uniacid' . ' ' . $sqlcondition . ' WHERE ' . $condition . ' ' . $statuscondition, $paras);
+			$t = pdo_fetch('SELECT COUNT(*) as count, ifnull(sum(o.price),0) as sumprice   FROM ' . tablename('ewei_shop_order') . ' o ' . ' left join ' . tablename('ewei_shop_order_refund') . ' r on r.id =o.refundid ' . ' left join ' . tablename('ewei_shop_member') . ' m on m.openid=o.openid  and m.uniacid =  o.uniacid' . ' left join ' . tablename('ewei_shop_member_address') . ' a on o.addressid = a.id ' . ' left join ' . tablename('ewei_shop_saler') . ' s on s.openid = o.verifyopenid and s.uniacid=o.uniacid' . ' left join ' . tablename('ewei_shop_member') . ' sm on sm.openid = s.openid and sm.uniacid=s.uniacid' . ' ' . $sqlcondition . ' WHERE ' . $condition . ' ' . $statuscondition . $store_condition, $paras);
 		}
 		else {
-			$t = pdo_fetch('SELECT COUNT(*) as count, ifnull(sum(price),0) as sumprice   FROM ' . tablename('ewei_shop_order') . ' WHERE uniacid = :uniacid and deleted=0 and isparent=0 ' . $status_condition, $paras);
+			$t = pdo_fetch('SELECT COUNT(*) as count, ifnull(sum(price),0) as sumprice   FROM ' . tablename('ewei_shop_order') . ' WHERE uniacid = :uniacid and deleted=0 and isparent=0 ' . $status_condition . $store_condition, $paras);
 		}
 
 		$total = $t['count'];
