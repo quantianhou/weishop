@@ -790,19 +790,20 @@ class Notice_EweiShopV2Model
 					//读取订单所属的门店
 					$from_store = pdo_fetch('select store.id from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join ' . tablename('ewei_shop_goods') . ' g on g.id=og.goodsid ' . ' left join ' . tablename('ewei_shop_store') . ' store on g.shop_id = store.id ' . ' where og.uniacid=:uniacid and og.orderid=:orderid ', array(':uniacid' => $order['uniacid'], ':orderid' => $order['id']));
 					//读取门店的店长openid
-					$store_manager_openid = pdo_fetch('select d_openid from ' . tablename('ewei_shop_saler'). ' where storeid = '. $from_store['id'] . ' and is_header = 1 and status = 1' );
-
-					$store_manager_openid = $store_manager_openid['d_openid'];
-					$store_templateid = '_w-9-q9Ak-es_d0HBOb_ESP4An0fMJwrJQrL7jtX_B4';
-					$store_msg = array(
-						'first' => array('value' => '您收到了一条新的订单', 'color' => '#173177'),
-						'keyword1' => array('value' => $order['ordersn'], 'color' => '#173177'),
-						'keyword2' => array('value' => date('Y-m-d H:i:s', $order['paytime']), 'color' => '#173177'),
-						'remark' => array('value' => '', 'color' => '#173177'),
-					);
-					$store_url = '';//跳转链接
-					$account_api = WeAccount::create('18');
-					$rrr = $account_api->sendTplNotice($store_manager_openid, $store_templateid, $store_msg, $store_url);
+                    $salers = pdo_fetchall('select d_openid from ' . tablename('ewei_shop_saler'). ' where storeid = '. $from_store['id'] . ' and status = 1' );
+                    foreach($salers as $kkk=>$vvv) {
+                        $store_manager_openid = $vvv['d_openid'];
+                        $store_templateid = '_w-9-q9Ak-es_d0HBOb_ESP4An0fMJwrJQrL7jtX_B4';
+                        $store_msg = array(
+                            'first' => array('value' => '您收到了一条新的订单', 'color' => '#173177'),
+                            'keyword1' => array('value' => $order['ordersn'], 'color' => '#173177'),
+                            'keyword2' => array('value' => date('Y-m-d H:i:s', $order['paytime']), 'color' => '#173177'),
+                            'remark' => array('value' => '', 'color' => '#173177'),
+                        );
+                        $store_url = '';//跳转链接
+                        $account_api = WeAccount::create('18');
+                        $rrr = $account_api->sendTplNotice($store_manager_openid, $store_templateid, $store_msg, $store_url);
+                    }
 
 				}
 				
