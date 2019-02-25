@@ -528,6 +528,10 @@ class Index_EweiShopV2Page extends MmanageMobilePage
 			$diy_data = array();
 
 			foreach ($list as &$value) {
+                //fanhailong add，给每个订单加一个门店字段
+                $from_store = pdo_fetch('select store.store_short_name from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join ' . tablename('ewei_shop_goods') . ' g on g.id=og.goodsid ' . ' left join ' . tablename('ewei_shop_store') . ' store on g.shop_id = store.id ' . ' where og.uniacid=:uniacid and og.orderid=:orderid ', array(':uniacid' => $value['uniacid'], ':orderid' => $value['id']));
+                $value['from_store'] = $from_store['store_short_name'];
+
 				$value['createtime'] = date('Y/m/d H:i:s', $value['createtime']);
 
 				if ($is_merchname == 1) {
