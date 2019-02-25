@@ -371,7 +371,7 @@ class Notice_EweiShopV2Model
 			$scondition = ' og.orderid=:orderid';
 			$param[':orderid'] = $orderid;
 		}
-		$order_goods = pdo_fetchall('select g.id,g.title,og.realprice,og.total,og.price,og.optionname as optiontitle,g.noticeopenid,g.noticetype,og.sendtype,og.expresscom,og.expresssn,og.sendtime from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join ' . tablename('ewei_shop_goods') . ' g on g.id=og.goodsid ' . ' where ' . $scondition . ' and og.uniacid=:uniacid ', $param);
+		$order_goods = pdo_fetchall('select g.id,g.title,og.realprice,og.total,og.price,og.optionname as optiontitle,g.noticeopenid,g.noticetype,og.sendtype,og.expresscom,og.expresssn,og.sendtime,notice_send_store from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join ' . tablename('ewei_shop_goods') . ' g on g.id=og.goodsid ' . ' where ' . $scondition . ' and og.uniacid=:uniacid ', $param);
 		$goods = '';
 		$goodsname = '';
 		$goodsnum = 0;
@@ -776,6 +776,37 @@ class Notice_EweiShopV2Model
 				{
 					p('app')->sendNotice($openid, $datas, $order['wxapp_prepay_id'], $orderid, 'pay');
 				}
+				
+				//fanhailong add 下单后通知到店长功能
+				//先判断订单商品中是否有配置给店长发送的商品
+				$need_send_store = false;
+				foreach ($order_goods as $og ) 
+				{
+					if (!(empty($og['notice_send_store']))) {
+						$need_send_store = true;
+					}
+				}
+				if($need_send_store){
+					//读取订单所属的门店
+					$from_store = pdo_fetch('select store.id from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join ' . tablename('ewei_shop_goods') . ' g on g.id=og.goodsid ' . ' left join ' . tablename('ewei_shop_store') . ' store on g.shop_id = store.id ' . ' where og.uniacid=:uniacid and og.orderid=:orderid ', array(':uniacid' => $order['uniacid'], ':orderid' => $order['id']));
+					//读取门店的店长openid
+                    $salers = pdo_fetchall('select d_openid from ' . tablename('ewei_shop_saler'). ' where storeid = '. $from_store['id'] . ' and status = 1' );
+                    foreach($salers as $kkk=>$vvv) {
+                        $store_manager_openid = $vvv['d_openid'];
+                        $store_templateid = '_w-9-q9Ak-es_d0HBOb_ESP4An0fMJwrJQrL7jtX_B4';
+                        $store_msg = array(
+                            'first' => array('value' => '您收到了一条新的订单', 'color' => '#173177'),
+                            'keyword1' => array('value' => $order['ordersn'], 'color' => '#173177'),
+                            'keyword2' => array('value' => date('Y-m-d H:i:s', $order['paytime']), 'color' => '#173177'),
+                            'remark' => array('value' => '', 'color' => '#173177'),
+                        );
+                        $store_url = '';//跳转链接
+                        $account_api = WeAccount::create('18');
+                        $rrr = $account_api->sendTplNotice($store_manager_openid, $store_templateid, $store_msg, $store_url);
+                    }
+
+				}
+				
 			}
 			if (($order['dispatchtype'] == 1) && empty($order['isverify'])) 
 			{

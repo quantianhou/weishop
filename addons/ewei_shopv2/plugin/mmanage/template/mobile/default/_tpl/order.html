@@ -39,6 +39,10 @@
                         <div class="row-text">订单状态</div>
                         <div class="row-remark"><span class="text-danger"><%item.status%></span></div>
                     </div>
+                    <div class="row log-row order">
+                        <div class="row-text">所属门店</div>
+                        <div class="row-remark"><span class="text-danger"><%item.from_store%></span></div>
+                    </div>
                     <%if item.refundstate>0%>
                         <div class="row log-row order">
                             <div class="row-text">维权状态</div>

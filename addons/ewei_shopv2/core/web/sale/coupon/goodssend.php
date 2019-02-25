@@ -20,8 +20,8 @@ class Goodssend_EweiShopV2Page extends ComWebPage
 		$psize = 10;
 		$condition = ' and cg.uniacid=:uniacid';
 		$params = array(':uniacid' => $uniacid);
-		$goodssends = pdo_fetchall('SELECT cg.*, c.couponname, c.thumb as cthumb,g.title,g.thumb as ghumb  FROM ' . tablename('ewei_shop_coupon_goodsendtask') . '  cg' . "\r\n" . '            left  join  ' . tablename('ewei_shop_goods') . '  g on cg.goodsid =g.id' . "\r\n" . '            left  join  ' . tablename('ewei_shop_coupon') . '  c on cg.couponid =c.id' . "\r\n" . '            WHERE 1 ' . $condition . '   LIMIT ' . (($pindex - 1) * $psize) . ',' . $psize, $params);
-		$total = pdo_fetchcolumn('SELECT COUNT(1) FROM ' . tablename('ewei_shop_coupon_goodsendtask') . '  cg' . "\r\n" . '            left  join  ' . tablename('ewei_shop_goods') . '  g on cg.goodsid =g.id' . "\r\n" . '            left  join  ' . tablename('ewei_shop_coupon') . '  c on cg.couponid =c.id' . "\r\n" . '                    WHERE 1 ' . $condition . ' ', $params);
+		$goodssends = pdo_fetchall('SELECT cg.*, c.couponname, c.thumb as cthumb,g.title,g.thumb as ghumb  FROM ' . tablename('ewei_shop_coupon_goodsendtask') . '  cg' . "\r\n" . '            left  join  ' . tablename('ewei_business_goods') . '  g on cg.goodsid =g.id' . "\r\n" . '            left  join  ' . tablename('ewei_shop_coupon') . '  c on cg.couponid =c.id' . "\r\n" . '            WHERE 1 ' . $condition . '   LIMIT ' . (($pindex - 1) * $psize) . ',' . $psize, $params);
+		$total = pdo_fetchcolumn('SELECT COUNT(1) FROM ' . tablename('ewei_shop_coupon_goodsendtask') . '  cg' . "\r\n" . '            left  join  ' . tablename('ewei_business_goods') . '  g on cg.goodsid =g.id' . "\r\n" . '            left  join  ' . tablename('ewei_shop_coupon') . '  c on cg.couponid =c.id' . "\r\n" . '                    WHERE 1 ' . $condition . ' ', $params);
 		$pager = pagination($total, $pindex, $psize);
 		include $this->template();
 	}
@@ -62,7 +62,7 @@ class Goodssend_EweiShopV2Page extends ComWebPage
 			}
 			if (!(empty($item['goodsid']))) 
 			{
-				$goods = pdo_fetch('SELECT id, title , thumb  FROM ' . tablename('ewei_shop_goods') . ' WHERE uniacid = ' . $uniacid . ' and id =' . $item['goodsid']);
+				$goods = pdo_fetch('SELECT id, title , thumb  FROM ' . tablename('ewei_business_goods') . ' WHERE uniacid = ' . $uniacid . ' and id =' . $item['goodsid']);
 			}
 		}
 		if ($_W['ispost']) 

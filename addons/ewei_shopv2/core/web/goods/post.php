@@ -579,6 +579,8 @@ if ($_W['ispost'])
 		$data['verifygoodsdays'] = intval($verifygoodsdays);
 		$data['verifygoodslimitdate'] = intval($verifygoodslimitdate);
 	}
+    //fanhailong add，增加通知到门店店长字段
+    $data['notice_send_store'] = intval($_GPC['notice_send_store']);
 	if (empty($id)) 
 	{
 		$data['merchid'] = 0;

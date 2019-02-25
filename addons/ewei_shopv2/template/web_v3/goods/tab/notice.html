@@ -30,5 +30,22 @@
                 {/if}
             </div>
         </div>
+
+        <!--fanhailong add，增加通知给门店店长功能-->
+        <div class="form-group">
+            <label class="col-sm-2 control-label">通知到门店</label>
+            <div class="col-sm-9 col-xs-12">
+
+                <label class="radio-inline">
+                    <input type="radio" value="1" name='notice_send_store' {if $item['notice_send_store']}checked{/if} /> 是
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" value="0" name='notice_send_store' {if !$item['notice_send_store']}checked{/if} /> 否
+                </label>
+                <div class="help-block">通知给所在门店店长</div>
+
+            </div>
+        </div>
+
     </div>
 </div>
