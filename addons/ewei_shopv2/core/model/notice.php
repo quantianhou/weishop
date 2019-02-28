@@ -791,14 +791,35 @@ class Notice_EweiShopV2Model
 					$from_store = pdo_fetch('select store.id from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join ' . tablename('ewei_shop_goods') . ' g on g.id=og.goodsid ' . ' left join ' . tablename('ewei_shop_store') . ' store on g.shop_id = store.id ' . ' where og.uniacid=:uniacid and og.orderid=:orderid ', array(':uniacid' => $order['uniacid'], ':orderid' => $order['id']));
 					//读取门店的店长openid
                     $salers = pdo_fetchall('select d_openid from ' . tablename('ewei_shop_saler'). ' where storeid = '. $from_store['id'] . ' and status = 1' );
+
+					$scondition = ' og.orderid=:orderid';
+					$param[':orderid'] = $order['id'];
+					$param[':uniacid'] = $_W['uniacid'];
+					$order_goods = pdo_fetchall('select g.id,g.title,og.realprice,og.total,og.price,og.optionname as optiontitle,g.noticeopenid,g.noticetype,og.sendtype,og.expresscom,og.expresssn,og.sendtime,notice_send_store from ' . tablename('ewei_shop_order_goods') . ' og ' . ' left join ' . tablename('ewei_shop_goods') . ' g on g.id=og.goodsid ' . ' where ' . $scondition . ' and og.uniacid=:uniacid ', $param);
+					$goodstr = '';
+					foreach ($order_goods as $og ) 
+					{
+						$goodstr .= $og['title'] . '( ';
+						if (!(empty($og['optiontitle']))) 
+						{
+							$goodstr .= ' 规格: ' . $og['optiontitle'];
+							$optiontitle = '( 规格: ' . $og['optiontitle'] . ')';
+						}
+						$goodstr .= ' 单价: ' . ($og['price'] / $og['total']) . ' 数量: ' . $og['total'] . ' 总价: ' . $og['price'] . '); '."\n";
+					}
+					$text =  "\n" . '订单金额：[订单金额]' . "\n" . '支付时间：[支付时间]' . "\n" . '---------------------' . "\n" . '购买商品信息：[单品详情]' . "\n" . '备注信息：[备注信息]' . "\n" . '---------------------' . "\n" . '收货人：[购买者姓名]' . "\n" . '收货人电话:[购买者电话]' . "\n" . '收货地址:[收货地址]' . "\n\n" . '请及时安排发货';
+					$remark = "\n" . $order['ordersn'] . "\n" . '商品详情：'."\n" . $goodstr . $couponstr;
+					$datas['gooddetail'] = array('name' => '单品详情', 'value' => $goodstr);
+					$msg = $this->replaceTemplate((isset($text) ? $text : ''), $datas);
+
                     foreach($salers as $kkk=>$vvv) {
                         $store_manager_openid = $vvv['d_openid'];
                         $store_templateid = '_w-9-q9Ak-es_d0HBOb_ESP4An0fMJwrJQrL7jtX_B4';
                         $store_msg = array(
-                            'first' => array('value' => '您收到了一条新的订单', 'color' => '#173177'),
+                            'first' => array('value' => '您有新的已付款订单！！请及时安排发货。', 'color' => '#173177'),
                             'keyword1' => array('value' => $order['ordersn'], 'color' => '#173177'),
                             'keyword2' => array('value' => date('Y-m-d H:i:s', $order['paytime']), 'color' => '#173177'),
-                            'remark' => array('value' => '', 'color' => '#173177'),
+                            'remark' => array('value' => $msg, 'color' => '#173177'),
                         );
                         $store_url = '';//跳转链接
                         $account_api = WeAccount::create('18');
