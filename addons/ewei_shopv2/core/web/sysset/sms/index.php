@@ -32,6 +32,12 @@ class Index_EweiShopV2Page extends ComWebPage
 		$item = pdo_fetch('SELECT * FROM ' . tablename('ewei_shop_sms_set') . ' WHERE uniacid=:uniacid ', array(':uniacid' => $_W['uniacid']));
 		if ($_W['ispost']) 
 		{
+            if($_GPC['aliyun_new_keyid'] == '******'){
+                $_GPC['aliyun_new_keyid'] = $item['aliyun_new_keyid'];
+            }
+            if($_GPC['aliyun_new_keysecret'] == '******'){
+                $_GPC['aliyun_new_keysecret'] = $item['aliyun_new_keysecret'];
+            }
 			$arr = array('juhe' => intval($_GPC['juhe']), 'juhe_key' => trim($_GPC['juhe_key']), 'dayu' => intval($_GPC['dayu']), 'dayu_key' => trim($_GPC['dayu_key']), 'dayu_secret' => trim($_GPC['dayu_secret']), 'aliyun' => intval($_GPC['aliyun']), 'aliyun_appcode' => trim($_GPC['aliyun_appcode']), 'aliyun_new' => intval($_GPC['aliyun_new']), 'aliyun_new_keyid' => trim($_GPC['aliyun_new_keyid']), 'aliyun_new_keysecret' => trim($_GPC['aliyun_new_keysecret']), 'emay' => intval($_GPC['emay']), 'emay_url' => trim($_GPC['emay_url']), 'emay_sn' => trim($_GPC['emay_sn']), 'emay_pw' => trim($_GPC['emay_pw']), 'emay_sk' => trim($_GPC['emay_sk']), 'emay_phost' => trim($_GPC['emay_phost']), 'emay_pport' => intval($_GPC['emay_pport']), 'emay_puser' => trim($_GPC['emay_puser']), 'emay_ppw' => trim($_GPC['emay_ppw']), 'emay_out' => intval($_GPC['emay_out']), 'emay_outresp' => (empty($_GPC['emay_outresp']) ? 30 : intval($_GPC['emay_outresp'])), 'emay_warn' => intval($_GPC['emay_warn']), 'emay_mobile' => intval($_GPC['emay_mobile']));
 			if (empty($item)) 
 			{
@@ -45,6 +51,12 @@ class Index_EweiShopV2Page extends ComWebPage
 			}
 			show_json(1);
 		}
+        if(!empty($item['aliyun_new_keyid'])){
+            $item['aliyun_new_keyid'] = '******';
+        }
+        if(!empty($item['aliyun_new_keysecret'])){
+            $item['aliyun_new_keysecret'] = '******';
+        }
 		include $this->template();
 	}
 	public function getnum() 
