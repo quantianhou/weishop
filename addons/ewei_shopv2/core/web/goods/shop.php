@@ -6,6 +6,38 @@ if (!(defined('IN_IA')))
 class Shop_EweiShopV2Page extends WebPage
 {
 
+    //fanhailong add，2019/06/24 商家商品库页面的下架按钮点击没反应，发现这个控制器中没有对应的status函数，从门店商品库复制过来一份，操作商家商品库表的数据
+    public function status()
+    {
+        global $_W;
+        global $_GPC;
+        $id = intval($_GPC['id']);
+
+        if (empty($id)) {
+            $id = (is_array($_GPC['ids']) ? implode(',', $_GPC['ids']) : 0);
+        }
+        else {
+            pdo_update('ewei_business_goods', array('newgoods' => 0), array('id' => $id));
+        }
+
+        $items = pdo_fetchall('SELECT id,title,status,isstatustime,statustimestart,statustimeend FROM ' . tablename('ewei_business_goods') . ' WHERE id in( ' . $id . ' ) AND uniacid=' . $_W['uniacid']);
+
+        foreach ($items as $item) {
+            if (0 < $item['isstatustime']) {
+                if ((0 < intval($_GPC['status'])) && ($item['statustimestart'] < time()) && (time() < $item['statustimeend'])) {
+                }
+                else {
+                    show_json(0, '商品 [' . $item['title'] . '] 上架时间不符合要求！');
+                }
+            }
+
+            pdo_update('ewei_business_goods', array('status' => intval($_GPC['status'])), array('id' => $item['id']));
+            plog('goods.edit', ('修改商品状态<br/>ID: ' . $item['id'] . '<br/>商品名称: ' . $item['title'] . '<br/>状态: ' . $_GPC['status']) == 1 ? '上架' : '下架');
+        }
+
+        show_json(1, array('url' => referer()));
+    }
+
     public function categorytoshop(){
 
         global $_W;
